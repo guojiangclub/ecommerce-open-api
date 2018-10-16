@@ -69,8 +69,8 @@ iBrand 产品包含以下核心模块：
 
 ### 文档
 
-- [API文档](http://dev.ibrand.com/docs/api/v1/index)
-- Laravel API 教程 (待更新)
+- [API文档](https://www.ibrand.cc/docs/api/v1/index)
+- [Laravel API 教程](https://www.ibrand.cc/open/article)
 - 小程序教程 (待更新)
 
 ### 讨论交流
