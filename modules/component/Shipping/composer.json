@@ -1,0 +1,27 @@
+{
+  "name": "ibrand/shipping",
+  "description": "iBrand's shipping component",
+  "keywords": [
+    "iBrand",
+    "shipping",
+    "component"
+  ],
+  "license": "MIT",
+  "authors": [
+    {
+      "name": "shjchen",
+      "email": "ibrand.shjchen@foxmail.com"
+    }
+  ],
+  "require": {
+    "php": ">=7.0"
+  },
+
+  "autoload": {
+    "psr-4": {
+      "iBrand\\Component\\Shipping\\": "src/"
+    }
+  },
+  "minimum-stability": "dev",
+  "prefer-stable": true
+}

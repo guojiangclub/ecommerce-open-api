@@ -1,0 +1,45 @@
+{
+  "name": "ibrand/product",
+  "type": "library",
+  "description": "iBrand Product component",
+  "keywords": [
+    "iBrand",
+    "Product",
+    "component"
+  ],
+  "license": "MIT",
+  "authors": [
+    {
+      "name": "shjchen",
+      "email": "ibrand.shjchen@foxmail.com"
+    }
+  ],
+  "require": {
+    "php": ">=7.0",
+    "prettus/l5-repository": "^2.1"
+  },
+  "require-dev": {
+    "phpunit/phpunit": "~6.0",
+    "orchestra/testbench": "~3.5",
+    "orchestra/database": "~3.5"
+  },
+  "autoload": {
+    "psr-4": {
+      "iBrand\\Component\\Product\\": "src/"
+    }
+  },
+  "autoload-dev": {
+    "psr-4": {
+      "iBrand\\Component\\Product\\Test\\": "tests"
+    }
+  },
+  "extra": {
+    "laravel": {
+      "providers": [
+        "iBrand\\Component\\Product\\ProductServiceProvider"
+      ]
+    }
+  },
+  "minimum-stability": "dev",
+  "prefer-stable": true
+}

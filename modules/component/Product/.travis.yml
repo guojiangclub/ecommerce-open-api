@@ -1,0 +1,16 @@
+language: php
+
+php:
+  # using major version aliases
+
+  # aliased to a recent 7.x version
+  - 7.0
+  # aliased to a recent 7.x version
+  - 7.1
+  # aliased to a recent 7.x version
+  - 7.2
+
+
+before_script:
+  - composer self-update
+  - composer install --prefer-source --no-interaction --dev
