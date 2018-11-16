@@ -21,6 +21,7 @@
         "laravel/passport": "^4.0",
         "laravel/tinker": "~1.0",
         "league/fractal": "^0.17.0",
+        "vinkla/hashids": "~3.3.0",
         "marktopper/doctrine-dbal-timestamp-type": "^1.0",
         "milon/barcode": "^5.3",
         "overtrue/laravel-wechat": "~4.0",
