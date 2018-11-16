@@ -1,0 +1,60 @@
+.popup {
+    display: none;
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, .7);
+    left: 0;
+    top: 0;
+    z-index: 9999;
+}
+
+.popup .sortContainer {
+    width: 50%;
+    min-height: 300px;
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    -webkit-transform: translate3d(-50%, -50%, 0);
+    -moz-transform: translate3d(-50%, -50%, 0);
+    -ms-transform: translate3d(-50%, -50%, 0);
+    transform: translate3d(-50%, -50%, 0);
+    background: #ffffff;
+
+}
+.popup .btn{    margin-left: 10px;}
+.popup .sortContainer .sortTitle {
+    line-height: 44px;
+    background-color: #f9f9f9;
+    border-bottom: 1px solid #f0f0f0;
+    color: #000;
+    font-size: 20px;
+    padding: 0 0 0 20px;
+    margin: 0;
+}
+.popup .sortContainer p{color: #afa9a4; padding: 20px 0 0 20px}
+.popup .btn-box{padding: 0 20px}
+.popup .sortContainer .sortMain {
+    width: calc(100% - 40px);
+    padding: 20px;
+
+}
+
+.popup .sortContainer .sortMain ul li {
+    display: inline-block;
+    width: 80px;
+    background: #555;
+    line-height: 35px;
+    text-align: center;
+    color: #fff;
+    margin: 10px;
+    cursor: pointer;
+}
+
+.inputAdd {
+    width: 50%;
+    display: inline-block;
+    max-width: 100%;
+    margin-bottom: 5px;
+    height: 20px;
+}

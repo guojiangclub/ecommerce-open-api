@@ -59,6 +59,7 @@
             "include": [
                 "modules/EC.Open.Core/composer.json",
                 "modules/EC.Open.Server/composer.json",
+                "modules/EC.Open.Backend/*/composer.json",
                 "modules/component/*/composer.json"
             ],
             "recurse": false,
@@ -89,5 +90,14 @@
         "preferred-install": "dist",
         "sort-packages": true,
         "optimize-autoloader": true
-    }
+    },
+    "repositories": [
+        {
+            "packagist": false
+        },
+        {
+            "type": "composer",
+            "url": "https://packagist.laravel-china.org"
+        }
+    ]
 }

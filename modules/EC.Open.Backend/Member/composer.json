@@ -1,0 +1,25 @@
+{
+    "name": "ibrand/ec-open-member-backend",
+    "description": "member backend cart for Laravel Application.",
+    "keywords": [
+        "member backend ",
+        "backend",
+        "laravel"
+    ],
+    "authors": [
+        {
+            "name": "shjchen",
+            "email": "ibrand.shjchen@foxmail.com"
+        }
+    ],
+    "require": {
+
+    },
+
+    "autoload": {
+        "psr-4": {
+            "iBrand\\EC\\Open\\Backend\\Member\\": "src/"
+        }
+    },
+    "license": "MIT"
+}

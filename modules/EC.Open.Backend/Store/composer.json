@@ -1,0 +1,35 @@
+{
+    "name": "ibrand/ec-open-backend",
+    "type": "library",
+    "description": "iBrand EC's open source backend.",
+    "keywords": [
+        "iBrand",
+        "e-commerce",
+        "open source",
+        "server",
+        "backend"
+    ],
+    "authors": [
+        {
+            "name": "shjchen",
+            "email": "ibrand.shjchen@foxmail.com"
+        }
+    ],
+    "require": {
+        "lavary/laravel-menu": "~1.7",
+        "laravelcollective/html": "^5.5",
+        "ibrand/laravel-active": "~2.0"
+    },
+    "autoload": {
+        "files": [
+            "src/helpers.php"
+        ],
+
+        "psr-4": {
+            "iBrand\\EC\\Open\\Backend\\Store\\": "src/"
+        }
+    },
+    "license": "MIT",
+    "minimum-stability": "dev",
+    "prefer-stable": true
+}

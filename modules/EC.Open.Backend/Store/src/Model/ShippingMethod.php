@@ -1,0 +1,31 @@
+<?php
+
+namespace iBrand\EC\Open\Backend\Store\Model;
+
+use Illuminate\Database\Eloquent\Model;
+use Prettus\Repository\Contracts\Transformable;
+use Prettus\Repository\Traits\TransformableTrait;
+
+class ShippingMethod extends Model implements Transformable
+{
+    use TransformableTrait;
+
+    protected $guarded = ['id'];
+
+    public function __construct(array $attributes = [])
+    {
+        parent::__construct($attributes);
+
+        $prefix = config('ibrand.app.database.prefix', 'ibrand_');
+
+        $this->setTable($prefix . 'shipping_method');
+    }
+
+    public function scopeCheckShipping($query, $code, $name, $id = 0)
+    {
+        return $query->where(function ($query) use ($code, $name) {
+            $query->where('code', $code)->orWhere('name', $name);
+        })->where('id', '<>', $id);
+    }
+
+}

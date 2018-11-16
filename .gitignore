@@ -11,3 +11,6 @@ npm-debug.log
 yarn-error.log
 .env
 public/vendor
+public/assets
+resources/views
+resources/lang

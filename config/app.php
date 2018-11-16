@@ -179,9 +179,14 @@ return [
         Overtrue\LaravelWechat\ServiceProvider::class,
 
         Prettus\Repository\Providers\RepositoryServiceProvider::class,
+        HieuLe\Active\ActiveServiceProvider::class,
 
         iBrand\EC\Open\Core\Providers\AppServiceProvider::class,
         iBrand\EC\Open\Server\Providers\ServerServiceProvider::class,
+
+        iBrand\EC\Open\Backend\Album\Providers\AlbumBackendServiceProvider::class,
+        iBrand\EC\Open\Backend\Member\Providers\BackendServiceProvider::class,
+        iBrand\EC\Open\Backend\Store\Providers\BackendServiceProvider::class,
 
         /*
          * Application Service Providers...
@@ -240,6 +245,7 @@ return [
         'URL' => Illuminate\Support\Facades\URL::class,
         'Validator' => Illuminate\Support\Facades\Validator::class,
         'View' => Illuminate\Support\Facades\View::class,
+        'Active' => HieuLe\Active\Facades\Active::class,
 
     ],
 

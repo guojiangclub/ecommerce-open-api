@@ -82,7 +82,8 @@ class CreateOrderTables extends Migration
             $table->integer('adjustments_total')->default(0)->nullable();     //总的优惠金额,负数
 
             $table->integer('total');   //unitPrice * quantity + adjustmentsTotal
-
+            $table->integer('shipping_id')->default(0)->after('total'); //发货ID
+            $table->tinyInteger('is_send')->default(0)->after('total'); //是否已发货
             $table->timestamps();
             $table->softDeletes();
         });

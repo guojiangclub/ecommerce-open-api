@@ -1,0 +1,1 @@
+<a href="{{$url}}"> <img src="/assets/backend/images/goods_create_before.jpg"></a>

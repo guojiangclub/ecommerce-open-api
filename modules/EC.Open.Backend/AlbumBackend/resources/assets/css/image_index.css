@@ -1,0 +1,66 @@
+.el-image-head {
+  padding: 5px 10px 10px;
+  border-bottom: 1px solid #dddddd;
+  margin-bottom: 10px;
+}
+.el-image-head h3{display: inline-block; margin-right: 20px}
+
+.el-image-title{    height: 27px;
+  overflow: hidden;}
+.el-image-box a{margin-right: 5px}
+.el-image-box img{
+  display: inline-block;}
+.el-image-head a{
+  margin-left: 8px}
+.grey,.grey:hover{color: #c1c1c1}
+
+
+.el-image-cate-box{
+  float: left;
+  width: 200px;
+  border: 1px solid #e7eaec;
+  padding: 0;
+  background-color: #ffffff;
+  position: relative;
+  margin-bottom: 20px;
+  margin-right: 20px;
+  overflow: hidden;
+  height: 170px;
+  text-align: center;
+}
+.el-image-cate-box img{height: 130px;}
+.el-image-cate-box p{line-height: 40px;}
+
+.uploadImage .btn_upload{
+  position: absolute;
+  width: 80px;
+  height: 80px;
+  opacity: 0;
+  top: 0;
+  left: 0;
+}
+.uploadImage .btn_upload_container{
+  display: inline-block;
+  position: relative;
+  cursor: pointer;
+  width: 80px;
+  height: 80px;
+  border: 2px dashed #ddd;
+  font-size: 36px;
+  text-align: center;
+  box-sizing: border-box;
+  line-height: 71px;
+  color: #ddd;
+}
+.uploadImage .upload_result{
+  vertical-align: top;
+  display: inline-block;
+}
+.uploadImage .upload_result li{
+  display: inline-block;
+}
+.uploadImage .upload_result img{
+  margin-right: 10px;
+  width: 80px;
+  height: 80px;
+}

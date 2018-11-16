@@ -1,0 +1,26 @@
+{
+  "name": "ibrand/ec-open-album-backend",
+  "description": "iBrand EC's open source album backend.",
+  "keywords": [
+    "iBrand",
+    "e-commerce",
+    "open source",
+    "server",
+    "backend",
+    "album"
+  ],
+  "license": "MIT",
+  "authors": [
+    {
+      "name": "shjchen",
+      "email": "ibrand.shjchen@foxmail.com"
+    }
+  ],
+  "autoload": {
+    "psr-4": {
+      "iBrand\\EC\\Open\\Backend\\Album\\": "src/"
+    }
+  },
+  "minimum-stability": "dev",
+  "prefer-stable": true
+}
