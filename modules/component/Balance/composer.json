@@ -1,0 +1,50 @@
+{
+  "name": "ibrand/balance",
+  "type": "library",
+  "description": "iBrand Balance component",
+  "keywords": [
+    "iBrand",
+    "Balance",
+    "component"
+  ],
+  "license": "MIT",
+  "authors": [
+    {
+      "name": "shjchen",
+      "email": "ibrand.shjchen@foxmail.com"
+    }
+  ],
+  "require": {
+    "php": ">=7.0",
+    "prettus/l5-repository": "^2.1"
+  },
+  "require-dev": {
+    "mockery/mockery": "~1.0",
+    "phpunit/phpunit": "~6.0",
+    "orchestra/testbench": "~3.5",
+    "orchestra/database": "~3.5"
+  },
+  "autoload": {
+    "psr-4": {
+      "iBrand\\Component\\Balance\\": "src/"
+    }
+  },
+  "autoload-dev": {
+    "psr-4": {
+      "iBrand\\Component\\Balance\\Test\\": "tests"
+    }
+  },
+  "extra": {
+    "laravel": {
+      "providers": [
+        "iBrand\\Component\\Balance\\BalanceServiceProvider"
+      ]
+    }
+  },
+  "config": {
+    "preferred-install": "dist",
+    "secure-http": false
+  },
+  "minimum-stability": "dev",
+  "prefer-stable": true
+}
