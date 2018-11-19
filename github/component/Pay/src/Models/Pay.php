@@ -26,6 +26,20 @@ class Pay extends Model
 
         $client = new Client();
 
-        $this->charge_id = 'ch_'.$client->generateId($size = 24);
+        $this->charge_id = 'ch_' . $client->generateId($size = 24);
+    }
+
+    public function setMetadataAttribute($value)
+    {
+        if (!empty($value)) {
+            $this->attributes['metadata'] = json_encode($value);
+        }
+    }
+
+    public function setExtraAttribute($value)
+    {
+        if (!empty($value)) {
+            $this->attributes['extra'] = json_encode($value);
+        }
     }
 }
