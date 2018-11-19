@@ -29,12 +29,9 @@ class DefaultCharge extends BaseCharge implements PayChargeContract
         $modelData = array_merge(['app' => $app, 'type' => $type], array_only($data, ['channel', 'order_no', 'client_ip', 'subject', 'amount',
             'body', 'extra', 'time_expire', 'metadata', 'description']));
 
-        /*$modelData['extra'] = isset($data['extra']) ?? json_encode($data['extra']);
-        $modelData['metadata'] = isset($data['metadata']) ?? json_encode($data['metadata']);*/
-
         $payModel = PayModel::create($modelData);
 
-        try {
+        /*try {*/
             $credential = null;
 
             switch ($data['channel']) {
@@ -48,12 +45,13 @@ class DefaultCharge extends BaseCharge implements PayChargeContract
                     /*return $this->createAliCharge($user_id, $channel, $type, $order_no, $amount, $subject, $body, $ip, $openid, $extra, $submit_time);*/
             }
 
-            $payModel->credential = json_encode($credential);
+            $payModel->credential = $credential;
             $payModel->save();
 
             return $payModel;
-        } catch (\Exception $exception) {
-        }
+        /*} catch (\Exception $exception) {
+
+        }*/
     }
 
     /**

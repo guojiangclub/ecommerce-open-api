@@ -56,4 +56,18 @@ class Pay extends Model
         }
         return $value;
     }
+
+    public function setCredentialAttribute($value)
+    {
+        if (!empty($value)) {
+            $this->attributes['credential'] = json_encode($value);
+        }
+    }
+
+    public function getCredentialAttribute($value){
+        if (!empty($value)) {
+            $value = json_decode($value,true);
+        }
+        return $value;
+    }
 }
