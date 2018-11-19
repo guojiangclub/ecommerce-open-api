@@ -53,7 +53,7 @@ class WechatPayController extends Controller
             'client_ip' => \request()->getClientIp(), 'subject' => $order->getSubject()
             , 'body' => $order->getSubject(), 'extra' => ['openid' => \request('openid')]]);
 
-        $this->success(compact('charge'));
+        return $this->success(compact('charge'));
 
         //openid 和 订单编号
         /*$payment = EasyWeChat::payment();
