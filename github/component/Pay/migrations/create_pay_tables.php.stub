@@ -32,7 +32,7 @@ class CreatePayTables extends Migration
             $table->boolean('reversed')->default(false);
             $table->string('channel');
             $table->string('order_no');
-            $table->string('client_ip');
+            $table->string('client_ip')->default('127.0.0.1');
             $table->integer('amount');
             $table->string('currency')->default('cny');
             $table->string('subject');
@@ -40,7 +40,7 @@ class CreatePayTables extends Migration
             $table->string('extra')->nullable();
             $table->timestamp('time_paid')->nullable();
             $table->timestamp('time_expire')->nullable();
-            $table->string('transaction_no');
+            $table->string('transaction_no')->nullable();
             $table->text('transaction_meta')->nullable();
             $table->text('metadata')->nullable();
             $table->text('credential')->nullable();

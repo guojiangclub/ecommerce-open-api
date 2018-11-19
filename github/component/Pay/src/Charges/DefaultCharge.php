@@ -26,7 +26,8 @@ class DefaultCharge extends BaseCharge implements PayChargeContract
             throw new \InvalidArgumentException("Unsupported channel [{$data['channel']}]");
         }
 
-        $modelData = array_merge(['app' => $app], array_pluck($data, ['type', 'channel', 'order_no', 'client_ip', 'subject', 'body', 'extra', 'time_expire', 'metadata', 'description']));
+        $modelData = array_merge(['app' => $app, 'type' => $type], array_pluck($data, ['channel', 'order_no', 'client_ip', 'subject','amount',
+            'body', 'extra', 'time_expire', 'metadata', 'description']));
 
         $payModel = PayModel::create($modelData);
 
@@ -37,7 +38,7 @@ class DefaultCharge extends BaseCharge implements PayChargeContract
                 case 'wx_pub':
                 case 'wx_pub_qr':
                 case 'wx_lite':
-                    $credential = $this->createWechatCharge($data, config('ibrand.pay.default.wechat.'.$app));
+                    $credential = $this->createWechatCharge($data, config('ibrand.pay.default.wechat.' . $app));
                     break;
                 case 'alipay_wap':
                 case 'alipay_pc_direct':
@@ -100,9 +101,9 @@ class DefaultCharge extends BaseCharge implements PayChargeContract
         $config = $this->getConfig('alipay');
 
         $delayTime = app('system_setting')->getSetting('order_auto_cancel_time') ? app('system_setting')->getSetting('order_auto_cancel_time') : 1440;
-        $time_expire = $delayTime.'m';
+        $time_expire = $delayTime . 'm';
         if ($submit_time and ($gap = Carbon::now()->timestamp - strtotime($submit_time)) > 0) {
-            $time_expire = ($delayTime - floor($gap / 60)).'m';
+            $time_expire = ($delayTime - floor($gap / 60)) . 'm';
         }
 
         $extra = $this->createExtra($channel, '', $extra, $type);
@@ -123,12 +124,12 @@ class DefaultCharge extends BaseCharge implements PayChargeContract
             $chargeData['quit_url'] = $extra['cancel_url'];
         }
 
-        $return_url = $extra['success_url'].$order_no;
+        $return_url = $extra['success_url'] . $order_no;
         $return_url = str_replace('/', '~', $return_url);
         $return_url = str_replace('?', '@', $return_url);
         $return_url = str_replace('#', '*', $return_url);
 
-        $config['return_url'] = $config['return_url'].'/'.$return_url; //同步通知url
+        $config['return_url'] = $config['return_url'] . '/' . $return_url; //同步通知url
         $config['notify_url'] = $config['notify_url']; //异步通知url
 
         $ali_pay = [];

@@ -16,6 +16,7 @@ use iBrand\Component\Order\Models\Order;
 use iBrand\Component\Order\Repositories\OrderRepository;
 use iBrand\Component\Payment\Models\Payment;
 use Illuminate\Http\Request;
+use iBrand\Component\Pay\Facades\Charge;
 
 class WechatPayController extends Controller
 {
@@ -48,8 +49,14 @@ class WechatPayController extends Controller
             return $this->failed('无法支付，需支付金额为零');
         }
 
+        $charge = Charge::create(['channel' => 'wx_lite', 'order_no' => $order_no, 'amount' => $order->getNeedPayAmount(),
+            'client_ip' => \request()->getClientIp(), 'subject' => $order->getSubject()
+            , 'body' => $order->getSubject(), 'extra' => ['openid' => \request('openid')]]);
+
+        $this->success(compact('charge'));
+
         //openid 和 订单编号
-        $payment = EasyWeChat::payment();
+        /*$payment = EasyWeChat::payment();
 
         $data = $payment->order->unify([
             'body' => $order->getSubject(),
@@ -73,6 +80,6 @@ class WechatPayController extends Controller
         } elseif ('FAIL' == $data['result_code']) {
             return $this->failed($data['err_code_des']);
         }
-        return $this->failed('支付未知错误');
+        return $this->failed('支付未知错误');*/
     }
 }
