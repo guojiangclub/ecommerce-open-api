@@ -13,7 +13,7 @@ namespace iBrand\Component\Pay;
 
 use iBrand\Component\Pay\Charges\DefaultCharge;
 use iBrand\Component\Pay\Contracts\PayChargeContract;
-use Illuminate\Routing\Route;
+use Illuminate\Support\Facades\Route;
 use Illuminate\Support\ServiceProvider;
 use InvalidArgumentException;
 
