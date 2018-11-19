@@ -42,4 +42,18 @@ class Pay extends Model
             $this->attributes['extra'] = json_encode($value);
         }
     }
+
+    public function getMetadataAttribute($value){
+        if (!empty($value)) {
+           $value = json_decode($value,true);
+        }
+        return $value;
+    }
+
+    public function getExtraAttribute($value){
+        if (!empty($value)) {
+            $value = json_decode($value,true);
+        }
+        return $value;
+    }
 }
