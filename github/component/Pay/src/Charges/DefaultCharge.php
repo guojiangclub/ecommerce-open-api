@@ -26,8 +26,11 @@ class DefaultCharge extends BaseCharge implements PayChargeContract
             throw new \InvalidArgumentException("Unsupported channel [{$data['channel']}]");
         }
 
-        $modelData = array_merge(['app' => $app, 'type' => $type], array_pluck($data, ['channel', 'order_no', 'client_ip', 'subject','amount',
+        $modelData = array_merge(['app' => $app, 'type' => $type], array_only($data, ['channel', 'order_no', 'client_ip', 'subject','amount',
             'body', 'extra', 'time_expire', 'metadata', 'description']));
+
+        $modelData['extra'] = json_encode($data['extra']);
+        $modelData['metadata'] = json_encode($data['metadata']);
 
         $payModel = PayModel::create($modelData);
 
