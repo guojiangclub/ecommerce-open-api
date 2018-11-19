@@ -32,23 +32,25 @@ class DefaultCharge extends BaseCharge implements PayChargeContract
         $payModel = PayModel::create($modelData);
 
         /*try {*/
-            $credential = null;
+        $credential = null;
+        $out_trade_no = null;
 
-            switch ($data['channel']) {
-                case 'wx_pub':
-                case 'wx_pub_qr':
-                case 'wx_lite':
-                    $credential = $this->createWechatCharge($data, config('ibrand.pay.default.wechat.' . $app));
-                    break;
-                case 'alipay_wap':
-                case 'alipay_pc_direct':
-                    /*return $this->createAliCharge($user_id, $channel, $type, $order_no, $amount, $subject, $body, $ip, $openid, $extra, $submit_time);*/
-            }
+        switch ($data['channel']) {
+            case 'wx_pub':
+            case 'wx_pub_qr':
+            case 'wx_lite':
+                $credential = $this->createWechatCharge($data, config('ibrand.pay.default.wechat.' . $app),$out_trade_no);
+                break;
+            case 'alipay_wap':
+            case 'alipay_pc_direct':
+                /*return $this->createAliCharge($user_id, $channel, $type, $order_no, $amount, $subject, $body, $ip, $openid, $extra, $submit_time);*/
+        }
 
-            $payModel->credential = $credential;
-            $payModel->save();
+        $payModel->credential = $credential;
+        $payModel->out_trade_no = $out_trade_no;
+        $payModel->save();
 
-            return $payModel;
+        return $payModel;
         /*} catch (\Exception $exception) {
 
         }*/
@@ -59,11 +61,13 @@ class DefaultCharge extends BaseCharge implements PayChargeContract
      * @param $config
      * @return array|null
      */
-    protected function createWechatCharge($data, $config)
+    protected function createWechatCharge($data, $config, &$out_trade_no)
     {
+        $out_trade_no = $this->getWxPayCode($data['order_no'], $data['channel']);
+
         $chargeData = [
             'body' => mb_strcut($data['body'], 0, 32, 'UTF-8'),
-            'out_trade_no' => $this->getWxPayCode($data['order_no'], $data['channel']),
+            'out_trade_no' => $out_trade_no,
             'total_fee' => abs($data['amount']),
             'spbill_create_ip' => $data['client_ip'],
         ];

@@ -24,8 +24,7 @@ abstract class BaseCharge implements PayChargeContract
             case 'wx_pub_qr':
             case 'wx_lite':
                 $client = new Client();
-
-                return 'wx_'.$client->generateId($size = 24);
+                return 'wx_' . $client->formatedId('0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ_abcdefghijklmnopqrstuvwxyz-',24);
             default:
                 return $order_sn;
         }
@@ -35,7 +34,7 @@ abstract class BaseCharge implements PayChargeContract
     {
         if ($params && !is_array($params)) {
             $message = 'You must pass an array as the first argument to pay API '
-                .'method calls.';
+                . 'method calls.';
             throw new \InvalidArgumentException($message);
         }
     }
