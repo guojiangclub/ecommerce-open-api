@@ -180,6 +180,8 @@ return [
 
         Prettus\Repository\Providers\RepositoryServiceProvider::class,
 
+        iBrand\Component\Pay\PayServiceProvider::class,
+
         iBrand\EC\Open\Core\Providers\AppServiceProvider::class,
         iBrand\EC\Open\Server\Providers\ServerServiceProvider::class,
 
@@ -241,6 +243,7 @@ return [
         'Validator' => Illuminate\Support\Facades\Validator::class,
         'View' => Illuminate\Support\Facades\View::class,
 
+        'Charge'=> iBrand\Component\Pay\Facades\Charge::class,
     ],
 
 ];

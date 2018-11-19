@@ -36,7 +36,7 @@
         "iBrand\\Component\\Pay\\PayServiceProvider"
       ],
       "aliases": {
-        "Pay": "iBrand\\Component\\Pay\\Facades\\Pay"
+        "Charge": "iBrand\\Component\\Pay\\Facades\\Charge"
       }
     }
   },
