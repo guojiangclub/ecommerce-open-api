@@ -57,7 +57,8 @@
             "include": [
                 "modules/EC.Open.Core/composer.json",
                 "modules/EC.Open.Server/composer.json",
-                "modules/component/*/composer.json"
+                "modules/component/*/composer.json",
+                "github/component/*/composer.json"
             ],
             "recurse": false,
             "replace": true,

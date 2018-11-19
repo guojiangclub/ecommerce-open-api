@@ -1,0 +1,45 @@
+{
+  "name": "ibrand/pay",
+  "type": "library",
+  "description": "ibrand pay component",
+  "keywords": [
+    "iBrand",
+    "pay",
+    "component"
+  ],
+  "license": "MIT",
+  "authors": [
+    {
+      "name": "shjchen",
+      "email": "ibrand.shjchen@foxmail.com"
+    }
+  ],
+  "require": {
+    "php": ">=7.0",
+    "hidehalo/nanoid-php": "^1.1",
+    "yansongda/pay": "^2.5"
+  },
+  "require-dev": {
+    "mockery/mockery": "~1.0",
+    "phpunit/phpunit": "~6.0",
+    "orchestra/testbench": "~3.5",
+    "orchestra/database": "~3.5"
+  },
+  "autoload": {
+    "psr-4": {
+      "iBrand\\Component\\Pay\\": "src/"
+    }
+  },
+  "extra": {
+    "laravel": {
+      "providers": [
+        "iBrand\\Component\\Pay\\PayServiceProvider"
+      ],
+      "aliases": {
+        "Pay": "iBrand\\Component\\Pay\\Facades\\Pay"
+      }
+    }
+  },
+  "minimum-stability": "dev",
+  "prefer-stable": true
+}
