@@ -32,7 +32,7 @@ class WechatPayNotifyController extends Controller
             if ('SUCCESS' == $data['result_code']) {
                 $charge = \iBrand\Component\Pay\Models\Charge::where('out_trade_no', $data['out_trade_no'])->first();
 
-                if (!$pay) {
+                if (!$charge) {
                     return response('支付失败', 500);
                 }
 
@@ -46,7 +46,7 @@ class WechatPayNotifyController extends Controller
                     return response('支付失败', 500);
                 }
 
-                PayNotify::success($charge->type, $pay);
+                PayNotify::success($charge->type, $charge);
 
                 return $pay->success();
             } elseif ('FAIL' == $data['result_code']) {

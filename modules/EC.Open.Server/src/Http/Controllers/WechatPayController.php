@@ -49,9 +49,14 @@ class WechatPayController extends Controller
             return $this->failed('无法支付，需支付金额为零');
         }
 
-        $charge = Charge::create(['channel' => 'wx_lite', 'order_no' => $order_no, 'amount' => $order->getNeedPayAmount(),
-            'client_ip' => \request()->getClientIp(), 'subject' => $order->getSubject()
-            , 'body' => $order->getSubject(), 'extra' => ['openid' => \request('openid')]]);
+        $charge = Charge::create(['channel' => 'wx_lite'
+            , 'order_no' => $order_no
+            , 'amount' => $order->getNeedPayAmount()
+            , 'client_ip' => \request()->getClientIp()
+            , 'subject' => $order->getSubject()
+            , 'body' => $order->getSubject()
+            , 'extra' => ['openid' => \request('openid')]
+        ]);
 
         return $this->success(compact('charge'));
 

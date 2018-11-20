@@ -26,10 +26,10 @@ class PayNotify extends Facade
         return 'ibrand.pay.notify.default';
     }
 
-    public static function success($name = '', Charge $pay)
+    public static function success($name = '', Charge $charge)
     {
         $app = $name ? app('ibrand.pay.notify.'.$name) : app('ibrand.pay.notify.default');
 
-        return $app->success($pay);
+        return $app->success($charge);
     }
 }
