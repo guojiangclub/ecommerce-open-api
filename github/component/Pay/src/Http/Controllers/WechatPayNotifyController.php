@@ -11,6 +11,7 @@
 
 namespace iBrand\Component\Pay\Http\Controllers;
 
+use Carbon\Carbon;
 use iBrand\Component\Pay\Facades\PayNotify;
 use Illuminate\Routing\Controller;
 use Yansongda\Pay\Pay;
@@ -37,7 +38,7 @@ class WechatPayNotifyController extends Controller
 
                 $charge->transaction_meta = json_encode($data);
                 $charge->transaction_no = $data['transaction_id'];
-                $charge->time_paid = strtotime($data['time_end']);
+                $charge->time_paid = Carbon::createFromTimestamp(strtotime($data['time_end']));
                 $charge->paid = 1;
                 $charge->save();
 
