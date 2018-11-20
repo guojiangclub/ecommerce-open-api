@@ -14,7 +14,7 @@ namespace iBrand\Component\Pay\Charges;
 use Carbon\Carbon;
 use iBrand\Component\Pay\Contracts\PayChargeContract;
 use iBrand\Component\Pay\Exceptions\GatewayException;
-use iBrand\Component\Pay\Models\Charge as PayModel;
+use iBrand\Component\Pay\Models\Charge;
 use Yansongda\Pay\Pay;
 
 class DefaultCharge extends BaseCharge implements PayChargeContract
@@ -41,7 +41,7 @@ class DefaultCharge extends BaseCharge implements PayChargeContract
         $modelData = array_merge(['app' => $app, 'type' => $type], array_only($data, ['channel', 'order_no', 'client_ip', 'subject', 'amount',
             'body', 'extra', 'time_expire', 'metadata', 'description', ]));
 
-        $payModel = PayModel::create($modelData);
+        $payModel = Charge::create($modelData);
 
         try {
             $credential = null;
@@ -186,5 +186,35 @@ class DefaultCharge extends BaseCharge implements PayChargeContract
         }
 
         return null;
+    }
+
+    public function find($charge_id)
+    {
+        $charge = Charge::where('charge_id',$charge_id)->first();
+
+        $config = config('ibrand.pay.default.wechat.'.$charge->app);
+
+        $result = Pay::wechat($config)->find($charge->out_trade_no);
+
+        if ($result['return_code'] == 'FAIL'){
+            $charge->failure_code = $result['return_code'];
+            $charge->failure_msg = $result['return_msg'];
+            $charge->save();
+            return $charge;
+        };
+
+        if ($result['result_code'] == 'FAIL' || $result['trade_state'] != 'SUCCESS') {
+            $charge->failure_code = $result['err_code'];
+            $charge->failure_msg = $result['err_code_des'];
+            $charge->save();
+        };
+
+        $charge->transaction_meta = json_encode($result);
+        $charge->transaction_no = $result['transaction_id'];
+        $charge->time_paid = Carbon::createFromTimestamp(strtotime($result['time_end']));
+        $charge->paid = 1;
+        $charge->save();
+
+        return $charge;
     }
 }
