@@ -22,7 +22,7 @@ class CreatePayTables extends Migration
      */
     public function up()
     {
-        Schema::create('ibrand_pay', function (Blueprint $table) {
+        Schema::create('ibrand_pay_charge', function (Blueprint $table) {
             $table->increments('id');
             $table->string('charge_id')->unique();
             $table->string('app');   //具体支付配置

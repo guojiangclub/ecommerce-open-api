@@ -11,9 +11,10 @@
 
 namespace iBrand\Component\Pay\Facades;
 
+use iBrand\Component\Pay\Models\Charge;
 use Illuminate\Support\Facades\Facade;
 
-class Charge extends Facade
+class PayNotify extends Facade
 {
     /**
      * Return the facade accessor.
@@ -22,6 +23,13 @@ class Charge extends Facade
      */
     public static function getFacadeAccessor()
     {
-        return 'ibrand.pay.charge';
+        return 'ibrand.pay.notify.default';
+    }
+
+    public static function success($name = '', Charge $pay)
+    {
+        $app = $name ? app('ibrand.pay.notify.'.$name) : app('ibrand.pay.notify.default');
+
+        return $app->success($pay);
     }
 }

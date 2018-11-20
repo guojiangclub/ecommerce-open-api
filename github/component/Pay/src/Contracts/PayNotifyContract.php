@@ -9,10 +9,11 @@
  * file that was distributed with this source code.
  */
 
-namespace iBrand\Component\Pay\Exceptions;
+namespace iBrand\Component\Pay\Contracts;
 
-use Exception;
+use iBrand\Component\Pay\Models\Charge;
 
-class GatewayException extends Exception
+interface PayNotifyContract
 {
+    public function success(Charge $charge);
 }

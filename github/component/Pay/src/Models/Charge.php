@@ -14,9 +14,9 @@ namespace iBrand\Component\Pay\Models;
 use Hidehalo\Nanoid\Client;
 use Illuminate\Database\Eloquent\Model;
 
-class Pay extends Model
+class Charge extends Model
 {
-    protected $table = 'ibrand_pay';
+    protected $table = 'ibrand_pay_charge';
 
     protected $guarded = ['id'];
 
@@ -26,7 +26,7 @@ class Pay extends Model
 
         $client = new Client();
 
-        $this->charge_id = 'ch_' . $client->generateId($size = 24);
+        $this->charge_id = 'ch_'.$client->generateId($size = 24);
     }
 
     public function setMetadataAttribute($value)
@@ -43,17 +43,21 @@ class Pay extends Model
         }
     }
 
-    public function getMetadataAttribute($value){
+    public function getMetadataAttribute($value)
+    {
         if (!empty($value)) {
-           $value = json_decode($value,true);
+            $value = json_decode($value, true);
         }
+
         return $value;
     }
 
-    public function getExtraAttribute($value){
+    public function getExtraAttribute($value)
+    {
         if (!empty($value)) {
-            $value = json_decode($value,true);
+            $value = json_decode($value, true);
         }
+
         return $value;
     }
 
@@ -64,10 +68,12 @@ class Pay extends Model
         }
     }
 
-    public function getCredentialAttribute($value){
+    public function getCredentialAttribute($value)
+    {
         if (!empty($value)) {
-            $value = json_decode($value,true);
+            $value = json_decode($value, true);
         }
+
         return $value;
     }
 }

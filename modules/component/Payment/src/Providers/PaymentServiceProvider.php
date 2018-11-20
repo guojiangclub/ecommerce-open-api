@@ -11,6 +11,8 @@
 
 namespace iBrand\Component\Payment\Providers;
 
+use iBrand\Component\Payment\Services\PaymentService;
+use Illuminate\Support\Facades\Event;
 use Illuminate\Support\ServiceProvider;
 
 class PaymentServiceProvider extends ServiceProvider
@@ -36,5 +38,7 @@ class PaymentServiceProvider extends ServiceProvider
         $this->mergeConfigFrom(
             __DIR__.'/../../config/payment.php', 'ibrand.payment'
         );
+
+        $this->app->bind('ibrand.pay.notify.default',PaymentService::class);
     }
 }

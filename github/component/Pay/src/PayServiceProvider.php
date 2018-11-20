@@ -68,7 +68,7 @@ class PayServiceProvider extends ServiceProvider
             throw new InvalidArgumentException("Unsupported driver [{$config['driver']}]");
         });
 
-        $this->app->alias(PayChargeContract::class, 'ibrand.charge');
+        $this->app->alias(PayChargeContract::class, 'ibrand.pay.charge');
     }
 
     public function loadRoutes()
@@ -76,8 +76,8 @@ class PayServiceProvider extends ServiceProvider
         $routeAttr = config('ibrand.pay.route', []);
 
         Route::group(array_merge(['namespace' => $this->namespace], $routeAttr), function ($router) {
-            $router->post('wechat', 'WechatPayNotifyController@notify');
-            $router->post('alipay', 'AliPayNotifyController@notify');
+            $router->post('wechat/{app}', 'WechatPayNotifyController@notify')->name('pay.wechat.notify');
+            $router->post('alipay/{app}', 'AliPayNotifyController@notify')->name('pay.alipay.notify');
         });
     }
 }

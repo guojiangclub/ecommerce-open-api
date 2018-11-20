@@ -244,6 +244,7 @@ return [
         'View' => Illuminate\Support\Facades\View::class,
 
         'Charge'=> iBrand\Component\Pay\Facades\Charge::class,
+        'PayNotify' => iBrand\Component\Pay\Facades\PayNotify::class,
     ],
 
 ];
