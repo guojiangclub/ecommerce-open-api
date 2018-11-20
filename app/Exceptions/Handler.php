@@ -4,6 +4,7 @@ namespace App\Exceptions;
 
 use Exception;
 use Illuminate\Foundation\Exceptions\Handler as ExceptionHandler;
+use Illuminate\Http\Response;
 
 class Handler extends ExceptionHandler
 {
@@ -48,6 +49,10 @@ class Handler extends ExceptionHandler
      */
     public function render($request, Exception $exception)
     {
+        if(config('app.debug') || $request->isJson()){
+            return new Response(['status' => false, 'code' => 400, 'message' => $exception->getMessage()]
+            );
+        }
         return parent::render($request, $exception);
     }
 }

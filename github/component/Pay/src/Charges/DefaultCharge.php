@@ -13,6 +13,7 @@ namespace iBrand\Component\Pay\Charges;
 
 use Carbon\Carbon;
 use iBrand\Component\Pay\Contracts\PayChargeContract;
+use iBrand\Component\Pay\Exceptions\GatewayException;
 use iBrand\Component\Pay\Models\Pay as PayModel;
 use Yansongda\Pay\Pay;
 
@@ -31,29 +32,33 @@ class DefaultCharge extends BaseCharge implements PayChargeContract
 
         $payModel = PayModel::create($modelData);
 
-        /*try {*/
-        $credential = null;
-        $out_trade_no = null;
+        try {
 
-        switch ($data['channel']) {
-            case 'wx_pub':
-            case 'wx_pub_qr':
-            case 'wx_lite':
-                $credential = $this->createWechatCharge($data, config('ibrand.pay.default.wechat.' . $app),$out_trade_no);
-                break;
-            case 'alipay_wap':
-            case 'alipay_pc_direct':
-                /*return $this->createAliCharge($user_id, $channel, $type, $order_no, $amount, $subject, $body, $ip, $openid, $extra, $submit_time);*/
+            $credential = null;
+            $out_trade_no = null;
+
+            switch ($data['channel']) {
+                case 'wx_pub':
+                case 'wx_pub_qr':
+                case 'wx_lite':
+                    $credential = $this->createWechatCharge($data, config('ibrand.pay.default.wechat.' . $app), $out_trade_no);
+                    break;
+                case 'alipay_wap':
+                case 'alipay_pc_direct':
+                    /*return $this->createAliCharge($user_id, $channel, $type, $order_no, $amount, $subject, $body, $ip, $openid, $extra, $submit_time);*/
+            }
+
+            $payModel->credential = $credential;
+            $payModel->out_trade_no = $out_trade_no;
+            $payModel->save();
+
+            return $payModel;
+
+        } catch (\Yansongda\Pay\Exceptions\Exception $exception) {
+            throw  new GatewayException('支付通道错误');
+        } catch (\Exception $exception){
+            throw  new GatewayException('支付失败');
         }
-
-        $payModel->credential = $credential;
-        $payModel->out_trade_no = $out_trade_no;
-        $payModel->save();
-
-        return $payModel;
-        /*} catch (\Exception $exception) {
-
-        }*/
     }
 
     /**
