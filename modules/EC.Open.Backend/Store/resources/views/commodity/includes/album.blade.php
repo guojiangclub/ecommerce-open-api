@@ -22,9 +22,6 @@
                         排序(数字越大排在越前)
                     </th>
                     <th>
-                        是否显示
-                    </th>
-                    <th>
                         操作
                     </th>
                 </tr>
@@ -46,10 +43,6 @@
                                 <input type="text" class="form-control" name="_imglist[{{$val['code']}}][sort]" value="{{$val['sort']}}">
                             </td>
                             <td>
-                                <input name="_imglist[{{$val['code']}}][flag]" type="radio" value="1" {{$val['flag'] == 1?'checked':''}} /> 是
-                                <input name="_imglist[{{$val['code']}}][flag]" type="radio" value="0" {{$val['flag'] == 0?'checked':''}}  /> 否
-                            </td>
-                            <td>
                                 <a href="javascript:;" class="btn btn-white" onclick="delAlbumImg(this)"><i class="fa fa-trash"></i>
                                 </a>
                             </td>
@@ -60,7 +53,6 @@
             </table>
         </div>
         <div class="form-group">
-            {{--<label class="col-sm-2 control-label">产品相册：</label>--}}
             <div class="col-sm-12">
                 <div id="upload" class="btn btn-primary">选择图片</div>
 
@@ -82,10 +74,6 @@
 
                 <td>
                     <input type="text" class="form-control" name="_imglist[{MENU_ID}][sort]" value="9">
-                </td>
-                <td>
-                    <input name="_imglist[{MENU_ID}][flag]" type="radio" value="1" checked=checked /> 是
-                    <input name="_imglist[{MENU_ID}][flag]" type="radio" value="0"  /> 否
                 </td>
                 <td>
                     <a href="javascript:;" class="btn btn-white"

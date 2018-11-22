@@ -22,10 +22,9 @@ class RefundService
     protected $paymentRefund;
 
     public function __construct(\ElementVip\Component\Refund\Service\RefundService $refundService,
-                                RefundRepository $refundRepository,
                                 \ElementVip\Component\Payment\Services\RefundService $paymentRefundService)
     {
-        $this->refundRepository = $refundRepository;
+        $this->refundRepository = app(RefundRepository::class);
         $this->orderRepository = app(OrderRepository::class);
         $this->refundService = $refundService;
         $this->cache = cache();
