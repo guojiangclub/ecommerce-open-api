@@ -24,10 +24,6 @@
                     <thead>
                     <tr>
                         <th>规格值</th>
-                        @if($spec->id == 2)
-                            <th>颜色值</th>
-                            <th>所属色系</th>
-                        @endif
                         <th>操作</th>
                     </tr>
                     </thead>
