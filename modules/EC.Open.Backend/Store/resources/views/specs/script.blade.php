@@ -4,7 +4,11 @@
             <td>
                 {#name#}
             </td>
-
+            @if($spec->id == 2)
+                <td>
+                    <span style="background-color: #{#rgb#};" class="color-span">{#rgb#}</span>
+                </td>
+            @endif
             <td>
 
                 <a class="btn btn-xs btn-success" id="chapter-create-btn" data-toggle="modal"

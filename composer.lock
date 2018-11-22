@@ -2251,16 +2251,16 @@
         },
         {
             "name": "jaybizzle/crawler-detect",
-            "version": "v1.2.73",
+            "version": "v1.2.74",
             "source": {
                 "type": "git",
                 "url": "https://github.com/JayBizzle/Crawler-Detect.git",
-                "reference": "3783b88b686dfd8f0c752f829caaf1bcace581ef"
+                "reference": "e5fbc685383a4b8f49183b3a646b193491cc14c5"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/JayBizzle/Crawler-Detect/zipball/3783b88b686dfd8f0c752f829caaf1bcace581ef",
-                "reference": "3783b88b686dfd8f0c752f829caaf1bcace581ef",
+                "url": "https://api.github.com/repos/JayBizzle/Crawler-Detect/zipball/e5fbc685383a4b8f49183b3a646b193491cc14c5",
+                "reference": "e5fbc685383a4b8f49183b3a646b193491cc14c5",
                 "shasum": "",
                 "mirrors": [
                     {
@@ -2302,7 +2302,7 @@
                 "crawlerdetect",
                 "php crawler detect"
             ],
-            "time": "2018-10-31T13:15:59+00:00"
+            "time": "2018-11-21T20:56:45+00:00"
         },
         {
             "name": "jenssegers/agent",
@@ -3958,16 +3958,16 @@
         },
         {
             "name": "nesbot/carbon",
-            "version": "1.35.1",
+            "version": "1.36.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/briannesbitt/Carbon.git",
-                "reference": "5c05a2be472b22f63291d192410df9f0e0de3b19"
+                "reference": "f5e9fa283fa389ffa49e58391a02f063dcdd1815"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/briannesbitt/Carbon/zipball/5c05a2be472b22f63291d192410df9f0e0de3b19",
-                "reference": "5c05a2be472b22f63291d192410df9f0e0de3b19",
+                "url": "https://api.github.com/repos/briannesbitt/Carbon/zipball/f5e9fa283fa389ffa49e58391a02f063dcdd1815",
+                "reference": "f5e9fa283fa389ffa49e58391a02f063dcdd1815",
                 "shasum": "",
                 "mirrors": [
                     {
@@ -4018,7 +4018,7 @@
                 "datetime",
                 "time"
             ],
-            "time": "2018-11-14T21:55:58+00:00"
+            "time": "2018-11-16T11:47:11+00:00"
         },
         {
             "name": "nikic/php-parser",
@@ -4241,16 +4241,16 @@
         },
         {
             "name": "overtrue/wechat",
-            "version": "4.1.10",
+            "version": "4.1.11",
             "source": {
                 "type": "git",
                 "url": "https://github.com/overtrue/wechat.git",
-                "reference": "b1335864714322d3b497603dd6328cfd3c71e84c"
+                "reference": "ba4be8578246c9091d7ad883834c5fa84ce335d6"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/overtrue/wechat/zipball/b1335864714322d3b497603dd6328cfd3c71e84c",
-                "reference": "b1335864714322d3b497603dd6328cfd3c71e84c",
+                "url": "https://api.github.com/repos/overtrue/wechat/zipball/ba4be8578246c9091d7ad883834c5fa84ce335d6",
+                "reference": "ba4be8578246c9091d7ad883834c5fa84ce335d6",
                 "shasum": "",
                 "mirrors": [
                     {
@@ -4306,7 +4306,7 @@
                 "weixin",
                 "weixin-sdk"
             ],
-            "time": "2018-11-05T02:05:56+00:00"
+            "time": "2018-11-17T06:43:48+00:00"
         },
         {
             "name": "paragonie/random_compat",
@@ -5081,16 +5081,16 @@
         },
         {
             "name": "psr/log",
-            "version": "1.0.2",
+            "version": "1.1.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/php-fig/log.git",
-                "reference": "4ebe3a8bf773a19edfe0a84b6585ba3d401b724d"
+                "reference": "6c001f1daafa3a3ac1d8ff69ee4db8e799a654dd"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/php-fig/log/zipball/4ebe3a8bf773a19edfe0a84b6585ba3d401b724d",
-                "reference": "4ebe3a8bf773a19edfe0a84b6585ba3d401b724d",
+                "url": "https://api.github.com/repos/php-fig/log/zipball/6c001f1daafa3a3ac1d8ff69ee4db8e799a654dd",
+                "reference": "6c001f1daafa3a3ac1d8ff69ee4db8e799a654dd",
                 "shasum": "",
                 "mirrors": [
                     {
@@ -5130,7 +5130,7 @@
                 "psr",
                 "psr-3"
             ],
-            "time": "2016-10-10T12:19:37+00:00"
+            "time": "2018-11-20T15:27:04+00:00"
         },
         {
             "name": "psr/simple-cache",
@@ -7354,16 +7354,16 @@
         },
         {
             "name": "yansongda/supports",
-            "version": "v1.8.3",
+            "version": "v1.8.4",
             "source": {
                 "type": "git",
                 "url": "https://github.com/yansongda/supports.git",
-                "reference": "2e295667942f7bb2453b09fba8f86a5a03cba55e"
+                "reference": "e5a8d80dd18ab5361187adfd33c398573943de39"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/yansongda/supports/zipball/2e295667942f7bb2453b09fba8f86a5a03cba55e",
-                "reference": "2e295667942f7bb2453b09fba8f86a5a03cba55e",
+                "url": "https://api.github.com/repos/yansongda/supports/zipball/e5a8d80dd18ab5361187adfd33c398573943de39",
+                "reference": "e5a8d80dd18ab5361187adfd33c398573943de39",
                 "shasum": "",
                 "mirrors": [
                     {
@@ -7402,7 +7402,7 @@
                 "http",
                 "support"
             ],
-            "time": "2018-09-13T06:47:49+00:00"
+            "time": "2018-11-22T02:57:45+00:00"
         },
         {
             "name": "zendframework/zend-diactoros",

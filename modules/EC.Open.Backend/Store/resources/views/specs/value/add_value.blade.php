@@ -23,12 +23,19 @@
                     <thead>
                     <tr>
                         <th>规格值</th>
+                        @if($spec_id == 2)
+                            <th>颜色值</th>
+                        @endif
                         <th>操作</th>
                     </tr>
                     </thead>
                     <tbody id='spec_box'>
                     <tr class="td_c">
                         <td><input type="text" class="form-control" name="add_value[0][name]"></td>
+                        @if($spec_id==2)
+                            <td id="rgb_0">
+                            </td>
+                        @endif
                         <td><a href="javascript:;" class="btn btn-xs btn-primary operatorPhy">
                                 <i class="fa fa-trash" data-toggle="tooltip" data-placement="top"
                                    data-original-title="删除"></i></a>

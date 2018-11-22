@@ -54,8 +54,8 @@ class CreateProductTables extends Migration
                 $table->increments('id');
                 $table->unsignedInteger('spec_id');
                 $table->string('name');
-                /*$table->string('rgb')->nullable();
-                $table->string('color')->nullable();
+                $table->string('rgb')->nullable();
+                /*$table->string('color')->nullable();
                 $table->tinyInteger('status')->default(1);*/
                 $table->timestamps();
                 $table->softDeletes();

@@ -24,7 +24,14 @@
                            required>
                 </div>
             </div>
+            @if($specValue->spec_id==2)
+                <div class="form-group">
+                    {!! Form::label('rgb','颜色值：', ['class' => 'col-sm-3 control-label']) !!}
+                    <div class="col-sm-9" id="color">
 
+                    </div>
+                </div>
+            @endif
         </div>
 
         {!! Form::close() !!}
