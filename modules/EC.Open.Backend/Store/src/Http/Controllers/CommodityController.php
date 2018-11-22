@@ -126,7 +126,7 @@ class CommodityController extends Controller
             }
         }
 
-        $goods = $this->goodsRepository->getGoodsPaginated($where, $where_, $goods_ids, 50, 'sort', 'DESC');
+        $goods = $this->goodsRepository->getGoodsPaginated($where, $where_, $goods_ids, 50);
 
         if (request('view') == 2) {
             $whereCount = $where;
@@ -317,9 +317,6 @@ class CommodityController extends Controller
                 //分类
                 $goods->categories()->sync($data[4]);
 
-                //积分
-                $goods->hasOnePoint()->create($data[7]);
-
                 $this->goodsService->syncAgentGoods($goods->id);
             }
             //规格中间表数据
@@ -415,18 +412,16 @@ class CommodityController extends Controller
         $cateNames = $goods_info->categories->all();
 
         $product = $goods_info->hasManyProducts()->get();
-        //dd($goods_info);
+
         $brands = $this->brandRepository->all();
 
         $models = $this->modelsRepository->all();
 
-        $attrArray = $this->attributeRepository->getAttrDataByModelID($goods_info->model_id);  //根据模型ID获取模型属性数据
-//dd($attrArray);
-        $categories = $this->categoryRepository->getOneLevelCategory($goods_info->category_group);
+        $categories = $this->categoryRepository->getOneLevelCategory();
         $categoriesLevelTwo = [];
         foreach ($categories as $category) {
             if (in_array($category->id, $cateIds) && $category->parent_id == 0) {
-                $categoriesLevelTwo[] = $this->categoryRepository->getOneLevelCategory($goods_info->category_group, $category->id);
+                $categoriesLevelTwo[] = $this->categoryRepository->getOneLevelCategory($category->id);
             }
         }
 
@@ -435,16 +430,14 @@ class CommodityController extends Controller
         //获取所选模型下规格数据
         $model = Models::find($goods_info->model_id);
         $spec = Spec::whereIn('id', $model->spec_ids)->get();
-//        dd($spec);
+
         $specData = $this->goodsService->handleInitSpecData($spec, $id);
 
         /*合并公用属性*/
-        $attrArray = $attrArray->merge($model->hasManyAttribute)->all();
+        $attrArray = $model->hasManyAttribut;
 
-        $point = $goods_info->hasOnePoint()->first();
-        $supplier = Supplier::all();
 
-        return LaravelAdmin::content(function (Content $content) use ($cateNames, $goods_info, $product, $categories, $brands, $models, $attrArray, $currAttribute, $specData, $cateIds, $point, $redirect_url, $supplier, $categoriesLevelTwo) {
+        return LaravelAdmin::content(function (Content $content) use ($cateNames, $goods_info, $product, $categories, $brands, $models, $attrArray, $currAttribute, $specData, $cateIds, $redirect_url, $categoriesLevelTwo) {
 
             $content->header('编辑商品');
 
@@ -454,7 +447,7 @@ class CommodityController extends Controller
 
             );
 
-            $content->body(view('store-backend::commodity.edit', compact('cateNames', 'goods_info', 'product', 'categories', 'brands', 'models', 'attrArray', 'currAttribute', 'specData', 'cateIds', 'point', 'redirect_url', 'supplier', 'categoriesLevelTwo')));
+            $content->body(view('store-backend::commodity.edit', compact('cateNames', 'goods_info', 'product', 'categories', 'brands', 'models', 'attrArray', 'currAttribute', 'specData', 'cateIds', 'redirect_url', 'categoriesLevelTwo')));
         });
     }
 
@@ -519,9 +512,7 @@ class CommodityController extends Controller
 
     /**
      * 恢复商品
-     *
      * @param $id
-     *
      * @return mixed
      */
     public function restore($id)
@@ -533,47 +524,11 @@ class CommodityController extends Controller
         return $this->ajaxJson();
     }
 
-    /**
-     * 根据规格ID获取规格值
-     *
-     * @param $spec_id
-     */
-    public function spec_value_list($spec_id)
-    {
-        $specData = $this->specRepository->find($spec_id);
-        if ($specData) {
-            echo json_encode($specData);
-        } else {
-            echo '';
-        }
-    }
 
     /**
-     * 根据模型ID动态生成扩展属性
-     *
-     * @param $id
-     */
-    public function attribute_init($id)
-    {
-        $attribute_info = $this->attributeRepository->getAttrDataByModelID($id);
-
-        echo json_encode($attribute_info, JSON_UNESCAPED_UNICODE);
-    }
-
-    /**
-     * 根据模型ID获取规格数据列表
-     *
-     * @param $modelID
-     *
+     * 创建商品获取分类数据
      * @return mixed
      */
-    public function getSpecData($modelID)
-    {
-        $data = GoodsService::getGoodsSpecDataById($modelID, 0);
-
-        return $data['specData'];
-    }
-
     public function getCategoryByGroupID()
     {
         if (request()->has('type-click-category-button')) {
@@ -619,7 +574,11 @@ class CommodityController extends Controller
         return $this->ajaxJson(false);
     }
 
-    public function uplode_inventorys()
+    /**
+     * 批量导入库存
+     * @return Content
+     */
+    public function uploadStock()
     {
         return LaravelAdmin::content(function (Content $content) {
 
@@ -631,12 +590,11 @@ class CommodityController extends Controller
 
             );
 
-            $content->body(view('store-backend::commodity.uplode_inventorys'));
+            $content->body(view('store-backend::commodity.upload_stock'));
         });
-//        return view('store-backend::commodity.uplode_inventorys');
     }
 
-    public function inventorys_insert(Request $request)
+    public function doUploadStock(Request $request)
     {
         $filename = 'public' . $request['upload_excel'];
 
@@ -690,8 +648,6 @@ class CommodityController extends Controller
             }
         }
 
-//        $update = DB::update('UPDATE el_goods a SET store_nums = (SELECT SUM(store_nums) FROM el_goods_product b WHERE b.goods_id = a.id) where a.id not in(245,271)');
-
         if (count(self::$errorSku)) {
             $data['sku'] = '未导入成功的SKU:' . implode(' ', self::$errorSku);
         } else {
@@ -707,104 +663,6 @@ class CommodityController extends Controller
         ]);
     }
 
-    public function excel()
-    {
-        $page = request('page') ? request('page') : 1;
-        $limit = request('limit') ? request('limit') : 200;
-        $type = request('type');
-        $excelName = request('excelName') ? request('excelName') : 'goods_data_' . date('Y_m_d_H_i_s', time());
-        $goods = $this->productRepository->getExcelGoods($limit);
-        $lastPage = $goods['lastPage'];
-        $goods = $goods['products'];
-
-        if ($this->cache->has('export_goods_cache') AND $page !== 1) {
-            $cacheData = $this->cache->get('export_goods_cache');
-            $this->cache->put('export_goods_cache', array_merge($cacheData, $goods), 30);
-        } else {
-            $this->cache->put('export_goods_cache', $goods, 30);
-        }
-
-        if ($page == $lastPage) {
-            $goods = $this->cache->get('export_goods_cache');
-            $title = ['商品ID', 'SKU', '商品编号', '商品名称', '类型', '销售价', '吊牌价', '上架', '库存', '标签', '尺码', '颜色', '自定义颜色', '分类', '参数'];
-            $excel = Excel::create($excelName, function ($excel) use ($goods, $title, $type) {
-                $excel->sheet('orders', function ($sheet) use ($goods, $title) {
-                    $sheet->prependRow(1, $title);
-                    $sheet->rows($goods);
-                    $sheet->setWidth([
-                        'A' => 5,
-                        'B' => 20,
-                        'C' => 10,
-                        'D' => 40,
-                        'E' => 5,
-                        'F' => 10,
-                        'G' => 10,
-                        'H' => 5,
-                        'I' => 5,
-                        'J' => 20,
-                        'K' => 10,
-                        'L' => 30,
-                        'M' => 30,
-                        'N' => 80,
-                        'O' => 100,
-                    ]);
-                });
-            })->store($type, storage_path('exports'), false);
-            $this->cache->forget('export_goods_cache');
-
-            return Response::download(storage_path('exports') . '/' . $excelName . '.' . $type);
-        } else {
-            $message = '正在导出商品数据';
-            $interval = 3;
-            $url_bit = route('admin.goods.excel', array_merge(['page' => $page + 1, 'limit' => $limit], request()->except('page', 'limit')));
-
-            return view('store-backend::show_message', compact('message', 'url_bit', 'interval'));
-        }
-        /* $title = ['商品ID', 'SKU', '商品编号', '商品名称', '类型', '销售价', '吊牌价', '上架', '库存', '标签', '尺码', '颜色', '自定义颜色', '分类', '参数'];
-         if ($page == 1) { //如果是首页，则需要创建excel
-             $excel = Excel::create($excelName, function ($excel) use ($goods, $title) {
-                 $excel->sheet('orders', function ($sheet) use ($goods, $title) {
-                     $sheet->prependRow(1, $title);
-                     $sheet->rows($goods);
-                     $sheet->setWidth(array(
-                         'A' => 5,
-                         'B' => 20,
-                         'C' => 10,
-                         'D' => 40,
-                         'E' => 5,
-                         'F' => 10,
-                         'G' => 10,
-                         'H' => 5,
-                         'I' => 5,
-                         'J' => 20,
-                         'K' => 10,
-                         'L' => 30,
-                         'M' => 30,
-                         'N' => 80,
-                         'O' => 100
-                     ));
-                 });
-             })->store('xls', storage_path('exports'), false);
-
-             session(['export_goods_data' => $excelName = $excelName . '.xls']);
-
-         } else {
-
-             Excel::load(storage_path('exports') . '/' . session('export_goods_data'), function ($reader) use ($goods) {
-                 $reader->sheet('orders', function ($sheet) use ($goods) {
-                     $sheet->rows($goods);
-                 });
-             })->store('xls', storage_path('exports'), false);
-         }
-         $message = '正在导出商品数据';
-         $interval = 3;
-         if ($lastPage > $page) {
-             $url_bit = route('admin.goods.excel', array_merge(['page' => $page + 1, 'limit' => $limit], request()->except('page', 'limit')));
-             return view('store-backend::show_message', compact('message', 'url_bit', 'interval'));
-         } else {
-             return Response::download(storage_path('exports') . '/' . session('export_goods_data'));
-         }*/
-    }
 
     /**
      * 获取导出数据
@@ -823,7 +681,6 @@ class CommodityController extends Controller
         $type = request('type');
 
         if ($page == 1) {
-            /*$this->cache->forget('export_goods_cache');*/
             session(['export_goods_cache' => generate_export_cache_name('export_goods_cache_')]);
         }
         $cacheName = session('export_goods_cache');
@@ -971,6 +828,11 @@ class CommodityController extends Controller
         return $this->ajaxJson(true, ['error_list' => $error_list]);
     }
 
+    /**
+     * 更新排序
+     * @param Request $request
+     * @return mixed
+     */
     public function updateSort(Request $request)
     {
         $input = $request->except('_token', 'file');

@@ -98,7 +98,6 @@
 
                             </div>
                             <div class="btn-group">
-                                {{--<a class="btn btn-primary " id="excel_search" href="#">导出搜索结果 / 勾选商品</a>--}}
                                 <a class="btn btn-primary ladda-button dropdown-toggle batch" data-toggle="dropdown"
                                    href="javascript:;" data-style="zoom-in">导出搜索结果 / 勾选商品 <span
                                             class="caret"></span></a>
@@ -137,12 +136,6 @@
                                            data-target="#modal" data-backdrop="static" data-keyboard="false"
                                            data-link="{{route('admin.goods.operationTags')}}"
                                            href="javascript:;">批量添加商品标签</a></li>
-
-                                    {{--<li>--}}
-                                    {{--<a id="chapter-create-btn" data-toggle="modal" class="edit_goods"--}}
-                                    {{--data-target="#modal" data-backdrop="static" data-keyboard="false"--}}
-                                    {{--data-url="">--}}
-                                    {{--批量修改</a></li>--}}
                                 </ul>
                             </div>
 
@@ -227,7 +220,6 @@
                                     <th>上架</th>
                                     <th>类型</th>
                                     <th>商品编码</th>
-                                    <th>排序</th>
                                     <th>操作</th>
                                 </tr>
                                 <!--tr-th end-->
@@ -265,7 +257,6 @@
                                         <th>{{$item->is_del==0?"是":"否"}}</th>
                                         <th>{{$item->model->name}}</th>
                                         <td>{{$item->goods_no}}</td>
-                                        <td><a class="goods_sort" data-type="text" data-url="{{ route('admin.goods.sort.update') }}" data-pk="{{$item->id}}" data-name="sort" data-value="{{ $item->sort }}">{{$item->sort}}</a></td>
                                         <td>
                                             @if(request('view')==1)
                                                 <a   class="btn btn-xs btn-primary restore-goods"
@@ -317,13 +308,10 @@
     </div>
     <div id="modal" class="modal inmodal fade"></div>
     <div id="download_modal" class="modal inmodal fade"></div>
-{{--@endsection--}}
 
-{{--@section('after-scripts-end')--}}
     {!! Html::script(env("APP_URL").'/assets/backend/libs/ladda/spin.min.js') !!}
     {!! Html::script(env("APP_URL").'/assets/backend/libs/ladda/ladda.min.js') !!}
     {!! Html::script(env("APP_URL").'/assets/backend/libs/ladda/ladda.jquery.min.js') !!}
     {!! Html::script(env("APP_URL").'/assets/backend/libs/loader/jquery.loader.min.js') !!}
     {!! Html::script(env("APP_URL").'/assets/backend/libs/jquery.el/el.common.js') !!}
     @include('store-backend::commodity.includes.script')
-{{--@endsection--}}

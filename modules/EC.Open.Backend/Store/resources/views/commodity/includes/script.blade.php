@@ -1,18 +1,4 @@
 <script>
-    $(document).ready(function () {
-	    $.fn.editable.defaults.mode = 'inline';
-	    $('.goods_sort').editable({
-		    ajaxOptions : {
-		    	type : 'GET'
-            },
-            success:function(res){
-		    	if(res.status){
-				    window.location.reload();
-                }
-            }
-        });
-    });
-
     //  统一上下架
     $('.checkbox').on('ifChecked', function (event) {
 	    var val = $(this).val();

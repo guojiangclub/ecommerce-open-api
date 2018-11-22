@@ -194,6 +194,7 @@ class CreateProductTables extends Migration
                 $table->unsignedInteger('goods_id');
                 $table->unsignedInteger('spec_id');
                 $table->unsignedInteger('spec_value_id');
+                $table->integer('sort')->default(99);
                 $table->string('alias')->nullable();
                 $table->string('img')->nullable();
                 $table->timestamps();

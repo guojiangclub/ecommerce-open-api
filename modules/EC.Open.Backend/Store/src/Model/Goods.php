@@ -88,38 +88,10 @@ class Goods extends Model implements Transformable
         return $data ? $data : [];
     }
 
-//    public function setSpecArrayAttribute($value)
-//    {
-//        if(count($value)) {
-//            $goods_spec_array = array();
-//            foreach ($value as $key => $val) {
-//                foreach ($val as $v) {
-//                    $tempSpec = json_decode($v, true);
-//                    if (!isset($goods_spec_array[$tempSpec['id']])) {
-//                        $goods_spec_array[$tempSpec['id']] = array('id' => $tempSpec['id'], 'name' => $tempSpec['name'], 'type' => $tempSpec['type'], 'value' => array());
-//                    }
-//                    $goods_spec_array[$tempSpec['id']]['value'][] = $tempSpec['value'];
-//                }
-//            }
-//            foreach ($goods_spec_array as $key => $val) {
-//                $val['value'] = array_unique($val['value']);
-//                $goods_spec_array[$key]['value'] = join(',', $val['value']);
-//            }
-//            return $this->attributes['spec_array'] = json_encode($goods_spec_array, JSON_UNESCAPED_UNICODE);
-//        }else{
-//            return $this->attributes['spec_array'] = '';
-//        }
-//
-//    }
-//
-//    public function getSpecValueAttribute()
-//    {
-//        return json_decode($this->attributes['spec_array'], true);
-//    }
 
     public function specValue()
     {
-        return $this->belongsToMany('iBrand\EC\Open\Backend\Store\Model\SpecsValue', 'el_goods_spec_relation', 'goods_id', 'spec_value_id')
+        return $this->belongsToMany(SpecsValue::class, config('ibrand.app.database.prefix', 'ibrand_').'goods_spec_relation', 'goods_id', 'spec_value_id')
             ->withPivot('spec_id', 'alias', 'img', 'sort')->withTimestamps();
     }
 
