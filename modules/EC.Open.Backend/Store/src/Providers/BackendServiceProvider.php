@@ -2,17 +2,14 @@
 
 namespace iBrand\EC\Open\Backend\Store\Providers;
 use iBrand\EC\Open\Backend\Store\Console\InstallCommand;
-use iBrand\EC\Open\Backend\Store\Console\RefundCommand;
 use iBrand\EC\Open\Backend\Store\Console\SetDefaultValueCommand;
 use iBrand\EC\Open\Backend\Store\Console\SpecCommand;
-use iBrand\EC\Open\Backend\Store\Schedule\PromotionSchedule;
-use iBrand\EC\Open\Backend\Store\Schedule\ShareImgSchedule;
-use iBrand\EC\Open\Backend\Store\Schedule\SingleDiscountSchedule;
+
 use iBrand\EC\Open\Backend\Store\Listeners\LogSuccessfulLoginListener;
 use iBrand\EC\Open\Backend\Store\Model\Product;
 use iBrand\EC\Open\Backend\Store\Observers\ProductObserver;
 use iBrand\EC\Open\Backend\Store\StoreBackend;
-use ElementVip\UEditor\UEditorServiceProvider;
+use iBrand\UEditor\UEditorServiceProvider;
 use Illuminate\Auth\Events\Login;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\ServiceProvider;
@@ -21,7 +18,6 @@ use iBrand\EC\Open\Backend\Store\Service\OrderService;
 use iBrand\EC\Open\Backend\Store\Service\ExcelExportsService;
 use iBrand\EC\Open\Backend\Store\Service\DiscountService;
 use iBrand\EC\Open\Backend\Store\Service\RefundService;
-use iBrand\EC\Open\Backend\Store\Service\RegistrationsService;
 use Menu;
 use Event;
 
@@ -113,7 +109,7 @@ class BackendServiceProvider extends ServiceProvider
     {
 
         $this->app->register(\iBrand\EC\Open\Backend\Member\Providers\BackendServiceProvider::class);
-        //$this->app->register(UEditorServiceProvider::class);
+        $this->app->register(UEditorServiceProvider::class);
 
         $this->app->singleton('GoodsService', function () {
             return new  GoodsService();

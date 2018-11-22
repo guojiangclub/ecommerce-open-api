@@ -13,6 +13,7 @@
         "ibrand/laravel-miniprogram-poster": "^1.1",
         "ibrand/laravel-shopping-cart": "^1.3",
         "ibrand/laravel-sms": "~1.0",
+        "ibrand/laravel-ueditor": "^1.0",
         "ibrand/setting": "^1.1",
         "intervention/image": "^2.3",
         "jenssegers/agent": "^2.4",
@@ -21,7 +22,6 @@
         "laravel/passport": "^4.0",
         "laravel/tinker": "~1.0",
         "league/fractal": "^0.17.0",
-        "vinkla/hashids": "~3.3.0",
         "marktopper/doctrine-dbal-timestamp-type": "^1.0",
         "milon/barcode": "^5.3",
         "overtrue/laravel-wechat": "~4.0",
@@ -29,6 +29,7 @@
         "prettus/l5-repository": "^2.1",
         "qiniu/php-sdk": "^7.0",
         "simplesoftwareio/simple-qrcode": "~1",
+        "vinkla/hashids": "~3.3.0",
         "wikimedia/composer-merge-plugin": "^1.4"
     },
     "require-dev": {

@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "content-hash": "06da659dd367d33dcbeaf93c8207c38e",
+    "content-hash": "b03b9ec287c60412eefcfbcc8f2a673c",
     "packages": [
         {
             "name": "anam/phantomjs-linux-x86-binary",
@@ -2009,6 +2009,57 @@
                 "laravel sms"
             ],
             "time": "2018-05-04T12:53:37+00:00"
+        },
+        {
+            "name": "ibrand/laravel-ueditor",
+            "version": "v1.0.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/ibrandcc/laravel-ueditor.git",
+                "reference": "8cde57d57fab056770d1ea91443b585799162aee"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/ibrandcc/laravel-ueditor/zipball/8cde57d57fab056770d1ea91443b585799162aee",
+                "reference": "8cde57d57fab056770d1ea91443b585799162aee",
+                "shasum": "",
+                "mirrors": [
+                    {
+                        "url": "https://dl.laravel-china.org/%package%/%reference%.%type%",
+                        "preferred": true
+                    }
+                ]
+            },
+            "require": {
+                "ext-fileinfo": "*",
+                "illuminate/support": "5.*",
+                "php": ">=5.4.0",
+                "qiniu/php-sdk": "7.*"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "iBrand\\UEditor\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "chen hao",
+                    "email": "chenhao@element.vip"
+                }
+            ],
+            "description": "UEditor for laravel5. Support i18n. UEditor is a Rich Text Web Editor From Baidu.",
+            "keywords": [
+                "laravel",
+                "laravel-u-editor",
+                "laravel5 web text editor",
+                "ueditor"
+            ],
+            "time": "2018-11-22T09:33:21+00:00"
         },
         {
             "name": "ibrand/setting",

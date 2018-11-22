@@ -3,18 +3,18 @@
 namespace iBrand\EC\Open\Backend\Store\Http\Controllers;
 
 use Carbon\Carbon;
-use ElementVip\Component\Gift\Models\GiftDirectionalCoupon;
+
 use iBrand\Component\Product\Models\SpecRelation;
 use iBrand\EC\Open\Backend\Store\Model\Attribute;
 use iBrand\EC\Open\Backend\Store\Model\Category;
-use iBrand\EC\Open\Backend\Store\Model\CategoryGroup;
+
 use iBrand\EC\Open\Backend\Store\Model\Goods;
 use iBrand\EC\Open\Backend\Store\Model\Models;
 use iBrand\EC\Open\Backend\Store\Model\Order;
 use iBrand\EC\Open\Backend\Store\Model\Product;
 use iBrand\EC\Open\Backend\Store\Model\GoodsPhoto;
 use iBrand\EC\Open\Backend\Store\Model\Spec;
-use iBrand\EC\Open\Backend\Store\Model\Supplier;
+
 use iBrand\Backend\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use iBrand\EC\Open\Backend\Store\Repositories\ModelsRepository;
@@ -24,7 +24,6 @@ use iBrand\EC\Open\Backend\Store\Repositories\BrandRepository;
 use iBrand\EC\Open\Backend\Store\Repositories\GoodsRepository;
 use iBrand\EC\Open\Backend\Store\Repositories\CategoryRepository;
 use DB;
-use Validator;
 use Maatwebsite\Excel\Facades\Excel;
 use iBrand\EC\Open\Backend\Store\Repositories\ProductRepository;
 use iBrand\EC\Open\Backend\Store\Service\GoodsService;
@@ -32,6 +31,7 @@ use Response;
 use Route;
 use Encore\Admin\Facades\Admin as LaravelAdmin;
 use Encore\Admin\Layout\Content;
+use Illuminate\Support\Facades\Validator;
 
 class CommodityController extends Controller
 {
@@ -78,7 +78,7 @@ class CommodityController extends Controller
 
         $view = !empty(request('view')) ? request('view') : 0;
         $where['is_del'] = ['=', $view];
-    
+
 
         if (!empty(request('value')) AND request('field') !== 'sku' AND request('field') !== 'category') {
             $where[request('field')] = ['like', '%' . request('value') . '%'];
@@ -194,7 +194,7 @@ class CommodityController extends Controller
         if (!$point_rule OR !$point_rule_value) {
             $point_rule_value = 0;
         }
- 
+
         return LaravelAdmin::content(function (Content $content) use ($models, $brands, $point_rule, $point_rule_value) {
 
             $content->header('新建商品');
@@ -222,8 +222,7 @@ class CommodityController extends Controller
 
         if ($validator->fails()) {
             $warnings = $validator->messages();
-            $show_warning = $warnings->first();
-\Log::info(key($warnings->toArray()));
+            $show_warning = $warnings->first();        
             return response()->json(['status' => false
                 , 'error_code' => 0
                 , 'error' => $show_warning
@@ -232,8 +231,7 @@ class CommodityController extends Controller
         }
 
         $input = $request->except('_token', 'file', 'specJson', 'upload_image');
-        // dd($input);
-
+    
         $data = $this->goodsService->handleGoodsData($input);   //将商品数据进行分组处理
 
         if (isset($data['status']) AND !$data['status']) {
@@ -247,7 +245,6 @@ class CommodityController extends Controller
 
         $goodsData = $data[0];      //商品基础数据
         $goodsAttributeData = $data[1];     //商品属性数据
-//        dd($data);
 
         if (!$this->goodsService->checkSellPrice($data['5'])) {
             return response()->json(['status' => false
@@ -335,7 +332,7 @@ class CommodityController extends Controller
                     , 'error_code' => 0
                     , 'error' => '存在重复的SKU值'
                     , 'data' => ''
-                    ,'error_key'=>'sku']);
+                    , 'error_key' => 'sku']);
             }
 
             DB::commit();
@@ -358,7 +355,6 @@ class CommodityController extends Controller
             'name' => 'required',
             'brand_id' => 'required',
             'model_id' => 'required',
-            /*'goods_no' => 'required',*/
             'store_nums' => 'required | integer',
             'market_price' => 'required',
             'sell_price' => 'required',
@@ -375,8 +371,7 @@ class CommodityController extends Controller
 
         $attributes = [
             "name" => '商品名称',
-            "brand_id" => '品牌选择',
-            "category_group" => '商品分类组',
+            "brand_id" => '品牌选择',        
             "model_id" => '模型选择',
             'store_nums' => '商品数量',
             '_imglist' => '商品图片',
@@ -387,32 +382,22 @@ class CommodityController extends Controller
             '_spec.*.market_price' => 'SKU市场价',
             '_spec.*.sell_price' => 'SKU销售价',
             '_spec.*.store_nums' => 'SKU库存',
-            '_spec' => '规格选择',
-            'redeem_point' => '兑换所需积分值',
+            '_spec' => '规格选择',           
             'sort' => '排序',
         ];
-        //    'category_group'=>'required',
-
+   
         $validator = Validator::make(request()->all(), $rules, $message, $attributes);
 
-        $validator->sometimes('goods_no', "unique:el_goods,goods_no,$id", function ($input) {
+        $validator->sometimes('goods_no', "unique:".config('ibrand.app.database.prefix', 'ibrand_')."goods,goods_no,$id", function ($input) {
             return $input->id;
         });
 
-        $validator->sometimes('goods_no', "unique:el_goods,goods_no", function ($input) {
+        $validator->sometimes('goods_no', "unique:".config('ibrand.app.database.prefix', 'ibrand_')."goods,goods_no", function ($input) {
             return !$input->id;
-        });
-
-        $validator->sometimes('category_group', 'required', function ($input) {
-            return !$input->id;
-        });
+        });       
 
         $validator->sometimes(['_spec.*.market_price', '_spec.*.sell_price', '_spec.*.store_nums'], 'required', function ($input) {
             return count($input->_spec) > 0;
-        });
-
-        $validator->sometimes('redeem_point', 'required | integer', function ($input) {
-            return $input->is_largess == 1;
         });
 
         return $validator;
@@ -592,13 +577,11 @@ class CommodityController extends Controller
     public function getCategoryByGroupID()
     {
         if (request()->has('type-click-category-button')) {
-            $categories = $this->categoryRepository->getOneLevelCategory(request('groupId'), request('parentId'));
+            $categories = $this->categoryRepository->getOneLevelCategory(request('parentId'));
 
             return response()->json($categories);
-        } else {
-            // $categories = $this->categoryRepository->getLevelCategory(request('id'));
-            $categories = $this->categoryRepository->getOneLevelCategory(request('id'));
-
+        } else {           
+            $categories = $this->categoryRepository->getOneLevelCategory();
             return view('store-backend::commodity.includes.category-item', compact('categories'));
         }
     }
@@ -611,8 +594,7 @@ class CommodityController extends Controller
         if (request('model_id')) {
             $model = Models::find(request('model_id'));
 
-            $attributes = Attribute::where('model_id', request('model_id'))->get();
-            $attribute = $attributes->merge($model->hasManyAttribute)->all();
+            $attribute = $model->hasManyAttribute;
 
             return view('store-backend::commodity.includes.attribute_template', compact('attribute'));
         }

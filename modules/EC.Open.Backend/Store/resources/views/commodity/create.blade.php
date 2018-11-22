@@ -106,10 +106,10 @@
         <li class="editor_li"><a data-id="4" class="app-action" data-type="uepc" aria-expanded="false">详细描述(PC)</a>
         </li>
 
-        <li class=""><a data-id="6" class="app-action" aria-expanded="false">橱窗图</a></li>
-        <li class=""><a data-id="7" class="app-action" aria-expanded="false">SEO设置</a></li>
+        <li class=""><a data-id="5" class="app-action" aria-expanded="false">橱窗图</a></li>
+        <li class=""><a data-id="6" class="app-action" aria-expanded="false">SEO设置</a></li>
 
-        <li class=""><a data-id="8" class="app-action" aria-expanded="false">积分规则</a></li>
+        <li class=""><a data-id="7" class="app-action" aria-expanded="false">积分规则</a></li>
 
     </ul>
 
@@ -193,12 +193,11 @@
                     </div>
                 </div>
 
-
-                <div class="form-group">
-                    <label class="col-sm-2 control-label">是否新品：</label>
+                <div class="form-group hide">
+                    <label class="col-sm-2 control-label">是否赠品：</label>
                     <div class="col-sm-10">
-                        <input name="is_old" type="radio" value="0" checked/> 是
-                        <input name="is_old" type="radio" value="1"/> 否
+                        <input name="is_largess" type="radio" value="1"/> 是
+                        <input name="is_largess" type="radio" value="0" checked/> 否
                     </div>
                 </div>
 
@@ -290,7 +289,7 @@
 
         @include('store-backend::commodity.includes.album')
 
-        <div class="tab-pane" id="tab_7">
+        <div class="tab-pane" id="tab_6">
             <div class="panel-body">
                 <div class="form-group">
                     <label class="col-sm-2 control-label">SEO关键词：</label>
@@ -315,7 +314,7 @@
             </div>
         </div><!-- /.tab-pane -->
 
-        <div class="tab-pane" id="tab_8">
+        <div class="tab-pane" id="tab_7">
             <div class="panel-body">
                 <div class="form-group">
                     <label class="col-sm-2 control-label">积分使用：<i class="fa fa-question-circle"

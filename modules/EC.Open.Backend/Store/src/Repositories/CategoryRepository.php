@@ -75,9 +75,9 @@ class CategoryRepository extends BaseRepository
         return $result;
     }
 
-    public function getOneLevelCategory($groupID, $pid = 0)
+    public function getOneLevelCategory($pid = 0)
     {
-        $categories = $this->getSortCategory($groupID);
+        $categories = $this->getSortCategory();
         $result = array();
         foreach ($categories as $v) {
             if ($v['level'] > 2) {

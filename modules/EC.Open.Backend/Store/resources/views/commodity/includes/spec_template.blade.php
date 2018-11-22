@@ -26,8 +26,8 @@
     <td>
         <input type="hidden" data-name="id" data-action="save" value="{#id#}"
                name="_spec[{#index#}][id]">
-        <input type="hidden" data-name="specID" data-action="save"
-               value="{#spec#}" name="_spec[{#index#}][specID]">
+        <input type="hidden" data-name="spec_ids" data-action="save"
+               value="{#spec#}" name="_spec[{#index#}][spec_ids]">
 
         <input type="text" data-name="sell_price" data-action="save"
                value="{#sell_price#}" name="_spec[{#index#}][sell_price]"></td>
@@ -35,13 +35,6 @@
                value="{#store_nums#}" name="_spec[{#index#}][store_nums]"></td>
     <td><input type="text" data-name="sku" data-action="save" value="{#sku#}"
                name="_spec[{#index#}][sku]"></td>
-    <!--<td class="image" colspan="{#count#}">-->
-    <!--<div class="block{#class#}">{#imgTag#}</div>-->
-    <!--<label class="block img-plus">-->
-    <!--<span class="glyphicon glyphicon-plus"></span>-->
-    <!--<input type="file" name="upload_image" accept="image/*">-->
-    <!--</label>-->
-    <!--</td>-->
     <td>
 
         <a><i class="fa switch {#switch_class#}" title="切换状态">

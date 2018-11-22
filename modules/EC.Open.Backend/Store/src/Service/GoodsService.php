@@ -69,7 +69,7 @@ class GoodsService
 
         $goodsUpdateData['store'] = array_sum($postData['_store_nums']);
         $goodsUpdateData['store_nums'] = $goodsUpdateData['store'];
-     
+
         $goodsUpdateData['cost_price'] = isset($postData['_cost_price']) ? current($postData['_cost_price']) : 0;
         $goodsUpdateData['weight'] = isset($postData['_weight']) ? current($postData['_weight']) : 0;
         $goodsUpdateData['spec_array'] = isset($postData['spec_array']) ? $postData['spec_array'] : [];
@@ -112,7 +112,6 @@ class GoodsService
                 $default = 1;
             }
             $imgdata[] = ['sort' => $val['sort'],
-                'sku' => $val['sku'],
                 'url' => $val['url'],
                 'code' => $key,
                 'is_default' => $default,
@@ -554,11 +553,6 @@ class GoodsService
             $goodsUpdateData['content'] = $goodsUpdateData['contentpc'];
         }
 
-        //兑换积分
-        if ($postData['is_largess'] == 0) {
-            $goodsUpdateData['redeem_point'] = 0;
-        }
-
         //图片数据
         $imglist = isset($postData['_imglist']) ? $postData['_imglist'] : [];
         $is_default = isset($postData['_is_default']) ? $postData['_is_default'] : 0;
@@ -574,22 +568,19 @@ class GoodsService
 
         //产品数据
         $goodsSpecData = isset($goodsSpecData['_spec']) ? $goodsSpecData['_spec'] : [];
-//        dd($goodsSpecData);
 
         foreach ($goodsSpecData as $item) {
             if (!$item['sku']) {
                 return ['status' => false, 'msg' => 'SKU不能为空'];
             }
-            /*if(count(Product::judge($item['sku'], $item['id'])))
-             {
-                 return ['status' => false, 'msg' => '存在重复的SKU值：'.$item['sku']];
-             }*/
         }
 
         //库存
         $goodsUpdateData['store_nums'] = count($goodsSpecData) ? $this->sumStore($goodsSpecData, 'store_nums') : $goodsUpdateData['store_nums'];
 
-        //dd($goodsSpecIdsRelation);       
+        $goodsUpdateData['min_price'] = $goodsUpdateData['sell_price'];
+        $goodsUpdateData['max_price'] = $goodsUpdateData['sell_price'];
+        $goodsUpdateData['min_market_price'] = $goodsUpdateData['market_price'];
 
         return $data = [$goodsUpdateData, $goodsAttrData, $postData, $imgdata, $catedata, $goodsSpecData, $goodsSpecIdsRelation, $goodsPoint];
     }

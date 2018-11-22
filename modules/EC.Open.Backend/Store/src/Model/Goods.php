@@ -30,7 +30,7 @@ class Goods extends Model implements Transformable
 
     public function hasManyAttribute()
     {
-        return $this->belongsToMany('iBrand\EC\Open\Backend\Store\Model\Attribute', 'el_goods_attribute_relation', 'goods_id', 'attribute_id')
+        return $this->belongsToMany('iBrand\EC\Open\Backend\Store\Model\Attribute', config('ibrand.app.database.prefix', 'ibrand_').'goods_attribute_relation', 'goods_id', 'attribute_id')
             ->withPivot('attribute_value_id', 'model_id', 'attribute_value');
     }
 
@@ -41,7 +41,7 @@ class Goods extends Model implements Transformable
 
     public function hasManySpec()
     {
-        return $this->belongsToMany('iBrand\EC\Open\Backend\Store\Model\Spec', 'el_goods_spec_relation', 'goods_id', 'spec_id');
+        return $this->belongsToMany('iBrand\EC\Open\Backend\Store\Model\Spec', config('ibrand.app.database.prefix', 'ibrand_').'goods_spec_relation', 'goods_id', 'spec_id');
     }
 
     public function category()
@@ -51,19 +51,15 @@ class Goods extends Model implements Transformable
 
     public function categories()
     {
-        return $this->belongsToMany('iBrand\EC\Open\Backend\Store\Model\Category', 'el_goods_category', 'goods_id', 'category_id');
+        return $this->belongsToMany('iBrand\EC\Open\Backend\Store\Model\Category', config('ibrand.app.database.prefix', 'ibrand_').'goods_category', 'goods_id', 'category_id');
     }
 
     public function specs()
     {
-        return $this->belongsToMany('iBrand\EC\Open\Backend\Store\Model\Spec', 'el_goods_spec_relation', 'goods_id', 'spec_id')
+        return $this->belongsToMany('iBrand\EC\Open\Backend\Store\Model\Spec', config('ibrand.app.database.prefix', 'ibrand_').'goods_spec_relation', 'goods_id', 'spec_id')
             ->withPivot('spec_value', 'category_id')->withTimestamps();
     }
 
-//    public function GoodsComments()
-//    {
-//        return $this->hasMany('App\Entities\Comments','goods_id');
-//    }
 
     public function GoodsPhotos()
     {

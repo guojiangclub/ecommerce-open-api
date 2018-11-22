@@ -1,7 +1,7 @@
 <style type="text/css">
     /*#filePicker,.webuploader-pick{display: block; z-index: 9999; position: absolute;}*/
 </style>
-<div class="tab-pane" id="tab_6">
+<div class="tab-pane" id="tab_5">
     <div class="panel-body">
 
         <div class="table-responsive">
@@ -17,9 +17,7 @@
                     <th>
                         图片链接
                     </th>
-                    <th>
-                        SKU
-                    </th>
+
                     <th>
                         排序(数字越大排在越前)
                     </th>
@@ -43,9 +41,7 @@
                                 <input type="hidden" name="_imglist[{{$val['code']}}][url]" value="{{$val['url']}}">
                                 <input type="text" class="form-control" disabled="" value="{{$val['url']}}">
                             </td>
-                            <td>
-                                <input type="text" class="form-control" name="_imglist[{{$val['code']}}][sku]" value="{{$val['sku']}}">
-                            </td>
+
                             <td>
                                 <input type="text" class="form-control" name="_imglist[{{$val['code']}}][sort]" value="{{$val['sort']}}">
                             </td>
@@ -83,9 +79,7 @@
                     <input type="hidden" name="_imglist[{MENU_ID}][url]" value="{url}">
                     <input type="text" class="form-control" disabled="" value="{url}">
                 </td>
-                <td>
-                    <input type="text" class="form-control" name="_imglist[{MENU_ID}][sku]" value="">
-                </td>
+
                 <td>
                     <input type="text" class="form-control" name="_imglist[{MENU_ID}][sort]" value="9">
                 </td>

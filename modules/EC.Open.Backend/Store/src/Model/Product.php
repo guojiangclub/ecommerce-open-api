@@ -10,24 +10,29 @@ class Product extends Model implements Transformable
 {
     use TransformableTrait;
 
-    protected $table = 'el_goods_product';
     protected $guarded = ['id'];
+
+    public function __construct(array $attributes = [])
+    {
+        parent::__construct($attributes);
+        $this->setTable(config('ibrand.app.database.prefix', 'ibrand_') . 'goods_product');
+    }
 
     public function goods()
     {
-        return $this->belongsTo('iBrand\EC\Open\Backend\Store\Model\Goods','goods_id');
+        return $this->belongsTo('iBrand\EC\Open\Backend\Store\Model\Goods', 'goods_id');
     }
 
     public function o2oProducts()
     {
         return $this->hasMany('ElementVip\Shop\Core\Models\O2oGoodsProducts', 'product_id');
     }
-    
+
     public function getSpecStringAttribute()
     {
-        $specStr = '';       
+        $specStr = '';
         if ($this->attributes['spec_array']) {
-            $specArr = json_decode($this->attributes['spec_array'],TRUE);
+            $specArr = json_decode($this->attributes['spec_array'], TRUE);
             foreach ($specArr as $key => $val) {
                 $specStr = $specStr . ',' . $val['value'];
             }
@@ -42,34 +47,18 @@ class Product extends Model implements Transformable
         return $this->hasOne('iBrand\EC\Open\Backend\Store\Model\GoodsPhoto', 'sku', 'sku');
     }
 
-    public function setSpecIDAttribute($value)
+    public function setSpecIdsAttribute($value)
     {
-        $this->attributes['specID']  = json_encode(explode('-', $value));
-//        $this->attributes['specID']  = json_encode($value);
-    }
-    
-    public function getSpecIDAttribute($value)
-    {
-        return json_decode($value);
+        $this->attributes['spec_ids'] = json_encode(explode('-', $value));
     }
 
-//    public function setIsShowAttribute($value)
-//    {
-//        if($value == '不启用'){
-//            $this->attributes['is_show'] = 1;
-//        }else{
-//            $this->attributes['is_show'] = 0;
-//        }
-//
-//    }
-//
-//    public function getIsShowAttribute($value)
-//    {
-//        return $value == 1 ? '不启用' : '启用';
-//    }
+    public function getSpecIdsAttribute($value)
+    {
+        return json_decode($value, true);
+    }
 
     public function scopeJudge($query, $sku, $id = 0)
     {
-        return $query->where('sku', $sku)->where('id', '<>' ,$id)->get();
+        return $query->where('sku', $sku)->where('id', '<>', $id)->get();
     }
 }

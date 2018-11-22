@@ -93,15 +93,10 @@
                                  aria-expanded="false">详细描述(Mobile)</a></li>
         <li class="editor_li"><a data-id="4" class="app-action" data-type="uepc" aria-expanded="false">详细描述(PC)</a>
         </li>
-        <li class="editor_li"><a data-id="5" class="app-action" data-type="ue_collocation"
-                                 aria-expanded="false">推荐搭配</a>
-        </li>
-        <li class=""><a data-id="6" class="app-action" aria-expanded="false">橱窗图</a></li>
-        <li class=""><a data-id="7" class="app-action" aria-expanded="false">SEO设置</a></li>
-        {{--@if(config('store.goods_point'))--}}
-        <li class=""><a data-id="8" class="app-action" aria-expanded="false">积分规则</a></li>
-        {{--@endif--}}
-        {{--<li class=""><a href="#tab_9" data-toggle="tab" aria-expanded="false">商品视频</a></li>--}}
+
+        <li class=""><a data-id="5" class="app-action" aria-expanded="false">橱窗图</a></li>
+        <li class=""><a data-id="6" class="app-action" aria-expanded="false">SEO设置</a></li>
+        <li class=""><a data-id="7" class="app-action" aria-expanded="false">积分规则</a></li>
     </ul>
     {!! Form::open( [ 'url' => [route('admin.goods.store')], 'method' => 'POST', 'id' => 'base-form','class'=>'form-horizontal'] ) !!}
     <div class="tab-content">
@@ -234,18 +229,8 @@
                     </div>
                 </div>
 
-                <div class="form-group">
-                    <label class="col-sm-2 control-label">是否新品：</label>
-                    <div class="col-sm-10">
-                        <?php $new = $goods_info->is_old == 0 ? 'checked' : '';
-                        $unnew = $goods_info->is_old == 1 ? 'checked' : '';
-                        ?>
-                        <input name="is_old" type="radio" value="0" {{$new}}/> 是
-                        <input name="is_old" type="radio" value="1" {{$unnew}}/> 否
-                    </div>
-                </div>
 
-                <div class="form-group">
+                <div class="form-group hide">
                     <label class="col-sm-2 control-label">是否赠品：</label>
                     <div class="col-sm-10">
                         <?php $largess = $goods_info->is_largess == 1 ? 'checked' : '';
@@ -253,14 +238,6 @@
                         ?>
                         <input name="is_largess" type="radio" value="1" {{$largess}} /> 是
                         <input name="is_largess" type="radio" value="0" {{$unlargess}} /> 否
-                    </div>
-                </div>
-
-                <div class="form-group" id="integral_form"
-                     style="display: {{$goods_info->is_largess == 1?'block':'none'}}">
-                    <label class="col-sm-2 control-label">兑换所需积分：</label>
-                    <div class="col-sm-10">
-                        <input name="redeem_point" value="{{$goods_info->redeem_point}}" class="form-control">
                     </div>
                 </div>
 
@@ -407,24 +384,9 @@
             </div>
         </div><!-- /.tab-pane -->
 
-        <div class="tab-pane" id="tab_8">
-            <div class="panel-body">
-                <div id="upload_collocation" class="btn btn-primary" style="margin-bottom: 10px;">插入相册图片</div>
-                <script id="collocation" name="collocation"
-                        type="text/plain"> {!!$goods_info->collocation!!}</script>
-            </div>
-
-            <div class="app-actions">
-                <a data-id="4" data-action="next" class="btn btn-success app-action-prev">«上一步</a>
-                <a data-id="6" data-action="next" class="btn btn-success app-action">下一步»</a>
-                <input type="submit" class="btn btn-success app-action-save" data-toggle="form-submit" data-target="#base-form"
-                       value="保存">
-            </div>
-        </div><!-- /.tab-pane -->
-
         @include('store-backend::commodity.includes.album')
 
-        <div class="tab-pane" id="tab_7">
+        <div class="tab-pane" id="tab_6">
             <div class="panel-body">
                 <div class="form-group">
                     <label class="col-sm-2 control-label">SEO关键词：</label>
@@ -452,8 +414,8 @@
             </div>
         </div><!-- /.tab-pane -->
 
-        {{--@if(config('store.goods_point'))--}}
-        <div class="tab-pane" id="tab_8">
+
+        <div class="tab-pane" id="tab_7">
             <div class="panel-body">
                 <div class="form-group">
                     <div class="form-group">

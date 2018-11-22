@@ -89,7 +89,7 @@
                     if (result.error_key == 'sku' || result.error_key.search('_spec.') != -1) {
                         switchTab(2);
                     } else if (result.error_key == '_imglist') {
-                        switchTab(6);
+                        switchTab(5);
                     } else {
                         switchTab(1);
                     }
@@ -169,20 +169,17 @@
                 category_checked = [];
                 category_ids = [];
                 var data = {
-                    id: groupID,
                     _token: _token
                 };
-                if (groupID) {
-                    $.get('{{route('admin.goods.get_category')}}', data, function (html) {
-                        $('#category-box').children().remove();
-                        $('#category-box').append(html);
-                        $('#category-box').find("input").iCheck({
-                            checkboxClass: 'icheckbox_square-green',
-                            radioClass: 'iradio_square-green',
-                            increaseArea: '20%'
-                        });
+                $.get('{{route('admin.goods.get_category')}}', data, function (html) {
+                    $('#category-box').children().remove();
+                    $('#category-box').append(html);
+                    $('#category-box').find("input").iCheck({
+                        checkboxClass: 'icheckbox_square-green',
+                        radioClass: 'iradio_square-green',
+                        increaseArea: '20%'
                     });
-                }
+                });
             }
 
             initCategory();
@@ -464,12 +461,12 @@
                 }
 
 
-                if (id > 6) {
+                if (id > 5) {
                     if (!tabCheckImages()) {
                         swal("请上传商品橱窗图!", "", "warning");
-                        current_action = 6;
-                        $(".nav-tabs li").removeClass("active").eq(5).addClass("active");
-                        $(".tab-pane").removeClass("active").eq(5).addClass("active");
+                        current_action = 5;
+                        $(".nav-tabs li").removeClass("active").eq(4).addClass("active");
+                        $(".tab-pane").removeClass("active").eq(4).addClass("active");
                         return;
                     }
                 }
