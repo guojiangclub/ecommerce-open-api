@@ -4125,6 +4125,60 @@
             "time": "2018-09-14T13:43:38+00:00"
         },
         {
+            "name": "overtrue/laravel-uploader",
+            "version": "0.0.8",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/overtrue/laravel-uploader.git",
+                "reference": "a47f0573f523372db985f00827fe7e86cb64b6dd"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/overtrue/laravel-uploader/zipball/a47f0573f523372db985f00827fe7e86cb64b6dd",
+                "reference": "a47f0573f523372db985f00827fe7e86cb64b6dd",
+                "shasum": "",
+                "mirrors": [
+                    {
+                        "url": "https://dl.laravel-china.org/%package%/%reference%.%type%",
+                        "preferred": true
+                    }
+                ]
+            },
+            "require": {
+                "php": ">=5.5.9"
+            },
+            "type": "library",
+            "extra": {
+                "laravel": {
+                    "providers": [
+                        "\\Overtrue\\LaravelUploader\\UploadServiceProvider"
+                    ],
+                    "aliases": {
+                        "LaravelUploader": "\\Overtrue\\LaravelUploader\\LaravelUploader"
+                    }
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Overtrue\\LaravelUploader\\": "src/LaravelUploader"
+                },
+                "files": [
+                    "src/LaravelUploader/helpers.php"
+                ]
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "overtrue",
+                    "email": "i@overtrue.me"
+                }
+            ],
+            "time": "2018-04-13T01:26:50+00:00"
+        },
+        {
             "name": "overtrue/laravel-wechat",
             "version": "4.0.22",
             "source": {

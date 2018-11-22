@@ -18,7 +18,8 @@
     "require": {
         "lavary/laravel-menu": "~1.7",
         "laravelcollective/html": "^5.5",
-        "ibrand/laravel-active": "~2.0"
+        "ibrand/laravel-active": "~2.0",
+        "overtrue/laravel-uploader": "~0.0.7"
     },
     "autoload": {
         "files": [
