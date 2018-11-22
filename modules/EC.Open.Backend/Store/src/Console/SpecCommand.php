@@ -33,15 +33,18 @@ class SpecCommand extends Command
     private function generateSpecData()
     {
 
-        Spec::create([
-            'name' => '尺寸',
-            'display_name' => '尺寸',
-            'type' => 1
-        ]);
+        if (Spec::all()->count() == 0) {
+            Spec::create([
+                'name' => '尺寸',
+                'display_name' => '尺寸',
+                'type' => 1
+            ]);
 
-        Spec::create(['name' => '颜色',
-            'display_name' => '颜色',
-            'type' => 2]);
+            Spec::create(['name' => '颜色',
+                'display_name' => '颜色',
+                'type' => 2]);
+
+        }
 
         $specValue = [
             ['spec_id' => 2, 'name' => '黑色'],
@@ -83,10 +86,16 @@ class SpecCommand extends Command
             ['spec_id' => 2, 'name' => '灰色'],
             ['spec_id' => 2, 'name' => '银色']
         ];
-        foreach ($specValue as $item) {
-            SpecsValue::create($item);
+
+        if (SpecsValue::where('spec_id', 2)->get()->count() == 0) {
+            foreach ($specValue as $item) {
+                SpecsValue::create($item);
+            }
         }
 
+        if (SpecsValue::where('spec_id', 1)->get()->count() == 0) {
+            SpecsValue::create(['spec_id' => 1, 'name' => 'S']);
+        }
     }
 
 
