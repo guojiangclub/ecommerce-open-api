@@ -32,6 +32,6 @@ class PointServiceProvider extends ServiceProvider
 
     public function register()
     {
-        $this->app->singleton(PointRepository::class, PointRepositoryEloquent::class);
+        $this->app->bind(PointRepository::class, PointRepositoryEloquent::class);
     }
 }

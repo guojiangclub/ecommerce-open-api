@@ -74,21 +74,11 @@ interface PointRepository
 	 */
 	public function getDailySumByAction($userId, $action, $day = 0);
 
-	/**
-	 * 根据action 判断用户是否已获得一次性积分记录.
-	 *
-	 * @param $userID
-	 * @param $action
-	 *
-	 * @return bool
-	 */
-	public function getRecordByAction($userID, $action);
-
-	/**
-	 * @param     $where
-	 * @param int $limit
-	 *
-	 * @return mixed
-	 */
-	public function getPointsByConditions($where, $limit = 20);
+    /**
+     *
+     * @param $itemType
+     * @param $itemId
+     * @return mixed
+     */
+    public function getPointByItem($itemType, $itemId);
 }

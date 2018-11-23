@@ -19,7 +19,6 @@ class CreatePointTables extends Migration
             Schema::create($prefix . 'point', function (Blueprint $table) {
                 $table->increments('id');
                 $table->unsignedInteger('user_id')->comment('用户id');
-                $table->string('type', 30)->default('default')->comment('存在多种积分时用于分类');
                 //  order_item:     订单商品获得积分
                 //  order_discount: 订单折扣使用积分
                 //  order_canceled: 取消订单返还积分

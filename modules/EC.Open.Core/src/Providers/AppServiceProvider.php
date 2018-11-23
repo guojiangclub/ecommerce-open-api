@@ -25,6 +25,8 @@ use iBrand\Component\User\UserServiceProvider;
 use iBrand\EC\Open\Core\Auth\User;
 use iBrand\EC\Open\Core\Console\BuildAddress;
 use iBrand\EC\Open\Core\Console\BuildCoupon;
+use iBrand\EC\Open\Core\Listeners\OrderEventListener;
+use Illuminate\Support\Facades\Event;
 use Illuminate\Support\ServiceProvider;
 use Schema;
 
@@ -51,6 +53,8 @@ class AppServiceProvider extends ServiceProvider
             BuildAddress::class,
             BuildCoupon::class,
         ]);
+
+        Event::subscribe(OrderEventListener::class);
     }
 
     public function register()

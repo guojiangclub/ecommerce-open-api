@@ -52,7 +52,7 @@ class PaymentService
             $order = $this->orderRepository->getOrderByNo($order_no);
 
             $payment = new Payment(['order_id' => $order->id, 'channel' => $charge['channel'],
-                'amount' => $charge['amount'], 'status' => Payment::STATUS_COMPLETED, 'channel_no' => $charge['transaction_no'], 'paid_at' => Carbon::createFromTimestamp($charge['time_paid']), 'details' => isset($charge['details']) ? $charge['details'] : '', ]);
+                'amount' => $charge['amount'], 'status' => Payment::STATUS_COMPLETED, 'channel_no' => $charge['transaction_no'], 'paid_at' => Carbon::createFromTimestamp($charge['time_paid']), 'details' => isset($charge['details']) ? $charge['details'] : '',]);
 
             $order->payments()->save($payment);
 
@@ -60,6 +60,8 @@ class PaymentService
             $order->pay_time = Carbon::now();
             $order->pay_status = 1;
             $order->save();
+
+            event('order.paid', [$order]);
         }
 
         return $order;

@@ -25,4 +25,8 @@ return [
     'secure' => env('SECURE', false),
 
     'pay_debug' => env('PAY_DEBUG', false),
+
+    'point' => [
+        'enable' => true
+    ],
 ];
