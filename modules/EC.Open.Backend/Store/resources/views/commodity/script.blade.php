@@ -367,30 +367,6 @@
     </script>
 
     <script>
-        $("input[name='is_largess']").on('ifClicked', function () {
-            var integral_form = $('#integral_form');
-            if ($(this).val() == 1) {
-                integral_form.show();
-            } else {
-                integral_form.hide();
-            }
-        });
-
-        $("input[name='point_status']").on('ifClicked', function () {
-            var point_setting_box = $('#point_setting_box');
-            if ($(this).val() == 1) {
-                point_setting_box.show();
-            } else {
-                point_setting_box.hide();
-            }
-        });
-
-
-    </script>
-
-
-
-    <script>
         var current_action = 1;
 
         function tabCheckSpec() {

@@ -100,9 +100,9 @@ $router->group(['prefix' => 'admin/store'], function () use ($router) {
 		$router->post('restore/{id}', 'CommodityController@restore')->name('admin.goods.restore');
 
 		$router->get('get_category', 'CommodityController@getCategoryByGroupID')->name('admin.goods.get_category');
-		$router->get('uplode_inventorys', 'CommodityController@uplode_inventorys')->name('admin.goods.uplode_inventorys');
+		$router->get('uploadStock', 'CommodityController@uploadStock')->name('admin.goods.uplode_inventorys');
 
-		$router->post('inventorys_insert', 'CommodityController@inventorys_insert')->name('admin.goods.inventorys_insert');
+		$router->post('doUploadStock', 'CommodityController@doUploadStock')->name('admin.goods.inventorys_insert');
 
 		$router->post('store', 'CommodityController@store')->name('admin.goods.store');
 		$router->get('getAttribute', 'CommodityController@getAttribute')->name('admin.goods.getAttribute');

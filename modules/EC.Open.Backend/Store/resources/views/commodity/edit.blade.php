@@ -96,7 +96,6 @@
 
         <li class=""><a data-id="5" class="app-action" aria-expanded="false">橱窗图</a></li>
         <li class=""><a data-id="6" class="app-action" aria-expanded="false">SEO设置</a></li>
-        <li class=""><a data-id="7" class="app-action" aria-expanded="false">积分规则</a></li>
     </ul>
     {!! Form::open( [ 'url' => [route('admin.goods.store')], 'method' => 'POST', 'id' => 'base-form','class'=>'form-horizontal'] ) !!}
     <div class="tab-content">
@@ -125,42 +124,11 @@
                         </select>
                     </div>
                 </div>
-                <div class="form-group">
-                    <label class="col-sm-2 control-label">供应商：</label>
-                    <div class="col-sm-10">
-                        <select class="form-control" name="supplier_id">
-                            @foreach($supplier as $item)
-                                <option value="{{$item->id}}" {{$item->id==$goods_info->supplier_id?'selected':''}}>
-                                    {{$item->name}}</option>
-                            @endforeach
-                        </select>
-                    </div>
-                </div>
+
                 <div class="form-group">
                     <label class="col-sm-2 control-label">所属分类：</label>
                     <div class="col-sm-10" id="category-box">
-                        {{--<div class="panel panel-default">--}}
-                        {{--<div class="panel-heading" role="tab" id="headingOne">--}}
-                        {{--<h4 class="panel-title">--}}
-                        {{--<a data-toggle="collapse" data-parent="#accordion" href="#collapseOne" aria-expanded="true" aria-controls="collapseOne">--}}
-                        {{--请选择分类（点击折叠/展开）--}}
-                        {{--</a>--}}
-                        {{--</h4>--}}
-                        {{--</div>--}}
-                        {{--<div id="collapseOne" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingOne">--}}
-                        {{--<div class="panel-body">--}}
-                        {{--@foreach($categories as $key => $val)--}}
-                        {{--<div class="col-sm-12" style="padding: 5px {{30*$val->level}}px">--}}
-                        {{--<input {{in_array($val->id, $cateIds) ? 'checked' : ''}} type="checkbox"--}}
-                        {{--name="_category_id[]" value="{{$val->id}}"> {{$val->name}}--}}
-                        {{--</div>--}}
-                        {{--@endforeach--}}
-                        {{--</div>--}}
-                        {{--</div>--}}
-                        {{--</div>--}}
                         @include('store-backend::commodity.includes.category-item')
-
-
                     </div>
                 </div>
 
@@ -208,17 +176,6 @@
                 </div>
 
                 <div class="form-group">
-                    <label class="col-sm-2 control-label">是否共享：</label>
-                    <div class="col-sm-10">
-                        <?php $share = $goods_info->is_share == 1 ? 'checked' : '';
-                        $unshare = $goods_info->is_share == 0 ? 'checked' : '';
-                        ?>
-                        <input name="is_share" type="radio" value="1" {{$share}} /> 是
-                        <input name="is_share" type="radio" value="0" {{$unshare}} /> 否
-                    </div>
-                </div>
-
-                <div class="form-group">
                     <label class="col-sm-2 control-label">是否推荐：</label>
                     <div class="col-sm-10">
                         <?php $commend = $goods_info->is_commend == 1 ? 'checked' : '';
@@ -226,18 +183,6 @@
                         ?>
                         <input name="is_commend" type="radio" value="1" {{$commend}}/> 是
                         <input name="is_commend" type="radio" value="0" {{$uncommend}}/> 否
-                    </div>
-                </div>
-
-
-                <div class="form-group hide">
-                    <label class="col-sm-2 control-label">是否赠品：</label>
-                    <div class="col-sm-10">
-                        <?php $largess = $goods_info->is_largess == 1 ? 'checked' : '';
-                        $unlargess = $goods_info->is_largess == 0 ? 'checked' : '';
-                        ?>
-                        <input name="is_largess" type="radio" value="1" {{$largess}} /> 是
-                        <input name="is_largess" type="radio" value="0" {{$unlargess}} /> 否
                     </div>
                 </div>
 
@@ -315,9 +260,6 @@
                         <input class="form-control" name="sort" value="{{$goods_info->sort}}" />
                     </div>
                 </div>
-                @if(str_contains(env('APP_URL'),'jw'))
-                    @include('store-backend::commodity.includes.extend_image')
-                @endif
             </div>
 
             <div class="app-actions">
@@ -414,135 +356,6 @@
             </div>
         </div><!-- /.tab-pane -->
 
-
-        <div class="tab-pane" id="tab_7">
-            <div class="panel-body">
-                <div class="form-group">
-                    <div class="form-group">
-                        <label class="col-sm-2 control-label">积分使用：<i class="fa fa-question-circle"
-                                                                      data-toggle="tooltip" data-placement="top"
-                                                                      data-original-title="下单购买该商品是否可使用积分抵扣"></i>
-                        </label>
-                        <div class="col-sm-10">
-                            <input type="radio" class="form-control" name="point_can_use_point"
-                                   value="0" {{$point->can_use_point?'':'checked'}}>
-                            否
-                            <input type="radio" class="form-control" name="point_can_use_point"
-                                   value="1" {{$point->can_use_point?'checked':''}}> 是
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <label class="col-sm-2 control-label">积分返赠：<i class="fa fa-question-circle"
-                                                                      data-toggle="tooltip" data-placement="top"
-                                                                      data-original-title="是否参与购物获得积分"></i></label>
-
-                        <div class="col-sm-10">
-                            @if(!empty($point))
-                                @if($point->status == 0)
-                                    <input type="radio" class="form-control" name="point_status" value="0"
-                                           checked="checked"> 不参与
-                                    <input type="radio" class="form-control" name="point_status" value="1"> 参与
-                                @else
-                                    <input type="radio" class="form-control" name="point_status" value="0"> 不参与
-                                    <input type="radio" class="form-control" name="point_status" value="1"
-                                           checked="checked"> 参与
-                                @endif
-                            @else
-                                <input type="radio" class="form-control" name="point_status" value="0"
-                                       checked="checked"> 不参与
-                                <input type="radio" class="form-control" name="point_status" value="1"> 参与
-                            @endif
-                        </div>
-                    </div>
-                </div>
-
-                @if(!empty($point) AND $point->status)
-                    <div id="point_setting_box">
-                        @else
-                            <div id="point_setting_box" style="display: none">
-                                @endif
-                                <div class="form-group">
-                                    <label class="col-sm-2 control-label">计算方式：</label>
-                                    <div class="col-sm-10">
-                                        @if(!empty($point))
-                                            @if($point->type == 0)
-                                                <input type="radio" class="form-control" name="point_type" value="0"
-                                                       checked="checked">
-                                                固定值
-                                                <input type="radio" class="form-control" name="point_type"
-                                                       value="1"> 比例
-                                            @else
-                                                <input type="radio" class="form-control" name="point_type"
-                                                       value="0">
-                                                固定值
-                                                <input type="radio" class="form-control" name="point_type" value="1"
-                                                       checked="checked">
-                                                比例
-                                            @endif
-                                        @else
-                                            <input type="radio" class="form-control" name="point_type" value="0"
-                                                   checked="checked">
-                                            固定值
-                                            <input type="radio" class="form-control" name="point_type" value="1"> 比例
-                                        @endif
-                                    </div>
-                                </div>
-                                <div class="form-group">
-                                    <label class="col-sm-2 control-label">积分数值：</label>
-                                    <div class="col-sm-10">
-                                        <input type="text" class="form-control" name="point_value"
-                                               value="{{$point->value or 0}}">
-                                        <p>说明：当计算方式为<b>比例</b>时，积分数值单位为 %</p>
-                                    </div>
-                                </div>
-                            </div>
-                    </div><!-- /.tab-pane -->
-
-                    <div class="app-actions">
-                        <a data-id="7" data-action="next" class="btn btn-success app-action-prev">«上一步</a>
-                        <input type="submit" class="btn btn-success app-action-save" data-toggle="form-submit" data-target="#base-form"
-                               value="保存">
-                    </div>
-            </div><!-- /.tab-content -->
-            {{--@endif--}}
-
-            <div class="tab-pane" id="tab_9">
-                <div class="panel-body">
-                    <div class="form-group">
-                        <label class="col-sm-2 control-label">视频背景：</label>
-                        <div class="col-sm-10">
-                            <input type="radio" class="form-control" name="extra[video][status]" value="1"
-                                   @if(isset($goods_info->extra->video->status) AND $goods_info->extra->video->status==1) checked="checked" @endif>
-                            启用
-                            <input type="radio" class="form-control" name="extra[video][status]" value="0"
-                                   @if(isset($goods_info->extra->video->status) AND $goods_info->extra->video->status==0) checked="checked" @endif>
-                            禁用
-                        </div>
-                    </div>
-
-                    <div class="form-group">
-                        <input type="hidden" name="extra[video][url]"
-                               value="{{$goods_info->extra->video->url or ''}}">
-                        {{--<label class="col-sm-2 control-label">产品相册：</label>--}}
-                        <label class="col-sm-2 control-label">视频文件：</label>
-                        <div class="col-sm-10">
-                            <p id="videoOriginName">{{$goods_info->extra->video->url or ''}}</p>
-                            <div id="videoPicker">选择视频</div>
-                            <div class="clearfix"></div>
-                        </div>
-                    </div>
-                </div>
-
-            </div><!-- /.tab-pane -->
-
-            {{--<div class="ibox-content m-b-sm border-bottom text-right">
-                <input type="submit" class="btn btn-success" value="保存">
-
-            </div>--}}
-
-            {!! Form::close() !!}
-        </div>
-
         <div class="popup">
             <div class="sortContainer">
                 <h2 class="sortTitle">销售属性排序</h2>
@@ -560,8 +373,6 @@
             </div>
         </div>
 
-
-        {{--@include('vendor.ueditor.assets')--}}
         @include('UEditor::head')
 
         {!! Html::script(env("APP_URL").'/vendor/libs/jquery.form.min.js') !!}

@@ -109,8 +109,6 @@
         <li class=""><a data-id="5" class="app-action" aria-expanded="false">橱窗图</a></li>
         <li class=""><a data-id="6" class="app-action" aria-expanded="false">SEO设置</a></li>
 
-        <li class=""><a data-id="7" class="app-action" aria-expanded="false">积分规则</a></li>
-
     </ul>
 
     {!! Form::open( [ 'url' => [route('admin.goods.store')], 'method' => 'POST', 'id' => 'base-form','class'=>'form-horizontal'] ) !!}
@@ -312,62 +310,6 @@
                 <input type="submit" class="btn btn-success app-action-save" data-toggle="form-submit" data-target="#base-form"
                        value="保存">
             </div>
-        </div><!-- /.tab-pane -->
-
-        <div class="tab-pane" id="tab_7">
-            <div class="panel-body">
-                <div class="form-group">
-                    <label class="col-sm-2 control-label">积分使用：<i class="fa fa-question-circle"
-                                                                  data-toggle="tooltip" data-placement="top"
-                                                                  data-original-title="下单购买该商品是否可使用积分抵扣"></i>
-                    </label>
-                    <div class="col-sm-10">
-                        <input type="radio" class="form-control" name="point_can_use_point"
-                               value="0">
-                        否
-                        <input type="radio" class="form-control" name="point_can_use_point"
-                               value="1" checked> 是
-                    </div>
-                </div>
-                <div class="form-group">
-                    <label class="col-sm-2 control-label">积分返赠：<i class="fa fa-question-circle"
-                                                                  data-toggle="tooltip" data-placement="top"
-                                                                  data-original-title="是否参与购物获得积分"></i>
-                    </label>
-                    <div class="col-sm-10">
-                        <input type="radio" class="form-control" name="point_status"
-                               value="0" {{ !$point_rule?'checked':'' }}>
-                        不参与
-                        <input type="radio" class="form-control" name="point_status"
-                               value="1" {{ $point_rule?'checked':'' }}> 参与
-                    </div>
-                </div>
-
-                <div id="point_setting_box" style="display: {{$point_rule?'':'none'}}">
-                    <div class="form-group">
-                        <label class="col-sm-2 control-label">计算方式：</label>
-                        <div class="col-sm-10">
-                            <input type="radio" class="form-control" name="point_type"
-                                   value="0" {{ !$point_rule?'checked':'' }}> 固定值
-                            <input type="radio" class="form-control" name="point_type"
-                                   value="1" {{ $point_rule?'checked':'' }}> 比例
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <label class="col-sm-2 control-label">积分数值：</label>
-                        <div class="col-sm-10">
-                            <input type="text" class="form-control" name="point_value" value="{{$point_rule_value}}">
-                            <p>说明：当计算方式为<b>比例</b>时，积分数值单位为 %</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="app-actions">
-                <a data-id="7" data-action="next" class="btn btn-success app-action-prev">«上一步</a>
-                <input type="submit" class="btn btn-success app-action-save" data-toggle="form-submit" data-target="#base-form"
-                       value="保存">
-            </div>
-
         </div><!-- /.tab-pane -->
 
 
