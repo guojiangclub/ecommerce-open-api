@@ -40,7 +40,8 @@ class ShoppingController extends Controller
     private $addressRepository;
 
     public function __construct(GoodsRepository $goodsRepository, ProductRepository $productRepository, DiscountService $discountService, OrderRepository $orderRepository, CouponRepository $couponRepository, DiscountApplicator $discountApplicator, AddressRepository $addressRepository
-    ) {
+    )
+    {
         $this->goodsRepository = $goodsRepository;
         $this->productRepository = $productRepository;
         $this->discountService = $discountService;
@@ -117,7 +118,7 @@ class ShoppingController extends Controller
             $model = $item->getModel();
 
             if (!$model->getIsInSale($item->quantity)) {
-                return $this->failed('商品: '.$item->name.' '.$item->item_meta['specs_text'].' 库存不够，请重新下单');
+                return $this->failed('商品: ' . $item->name . ' ' . $item->item_meta['specs_text'] . ' 库存不够，请重新下单');
             }
         }
 
@@ -163,6 +164,8 @@ class ShoppingController extends Controller
             $order->submit_time = Carbon::now();
             $order->save();
 
+            event('order.submitted',[$order]);
+
             //6. remove goods store.
             foreach ($order->getItems() as $item) {
                 $product = $item->getModel();
@@ -183,7 +186,7 @@ class ShoppingController extends Controller
             return $this->success(['order' => $order], true);
         } catch (\Exception $exception) {
             DB::rollBack();
-            \Log::info($exception->getMessage().$exception->getTraceAsString());
+            \Log::info($exception->getMessage() . $exception->getTraceAsString());
 
             return $this->failed('订单提交失败');
         }
@@ -249,7 +252,7 @@ class ShoppingController extends Controller
             return $this->api([], true, 200, '确认收货操作成功');
         } catch (\Exception $exception) {
             DB::rollBack();
-            \Log::info($exception->getMessage().$exception->getTraceAsString());
+            \Log::info($exception->getMessage() . $exception->getTraceAsString());
             $this->response()->errorInternal($exception->getMessage());
         }
     }
@@ -284,7 +287,7 @@ class ShoppingController extends Controller
 
         foreach ($comments as $key => $comment) {
             if (!isset($comment['order_no']) or !$order = $this->orderRepository->getOrderByNo($comment['order_no'])) {
-                return $this->failed('订单 '.$comment['order_no'].' 不存在');
+                return $this->failed('订单 ' . $comment['order_no'] . ' 不存在');
             }
 
             if (!isset($comment['order_item_id']) or !$orderItem = OrderItem::find($comment['order_item_id'])) {
@@ -335,7 +338,7 @@ class ShoppingController extends Controller
         }
 
         foreach ($ids as $cartId) {
-            if($cart = Cart::get($cartId)){
+            if ($cart = Cart::get($cartId)) {
                 $cartItems->put($cartId, $cart);
             }
         }
@@ -345,7 +348,7 @@ class ShoppingController extends Controller
             if (!$this->checkItemStock($item)) {
                 Cart::update($key, ['message' => '库存数量不足', 'status' => 'onhand']);
 
-                throw new \Exception('商品: '.$item->name.' '.$item->color.','.$item->size.' 库存数量不足');
+                throw new \Exception('商品: ' . $item->name . ' ' . $item->color . ',' . $item->size . ' 库存数量不足');
             }
         }
 

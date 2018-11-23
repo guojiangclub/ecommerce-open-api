@@ -2,15 +2,18 @@
 
 namespace iBrand\EC\Open\Core\Listeners;
 
+use Carbon\Carbon;
 use iBrand\Component\Order\Models\Order;
 use iBrand\Component\Order\Models\OrderItem;
 use iBrand\Component\Point\Repository\PointRepository;
+use iBrand\EC\Open\Core\Jobs\AutoCancelOrder;
 
 class OrderEventListener
 {
 
     protected $listens = [
         'order.paid' => 'onOrderPaid',
+        'order.submitted' => 'onOrderSubmitted'
     ];
 
     protected $point;
@@ -18,6 +21,19 @@ class OrderEventListener
     public function __construct(PointRepository $pointRepository)
     {
         $this->point = $pointRepository;
+    }
+
+    public function onOrderSubmitted(Order $order){
+
+        if ($order->status == Order::STATUS_NEW) {
+
+            $delayTime = config('ibrand.app.order_auto_cancel');
+
+            $job = (new AutoCancelOrder($order))
+                ->delay(Carbon::now()->addMinute($delayTime));
+
+            dispatch($job);
+        }
     }
 
     public function onOrderPaid(Order $order)
@@ -43,7 +59,6 @@ class OrderEventListener
             ]);
         }
     }
-
 
     public function subscribe($events)
     {
