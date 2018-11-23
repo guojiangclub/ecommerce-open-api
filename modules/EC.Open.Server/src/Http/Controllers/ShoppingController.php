@@ -27,6 +27,7 @@ use iBrand\Component\Point\Repository\PointRepository;
 use iBrand\Component\Product\Repositories\GoodsRepository;
 use iBrand\Component\Product\Repositories\ProductRepository;
 use iBrand\Component\Shipping\Models\Shipping;
+use iBrand\EC\Open\Core\Applicators\PointApplicator;
 use iBrand\EC\Open\Core\Processor\OrderProcessor;
 use iBrand\EC\Open\Core\Services\DiscountService;
 use Illuminate\Support\Collection;
@@ -42,6 +43,7 @@ class ShoppingController extends Controller
     private $addressRepository;
     private $orderProcessor;
     private $pointRepository;
+    private $pointApplicator;
 
 
     public function __construct(GoodsRepository $goodsRepository
@@ -53,6 +55,7 @@ class ShoppingController extends Controller
         , AddressRepository $addressRepository
         , OrderProcessor $orderProcessor
         , PointRepository $pointRepository
+        , PointApplicator $pointApplicator
     )
     {
         $this->goodsRepository = $goodsRepository;
@@ -64,6 +67,7 @@ class ShoppingController extends Controller
         $this->addressRepository = $addressRepository;
         $this->orderProcessor = $orderProcessor;
         $this->pointRepository = $pointRepository;
+        $this->pointApplicator = $pointApplicator;
     }
 
     public function checkout()
@@ -119,7 +123,6 @@ class ShoppingController extends Controller
     {
         $user = request()->user();
 
-        //TODO: 1. need to confirm whether the products are still in stock
         $order_no = request('order_no');
         if (!$order_no || !$order = $this->orderRepository->getOrderByNo($order_no)) {
             return $this->failed('订单不存在');
@@ -133,6 +136,7 @@ class ShoppingController extends Controller
             $order->note = $note;
         }
 
+        //1. check stock.
         foreach ($order->getItems() as $item) { // 再次checker库存
             $model = $item->getModel();
 
@@ -143,7 +147,7 @@ class ShoppingController extends Controller
 
         try {
             DB::beginTransaction();
-            //3. apply the available discounts
+            //2. apply the available discounts
             $discount = Discount::find(request('discount_id'));
             if (!empty($discount)) {
                 if ($this->discountService->checkDiscount($order, $discount)) {
@@ -154,9 +158,9 @@ class ShoppingController extends Controller
                     return $this->failed('折扣信息有误，请确认后重试');
                 }
             }
-
+            //3. apply the available coupons
             if (empty($discount) or 1 != $discount->exclusive) {
-                //4. apply the available coupons
+
                 $coupon = Coupon::find(request('coupon_id'));
                 if (!empty($coupon)) {
                     if (null != $coupon->used_at) {
@@ -170,6 +174,15 @@ class ShoppingController extends Controller
                 }
             }
 
+            //4. use point
+            if ($point = request('point') && config('ibrand.app.point.enable')) {
+                if ($this->checkUserPoint($order, $point)) {
+                    $this->pointApplicator->apply($order, $point);
+                } else {
+                    return $this->failed('积分不足或不满足积分折扣规则');
+                }
+            }
+
             //5. 保存收获地址信息。
             if (request('address_id') && $address = $this->addressRepository->find(request('address_id'))) {
                 $order->accept_name = $address->accept_name;
@@ -179,11 +192,8 @@ class ShoppingController extends Controller
             }
 
             //5. 保存订单状态
-            $order->status = Order::STATUS_NEW;
-            $order->submit_time = Carbon::now();
-            $order->save();
+            $this->orderProcessor->submit($order);
 
-            event('order.submitted', [$order]);
 
             //6. remove goods store.
             foreach ($order->getItems() as $item) {
@@ -203,6 +213,7 @@ class ShoppingController extends Controller
             DB::commit();
 
             return $this->success(['order' => $order], true);
+
         } catch (\Exception $exception) {
             DB::rollBack();
             \Log::info($exception->getMessage() . $exception->getTraceAsString());
@@ -509,5 +520,26 @@ class ShoppingController extends Controller
             $orderPoint['pointAmount'] = -$pointAmount;
             $orderPoint['pointCanUse'] = $pointAmount / $orderPoint['pointToMoney'];
         }
+    }
+
+
+    /**
+     * confirm user point can be used in this order.
+     * @param $order
+     * @param $point
+     * @return bool
+     */
+    private function checkUserPoint($order, $point)
+    {
+        $userPoint = $this->pointRepository->getSumPointValid($order->user_id);
+        $usePointAmount = $point * config('ibrand.app.point.order_proportion');
+        $orderPointLimit = $order->total * config('ibrand.app.point.order_limit');
+
+        //如果用户的积分小于使用的积分 或者抵扣的金额大于了订单可抵扣金额，则无法使用该积分
+        if ($userPoint < $point || $usePointAmount > $orderPointLimit) {
+            return false;
+        }
+
+        return true;
     }
 }

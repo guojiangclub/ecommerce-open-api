@@ -26,4 +26,14 @@ class OrderProcessor
         return false;
     }
 
+    public function submit($order)
+    {
+        if ($order->status == Order::STATUS_TEMP) {
+            $order->status = Order::STATUS_NEW;
+            $order->submit_time = Carbon::now();
+            $order->save();
+            event('order.submitted', [$order]);
+        }
+    }
+
 }
