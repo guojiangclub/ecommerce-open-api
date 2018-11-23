@@ -11,7 +11,6 @@
 
 namespace iBrand\EC\Open\Backend\Member\Providers;
 
-use iBrand\EC\Open\Backend\Member\Console\RolesCommand;
 use iBrand\EC\Open\Backend\Member\MemberBackend;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\ServiceProvider;
@@ -38,10 +37,6 @@ class BackendServiceProvider extends ServiceProvider
         }
 
         MemberBackend::boot();
-
-        $this->commands([
-            RolesCommand::class,
-        ]);
 
         $this->loadViewsFrom(__DIR__.'/../../resources/views', 'member-backend');
         $this->registerMigrations();

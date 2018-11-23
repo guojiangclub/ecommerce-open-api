@@ -299,8 +299,6 @@ class CommodityController extends Controller
                 $goods->GoodsPhotos()->createMany($data[3]);
 
                 $goods->categories()->sync($data[4]);
-
-                $goods->hasOnePoint()->update($data[7]);
             } else {
                 //商品基础数据处理
                 $goods = $this->goodsRepository->create($goodsData);
@@ -433,8 +431,7 @@ class CommodityController extends Controller
 
         $specData = $this->goodsService->handleInitSpecData($spec, $id);
 
-        /*合并公用属性*/
-        $attrArray = $model->hasManyAttribut;
+        $attrArray = $model->hasManyAttribute;
 
 
         return LaravelAdmin::content(function (Content $content) use ($cateNames, $goods_info, $product, $categories, $brands, $models, $attrArray, $currAttribute, $specData, $cateIds, $redirect_url, $categoriesLevelTwo) {

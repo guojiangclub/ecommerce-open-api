@@ -23,30 +23,6 @@ class Product extends Model implements Transformable
         return $this->belongsTo('iBrand\EC\Open\Backend\Store\Model\Goods', 'goods_id');
     }
 
-    public function o2oProducts()
-    {
-        return $this->hasMany('ElementVip\Shop\Core\Models\O2oGoodsProducts', 'product_id');
-    }
-
-    public function getSpecStringAttribute()
-    {
-        $specStr = '';
-        if ($this->attributes['spec_array']) {
-            $specArr = json_decode($this->attributes['spec_array'], TRUE);
-            foreach ($specArr as $key => $val) {
-                $specStr = $specStr . ',' . $val['value'];
-            }
-
-        }
-        return ltrim($specStr, ",");
-
-    }
-
-    public function photo()
-    {
-        return $this->hasOne('iBrand\EC\Open\Backend\Store\Model\GoodsPhoto', 'sku', 'sku');
-    }
-
     public function setSpecIdsAttribute($value)
     {
         $this->attributes['spec_ids'] = json_encode(explode('-', $value));

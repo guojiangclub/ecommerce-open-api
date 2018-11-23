@@ -382,7 +382,7 @@ class GoodsService
      * @param $specData
      * @param $goods_id
      */
-    public function handleInitSpecData($specData, $goods_id = 0, $channel = '')
+    public function handleInitSpecData($specData, $goods_id = 0)
     {
         $specList = [];
         $skuData = [];
@@ -429,23 +429,15 @@ class GoodsService
             $goods = $this->goodsRepository->find($goods_id);
 
             foreach ($goods->hasManyProducts as $key => $item) {
-                if ($channel) {
-                    $o2oProducts = $item->o2oProducts->filter(function ($value) use ($channel) {
-                        return $value->shop_id == $channel;
-                    })->first();
-                    $store_nums = $o2oProducts->store_nums;
-                    $id = $o2oProducts->id;
-                } else {
-                    $store_nums = $item->store_nums;
-                    $id = $item->id;
-                }
+                $store_nums = $item->store_nums;
+                $id = $item->id;
 
                 $skuData[$key]['id'] = $id;
                 $skuData[$key]['sell_price'] = $item->sell_price;
                 $skuData[$key]['store_nums'] = $store_nums;
                 $skuData[$key]['sku'] = $item->sku;
                 $skuData[$key]['is_show'] = $item->is_show;
-                $skuData[$key]['specID'] = $item->specID;
+                $skuData[$key]['specID'] = $item->spec_ids;
                 $skuData[$key]['market_price'] = $item->market_price ? $item->market_price : $goods->market_price;
             }
 
@@ -651,10 +643,6 @@ class GoodsService
         $i = 0;
         foreach ($specArr as $key => $val) {
             foreach ($val as $item) {
-//                $specIds[$i]['spec_value_id'] = $item;
-//                $specIds[$i]['spec_id'] = $key;
-//                $specIds[$i]['alias'] = isset($goodsSpecAlias[$key]) ? $goodsSpecAlias[$key] : '';
-//                $specIds[$i]['img'] = isset($goodsSpecImg[$key]) ? $goodsSpecImg[$key] : '';
 
                 $specIds[$item]['spec_id'] = $key;
                 $specIds[$item]['alias'] = isset($goodsSpecAlias[$item]) ? $goodsSpecAlias[$item] : '';

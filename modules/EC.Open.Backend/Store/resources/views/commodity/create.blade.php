@@ -221,6 +221,14 @@
                     </div>
                 </div>
 
+                <div class="form-group">
+                    <label class="col-sm-2 control-label">产品标签：</label>
+                    <div class="col-sm-10">
+                        {!! Form::text('tags',  '' , ['class' => 'form-control form-inputTagator col-sm-10','id'=>'inputGoodsTags', 'placeholder' => '']) !!}
+                        <label>输入产品标签名称，按回车添加</label>
+                    </div>
+                </div>
+
             </div>
 
             <div class="app-actions">

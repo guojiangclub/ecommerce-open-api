@@ -34,7 +34,5 @@ class InstallCommand extends Command
     public function handle()
     {
         $this->call('dmp-store:default-value');
-
-        $this->call('roles:factory');
     }
 }
