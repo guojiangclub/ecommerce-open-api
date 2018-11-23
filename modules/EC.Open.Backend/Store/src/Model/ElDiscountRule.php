@@ -6,9 +6,14 @@ use Illuminate\Database\Eloquent\Model;
 
 class ElDiscountRule extends Model
 {
-    protected $table = 'el_discount_rule';
     protected $guarded = ['id'];
     public $timestamps = false;
+
+    public function __construct(array $attributes = [])
+    {
+        parent::__construct($attributes);
+        $this->setTable(config('ibrand.app.database.prefix', 'ibrand_') . 'discount_rule');
+    }
 
     public function setConfigurationAttribute($value)
     {

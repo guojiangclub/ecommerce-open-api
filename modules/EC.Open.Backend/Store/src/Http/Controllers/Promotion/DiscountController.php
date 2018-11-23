@@ -65,7 +65,6 @@ class DiscountController extends Controller
 	private function condition()
 	{
 		$where['coupon_based'] = 0;
-		$where['channel']      = 'ec';
 		$orWhere               = [];
 		$status                = request('status');
 		if ($status == 'nstart') {
@@ -95,10 +94,9 @@ class DiscountController extends Controller
 
 	public function create()
 	{
-		$roles    = Role::all();
 		$category = $this->categoryRepository->getLevelCategory(0);
 
-		return LaravelAdmin::content(function (Content $content) use ($roles, $category) {
+		return LaravelAdmin::content(function (Content $content) use ($category) {
 
 			$content->header('新建促销活动');
 
@@ -108,17 +106,16 @@ class DiscountController extends Controller
 
 			);
 
-			$content->body(view('store-backend::promotion.discount.create', compact('roles', 'category')));
+			$content->body(view('store-backend::promotion.discount.create', compact('category')));
 		});
 	}
 
 	public function edit($id)
 	{
 		$discount = ElDiscount::find($id);
-		$roles    = Role::all();
 		$category = $this->categoryRepository->getLevelCategory(0);
 
-		return LaravelAdmin::content(function (Content $content) use ($discount, $category, $roles) {
+		return LaravelAdmin::content(function (Content $content) use ($discount, $category) {
 
 			$content->header('编辑促销活动');
 
@@ -128,7 +125,7 @@ class DiscountController extends Controller
 
 			);
 
-			$content->body(view('store-backend::promotion.discount.edit', compact('discount', 'roles', 'category')));
+			$content->body(view('store-backend::promotion.discount.edit', compact('discount', 'category')));
 		});
 	}
 

@@ -8,8 +8,13 @@ use iBrand\EC\Open\Backend\Store\Model\Relations\BelongToUserTrait;
 class ElDiscountCoupon extends Model
 {
     use BelongToUserTrait;
-    protected $table = 'el_discount_coupon';
     protected $guarded = ['id'];
+
+    public function __construct(array $attributes = [])
+    {
+        parent::__construct($attributes);
+        $this->setTable(config('ibrand.app.database.prefix', 'ibrand_') . 'discount_coupon');
+    }
 
     public function order()
     {
@@ -20,10 +25,10 @@ class ElDiscountCoupon extends Model
     {
         return $this->order()->wherePivot('origin_type', 'coupon')->first();
     }
-    
+
     public function discount()
     {
-        return $this->belongsTo(ElDiscount::class,'discount_id');
+        return $this->belongsTo(ElDiscount::class, 'discount_id');
     }
 
 }

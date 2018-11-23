@@ -1,5 +1,4 @@
 <h4>活动基础信息</h4>
-<input type="hidden" name="base[channel]" value="ec">
 <hr class="hr-line-solid">
 
 <div class="form-group">
@@ -16,18 +15,6 @@
     <div class="col-sm-10">
         <label class="checkbox-inline i-checks"><input name="base[exclusive]" type="radio" value="0" checked> 否</label>
         <label class="checkbox-inline i-checks"><input name="base[exclusive]" type="radio" value="1" > 是</label>
-    </div>
-</div>
-
-<div class="form-group">
-    <label class="col-sm-2 control-label">是否对外显示 <i class="fa fa-question-circle"
-                                                   data-toggle="tooltip" data-placement="top"
-                                                   data-original-title="默认显示在商品列表和商品详情中，设置为“否”后即不再显示"></i>：</label>
-    <div class="col-sm-10">
-        <label class="checkbox-inline i-checks"><input name="base[is_open]" type="radio"
-                                                       value="0" > 否</label>
-        <label class="checkbox-inline i-checks"><input name="base[is_open]" type="radio"
-                                                       value="1" checked> 是</label>
     </div>
 </div>
 
