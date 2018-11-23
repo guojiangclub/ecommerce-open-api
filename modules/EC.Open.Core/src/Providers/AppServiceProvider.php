@@ -18,6 +18,7 @@ use iBrand\Component\Favorite\FavoriteServiceProvider;
 use iBrand\Component\Order\Models\Adjustment;
 use iBrand\Component\Order\Providers\OrderServiceProvider;
 use iBrand\Component\Payment\Providers\PaymentServiceProvider;
+use iBrand\Component\Point\PointServiceProvider;
 use iBrand\Component\Product\ProductServiceProvider;
 use iBrand\Component\User\Models\User as BaseUser;
 use iBrand\Component\User\UserServiceProvider;
@@ -76,5 +77,6 @@ class AppServiceProvider extends ServiceProvider
         $this->app->register(FavoriteServiceProvider::class);
         $this->app->register(AdvertServiceProvider::class);
         $this->app->register(PaymentServiceProvider::class);
+        $this->app->register(PointServiceProvider::class);
     }
 }
