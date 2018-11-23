@@ -1,5 +1,5 @@
 <h4>优惠券基础信息</h4>
-<input type="hidden" name="base[channel]" value="ec">
+
 <hr class="hr-line-solid">
 
 <div class="form-group">
@@ -7,22 +7,6 @@
     <div class="col-sm-9">
         <input type="text" class="form-control" name="base[title]" placeholder="" oninput="OnInput(event)"
                onpropertychange="OnPropChanged(event)"/>
-    </div>
-</div>
-
-<div class="form-group">
-    <label class="col-sm-3 control-label">展示图片<i class="fa fa-question-circle"
-                                                 data-toggle="tooltip" data-placement="top"
-                                                 data-original-title="建议上传小于2M的正方形图片；不上传则默认显示商家LOGO"></i>：</label>
-    <div class="col-sm-9">
-        <div class="pull-left" id="activity-poster">
-            <img src="{{settings('shop_show_logo')?settings('shop_show_logo'):'/assets/backend/activity/backgroundImage/pictureBackground.png'}}"
-                 alt="" class="img" width="182px"  style="margin-right: 23px;">
-            <input type="hidden" name="base[discount_img]" class="form-control" value="{{settings('shop_show_logo')?settings('shop_show_logo'):''}}">
-        </div>
-        <div class="clearfix" style="padding-top: 22px;">
-            <div id="filePicker">添加图片</div>
-        </div>
     </div>
 </div>
 
@@ -40,39 +24,6 @@
     <div class="col-sm-9">
         <label class="checkbox-inline i-checks"><input name="base[exclusive]" type="radio" value="0" checked> 否</label>
         <label class="checkbox-inline i-checks"><input name="base[exclusive]" type="radio" value="1"> 是</label>
-    </div>
-</div>
-
-<div class="form-group">
-    <label class="col-sm-3 control-label">是否对外显示 <i class="fa fa-question-circle"
-                                                    data-toggle="tooltip" data-placement="top"
-                                                    data-original-title="默认显示在商品列表和商品详情中，设置为“否”后即不再显示"></i>：</label>
-    <div class="col-sm-9">
-        <label class="checkbox-inline i-checks"><input name="base[is_open]" type="radio" value="0"> 否</label>
-        <label class="checkbox-inline i-checks"><input name="base[is_open]" type="radio" value="1" checked> 是</label>
-    </div>
-</div>
-
-<div class="form-group">
-    <label class="col-sm-3 control-label">是否允许分销员分享 <i class="fa fa-question-circle"
-                                                    data-toggle="tooltip" data-placement="top"
-                                                    data-original-title="默认不允许分销员分享优惠券，设置为“是”后即允许分享该优惠券"></i>：</label>
-    <div class="col-sm-9">
-        <label class="checkbox-inline i-checks"><input name="base[is_agent_share]" type="radio" value="0" checked>否</label>
-        <label class="checkbox-inline i-checks"><input name="base[is_agent_share]" type="radio" value="1"> 是</label>
-    </div>
-</div>
-
-
-<div class="form-group">
-    <label class="col-sm-3 control-label">优惠券类型：</label>
-    <div class="col-sm-9">
-        <label class="checkbox-inline i-checks"><input name="base[type]" type="radio" checked
-                                                       value="0">
-            线上券</label>
-        <label class="checkbox-inline i-checks"><input name="base[type]" type="radio"
-                                                       value="1">
-            线下券</label>
     </div>
 </div>
 
@@ -135,10 +86,6 @@
 
             <input type="text" name="base[ends_at]" class="form-control inline" id="date-range201" value=""
                    placeholder="" readonly>
-
-            {{--<input type="text" class="form-control" name="base[ends_at]"--}}
-            {{--value="{{date("Y-m-d H:m",time()+60*60*24*30)}}"--}}
-            {{--placeholder="点击选择结束时间" readonly>--}}
             <span class="add-on"><i class="icon-th"></i></span>
         </div>
     </div>
@@ -155,9 +102,6 @@
             <input type="text" name="base[usestart_at]" class="form-control inline" value="" id="date-range14"
                    placeholder="点击选择使用开始时间">
 
-            {{--<input type="text" class="form-control inline" name="base[useend_at]"--}}
-            {{--value="{{date("Y-m-d H:m",time()+60*60*24*30)}}"--}}
-            {{--placeholder="点击选择时间" readonly>--}}
             <span class="add-on"><i class="icon-th"></i></span>
         </div>
         <div id="date-usestart_at-container" style="width: 228px"></div>
@@ -175,9 +119,6 @@
             <input type="text" name="base[useend_at]" class="form-control inline" value="" id="date-range13"
                    placeholder="点击选择使用截止时间">
 
-            {{--<input type="text" class="form-control inline" name="base[useend_at]"--}}
-            {{--value="{{date("Y-m-d H:m",time()+60*60*24*30)}}"--}}
-            {{--placeholder="点击选择时间" readonly>--}}
             <span class="add-on"><i class="icon-th"></i></span>
         </div>
         <div id="date-useend-container" style="width: 228px"></div>
@@ -199,15 +140,5 @@
     <div class="col-sm-9">
         {!! Form::text('base[tags]',  '' , ['class' => 'form-control form-inputTagator col-sm-10','id'=>'inputDiscountTags', 'placeholder' => '']) !!}
         <label>输入标签名称，按回车添加</label>
-    </div>
-</div>
-
-
-<div class="form-group">
-    <label class="col-sm-3 control-label">跳转链接 <i class="fa fa-question-circle"
-                                                  data-toggle="tooltip" data-placement="top"
-                                                  data-original-title="设置该值后，在H5版本中立即使用点击后将跳转到该设置值，否则默认展示可以使用该优惠券的商品列表"></i>：</label>
-    <div class="col-sm-9">
-        <input type="text" class="form-control" name="base[url]" placeholder="请输入整个url，包含http"/>
     </div>
 </div>

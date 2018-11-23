@@ -20,9 +20,6 @@
             <option {{$type == 'goods_percentage_discount'?'selected' : ''}} value="goods_percentage_discount">
                 商品打折
             </option>
-            <option {{$type == 'goods_percentage_by_market_price_discount'?'selected' : ''}} value="goods_percentage_by_market_price_discount">
-                员工内购折扣
-            </option>
 
         </select>
     </div>

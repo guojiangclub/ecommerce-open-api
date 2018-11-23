@@ -10,16 +10,12 @@
             <option value="order_percentage_discount">订单打折
             </option>
 
-            <option  value="goods_fixed_discount">
+            <option value="goods_fixed_discount">
                 商品减金额
             </option>
-            <option  value="goods_percentage_discount">
+            <option value="goods_percentage_discount">
                 商品打折
             </option>
-            <option value="goods_percentage_by_market_price_discount">
-                员工内购折扣
-            </option>
-
         </select>
     </div>
 </div>

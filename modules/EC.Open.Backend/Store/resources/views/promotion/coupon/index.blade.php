@@ -53,14 +53,10 @@
                                 <tr>
                                     <th>优惠券名称</th>
                                     <th>优惠</th>
-                                    <th>类型</th>
                                     <th>领取限制</th>
                                     <th>有效期</th>
                                     <th>领取数</th>
                                     <th>已使用</th>
-                                    @if(!str_contains(env('APP_URL'),'tnf'))
-                                        <th>链接</th>
-                                    @endif
                                     <th>状态</th>
                                     <th>操作</th>
                                 </tr>
@@ -73,7 +69,6 @@
                                                 {{$val->action_text}}<br>
                                             @endforeach
                                         </td>
-                                        <td>{{$item->type==1?'线下券':'线上券'}}</td>
                                         <td>
                                             一人{{$item->per_usage_limit}}张
                                             <p class="coupon-tips">共发放:{{$item->count_num}}
@@ -83,13 +78,7 @@
                                             {{$item->ends_at}}</td>
                                         <td>{{$item->used}}</td>
                                         <td>{{$item->used_coupon_count}}</td>
-                                        @if(!str_contains(env('APP_URL'),'tnf'))
-                                            <td style="position: relative;">
-                                                <input type="text"
-                                                       value="{{settings('mobile_domain_url')}}/#!/user/coupon/select/{{$item->id}}">
-                                                <label class="label label-danger copyBtn">复制链接</label>
-                                            </td>
-                                        @endif
+
                                         <td>{{$item->status_text}}</td>
                                         <td>
 
@@ -110,25 +99,6 @@
                                                class="btn btn-xs btn-primary" no-pjax>
                                                 <i class="fa fa-eye" data-toggle="tooltip" data-placement="top"
                                                    title="查看使用记录"></i></a>
-
-
-                                            @if($item->status==1 AND $item->starts_at<=\Carbon\Carbon::now() AND $item->ends_at >\Carbon\Carbon::now())
-                                                <a class="btn btn-xs btn-primary" data-toggle="modal"
-                                                   data-target="#modal" data-backdrop="static" data-keyboard="false"
-                                                   data-url="{{route('admin.promotion.coupon.couponCode',['discount_id'=>$item->id])}}"
-                                                   href="javascript:;">
-                                                    <i class="fa fa-tasks" data-toggle="tooltip" data-placement="top"
-                                                       title="生成优惠码"></i>
-                                                </a>
-
-                                                {{--<a--}}
-                                                {{--class="btn btn-xs btn-primary"--}}
-                                                {{--href="{{route('admin.promotion.coupon.sendCoupon',['id'=>$item->id])}}">--}}
-                                                {{--<i data-toggle="tooltip" data-placement="top"--}}
-                                                {{--class="fa fa-send"--}}
-                                                {{--title="发送"></i></a>--}}
-                                            @endif
-
                                         </td>
                                     </tr>
                                 @endforeach
@@ -154,15 +124,6 @@
     </div>
     <div id="modal" class="modal inmodal fade"></div>
     <div id="download_modal" class="modal inmodal fade"></div>
-    {!! Html::script(env("APP_URL").'/assets/backend/libs/jquery.zclip/jquery.zclip.js') !!}
-    <script>
-        $('.copyBtn').zclip({
-            path: "{{url('assets/backend/libs/jquery.zclip/ZeroClipboard.swf')}}",
-            copy: function () {
-                return $(this).prev().val();
-            }
-        });
-    </script>
 
 
 

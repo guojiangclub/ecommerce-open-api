@@ -18,7 +18,7 @@ class ElDiscountCoupon extends Model
 
     public function order()
     {
-        return $this->belongsToMany('iBrand\EC\Open\Backend\Store\Model\Order', 'el_order_adjustment', 'origin_id', 'order_id');
+        return $this->belongsToMany('iBrand\EC\Open\Backend\Store\Model\Order', config('ibrand.app.database.prefix', 'ibrand_').'order_adjustment', 'origin_id', 'order_id');
     }
 
     public function getOrder()
