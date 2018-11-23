@@ -23,9 +23,11 @@ use iBrand\Component\Order\Models\Comment;
 use iBrand\Component\Order\Models\Order;
 use iBrand\Component\Order\Models\OrderItem;
 use iBrand\Component\Order\Repositories\OrderRepository;
+use iBrand\Component\Point\Repository\PointRepository;
 use iBrand\Component\Product\Repositories\GoodsRepository;
 use iBrand\Component\Product\Repositories\ProductRepository;
 use iBrand\Component\Shipping\Models\Shipping;
+use iBrand\EC\Open\Core\Processor\OrderProcessor;
 use iBrand\EC\Open\Core\Services\DiscountService;
 use Illuminate\Support\Collection;
 
@@ -38,8 +40,19 @@ class ShoppingController extends Controller
     private $discountApplicator;
     private $couponRepository;
     private $addressRepository;
+    private $orderProcessor;
+    private $pointRepository;
 
-    public function __construct(GoodsRepository $goodsRepository, ProductRepository $productRepository, DiscountService $discountService, OrderRepository $orderRepository, CouponRepository $couponRepository, DiscountApplicator $discountApplicator, AddressRepository $addressRepository
+
+    public function __construct(GoodsRepository $goodsRepository
+        , ProductRepository $productRepository
+        , DiscountService $discountService
+        , OrderRepository $orderRepository
+        , CouponRepository $couponRepository
+        , DiscountApplicator $discountApplicator
+        , AddressRepository $addressRepository
+        , OrderProcessor $orderProcessor
+        , PointRepository $pointRepository
     )
     {
         $this->goodsRepository = $goodsRepository;
@@ -49,6 +62,8 @@ class ShoppingController extends Controller
         $this->discountApplicator = $discountApplicator;
         $this->couponRepository = $couponRepository;
         $this->addressRepository = $addressRepository;
+        $this->orderProcessor = $orderProcessor;
+        $this->pointRepository = $pointRepository;
     }
 
     public function checkout()
@@ -78,6 +93,9 @@ class ShoppingController extends Controller
         //4. get available coupons
         list($coupons, $bestCouponID, $bestCouponAdjustmentTotal) = $this->getOrderCoupons($order, $user);
 
+        //5. get point for order.
+        $orderPoint = $this->getOrderPoint($order, $user);
+
         //6.生成运费
         $order->payable_freight = 0;
 
@@ -86,6 +104,7 @@ class ShoppingController extends Controller
             'discounts' => $discounts,
             'coupons' => $coupons,
             'address' => $defaultAddress,
+            'orderPoint' => $orderPoint,
             'best_discount_id' => $bestDiscountId,
             'best_coupon_id' => $bestCouponID,
             'best_coupon_adjustment_total' => $bestCouponAdjustmentTotal,
@@ -164,7 +183,7 @@ class ShoppingController extends Controller
             $order->submit_time = Carbon::now();
             $order->save();
 
-            event('order.submitted',[$order]);
+            event('order.submitted', [$order]);
 
             //6. remove goods store.
             foreach ($order->getItems() as $item) {
@@ -208,10 +227,7 @@ class ShoppingController extends Controller
             return $this->failed('无法取消该订单');
         }
 
-        $order->status = Order::STATUS_CANCEL;
-        $order->completion_time = Carbon::now();
-        $order->cancel_reason = '用户取消';
-        $order->save();
+        $this->orderProcessor->cancel($order);
 
         //TODO: 用户未付款前取消订单后，需要还原库存
         foreach ($order->getItems() as $item) {
@@ -481,5 +497,17 @@ class ShoppingController extends Controller
         }
 
         return $this->failed('订单发货失败');
+    }
+
+    private function getOrderPoint($order, $user)
+    {
+        if (config('ibrand.app.point.enable')) {
+            $orderPoint['userPoint'] = $this->pointRepository->getSumPointValid($user->id); //用户可用积分
+            $orderPoint['pointToMoney'] = config('ibrand.app.point.order_proportion');  //pointToMoney
+            $orderPoint['pointLimit'] = config('ibrand.app.point.order_limit') / 100; //pointLimit
+            $pointAmount = min($orderPoint['userPoint'] * $orderPoint['pointToMoney'], $order->total * $orderPoint['pointLimit']);
+            $orderPoint['pointAmount'] = -$pointAmount;
+            $orderPoint['pointCanUse'] = $pointAmount / $orderPoint['pointToMoney'];
+        }
     }
 }
