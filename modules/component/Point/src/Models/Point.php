@@ -11,39 +11,58 @@
 
 namespace iBrand\Component\Point\Models;
 
+use iBrand\Component\User\Models\User;
 use Illuminate\Database\Eloquent\Model;
 
 class Point extends Model
 {
-	protected $guarded = ['id'];
+    protected $guarded = ['id'];
 
-	public function __construct(array $attributes = [])
-	{
-		parent::__construct($attributes);
+    public function __construct(array $attributes = [])
+    {
+        parent::__construct($attributes);
 
-		$prefix = config('ibrand.app.database.prefix', 'ibrand_');
+        $prefix = config('ibrand.app.database.prefix', 'ibrand_');
 
-		$this->setTable($prefix . 'point');
-	}
+        $this->setTable($prefix . 'point');
+    }
 
-	public function scopeValid($query)
-	{
-		$current = date('Y-m-d H:i:s', time());
+    public function scopeValid($query)
+    {
+        $current = date('Y-m-d H:i:s', time());
 
-		return $query->where('valid_time', '>=', $current)->orWhere('valid_time', null)->where('status', 1);
-	}
+        return $query->where('valid_time', '>=', $current)->orWhere('valid_time', null)->where('status', 1);
+    }
 
-	public function scopeOverValid($query)
-	{
-		$current = date('Y-m-d H:i:s', time());
+    public function scopeOverValid($query)
+    {
+        $current = date('Y-m-d H:i:s', time());
 
-		return $query->where('valid_time', '<', $current)->where('valid_time', '!=', null)->where('status', 1);
-	}
+        return $query->where('valid_time', '<', $current)->where('valid_time', '!=', null)->where('status', 1);
+    }
 
-	public function scopeWithinTime($query)
-	{
-		$current = date('Y-m-d H:i:s', time());
+    public function scopeWithinTime($query)
+    {
+        $current = date('Y-m-d H:i:s', time());
 
-		return $query->whereRaw('valid_time>\'' . $current . '\' or valid_time = null');
-	}
+        return $query->whereRaw('valid_time>\'' . $current . '\' or valid_time = null');
+    }
+
+    public function user()
+    {
+        return $this->belongsTo(User::class, 'user_id')->withDefault();
+    }
+
+    public function point_order()
+    {
+        return $this->hasOne(Point::class, 'id')
+            ->where('item_type', 'iBrand\Component\Order\Models\Order')->with('order');
+    }
+
+    public function point_order_item()
+    {
+
+        return $this->hasOne(Point::class, 'id')
+            ->where('item_type', 'iBrand\Component\Order\Models\OrderItem')->with('order_item.order');
+    }
 }

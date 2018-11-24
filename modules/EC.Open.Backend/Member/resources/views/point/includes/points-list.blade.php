@@ -1,7 +1,6 @@
 <table class="table table-striped table-bordered table-hover">
     <thead>
     <tr>
-        <th>登录名</th>
         <th>昵称</th>
         <th>手机</th>
         <th>积分值</th>
@@ -15,7 +14,6 @@
         @if(count($points)>0)
             @foreach ($points as $item)
                 <tr>
-                    <td>{{$item->user->name}}</td>
                     <td>{{$item->user->nick_name}}</td>
                     <td>{{$item->user->mobile}}</td>
                     <td>{{$item->value}}</td>

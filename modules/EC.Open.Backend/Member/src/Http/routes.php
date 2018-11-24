@@ -61,11 +61,7 @@ $router->group(['prefix' => 'admin/member/statistics'], function () use ($router
 
 //会员积分
 $router->group(['prefix' => 'admin/member/points'], function () use ($router) {
-    $router->get('/', 'PointController@index')->name('admin.users.pointlist');
-
-    $router->get('offline', 'PointController@pointOffline')->name('admin.member.points.offline');
-
-    $router->get('default', 'PointController@pointDefault')->name('admin.member.points.default');
+    $router->get('/', 'PointController@index')->name('admin.users.pointlist');   
 
     $router->group(['prefix' => 'import'], function () use ($router) {
         $router->get('importPointModal', 'PointController@importPointModal')->name('admin.member.points.importPointModal');
