@@ -19,6 +19,12 @@ class UserBind extends Model implements Transformable
 {
     use TransformableTrait;
 
-    protected $table = 'el_user_bind';
     protected $guarded = ['id'];
+
+    public function __construct(array $attributes = [])
+    {
+        parent::__construct($attributes);
+
+        $this->setTable(config('ibrand.app.database.prefix', 'ibrand_').'user_bind');
+    }
 }

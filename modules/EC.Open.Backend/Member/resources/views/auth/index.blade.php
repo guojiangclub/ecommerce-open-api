@@ -1,23 +1,3 @@
-{{--@extends ('member-backend::layout')--}}
-
-{{--@section ('title','用户管理')--}}
-{{----}}
-{{--@section('page-header')--}}
-    {{--<h1>--}}
-        {{--用户管理--}}
-        {{--<small>用户列表</small>--}}
-    {{--</h1>--}}
-{{--@endsection--}}
-
-{{--@section ('breadcrumbs')--}}
-    {{--<h2>会员管理</h2>--}}
-    {{--<ol class="breadcrumb">--}}
-        {{--<li><a href="{!!route('admin.store.index')!!}"><i class="fa fa-dashboard"></i> 首页</a></li>--}}
-        {{--<li class="active">{!! link_to_route('admin.users.index', '会员管理') !!}</li>--}}
-    {{--</ol>--}}
-{{--@stop--}}
-
-{{--@section('content')--}}
     <div class="tabs-container">
         @if (session()->has('flash_notification.message'))
             <div class="alert alert-{{ session('flash_notification.level') }}">
@@ -30,13 +10,8 @@
                                                                        aria-expanded="true"> 会员列表</a></li>
             <li class="{{ Active::pattern('admin/member/users/banned') }}"><a href="{{route('admin.users.banned')}}">禁用的会员</a>
             </li>
-            {{--<li class="{{ Active::pattern('admin/member/users/deleted') }}"><a href="{{route('admin.users.deleted')}}">删除的会员</a></li>--}}
-            <li class=""><a data-toggle="tab" href="#tab-2" aria-expanded="false">搜索</a></li>
 
-            <a data-toggle="modal"
-               data-target="#modal" data-backdrop="static" data-keyboard="false"
-               data-url="{{route('admin.users.importUser')}}"
-               class="btn btn-w-m btn-info pull-right">批量导入会员</a>
+            <li class=""><a data-toggle="tab" href="#tab-2" aria-expanded="false">搜索</a></li>
 
             <a href="{{route('admin.users.create')}}" class="btn btn-w-m btn-info pull-right" style="margin-right: 5px">添加会员</a>
 
@@ -62,8 +37,6 @@
         <div class="tab-content">
             <div id="tab-1" class="tab-pane active">
                 <div class="panel-body">
-                    {{--@include('backend.auth.includes.header-buttons')--}}
-
                     @include('member-backend::auth.includes.user-list')
 
                     <div class="pull-left">
@@ -92,5 +65,4 @@
 
     <div id="modal" class="modal inmodal fade" data-keyboard=false data-backdrop="static"></div>
     <div id="download_modal" class="modal inmodal fade" data-keyboard=false data-backdrop="static"></div>
-{{--@stop--}}
 

@@ -1,23 +1,4 @@
-{{--@extends ('member-backend::layout')--}}
 
-{{--@section ('title',  '用户管理 | 创建用户')--}}
-
-
-{{--@section('after-styles-end')--}}
-    {{--{!! Html::style(env("APP_URL").'/assets/backend/libs/formvalidation/dist/css/formValidation.min.css') !!}--}}
-{{--@stop--}}
-
-{{--@section ('breadcrumbs')--}}
-    {{--<h2>创建会员</h2>--}}
-    {{--<ol class="breadcrumb">--}}
-        {{--<li><a href="{!!route('admin.store.index')!!}"><i class="fa fa-dashboard"></i> 首页</a></li>--}}
-        {{--<li>{!! link_to_route('admin.users.index', '会员管理') !!}</li>--}}
-        {{--<li class="active">{!! link_to_route('admin.users.create', '创建会员') !!}</li>--}}
-    {{--</ol>--}}
-{{--@stop--}}
-
-{{--@section('content')--}}
-    {{--@include('backend.auth.includes.header-buttons')--}}
     <div class="ibox float-e-margins">
         @if (session()->has('flash_notification.message'))
             <div class="alert alert-{{ session('flash_notification.level') }}">
@@ -65,42 +46,12 @@
                 </div>
             </div><!--form control-->
 
-            @if(count($groups)>0)
-                <div class="form-group">
-                    <label class="col-lg-2 control-label">会员等级<br/>
-                    </label>
-                    @foreach($groups as $key=> $item)
-                        <div class="col-lg-2">
-                            <input type="radio"   @if($key===0) checked="checked" @endif value="{{$item->id}}" name="group_id"/>{{$item->name}}
-                        </div>
-                    @endforeach
-                </div><!--form control-->
-            @endif
-
-
             <div class="form-group">
                 <label class="col-lg-2 control-label">启用</label>
                 <div class="col-lg-1">
                     <input type="checkbox" value="1" name="status" checked="checked"/>
                 </div>
             </div><!--form control-->
-
-            {{--<div class="form-group">
-                <label class="col-lg-2 control-label">{{ trans('validation.attributes.confirmed') }}</label>
-                <div class="col-lg-1">
-                    <input type="checkbox" value="1" name="confirmed" checked="checked" />
-                </div>
-            </div><!--form control-->--}}
-
-            <div class="form-group">
-                <label class="col-lg-2 control-label">邮件激活<br/>
-
-                </label>
-                <div class="col-lg-1">
-                    <input type="checkbox" value="1" name="confirmation_email"/>
-                </div>
-            </div><!--form control-->
-
 
             <div class="hr-line-dashed"></div>
 
@@ -115,10 +66,8 @@
             {!! Form::close() !!}
         </div>
     </div>
-{{--@stop--}}
 
 
-{{--@section('before-scripts-end')--}}
     {!! Html::script(env("APP_URL").'/assets/backend/libs/formvalidation/dist/js/formValidation.min.js') !!}
     {!! Html::script(env("APP_URL").'/assets/backend/libs/formvalidation/dist/js/framework/bootstrap.min.js') !!}
     {!! Html::script(env("APP_URL").'/assets/backend/libs/formvalidation/dist/js/language/zh_CN.js') !!}
@@ -133,13 +82,6 @@
                     validating: 'glyphicon glyphicon-refresh'
                 },
                 fields: {
-//                    name: {
-//                        validators: {
-//                            notEmpty: {
-//                                message: '请输入用户名'
-//                            }
-//                        }
-//                    },
                     mobile: {
                         validators: {
                             notEmpty: {
@@ -214,21 +156,6 @@
                     default:
                         break;
                 }
-            }).find('input[name="assignees_roles[]"]')
-                    // Init icheck elements
-                    /*.iCheck({
-                        // The tap option is only available in v2.0
-                        increaseArea: '20%',
-                        checkboxClass: 'icheckbox_square-green',
-                        radioClass: 'iradio_square-green'
-                    })*/
-                    // Called when the radios/checkboxes are changed
-                    .on('ifChanged', function (e) {
-                        // Get the field name
-                        var field = $(this).attr('name');
-                        $('#create-user-form').formValidation('revalidateField', field);
-                    })
-                    .end();
+            });
         });
     </script>
-{{--@stop--}}

@@ -18,10 +18,6 @@
             var html = '';
 
             data.data.forEach(function (item) {
-//                if(item.valid_time == 0) {
-//                    item.valid_time = '永久';
-//                }
-
                 if (item.status == 0) {
                     item.statusText = '无效';
                 } else {

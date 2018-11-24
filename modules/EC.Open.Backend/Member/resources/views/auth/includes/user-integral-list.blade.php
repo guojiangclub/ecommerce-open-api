@@ -1,16 +1,13 @@
 <div class="col-md-12">
     <div class="col-md-4">
-        线上积分：{{app('ElementVip\Component\Point\Repository\PointRepository')->getSumPointValid($user->id,'default')}}
+        积分：{{$point}}
     </div>
-    <div class="col-md-4">
-        线下积分：{{app('ElementVip\Component\Point\Repository\PointRepository')->getSumPointValid($user->id,'offline')}}
-    </div>
+
 </div>
 
 <div class="hr-line-dashed"></div>
 
 <div class="col-md-12 form-horizontal">
-{{--    {!! Form::open(['route' => ['admin.users.addPoint', $user->id], 'method' => 'post', 'class' => 'form-horizontal']) !!}--}}
 
     <div class="form-group">
         <div class="col-md-5">
@@ -30,24 +27,13 @@
         </div>
 
         <div class="col-md-2">
-            {{--<input type="submit" class="btn btn-success" value="提交"/>--}}
+
             <button type="button" class="btn btn-success" id="submit-integral">提交</button>
         </div>
 
     </div>
 
-{{--    {!! Form::close() !!}--}}
 </div>
-
-<div class="ibox-content">
-    <button type="button" class="btn btn-w-m btn-success viewPoint"
-            data-url="{{route('admin.users.getUserPointList',['id' =>$user->id,'type' => 'online'])}}">查看线上积分
-    </button>
-    <button type="button" class="btn btn-w-m viewPoint"
-            data-url="{{route('admin.users.getUserPointList',['id' =>$user->id,'type' => 'offline'])}}">查看线下积分
-    </button>
-</div>
-
 
 <table class="table table-striped table-bordered table-hover table-responsive">
     <thead>

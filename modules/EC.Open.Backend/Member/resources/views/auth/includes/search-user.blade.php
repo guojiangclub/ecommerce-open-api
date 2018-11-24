@@ -1,9 +1,5 @@
 <form action="" method="get" class="form-horizontal">
     <div class="form-group">
-        <label class="col-sm-2 control-label">会员名</label>
-        <div class="col-sm-10"><input type="text" name="name"  value="{{request('name')}}"  class="form-control"></div>
-    </div>
-    <div class="form-group">
         <label class="col-sm-2 control-label">邮箱</label>
         <div class="col-sm-10"><input type="text" name="email"   value="{{request('email')}}"    class="form-control"></div>
     </div>
@@ -11,12 +7,6 @@
         <label class="col-sm-2 control-label">电话</label>
         <div class="col-sm-10"><input type="text" name="mobile"  value="{{request('mobile')}}"    class="form-control"></div>
     </div>
-    {{--<div class="form-group">--}}
-        {{--<label class="col-sm-2 control-label">积分</label>--}}
-        {{--<div class="col-sm-5"><input type="text" name="integral[]"  value="{{request('integral')[0]}}"    class="form-control"></div>--}}
-        {{--<div class="col-sm-5"><input type="text" name="integral[]"  value="{{request('integral')[1]}}"    class="form-control"></div>--}}
-    {{--</div>--}}
-
 
     <div class="hr-line-dashed"></div>
     <div class="form-group">

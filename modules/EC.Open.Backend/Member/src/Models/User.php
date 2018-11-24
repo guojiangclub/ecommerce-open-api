@@ -11,27 +11,11 @@
 
 namespace iBrand\EC\Open\Backend\Member\Models;
 
-use ElementVip\Component\Order\Models\Order;
-use ElementVip\Component\User\Models\Traits\EntrustUserTrait;
-use Illuminate\Database\Eloquent\SoftDeletes;
 
-class User extends \ElementVip\Component\User\Models\User
+use iBrand\Component\Order\Models\Order;
+
+class User extends \iBrand\Component\User\Models\User
 {
-    use SoftDeletes;
-    // use EntrustUserTrait;
-
-    protected $table = 'el_user';
-
-    /**
-     * The attributes that are mass assignable.
-     *
-     * @var array
-     */
-    /*protected $fillable = [
-        'name', 'email', 'password',
-    ];*/
-
-    protected $guarded = ['id'];
 
     /**
      * The attributes that should be hidden for arrays.
@@ -52,7 +36,6 @@ class User extends \ElementVip\Component\User\Models\User
         return $this->getEditButtonAttribute().
         $this->getChangePasswordButtonAttribute().' '.
         $this->getStatusButtonAttribute().
-//        $this->getConfirmedButtonAttribute() .
         $this->getDeleteButtonAttribute();
     }
 
@@ -61,9 +44,7 @@ class User extends \ElementVip\Component\User\Models\User
      */
     public function getEditButtonAttribute()
     {
-//        if (Entrust::hasRole(['super_admin','admin']))
         return '<a href="'.route('admin.users.edit', ['id' => $this->id, 'redirect_url' => urlencode(\Request::getRequestUri())]).'" class="btn btn-xs btn-primary"><i class="fa fa-pencil" data-toggle="tooltip" data-placement="top" title="'.'编辑'.'"></i></a> ';
-//        return '';
     }
 
     /**
@@ -71,9 +52,8 @@ class User extends \ElementVip\Component\User\Models\User
      */
     public function getChangePasswordButtonAttribute()
     {
-//        if (Entrust::hasRole(['super_admin', 'admin']))
         return '<a href="'.route('admin.user.change-password', $this->id).'" class="btn btn-xs btn-info"><i class="fa fa-refresh" data-toggle="tooltip" data-placement="top" title="'.'设置密码'.'"></i></a>';
-//        return '';
+
     }
 
     /**
@@ -81,8 +61,6 @@ class User extends \ElementVip\Component\User\Models\User
      */
     public function getStatusButtonAttribute()
     {
-//        if (!Entrust::hasRole(['super_admin', 'admin']))
-//            return '';
 
         switch ($this->status) {
             case 0:
@@ -107,10 +85,10 @@ class User extends \ElementVip\Component\User\Models\User
     public function getConfirmedButtonAttribute()
     {
         if (!$this->confirmed) {
-//            if (Entrust::hasRole(['super_admin', 'admin']))
+
             return '<a href="'.route('admin.account.confirm.resend', $this->id).'" class="btn btn-xs btn-success"><i class="fa fa-refresh" data-toggle="tooltip" data-placement="top" title="重新发送激活邮件"></i></a> ';
         }
-//        return '';
+
     }
 
     /**
@@ -124,24 +102,10 @@ class User extends \ElementVip\Component\User\Models\User
         return '';
     }
 
-    public function group()
-    {
-        return $this->belongsTo('iBrand\EC\Open\Backend\Member\Models\UserGroup', 'group_id');
-    }
 
     public function bind()
     {
-        return $this->hasOne('iBrand\EC\Open\Backend\Member\Models\UserBind', 'user_id', 'id');
-    }
-
-    public function size()
-    {
-        return $this->hasOne('iBrand\EC\Open\Backend\Member\Models\UserSize', 'user_id', 'id');
-    }
-
-    public function card()
-    {
-        return $this->hasOne('ElementVip\Component\Card\Models\Card', 'user_id', 'id');
+        return $this->hasOne(UserBind::class,'user_id','id')->withDefault();
     }
 
     public function hasManyOrders()

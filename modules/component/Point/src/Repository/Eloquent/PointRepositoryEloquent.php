@@ -30,7 +30,7 @@ class PointRepositoryEloquent extends BaseRepository implements PointRepository
 
     public function getSumPointValid($user_id)
     {
-       return  $this->findWhere(['user_id' => $user_id, ['valid_time', '>', Carbon::now()]])->sum('value');
+        return $this->model->where('user_id', $user_id)->valid()->sum('value');
     }
 
 
@@ -57,5 +57,11 @@ class PointRepositoryEloquent extends BaseRepository implements PointRepository
     public function getPointByItem($itemType, $itemId)
     {
         return $this->findWhere(['item_type' => $itemType, 'item_id' => $itemId])->first();
+    }
+
+    public function getPointsByConditions($where, $limit = 20)
+    {
+        $this->applyConditions($where);
+        return $this->orderBy('created_at', 'desc')->paginate($limit);
     }
 }
