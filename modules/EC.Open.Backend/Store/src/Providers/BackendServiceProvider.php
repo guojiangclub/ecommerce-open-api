@@ -4,13 +4,10 @@ namespace iBrand\EC\Open\Backend\Store\Providers;
 use iBrand\EC\Open\Backend\Store\Console\InstallCommand;
 use iBrand\EC\Open\Backend\Store\Console\SetDefaultValueCommand;
 use iBrand\EC\Open\Backend\Store\Console\SpecCommand;
-
-use iBrand\EC\Open\Backend\Store\Listeners\LogSuccessfulLoginListener;
 use iBrand\EC\Open\Backend\Store\Model\Product;
 use iBrand\EC\Open\Backend\Store\Observers\ProductObserver;
 use iBrand\EC\Open\Backend\Store\StoreBackend;
 use iBrand\UEditor\UEditorServiceProvider;
-use Illuminate\Auth\Events\Login;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\ServiceProvider;
 use iBrand\EC\Open\Backend\Store\Service\GoodsService;
@@ -32,21 +29,7 @@ class BackendServiceProvider extends ServiceProvider
      */
     protected $namespace = 'iBrand\EC\Open\Backend\Store\Http\Controllers';
 
-    /**
-     * 要注册的订阅者类。
-     *
-     * @var array
-     */
-    protected $subscribe = [
-        'iBrand\EC\Open\Backend\Store\Listeners\PromotionEventListener'
-    ];
-
-    protected $listen = [
-        Login::class => [
-            LogSuccessfulLoginListener::class,
-        ],
-    ];
-
+    
     /**
      * Define your route model bindings, pattern filters, etc.
      *
@@ -54,19 +37,6 @@ class BackendServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        if (!app()->runningInConsole()) {
-
-            foreach ($this->subscribe as $item) {
-                Event::subscribe($item);
-            }
-        }
-
-        foreach ($this->listen as $event => $listeners) {
-            foreach ($listeners as $listener) {
-                Event::listen($event, $listener);
-            }
-        }
-
         //publish a config file
         $this->publishes([
             __DIR__ . '/../config.php' => config_path('store.php'),
@@ -127,9 +97,6 @@ class BackendServiceProvider extends ServiceProvider
             return new  DiscountService();
         });
 
-        $this->app->singleton('RefundService', function () {
-            return new  RefundService();
-        }); 
     }
 
     /**
