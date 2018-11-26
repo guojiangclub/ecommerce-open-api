@@ -53,23 +53,13 @@ $router->group(['prefix' => 'admin/member'], function () use ($router) {
     $router->post('users/importUser/saveImport', 'UserController@saveImport')->name('admin.users.importUser.saveImport');
 });
 
-
-//数据统计
-$router->group(['prefix' => 'admin/member/statistics'], function () use ($router) {
-    $router->get('index', 'StatisticsController@index')->name('admin.statistics.index');
-});
-
 //会员积分
 $router->group(['prefix' => 'admin/member/points'], function () use ($router) {
-    $router->get('/', 'PointController@index')->name('admin.users.pointlist');   
+    $router->get('/', 'PointController@index')->name('admin.users.pointlist');
 
     $router->group(['prefix' => 'import'], function () use ($router) {
         $router->get('importPointModal', 'PointController@importPointModal')->name('admin.member.points.importPointModal');
         $router->get('getImportDataCount', 'PointController@getImportDataCount')->name('admin.member.points.getImportDataCount');
         $router->get('saveImportData', 'PointController@saveImportData')->name('admin.member.points.saveImportData');
     });
-});
-
-$router->group(['prefix' => 'admin/member/data'], function () use ($router) {
-    $router->get('/', 'DataController@index')->name('admin.users.data.index');
 });

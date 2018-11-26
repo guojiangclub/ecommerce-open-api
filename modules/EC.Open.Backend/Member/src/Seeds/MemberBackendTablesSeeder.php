@@ -29,7 +29,7 @@ class MemberBackendTablesSeeder extends Seeder
             'title' => '会员管理',
             'icon' => 'iconfont icon-huiyuanguanli-',
             'blank' => 1,
-            'uri' => 'member/data',
+            'uri' => 'member/users',
             'created_at' => date('Y-m-d H:i:s', time()),
             'updated_at' => date('Y-m-d H:i:s', time()),
         ]);
