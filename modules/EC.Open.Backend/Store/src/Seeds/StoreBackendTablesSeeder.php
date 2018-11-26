@@ -33,37 +33,7 @@ class StoreBackendTablesSeeder extends Seeder
 			'created_at' => date('Y-m-d H:i:s', time()),
 			'updated_at' => date('Y-m-d H:i:s', time()),
 		]);
-		DB::table(config('admin.database.menu_table'))->insertGetId([
-			'parent_id'  => $setParent,
-			'order'      => $lastOrder++,
-			'title'      => '微信设置',
-			'icon'       => 'iconfont icon-weixinguanli',
-			'blank'      => 1,
-			'uri'        => 'setting/wechat',
-			'created_at' => date('Y-m-d H:i:s', time()),
-			'updated_at' => date('Y-m-d H:i:s', time()),
-		]);
-		DB::table(config('admin.database.menu_table'))->insertGetId([
-			'parent_id'  => $setParent,
-			'order'      => $lastOrder++,
-			'title'      => '支付设置',
-			'icon'       => 'iconfont icon-zhifushezhi',
-			'blank'      => 1,
-			'uri'        => 'setting/payChannels',
-			'created_at' => date('Y-m-d H:i:s', time()),
-			'updated_at' => date('Y-m-d H:i:s', time()),
-		]);
 
-		DB::table(config('admin.database.menu_table'))->insertGetId([
-			'parent_id'  => $setParent,
-			'order'      => $lastOrder++,
-			'title'      => '短信设置',
-			'icon'       => 'iconfont icon-duanxinshezhi',
-			'blank'      => 1,
-			'uri'        => 'setting/sms',
-			'created_at' => date('Y-m-d H:i:s', time()),
-			'updated_at' => date('Y-m-d H:i:s', time()),
-		]);
 		DB::table(config('admin.database.menu_table'))->insertGetId([
 			'parent_id'  => $setParent,
 			'order'      => $lastOrder++,
@@ -74,26 +44,7 @@ class StoreBackendTablesSeeder extends Seeder
 			'created_at' => date('Y-m-d H:i:s', time()),
 			'updated_at' => date('Y-m-d H:i:s', time()),
 		]);
-		DB::table(config('admin.database.menu_table'))->insertGetId([
-			'parent_id'  => $setParent,
-			'order'      => $lastOrder++,
-			'title'      => '网站统计设置',
-			'icon'       => 'iconfont icon-wangluotongjipeizhi',
-			'blank'      => 1,
-			'uri'        => 'setting/analytics',
-			'created_at' => date('Y-m-d H:i:s', time()),
-			'updated_at' => date('Y-m-d H:i:s', time()),
-		]);
-		DB::table(config('admin.database.menu_table'))->insertGetId([
-			'parent_id'  => $setParent,
-			'order'      => $lastOrder++,
-			'title'      => '上传验证文件',
-			'icon'       => 'iconfont icon-shangchuanrenzhengwenjian',
-			'blank'      => 1,
-			'uri'        => 'setting/uploads',
-			'created_at' => date('Y-m-d H:i:s', time()),
-			'updated_at' => date('Y-m-d H:i:s', time()),
-		]);
+
 
 		$parent = DB::table(config('admin.database.menu_table'))->insertGetId([
 			'parent_id'  => 0,
@@ -117,78 +68,6 @@ class StoreBackendTablesSeeder extends Seeder
 			'updated_at' => date('Y-m-d H:i:s', time()),
 		]);
 
-		$setting_list = [
-			['parent_id'  => $parent_setting,
-			 'order'      => $lastOrder++,
-			 'title'      => '全局设置',
-			 'icon'       => '',
-			 'blank'      => 1,
-			 'uri'        => 'store/setting/shopSetting',
-			 'created_at' => date('Y-m-d H:i:s', time()),
-			 'updated_at' => date('Y-m-d H:i:s', time())],
-			[
-				'parent_id'  => $parent_setting,
-				'order'      => $lastOrder++,
-				'title'      => '积分设置',
-				'icon'       => '',
-				'blank'      => 1,
-				'uri'        => 'store/setting/point',
-				'created_at' => date('Y-m-d H:i:s', time()),
-				'updated_at' => date('Y-m-d H:i:s', time()),
-			],
-			[
-				'parent_id'  => $parent_setting,
-				'order'      => $lastOrder++,
-				'title'      => '价格保护',
-				'icon'       => '',
-				'blank'      => 1,
-				'uri'        => 'store/setting/price/protection',
-				'created_at' => date('Y-m-d H:i:s', time()),
-				'updated_at' => date('Y-m-d H:i:s', time()),
-			],
-
-			[
-				'parent_id'  => $parent_setting,
-				'order'      => $lastOrder++,
-				'title'      => '售后设置',
-				'icon'       => '',
-				'blank'      => 1,
-				'uri'        => 'store/setting/refund-reason',
-				'created_at' => date('Y-m-d H:i:s', time()),
-				'updated_at' => date('Y-m-d H:i:s', time()),
-			],
-			[
-				'parent_id'  => $parent_setting,
-				'order'      => $lastOrder++,
-				'title'      => '发票设置',
-				'icon'       => '',
-				'blank'      => 1,
-				'uri'        => 'store/setting/invoice',
-				'created_at' => date('Y-m-d H:i:s', time()),
-				'updated_at' => date('Y-m-d H:i:s', time()),
-			],
-			[
-				'parent_id'  => $parent_setting,
-				'order'      => $lastOrder++,
-				'title'      => '工具管理',
-				'icon'       => '',
-				'blank'      => 1,
-				'uri'        => 'store/setting/tool',
-				'created_at' => date('Y-m-d H:i:s', time()),
-				'updated_at' => date('Y-m-d H:i:s', time()),
-			],
-			[
-				'parent_id'  => $parent_setting,
-				'order'      => $lastOrder++,
-				'title'      => '客服设置',
-				'icon'       => '',
-				'blank'      => 1,
-				'uri'        => 'store/setting/onlineService',
-				'created_at' => date('Y-m-d H:i:s', time()),
-				'updated_at' => date('Y-m-d H:i:s', time()),
-			],
-		];
-		DB::table(config('admin.database.menu_table'))->insert($setting_list);
 
 		$parent_goods    = DB::table(config('admin.database.menu_table'))->insertGetId([
 			'parent_id'  => $parent,

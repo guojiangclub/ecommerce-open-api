@@ -11,11 +11,6 @@ $router->group(['prefix' => 'admin/store'], function () use ($router) {
     $router->post('upload/excel', 'ImageController@ExcelUpload')->name('upload.excel');
     $router->post('upload/uploadExcelFile', 'ImageController@uploadExcelFile')->name('upload.uploadExcelFile');
 
- 
-    $router->post('ExcelUpload', 'RegistrationsController@ExcelUpload')->name('registrations.ExcelUpload');
-   
-
-
     //新的规格管理
     $router->group(['prefix' => 'specs'], function () use ($router) {
 
@@ -216,39 +211,6 @@ $router->group(['prefix' => 'admin/store/order'], function () use ($router) {
 
 
 
-//produce设置
-$router->group(['prefix' => 'admin/store/setting'], function () use ($router) {
-    $router->get('produce', 'SystemSettingController@index')->name('admin.setting.produce');
-    $router->post('saveProduce', 'SystemSettingController@saveProduce')->name('admin.setting.saveProduce');
-
-    //商城设置
-    $router->get('shopSetting', 'SystemSettingController@shopSetting')->name('admin.setting.shopSetting');
-    $router->post('saveShopSetting', 'SystemSettingController@saveSettings')->name('admin.setting.saveShopSetting');
-
-    //站点配置
-    $router->get('siteSettings', 'SystemSettingController@siteSettings')->name('admin.setting.siteSettings');
-    $router->post('saveSiteSettings', 'SystemSettingController@saveSiteSettings')->name('admin.setting.saveSiteSettings');
-
-    $router->get('point', 'SystemSettingController@point')->name('admin.setting.point');
-    $router->get('employee', 'SystemSettingController@employee')->name('admin.setting.employee');
-    $router->get('tool', 'SystemSettingController@toolList')->name('admin.setting.tool');
-
-    $router->get('refund-reason', 'SystemSettingController@refundReason')->name('admin.setting.refund.reason');
-    $router->post('saveRefundSettings', 'SystemSettingController@saveRefundSettings')->name('admin.setting.saveRefundSettings');
-
-    $router->get('clearCache', 'SystemSettingController@clearCache')->name('admin.setting.clearCache');
-
-    $router->get('price/protection', 'SystemSettingController@priceProtection')->name('admin.setting.price.protection');
-
-    $router->get('invoice', 'SystemSettingController@invoice')->name('admin.setting.invoice');
-    $router->post('saveInvoiceSettings', 'SystemSettingController@saveInvoiceSettings')->name('admin.setting.saveInvoiceSettings');
-
-    $router->get('onlineService', 'SystemSettingController@onlineService')->name('admin.setting.onlineService');
-    $router->post('saveOnlineService', 'SystemSettingController@saveOnlineService')->name('admin.setting.saveOnlineService');
-});
-
-
-
 //评论
 $router->group(['prefix' => 'admin/store/comments'], function () use ($router) {
     $router->get('/', 'CommentsController@index')->name('admin.comments.index');
@@ -263,56 +225,14 @@ $router->group(['prefix' => 'admin/store/comments'], function () use ($router) {
 
 $router->group(['prefix' => 'admin'], function () use ($router) {
 
-    $router->get('setting/payChannels', 'SettingController@payChannels')->name('admin.setting.payChannels');
-
-    $router->get('setting/editPayChannels', 'SettingController@editPayChannels')->name('admin.setting.editPayChannels');
-
-    $router->get('setting/pay', 'SettingController@pay')->name('admin.setting.pay');
-
-    $router->post('setting/pay', 'SettingController@savePay')->name('admin.setting.pay');
-
-    $router->get('setting/pingxxPay', 'SettingController@pingxxPay')->name('admin.setting.pingxx.pay');
-
-    $router->post('setting/pingxxPay', 'SettingController@savePingxxPay')->name('admin.setting.pingxx.pay');
 
     $router->post('setting/save', 'SettingController@saveSettings')->name('admin.setting.save');
 
     $router->get('setting/sms', 'SettingController@sms')->name('admin.setting.sms');
 
-    $router->get('setting/theme', 'SettingController@theme')->name('admin.setting.theme');
-    $router->post('setting/theme/add', 'SettingController@themeAdd')->name('admin.setting.theme.add');
-    $router->post('setting/theme/save', 'SettingController@themeSave')->name('admin.setting.theme.save');
 
     $router->get('setting/backend', 'SettingController@backend')->name('admin.setting.backend');
 
-    $router->get('setting/sentry', 'SettingController@sentry')->name('admin.setting.sentry');
-
-    $router->get('setting/analytics', 'SettingController@analytics')->name('admin.setting.analytics');
-
-    $router->get('setting/encryption', 'SettingController@encryption')->name('admin.setting.encryption');
-
-    $router->get('setting/set-custom-package', 'SettingController@setCustomPackage')->name('admin.setting.setCustomPackage');
-
-    $router->get('setting/wechat', 'SettingController@wechat')->name('admin.setting.wechat');
-
-    $router->get('setting/wechat/message', 'WechatMessageSettingController@index')->name('admin.setting.wechat');
-    $router->get('setting/wechat/order/remind', 'WechatMessageSettingController@orderRemind')->name('admin.setting.wechat.order.remind');
-    $router->get('setting/wechat/goods/deliver', 'WechatMessageSettingController@goodsDeliver')->name('admin.setting.wechat.goods.deliver');
-    $router->get('setting/wechat/arrival/goods', 'WechatMessageSettingController@goodsArrival')->name('admin.setting.wechat.goods.arrival');
-    $router->get('setting/wechat/sales/service', 'WechatMessageSettingController@salesService')->name('admin.setting.wechat.sales.service');
-    $router->get('setting/wechat/goods/refund', 'WechatMessageSettingController@goodsRefund')->name('admin.setting.wechat.goods.refund');
-    $router->get('setting/wechat/customer/paid', 'WechatMessageSettingController@customerPaid')->name('admin.setting.wechat.customer.paid');
-    $router->get('setting/wechat/money/changed', 'WechatMessageSettingController@moneyChanged')->name('admin.setting.wechat.money.changed');
-    $router->get('setting/wechat/point/changed', 'WechatMessageSettingController@pointChanged')->name('admin.setting.wechat.point.changed');
-    $router->get('setting/wechat/charge/success', 'WechatMessageSettingController@chargeSuccess')->name('admin.setting.wechat.charge.success');
-    $router->get('setting/wechat/member/grade', 'WechatMessageSettingController@memberGrade')->name('admin.setting.wechat.member.grade');
-    $router->get('setting/wechat/sales/notice', 'WechatMessageSettingController@salesNotice')->name('admin.setting.wechat.sales.notice');
-    $router->get('setting/wechat/refund/result', 'WechatMessageSettingController@refundResult')->name('admin.setting.wechat.refund.result');
-    $router->get('setting/wechat/groupon/grouponSuccess', 'WechatMessageSettingController@grouponSuccess')->name('admin.setting.wechat.groupon.success');
-    $router->get('setting/wechat/groupon/grouponFailed', 'WechatMessageSettingController@grouponFailed')->name('admin.setting.wechat.groupon.failed');
-    $router->get('setting/wechat/activity/notice', 'WechatMessageSettingController@activityNotice')->name('admin.setting.wechat.activity.notice');
-    $router->get('setting/wechat/activity/notice/gift', 'WechatMessageSettingController@activityNoticeGift')->name('admin.setting.wechat.activity.notice.gift');
-    $router->post('setting/wechat/save', 'WechatMessageSettingController@save')->name('admin.setting.wechat.save');
 
     $router->group(['prefix' => 'setting/uploads'], function () use ($router) {
         $router->get('/', 'UploadVerifyFileController@index')->name('admin.uploads.index');

@@ -33,18 +33,5 @@ class ProductObserver
                 $goods->save();
             }
         }
-
-        if (settings('goods_price_protection_enabled') AND $goods = $product->goods) { //如果启用了价格保护，则自动下架
-
-            //1. 价格保护启用后，默认低于吊牌价三折就自动下架
-            $percentage = (settings('goods_price_protection_discount_percentage') ? settings('goods_price_protection_discount_percentage') : 30) / 100;
-
-            if ($product->sell_price < $goods->market_price * $percentage) {
-
-                $goods->is_del = 2;
-                $goods->save();
-
-            }
-        }
     }
 }
