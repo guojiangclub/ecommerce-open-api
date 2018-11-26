@@ -238,9 +238,9 @@ class DiscountService
                     $date[$i][] = "已取消";
                 }
 
-                $userInfo=User::find($coupon->order->user_id);
+                $userInfo = User::find($coupon->order->user_id);
 
-                $date[$i][] = isset($userInfo->name)?$userInfo->name:'';
+                $date[$i][] = isset($userInfo->name) ? $userInfo->name : '';
 
 //                }
 
@@ -435,53 +435,6 @@ class DiscountService
                 ElDiscountAction::create($action);
             }
 
-            //point action
-            if ($pointAction = ElDiscountAction::find(request('point_action_id'))) {
-                if (request('point-action')['configuration']) {
-                    $pointAction->fill(request('point-action'));
-                    $pointAction->save();
-                } else {
-                    $pointAction->delete();
-                }
-            } elseif (request('point-action')['configuration']) {
-                $addPointAction = request('point-action');
-                $addPointAction['discount_id'] = $discount->id;
-                ElDiscountAction::create($addPointAction);
-            }
-
-            if (isset($rules[6]) && !empty($rules[6]['value'])) {
-                $shop_ids = [];
-                if (isset($rules[6]['value']['shop_id']) && !empty($rules[6]['value']['shop_id'])) {
-                    $shop_ids = explode(',', $rules[6]['value']['shop_id']);
-                }
-
-                $shop_ids_original = [];
-                if (isset($rules[6]['value']['shop_id_original']) && !empty($rules[6]['value']['shop_id_original'])) {
-                    $shop_ids_original = explode(',', $rules[6]['value']['shop_id_original']);
-                }
-
-                if (!empty($shop_ids)) {
-                    foreach ($shop_ids as $shop_id) {
-                        if (!empty($shop_ids_original) && in_array($shop_id, $shop_ids_original)) {
-                            continue;
-                        }
-
-                        O2oDiscountRelation::create([
-                            'discount_id' => $discount->id,
-                            'shop_id' => $shop_id,
-                        ]);
-                    }
-                }
-
-                if (!empty($shop_ids_original)) {
-                    foreach ($shop_ids_original as $shop_id_original) {
-                        if ((!empty($shop_ids) && !in_array($shop_id_original, $shop_ids)) || !isset($rules[6]['type']) || $rules[6]['type'] != 'contains_shops') {
-                            O2oDiscountRelation::where('shop_id', $shop_id_original)->where('discount_id', $id)->delete();
-                        }
-                    }
-                }
-            }
-
             //delete rules
             $discount->discountRules()->delete();
         } else {
@@ -492,26 +445,6 @@ class DiscountService
             if ($action['configuration']) {
                 $action['discount_id'] = $discount->id;
                 ElDiscountAction::create($action);
-            }
-
-            if (request('point-action')['configuration']) {
-                $addPointAction = request('point-action');
-                $addPointAction['discount_id'] = $discount->id;
-                ElDiscountAction::create($addPointAction);
-            }
-
-            if (isset($rules[6]) && !empty($rules[6]['value'])) {
-                $shop_ids = explode(',', $rules[6]['value']['shop_id']);
-                if (is_array($shop_ids) && !empty($shop_ids)) {
-                    foreach ($shop_ids as $shop_id) {
-                        if ($shop_id) {
-                            O2oDiscountRelation::create([
-                                'discount_id' => $discount->id,
-                                'shop_id' => $shop_id,
-                            ]);
-                        }
-                    }
-                }
             }
         }
 
@@ -531,13 +464,4 @@ class DiscountService
 
         return $discount;
     }
-
-    public function getSingleDiscountPaginate($discount_id, $limit)
-    {
-        $conditions = SingleDiscountCondition::where('single_discount_id', $discount_id)->paginate($limit);
-        $lastPage = $conditions->lastPage();
-
-        return [$conditions, $lastPage];
-    }
-
 }

@@ -91,8 +91,10 @@
                                        data-target="#spu_modal" data-backdrop="static" data-keyboard="false"
                                        data-url="{{route('admin.promotion.getSpu', ['action' => 'view'])}}">点击查看</a>)
 
-                                <input type="hidden" id="selected_spu" name="rules[3][value][spu]" value="{{$contains_product->RulesValue['spu']}}">
-                                <input type="hidden" name="rules[3][value][spu_original]" value="{{$contains_product->RulesValue['spu']}}">
+                                <input type="hidden" id="selected_spu" name="rules[3][value][spu]"
+                                       value="{{$contains_product->RulesValue['spu']}}">
+                                <input type="hidden" name="rules[3][value][spu_original]"
+                                       value="{{$contains_product->RulesValue['spu']}}">
 
                             </div>
                         </div>
@@ -268,91 +270,3 @@
                 @endif
                         <!--指定分类END-->
                 <div class="hr-line-dashed"></div>
-
-                <!--指定角色-->
-                @if($contains_role=$discount->discount_contains_role)
-                    <div class="form-group">
-                        <div class="col-sm-10 col-sm-offset-2">
-                            <label>
-                                <input type="checkbox" checked name="rules[5][type]"
-                                       value="contains_role" class="switch-input"> 指定角色
-                            </label>
-
-                            <fieldset class="sw-value">
-                                <select name="rules[5][value]" class="form-control">
-                                    @foreach($roles as $role)
-                                        <option value="{{$role->name}}" {{$contains_role->RulesValue == $role->name ? 'selected' : ''}} >{{$role->display_name}}</option>
-                                    @endforeach
-                                </select>
-                            </fieldset>
-                        </div>
-                    </div>
-                @else
-                    <div class="form-group">
-                        <div class="col-sm-10 col-sm-offset-2">
-                            <label>
-                                <input type="checkbox" name="rules[5][type]"
-                                       value="contains_role" class="switch-input"> 指定角色
-                            </label>
-
-                            <fieldset class="sw-value" style="display: none">
-                                <select name="rules[5][value]" class="form-control">
-
-                                    @foreach($roles as $role)
-                                        <option value="{{$role->name}}">{{$role->display_name}}</option>
-                                    @endforeach
-                                </select>
-                            </fieldset>
-                        </div>
-                    </div>
-                @endif
-
-<!--指定微信群-->
-<div class="hr-line-dashed"></div>
-@if($contains_wechat_group = $discount->discount_contains_wechat_group)
-    <div class="form-group">
-        <div class="col-sm-10 col-sm-offset-2">
-            <label>
-                <input type="checkbox" value="contains_wechat_group" name="rules[7][type]" class="switch-input" checked> 指定微信群
-            </label>
-
-            <fieldset class="sw-value">
-                <div class="form-group">
-                    <label class="col-sm-2 control-label">微信群：</label>
-                    <div class="col-sm-10">
-                        <a class="btn btn-success" id="chapter-create-btn" data-toggle="modal" data-target="#wechat_modal" data-backdrop="static" data-keyboard="false" data-url="{{route('admin.promotion.getWechatGroup',['action' => 'add'])}}">
-                            点击添加微信群
-                        </a>
-                        (已添加
-                        <i class="countGroup">{{$contains_wechat_group->RulesValue ? count(explode(',',$contains_wechat_group->RulesValue)) : 0 }}</i>
-                        个微信群，<a data-toggle="modal" data-target="#wechat_modal" data-backdrop="static" data-keyboard="false" data-url="{{route('admin.promotion.getWechatGroup', ['action' => 'view'])}}">点击查看</a>)
-                        <input type="hidden" id="selected_group" name="rules[7][value][group]" value="{{ $contains_wechat_group->RulesValue }}">
-                    </div>
-                </div>
-            </fieldset>
-        </div>
-    </div>
-@else
-    <div class="form-group">
-        <div class="col-sm-10 col-sm-offset-2">
-            <label>
-                <input type="checkbox" value="contains_wechat_group" name="rules[7][type]" class="switch-input"> 指定微信群
-            </label>
-            <fieldset class="sw-value" style="display: none;">
-                <div class="form-group">
-                    <label class="col-sm-2 control-label">微信群：</label>
-                    <div class="col-sm-10">
-                        <a class="btn btn-success" id="chapter-create-btn" data-toggle="modal" data-target="#wechat_modal" data-backdrop="static" data-keyboard="false" data-url="{{route('admin.promotion.getWechatGroup',['action' => 'add'])}}">
-                            点击添加微信群
-                        </a>
-                        (已添加
-                        <i class="countGroup">0</i>
-                        个微信群，<a data-toggle="modal" data-target="#wechat_modal" data-backdrop="static" data-keyboard="false" data-url="{{route('admin.promotion.getWechatGroup', ['action' => 'view'])}}">点击查看</a>)
-                        <input type="hidden" id="selected_group" name="rules[7][value][group]" value="">
-                    </div>
-                </div>
-            </fieldset>
-        </div>
-    </div>
-@endif
-<!--指定微信群 end-->

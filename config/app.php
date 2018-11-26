@@ -170,6 +170,7 @@ return [
 
         Laravel\Passport\PassportServiceProvider::class,
         Dingo\Api\Provider\LaravelServiceProvider::class,
+        Laracasts\Flash\FlashServiceProvider::class,
         Barryvdh\Cors\ServiceProvider::class,
         Intervention\Image\ImageServiceProvider::class,
         Milon\Barcode\BarcodeServiceProvider::class,

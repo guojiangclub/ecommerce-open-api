@@ -165,7 +165,6 @@
             var category_ids = [];
             // 初始化
             function initCategory() {
-                var groupID = $('[name="category_group"]:hidden').val();
                 category_checked = [];
                 category_ids = [];
                 var data = {
@@ -182,14 +181,15 @@
                 });
             }
 
-            initCategory();
+            @if(!isset($goods_info))
+                initCategory();
+            @endif
 
             $("#hidden-category-id input").each(function () {
                 category_ids.push(parseInt($(this).val()));
             });
             category_checked = $(".category_name").text().split("/");
 
-            //  $(".category_name").html(category_checked.join("/"));
             initTheOrderCheckedCats();
 
             function moveTheOrderCat($parentObject, template) {
@@ -249,11 +249,11 @@
                     // 在flag =1 或者 flag=3时 一定会向后台请求数据
                     // html
                     var html = "";
-                    var groupId = $("select[name=category_group]").children('option:selected').val();
+                    //var groupId = $("select[name=category_group]").children('option:selected').val();
                     var data = {
                         "parentId": parentId,
-                        "groupId": groupId,
-                        "type-click-category-button": true,
+                        //"groupId": groupId,
+                        "type-click-category-button": true
                     };
                     $.get(
                             "{{route('admin.goods.get_category')}}", data,

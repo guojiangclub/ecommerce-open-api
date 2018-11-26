@@ -3,15 +3,10 @@ namespace iBrand\EC\Open\Backend\Store\Http\Controllers\Promotion;
 
 use Carbon\Carbon;
 use iBrand\Backend\Http\Controllers\Controller;
-use ElementVip\Component\User\Models\Group;
 use iBrand\EC\Open\Backend\Store\Model\ElDiscount;
-use iBrand\EC\Open\Backend\Store\Model\ElDiscountAction;
-use iBrand\EC\Open\Backend\Store\Model\ElDiscountCoupon;
-use iBrand\EC\Open\Backend\Store\Model\ElDiscountRule;
 use iBrand\EC\Open\Backend\Store\Model\User;
 use iBrand\EC\Open\Backend\Store\Repositories\DiscountRepository;
 use Illuminate\Http\Request;
-use ElementVip\Component\User\Models\Role;
 use iBrand\EC\Open\Backend\Store\Repositories\CategoryRepository;
 use iBrand\EC\Open\Backend\Store\Service\DiscountService;
 use DB;
@@ -65,8 +60,6 @@ class CouponController extends Controller
 
             $content->body(view('store-backend::promotion.coupon.index', compact('coupons')));
         });
-
-//        return view('store-backend::promotion.coupon.index', compact('coupons'));
     }
 
     /**
@@ -76,7 +69,6 @@ class CouponController extends Controller
     private function getCondition()
     {
         $where['coupon_based'] = 1;
-        $where['channel'] = 'ec';
         $orWhere = [];
         $status = request('status');
         if ($status == 'nstart') {
@@ -106,11 +98,10 @@ class CouponController extends Controller
 
     public function create()
     {
-        $roles = Role::all();
         $category = $this->categoryRepository->getLevelCategory(0);
         $discount = new ElDiscount();
 
-        return LaravelAdmin::content(function (Content $content) use ($roles, $category, $discount) {
+        return LaravelAdmin::content(function (Content $content) use ($category, $discount) {
 
             $content->header('新增优惠券');
 
@@ -120,19 +111,17 @@ class CouponController extends Controller
 
             );
 
-            $content->body(view('store-backend::promotion.coupon.create', compact('discount', 'roles', 'category')));
+            $content->body(view('store-backend::promotion.coupon.create', compact('discount', 'category')));
         });
 
-//        return view('store-backend::promotion.coupon.create', compact('discount', 'roles', 'category'));
     }
 
     public function edit($id)
     {
         $discount = ElDiscount::find($id);
-        $roles = Role::all();
         $category = $this->categoryRepository->getLevelCategory(0);
 
-        return LaravelAdmin::content(function (Content $content) use ($discount, $roles, $category) {
+        return LaravelAdmin::content(function (Content $content) use ($discount, $category) {
 
             $content->header('编辑优惠券');
 
@@ -142,10 +131,8 @@ class CouponController extends Controller
 
             );
 
-            $content->body(view('store-backend::promotion.coupon.edit', compact('discount', 'roles', 'category')));
+            $content->body(view('store-backend::promotion.coupon.edit', compact('discount', 'category')));
         });
-
-//        return view('store-backend::promotion.coupon.edit', compact('discount', 'roles', 'category'));
     }
 
     public function store(Request $request)
@@ -256,9 +243,6 @@ class CouponController extends Controller
 
             $content->body(view('store-backend::promotion.coupon.use_record', compact('coupons', 'id')));
         });
-        
-//        return view('store-backend::promotion.coupon.use_record', compact('coupons', 'id'));
-
     }
 
     /**
@@ -308,7 +292,7 @@ class CouponController extends Controller
         $where = $condition[1];
         $time = $condition[0];
         $id = request('id');
-       
+
         $coupons = $this->couponRepository->getCouponsPaginated($where, 15, $time);
 
         return LaravelAdmin::content(function (Content $content) use ($coupons, $id) {
@@ -323,9 +307,6 @@ class CouponController extends Controller
 
             $content->body(view('store-backend::promotion.coupon.show', compact('coupons', 'id')));
         });
-        
-        
-//        return view('store-backend::promotion.coupon.show', compact('coupons', 'id'));
     }
 
     private function getCouponCondition()
@@ -453,104 +434,7 @@ class CouponController extends Controller
 
     }
 
-
-    /**
-     * 生成优惠码modal
-     * @return mixed
-     */
-    public function couponCode()
-    {
-        $discount_id = request('discount_id');
-        $discount = ElDiscount::find($discount_id);
-
-        $countCoupon = ElDiscountCoupon::where('user_id', 0)->where('discount_id', $discount_id)->count();
-
-        //$range = $discount->usage_limit - $countCoupon;
-        $range = $discount->usage_limit;
-        if ($range >= 1000) {
-            $limit = 1000;
-        } elseif ($range < 1000 AND $range > 0) {
-            $limit = $range;
-        } else {
-            $limit = 0;
-        }
-
-        return view('store-backend::promotion.coupon.includes.coupon_code_modal', compact('limit', 'discount_id'));
-    }
-
-    /**
-     * 生成优惠码
-     * @return mixed
-     */
-    public function createCouponCode()
-    {
-        $number = request('number');
-        $discount_id = request('discount_id');
-        $discount = ElDiscount::find($discount_id);
-        $range = $discount->usage_limit;
-
-        if ($number > 1000 OR $number >= $range) {
-            return $this->ajaxJson(false, [], '400', '生成数量超过限制');
-        }
-
-        $data = [];
-        for ($i = 1; $i <= $number; $i++) {
-            $code = $this->buildCode();
-            $codeData = ['user_id' => 0, 'code' => $code];
-            array_push($data, $codeData);
-        }
-
-        $discount->coupons()->createMany($data);
-        $discount->decrement('usage_limit', $number);
-
-        return $this->ajaxJson(true);
-    }
-
-
-    private function buildCode()
-    {
-        $code = build_order_no('CT');
-        if (ElDiscountCoupon::where('code', $code)->first()) {
-            return $this->buildCode();
-        }
-        return $code;
-    }
-
-    /**
-     * 导出生成的优惠码
-     * @return mixed
-     */
-    public function getExportData()
-    {
-        $page = request('page') ? request('page') : 1;
-        $limit = request('limit') ? request('limit') : 50;
-        $type = request('type');
-
-        $data = $this->couponRepository->getExportDataPaginate(request('discount_id'), $limit);
-        $lastPage = $data['lastPage'];
-        $coupons = $data['data'];
-
-        if ($page == 1) {
-            session(['export_coupon_code_cache' => generate_export_cache_name('export_coupon_code_cache_')]);
-        }
-        $cacheName = session('export_coupon_code_cache');
-
-        if ($this->cache->has($cacheName)) {
-            $cacheData = $this->cache->get($cacheName);
-            $this->cache->put($cacheName, array_merge($cacheData, $coupons), 300);
-        } else {
-            $this->cache->put($cacheName, $coupons, 300);
-        }
-
-        if ($page == $lastPage) {
-            $title = ['优惠码'];
-            return $this->ajaxJson(true, ['status' => 'done', 'url' => '', 'type' => $type, 'title' => $title, 'cache' => $cacheName, 'prefix' => 'coupon_code_data_']);
-        } else {
-            $url_bit = route('admin.promotion.coupon.getExportData', array_merge(['page' => $page + 1, 'limit' => $limit], request()->except('page', 'limit')));
-            return $this->ajaxJson(true, ['status' => 'goon', 'url' => $url_bit, 'page' => $page, 'totalPage' => $lastPage]);
-        }
-    }
-
+    
     /**
      * 导出使用记录
      * @return mixed

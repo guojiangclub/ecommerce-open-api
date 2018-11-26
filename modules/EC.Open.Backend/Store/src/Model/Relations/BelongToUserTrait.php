@@ -2,6 +2,7 @@
 
 
 namespace iBrand\EC\Open\Backend\Store\Model\Relations;
+use iBrand\Component\User\Models\User;
 
 /**
  * This is the has many pages trait.
@@ -17,7 +18,7 @@ trait BelongToUserTrait
      */
     public function user()
     {
-        return $this->belongsTo('ElementVip\Component\User\Models\User');
+        return $this->belongsTo(User::class);
     }
 
 }

@@ -11,77 +11,34 @@
 
 namespace iBrand\EC\Open\Backend\Member\Http\Controllers;
 
-use App\Http\Requests\Backend\Auth\User\ChangeUserPasswordRequest;
-use App\Http\Requests\Backend\Auth\User\CreateUserRequest;
-use App\Http\Requests\Backend\Auth\User\DeleteUserRequest;
-use App\Http\Requests\Backend\Auth\User\EditUserRequest;
-use App\Http\Requests\Backend\Auth\User\MarkUserRequest;
-use App\Http\Requests\Backend\Auth\User\UpdateUserPasswordRequest;
-use App\Repositories\AddressRepository;
-use App\Repositories\CouponHistoryRepository;
-use App\Repositories\IntegralLogRepository;
-use App\Repositories\OrderLogRepository;
-use Auth;
-use Carbon\Carbon;
-use ElementVip\Component\Point\Model\Point;
-use ElementVip\Component\Point\Repository\PointRepository;
-use ElementVip\Component\User\Models\ElGroup;
-use ElementVip\Component\User\Models\Permission;
-use ElementVip\Component\User\Models\Role;
-use iBrand\EC\Open\Backend\Member\Models\Balance;
+use iBrand\Component\Point\Models\Point;
+use iBrand\Component\Point\Repository\PointRepository;
 use iBrand\EC\Open\Backend\Member\Models\User;
-use iBrand\EC\Open\Backend\Member\Models\UserGroup;
-use ElementVip\Notifications\PointChanged;
-//use App\Entities\UserGroup;
-use ElementVip\Notifications\PointRecord;
-use ElementVip\Store\Backend\Facades\ExcelExportsService;
-use ElementVip\Store\Backend\Repositories\UserRepository;
 use Encore\Admin\Facades\Admin as LaravelAdmin;
 use Encore\Admin\Layout\Content;
 use Excel;
+use iBrand\EC\Open\Backend\Member\Repository\UserRepository;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Event;
 use Response;
 use Validator;
 
 class UserController extends Controller
 {
     protected $userRepository;
-
-    protected $roleRepository;
-
-    protected $permissions;
-
-    protected $addressRepository;
-
     protected $integralRepository;
-
     protected $couponHistoryRepository;
-
-    protected $userGroupRepository;
-
     protected $orderLogRepository;
-
     protected $pointRepository;
-
     protected $cache;
 
-    public function __construct(UserRepository $userRepository, PointRepository $pointRepository
-//        , RoleRepository $roleRepository ,AddressRepository $addressRepository
-//        ,IntegralLogRepository $integralLogRepository,UserGroupRepository $userGroupRepository
-//        ,CouponHistoryRepository $couponHistoryRepository
-//        ,OrderLogRepository $orderLogRepository
+    public function __construct(UserRepository $userRepository,
+                                PointRepository $pointRepository
+
     )
     {
         $this->userRepository = $userRepository;
         $this->pointRepository = $pointRepository;
         $this->cache = cache();
-//        $this->roleRepository = $roleRepository;
-//        $this->addressRepository = $addressRepository;
-//        $this->integralRepository=$integralLogRepository;
-//        $this->userGroupRepository=$userGroupRepository;
-//        $this->couponHistoryRepository=$couponHistoryRepository;
-//        $this->orderLogRepository=$orderLogRepository;
     }
 
     /**
@@ -92,8 +49,6 @@ class UserController extends Controller
     public function index()
     {
         $users = $this->UsersSearch(['status' => 1]);
-
-        //return view('member-backend::auth.index', compact('users'));
 
         return LaravelAdmin::content(function (Content $content) use ($users) {
             $content->header('会员管理');
@@ -113,11 +68,7 @@ class UserController extends Controller
      */
     public function create()
     {
-        $groups = UserGroup::all();
-
-        //return view('member-backend::auth.create', compact('groups'));
-
-        return LaravelAdmin::content(function (Content $content) use ($groups) {
+        return LaravelAdmin::content(function (Content $content) {
             $content->header('创建会员');
 
             $content->breadcrumb(
@@ -125,7 +76,7 @@ class UserController extends Controller
                 ['text' => '创建会员', 'url' => 'member/users/create', 'no-pjax' => 1, 'left-menu-active' => '会员管理']
             );
 
-            $content->body(view('member-backend::auth.create', compact('groups')));
+            $content->body(view('member-backend::auth.create'));
         });
     }
 
@@ -138,23 +89,18 @@ class UserController extends Controller
     {
         //验证
         $rules = [
-            //'name' => "required|unique:el_user,name",
-            // 'email' => "unique:el_user,email|email",
-            'mobile' => 'unique:el_user,mobile',
-            'group_id' => 'required',
+            'mobile' => 'unique:' . config('ibrand.app.database.prefix', 'ibrand_') . 'user,mobile',
         ];
         $message = [
             'required' => ':attribute 不能为空',
             'unique' => ':attribute 已经存在',
-            'email' => ':attribute 格式不正确',
-            'group_id' => ':attribute 不能为空',
+            'email' => ':attribute 格式不正确'
         ];
 
         $attributes = [
             'name' => '会员名',
             'email' => 'Email',
-            'mobile' => '手机号码',
-            'group_id' => '用户等级分组',
+            'mobile' => '手机号码'
         ];
 
         $validator = Validator::make(
@@ -172,7 +118,7 @@ class UserController extends Controller
             return redirect()->back()->withInput();
         }
 
-        $input = $request->except('assignees_roles', 'permission_user', '_token');
+        $input = $request->except('_token');
 
         if (isset($input['email']) && !empty($input['email'])) {
             $data['email'] = $input['email'];
@@ -188,15 +134,8 @@ class UserController extends Controller
 
         $data['mobile'] = $input['mobile'];
         $data['status'] = isset($input['status']) ? 1 : 2;
-        $data['confirmation_code'] = md5(uniqid(mt_rand(), true));
-        $data['confirmed'] = isset($input['confirmed']) ? 1 : 0;
-        $data['group_id'] = isset($input['group_id']) ? $input['group_id'] : 1;
         User::create($data);
 
-//        $this->userRepository->createUser(
-//            $request->except('assignees_roles', 'permission_user'),
-//            $request->only('assignees_roles')
-//        );
         flash('用户创建成功', 'success');
 
         return redirect()->route('admin.users.index');
@@ -215,35 +154,12 @@ class UserController extends Controller
             $user->open_id = $user->bind->open_id;
         }
 
-        $balance = Balance::where('user_id', $user->id)->sum('value');
-
-        $points = $user->points()->paginate(20);
-//        $address=$this->addressRepository->findByField('user_id',$user->id);
-//        $integral=$this->integralRepository->getIntegralLogsPaginated(['user_id'=>$user->id],50);
-//        $coupons=$this->couponHistoryRepository->getCouponsHistoryPaginated(['user_id'=>$user->id],50);
-//        $orders=$this->orderLogRepository->getUserOrderLogPaginated(['user_id'=>$user->id],50);
-//
-//        foreach ($address as $key=>$item){
-//            $item->add_list=$item->address_name.$item->address;
-//        }
-        $roles = Role::get();
         $redirect_url = request('redirect_url');
 
-        $groups = ElGroup::all();
+        $point = $this->pointRepository->getSumPointValid($user->id);
 
-//        return view('member-backend::auth.edit', compact('roles', 'balance', 'groups'))
-//            ->withUser($user)
-//            ->withPoints($points)
-//            ->withRedirectUrl($redirect_url);
 
-//            ->withUserAddress($address)
-//            ->withIntegral($integral)
-//            ->withCoupons($coupons)
-//            ->withOrders($orders)
-//            ->withUserRoles($user->roles->lists('id')->all())
-//            ->withRoles($this->roleRepository->getAllRoles());
-
-        return LaravelAdmin::content(function (Content $content) use ($roles, $balance, $groups, $user, $points, $redirect_url) {
+        return LaravelAdmin::content(function (Content $content) use ($user, $point, $redirect_url) {
             $content->header('编辑会员');
 
             $content->breadcrumb(
@@ -251,18 +167,13 @@ class UserController extends Controller
                 ['text' => '编辑会员', 'url' => '', 'no-pjax' => 1, 'left-menu-active' => '会员管理']
             );
 
-            $content->body(view('member-backend::auth.edit', compact('roles', 'balance', 'groups', 'user', 'points', 'redirect_url'))
+            $content->body(view('member-backend::auth.edit', compact('user', 'point', 'redirect_url'))
             );
         });
     }
 
-    public function getUserPointData($uid, $type = 'offline')
+    public function getUserPointData($uid)
     {
-        if ('offline' == $type) {
-            $where['type'] = $type;
-        } else {
-            $where['type'] = ['type', '<>', 'offline'];
-        }
         $where['user_id'] = $uid;
 
         $pointData = $this->pointRepository->getPointsByConditions($where, 15);
@@ -280,9 +191,8 @@ class UserController extends Controller
     {
         //验证
         $rules = [
-//            'name' => "required|unique:el_user,name,$id",
-            'email' => "unique:el_user,email,$id|email",
-            'mobile' => "unique:el_user,mobile,$id",
+            'email' => "unique:" . config('ibrand.app.database.prefix', 'ibrand_') . "user,email,$id|email",
+            'mobile' => "unique:" . config('ibrand.app.database.prefix', 'ibrand_') . "user,mobile,$id",
         ];
         $message = [
             'required' => ':attribute 不能为空',
@@ -291,7 +201,6 @@ class UserController extends Controller
         ];
 
         $attributes = [
-//            "name" => "会员名",
             'email' => 'Email',
             'mobile' => '手机号码',
         ];
@@ -310,13 +219,11 @@ class UserController extends Controller
         }
 
         $user = User::find($id);
-        $input = $request->except('assignees_roles', 'permissions', 'userGroups');
+        $input = $request->except('_token');
         $input['email'] = trim($input['email']);
         $input['status'] = empty(request('status')) ? 2 : request('status');
-        $input['confirmed'] = empty(request('confirmed')) ? 0 : request('confirmed');
-        $input = array_filter($input);
 
-//        $this->userRepository->updateUser($id, $input, $request->only('assignees_roles'));
+        $input = array_filter($input);
 
         if (!empty($input['email']) and $user->email !== $input['email']) {
             if (User::where('email', '=', $input['email'])->first()) {
@@ -327,28 +234,6 @@ class UserController extends Controller
         $input['email'] = empty($input['email']) ? null : $input['email'];
 
         $this->userRepository->update($input, $id);
-
-        if (request()->has('permissions')) {
-            $selectRoles = request()->permissions;
-        } else {
-            $selectRoles = [];
-        }
-        $roles = Role::pluck('id')->toArray();
-        if (!empty($roles)) {
-            $user->detachRoles($roles);
-        }
-        if (!empty($selectRoles)) {
-            $user->attachRoles($selectRoles);
-        }
-
-        $selectGroups = request('userGroups') ? request('userGroups') : [];
-        $groups = ElGroup::pluck('id')->toArray();
-        if (!empty($groups)) {
-            $user->detachGroups($groups);
-        }
-        if (count($selectGroups)) {
-            $user->attachGroups($selectGroups);
-        }
 
         return $this->ajaxJson(true, [], 200, '更新成功');
     }
@@ -385,32 +270,9 @@ class UserController extends Controller
     /**
      * @return mixed
      */
-    public function deleted()
-    {
-        $users = $this->UsersSearch([], true);
-
-        //return view('member-backend::auth.deleted', compact('users'));
-
-        return LaravelAdmin::content(function (Content $content) use ($users) {
-            $content->header('已删除会员');
-
-            $content->breadcrumb(
-                ['text' => '会员管理', 'url' => 'member/users', 'no-pjax' => 1],
-                ['text' => '已删除会员', 'url' => '', 'no-pjax' => 1, 'left-menu-active' => '会员管理']
-            );
-
-            $content->body(view('member-backend::auth.deleted', compact('users')));
-        });
-    }
-
-    /**
-     * @return mixed
-     */
     public function banned()
     {
         $users = $this->UsersSearch(['status' => 2]);
-
-        //return view('member-backend::auth.banned', compact('users'));
 
         return LaravelAdmin::content(function (Content $content) use ($users) {
             $content->header('已禁用会员');
@@ -433,9 +295,6 @@ class UserController extends Controller
     public function changePassword($id)
     {
         $user = $this->userRepository->findOrThrowException($id);
-
-        //return view('member-backend::auth.change-password')
-        //  ->withUser($this->userRepository->findOrThrowException($id));
 
         return LaravelAdmin::content(function (Content $content) use ($user) {
             $content->header('更改密码');
@@ -463,37 +322,6 @@ class UserController extends Controller
         return redirect()->route('admin.users.index');
     }
 
-    /**
-     * @param $user_id
-     *
-     * @return mixed
-     */
-    public function resendConfirmationEmail($user_id)
-    {
-        $this->userRepository->resendConfirmationEmail($user_id);
-
-        return redirect()->back()->withFlashSuccess(trans('激活邮件发送成功'));
-    }
-
-    /**
-     * 用户列表.
-     */
-    public function userlist()
-    {
-        $users = $this->userRepository->searchUserPaginated([]);
-
-        //return view('member-backend::auth.userlist', compact('users'));
-
-        return LaravelAdmin::content(function (Content $content) use ($users) {
-            $content->header('会员管理');
-
-            $content->breadcrumb(
-                ['text' => '会员管理', 'url' => 'member/users', 'no-pjax' => 1, 'left-menu-active' => '会员管理']
-            );
-
-            $content->body(view('member-backend::auth.userlist', compact('users')));
-        });
-    }
 
     /**
      * 用户积分记录列表.
@@ -556,10 +384,6 @@ class UserController extends Controller
             $where['email'] = ['like', '%' . request('email') . '%'];
         }
 
-//            if (!empty(request('integral'))) {
-//                $where['integral'] = request('integral');
-//            }
-
         if (!empty(request('mobile'))) {
             $where['mobile'] = ['like', '%' . request('mobile') . '%'];
         }
@@ -570,63 +394,6 @@ class UserController extends Controller
 
         return $this->userRepository->searchUserPaginated($where);
     }
-
-    public function userexport()
-    {
-        $user_group = UserGroup::all();
-        $type = request('type');
-
-        return view('member-backend::auth.userexport', compact('user_group', 'type'));
-
-
-    }
-
-    public function getexport()
-    {
-        $input = request()->except('_token', 'stime', 'etime');
-        $time = [];
-        $data = [];
-
-        foreach ($input as $k => $v) {
-            if (empty($v)) {
-                unset($input[$k]);
-            }
-        }
-
-        if (!empty(request('etime')) && !empty(request('stime'))) {
-            $input['created_at'] = ['<=', request('etime')];
-            $time['created_at'] = ['>=', request('stime')];
-        }
-
-        if (!empty(request('etime'))) {
-            $time['created_at'] = ['<=', request('etime')];
-        }
-
-        if (!empty(request('stime'))) {
-            $time['created_at'] = ['>=', request('stime')];
-        }
-//            return $input;
-        $data = $this->userRepository->getUserExportList($input, $time);
-        //return $data;
-        $titles = ['会员名', '邮箱', '电话', '积分', '角色', '注册时间', '会员卡号', '申领日期', '注册姓名', '手机号', '出生年月日', 'open_id'];
-//        $titles=['会员名','邮箱','电话','积分','注册时间','会员卡号','申领日期','注册姓名','手机号','出生年月日'];
-        return ExcelExportsService::createExcelExport('User_', $data, $titles);
-    }
-
-    public function download()
-    {
-//        return $url;
-        $url = request('url');
-
-        return Response::download(storage_path() . "/exports/$url");
-    }
-
-    // 永久删除用户
-//        public  function everDelete(Request $request,$id){
-//                   User::withTrashed()->find($id)->forceDelete();
-//            return redirect()->back()->withFlashSuccess('用户已删除');
-//
-//        }
 
     public function addPoint()
     {
@@ -641,87 +408,13 @@ class UserController extends Controller
             $data['valid_time'] = 0;
         }
         $point = Point::create($data);
-
-
-        event('point.change', $id);
-
-        $user = User::find($id);
-        $user->notify(new PointRecord(['point' => [
-            'user_id' => $id,
-            'action' => 'admin_action',
-            'note' => request('note'),
-            'value' => request('value'),
-            'valid_time' => 0,
-            'status' => 1,]]));
-
-        $user->notify((new PointChanged(compact('point')))->delay(Carbon::now()->addSecond(30)));
-
         return $this->ajaxJson();
     }
 
-    /**
-     * 导入会员.
-     *
-     * @return mixed
-     */
-    public function importUser()
+    public function userexport()
     {
-        return view('member-backend::auth.includes.import-user');
-
-//        return LaravelAdmin::content(function (Content $content)  {
-//
-//            $content->body(view('member-backend::auth.includes.import-user'));
-//        });
-    }
-
-    public function saveImport()
-    {
-        $data = [];
-        $filename = 'public' . request('upload_excel');
-        Excel::load($filename, function ($reader) {
-            $reader = $reader->getSheet(0);
-            //获取表中的数据
-            $results = $reader->toArray();
-
-            foreach ($results as $key => $value) {
-                if (0 != $key) {
-                    $data['nick_name'] = trim($value[0]);
-                    $data['mobile'] = trim($value[1]);
-                    $data['email'] = trim($value[2]);
-                    $data['name'] = trim($value[3]);
-                    $data['password'] = trim($value[4]);
-                    $data['status'] = 1;
-                    $data['confirmation_code'] = md5(uniqid(mt_rand(), true));
-                    $data['group_id'] = 1;
-
-                    if ($data['mobile'] AND User::where('mobile', $data['mobile'])->first()) {
-                        continue;
-                    }
-
-                    if ($data['email'] AND User::where('email', $data['email'])->first()) {
-                        continue;
-                    }
-
-                    if ($data['name'] AND User::where('name', $data['name'])->first()) {
-                        continue;
-                    }
-
-                    if (!$data['name'] AND !$data['mobile'] AND !$data['email']) {
-                        break;
-                    }
-
-                    $user = User::create($data);
-
-                    if ($user AND $value[5]) {
-                        $selectRoles = Role::where('display_name', trim($value[5]))->get()->pluck('id')->toArray();                        
-                        $user->attachRoles($selectRoles);
-                    }
-
-                }
-            }
-        });
-
-        return $this->ajaxJson(true, $data, 200, '');
+        $type = request('type');
+        return view('member-backend::auth.userexport', compact('type'));
     }
 
     /**
@@ -736,9 +429,6 @@ class UserController extends Controller
 
         $where = [];
         $time = [];
-        if ($group_id = request('group_id')) {
-            $where['group_id'] = $group_id;
-        }
 
         if (!empty(request('etime')) && !empty(request('stime'))) {
             $where['created_at'] = ['<=', request('etime')];
@@ -761,7 +451,6 @@ class UserController extends Controller
 
         $adminID = auth('admin')->user()->id;
         $cacheName = request('cache') ? request('cache') : generate_export_cache_name('export_users_cache' . $adminID . '_');
-        //\Log::info('cache:'.$cacheName);
 
         if ($this->cache->has($cacheName)) {
             $cacheData = $this->cache->get($cacheName);
@@ -771,7 +460,7 @@ class UserController extends Controller
         }
 
         if ($page == $lastPage) {
-            $title = ['会员名', '邮箱', '电话', '积分', '角色', '注册时间', '会员卡号', '申领日期', '注册姓名', '手机号', '出生年月日', 'open_id'];
+            $title = ['昵称', '邮箱', '电话', '积分',  '注册时间'];
 
             return $this->ajaxJson(true, ['status' => 'done', 'url' => '', 'type' => $type, 'title' => $title, 'cache' => $cacheName, 'prefix' => 'users_data_']);
         }

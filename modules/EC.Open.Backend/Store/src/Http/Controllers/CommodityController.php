@@ -299,8 +299,6 @@ class CommodityController extends Controller
                 $goods->GoodsPhotos()->createMany($data[3]);
 
                 $goods->categories()->sync($data[4]);
-
-                $goods->hasOnePoint()->update($data[7]);
             } else {
                 //商品基础数据处理
                 $goods = $this->goodsRepository->create($goodsData);
@@ -433,8 +431,7 @@ class CommodityController extends Controller
 
         $specData = $this->goodsService->handleInitSpecData($spec, $id);
 
-        /*合并公用属性*/
-        $attrArray = $model->hasManyAttribut;
+        $attrArray = $model->hasManyAttribute;
 
 
         return LaravelAdmin::content(function (Content $content) use ($cateNames, $goods_info, $product, $categories, $brands, $models, $attrArray, $currAttribute, $specData, $cateIds, $redirect_url, $categoriesLevelTwo) {
@@ -693,7 +690,7 @@ class CommodityController extends Controller
         }
 
         if ($page == $lastPage) {
-            $title = ['商品ID', 'SKU', '商品编号', '商品名称', '类型', 'SPU吊牌价', 'SPU销售价', 'SKU市场价', 'SKU销售价', '上架', '库存', '标签', '尺码', '颜色', '自定义颜色', '分类', '参数'];
+            $title = ['商品ID', 'SKU', '商品编号', '商品名称', '类型', 'SPU吊牌价', 'SPU销售价', 'SKU市场价', 'SKU销售价', '上架', '库存', '标签', '尺码', '颜色', '自定义颜色', '分类'];
 
             return $this->ajaxJson(true, ['status' => 'done', 'url' => '', 'type' => $type, 'title' => $title, 'cache' => $cacheName, 'prefix' => 'goods_data_']);
         } else {

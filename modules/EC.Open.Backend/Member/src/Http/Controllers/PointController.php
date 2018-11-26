@@ -12,14 +12,15 @@
 namespace iBrand\EC\Open\Backend\Member\Http\Controllers;
 
 use Carbon\Carbon;
-use ElementVip\Component\Point\Model\Point;
-use ElementVip\Component\Point\Repository\PointRepository;
+
+use iBrand\Component\Point\Models\Point;
+use iBrand\Component\Point\Repository\PointRepository;
 use iBrand\EC\Open\Backend\Member\Models\User;
-use ElementVip\Notifications\PointRecord;
-use ElementVip\Store\Backend\Repositories\UserRepository;
+
 use Encore\Admin\Facades\Admin as LaravelAdmin;
 use Encore\Admin\Layout\Content;
 use Excel;
+use iBrand\EC\Open\Backend\Member\Repository\UserRepository;
 use Illuminate\Http\Request;
 
 class PointController extends Controller
@@ -29,8 +30,10 @@ class PointController extends Controller
     protected $cache;
 
     public function __construct(
-        UserRepository $userRepository, PointRepository $pointRepository
-    ) {
+        UserRepository $userRepository,
+        PointRepository $pointRepository
+    )
+    {
         $this->userRepository = $userRepository;
         $this->pointRepository = $pointRepository;
         $this->cache = cache();
@@ -43,69 +46,24 @@ class PointController extends Controller
     {
         $points = $this->getPointData();
 
-        //return view('member-backend::point.index', compact('points'));
-
         return LaravelAdmin::content(function (Content $content) use ($points) {
             $content->header('会员积分管理');
 
             $content->breadcrumb(
                 ['text' => '会员积分管理', 'url' => 'member/points', 'no-pjax' => 1],
-                ['text' => '积分记录', 'url' => '', 'no-pjax' => 1,'left-menu-active'=>'会员积分记录']
+                ['text' => '积分记录', 'url' => '', 'no-pjax' => 1, 'left-menu-active' => '会员积分记录']
             );
 
             $content->body(view('member-backend::point.index', compact('points')));
         });
     }
 
-    public function pointOffline()
+
+    protected function getPointData($where = [])
     {
-        $points = $this->getPointData('offline');
-
-        //return view('member-backend::point.offline', compact('points'));
-
-        return LaravelAdmin::content(function (Content $content) use ($points) {
-            $content->header('积分记录');
-
-            $content->breadcrumb(
-                ['text' => '会员积分管理', 'url' => 'member/points', 'no-pjax' => 1],
-                ['text' => '线下积分', 'url' => '', 'no-pjax' => 1,'left-menu-active'=>'会员积分记录']
-            );
-
-            $content->body(view('member-backend::point.offline', compact('points')));
-        });
-    }
-
-    public function pointDefault()
-    {
-        $points = $this->getPointData('default');
-
-        //return view('member-backend::point.default', compact('points'));
-
-        return LaravelAdmin::content(function (Content $content) use ($points) {
-            $content->header('积分记录');
-
-            $content->breadcrumb(
-                ['text' => '会员积分管理', 'url' => 'member/points', 'no-pjax' => 1],
-                ['text' => '线上积分', 'url' => '', 'no-pjax' => 1,'left-menu-active'=>'会员积分记录']
-            );
-
-            $content->body(view('member-backend::point.offline', compact('points')));
-        });
-    }
-
-    protected function getPointData($type = '', $where = [])
-    {
-
-        if ('offline' == $type) {
-            $where['type'] = $type;
-        } elseif ('default' == $type) {
-            $where['type'] = $type;
-        }
         $time = [];
         $userWhere = [];
-        if (!empty(request('name'))) {
-            $userWhere['name'] = ['like', '%'.request('name').'%'];
-        }
+
         if (!empty(request('mobile'))) {
             $userWhere['mobile'] = request('mobile');
         }
@@ -160,8 +118,7 @@ class PointController extends Controller
                     }
                 }
             }
-        })->with(['user','point_order','point_order_item'])->orderBy('created_at', 'desc')->paginate($limit);
-
+        })->with(['user', 'point_order', 'point_order_item'])->orderBy('created_at', 'desc')->paginate($limit);
 
         return $data;
     }
@@ -178,7 +135,7 @@ class PointController extends Controller
      */
     public function getImportDataCount()
     {
-        $filename = 'public'.request('path');
+        $filename = 'public' . request('path');
 
         Excel::load($filename, function ($reader) {
             $reader = $reader->getSheet(0);
@@ -203,7 +160,7 @@ class PointController extends Controller
      */
     public function saveImportData()
     {
-        $filename = 'public'.request('path');
+        $filename = 'public' . request('path');
         $conditions = [];
         $page = request('page') ? request('page') : 1;
         $total = request('total');
@@ -224,15 +181,6 @@ class PointController extends Controller
                             'note' => $value['note'],
                             'value' => $value['value'],
                             'status' => 1]);
-                        event('point.change', $user->id);
-
-                        $user->notify(new PointRecord(['point' => [
-                            'user_id' => $user->id,
-                            'action' => 'admin_import_action',
-                            'note' => $value['note'],
-                            'value' => $value['value'],
-                            'valid_time' => 0,
-                            'status' => 1, ]]));
                     }
                 }
             }

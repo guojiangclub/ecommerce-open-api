@@ -29,4 +29,7 @@ interface PointRepository
      * @return mixed
      */
     public function getPointByItem($itemType, $itemId);
+
+	public function getPointsByConditions($where, $limit = 20);
+	
 }

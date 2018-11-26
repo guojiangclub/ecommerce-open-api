@@ -7,9 +7,14 @@ use Illuminate\Database\Eloquent\Model;
 
 class ElDiscount extends Model
 {
-    protected $table = 'el_discount';
     protected $guarded = ['id'];
-    protected $appends=['status_text'];
+    protected $appends = ['status_text'];
+
+    public function __construct(array $attributes = [])
+    {
+        parent::__construct($attributes);
+        $this->setTable(config('ibrand.app.database.prefix', 'ibrand_') . 'discount');
+    }
 
     public function discountRules()
     {
@@ -58,15 +63,15 @@ class ElDiscount extends Model
         return $this->discountRules()->where('type', 'contains_role')->first();
     }
 
-	public function getDiscountContainsShopsAttribute()
-	{
-		return $this->discountRules()->where('type', 'contains_shops')->first();
-	}
+    public function getDiscountContainsShopsAttribute()
+    {
+        return $this->discountRules()->where('type', 'contains_shops')->first();
+    }
 
-	public function getDiscountContainsWechatGroupAttribute()
-	{
-		return $this->discountRules()->where('type', 'contains_wechat_group')->first();
-	}
+    public function getDiscountContainsWechatGroupAttribute()
+    {
+        return $this->discountRules()->where('type', 'contains_wechat_group')->first();
+    }
 
     public function getStatusTextAttribute()
     {

@@ -181,10 +181,6 @@
             var action_html = $('#percentage_action_template').html();
         }
 
-        if (value == 'goods_times_point') {
-            var action_html = $('#goods_times_point_action_template').html();
-        }
-
         if (value == 'goods_percentage_discount' || value == 'goods_percentage_by_market_price_discount') {
             var action_html = $('#goods_percentage_action_template').html();
         }

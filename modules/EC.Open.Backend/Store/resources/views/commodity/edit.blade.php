@@ -254,12 +254,6 @@
 
                 </div>
 
-                <div class="form-group">
-                    <label class="col-sm-2 control-label">排序：</label>
-                    <div class="col-sm-10">
-                        <input class="form-control" name="sort" value="{{$goods_info->sort}}" />
-                    </div>
-                </div>
             </div>
 
             <div class="app-actions">

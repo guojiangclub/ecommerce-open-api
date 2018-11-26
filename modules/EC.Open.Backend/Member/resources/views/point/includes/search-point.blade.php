@@ -1,8 +1,4 @@
 <form action="" method="get" class="form-horizontal">
-    <div class="form-group">
-        <label class="col-sm-2 control-label">登录名:</label>
-        <div class="col-sm-10"><input type="text" name="name"  value="{{request('name')}}"  class="form-control"></div>
-    </div>
 
     <div class="form-group">
         <label class="col-sm-2 control-label">手机:</label>
