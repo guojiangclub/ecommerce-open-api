@@ -1,6 +1,7 @@
 /node_modules
 /public/hot
 /public/storage
+/public/laravel-u-editor
 /storage/*.key
 /vendor
 /.idea
