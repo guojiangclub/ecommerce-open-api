@@ -2,7 +2,7 @@
 
 namespace iBrand\EC\Open\Backend\Store\Repositories;
 
-use iBrand\Component\Product\Models\Goods;
+use iBrand\EC\Open\Backend\Store\Model\Goods;
 use Prettus\Repository\Eloquent\BaseRepository;
 use Prettus\Repository\Criteria\RequestCriteria;
 use iBrand\EC\Open\Backend\Store\Model\Product;
@@ -148,8 +148,6 @@ class ProductRepository extends BaseRepository
             'nullStock' => [],
             'haveStock' => []
         ];
-//        [0] => {"id":"1","type":"1","value":"WXS\/S","name":"尺码"}
-//    [1] => {"id":"2","type":"1","value":"Ocean Blue","name":"颜色"}
 
         foreach ($products as $key => $val) {
             foreach ($specStr as $value) {
@@ -191,9 +189,9 @@ class ProductRepository extends BaseRepository
 
     public function getExcelGoods($limit = 50)
     {
-        $goodsTable = 'el_goods';
-        $productTable = 'el_goods_product';
-        $modelTable = 'el_goods_model';
+        $goodsTable = config('ibrand.app.database.prefix', 'ibrand_') . 'goods';
+        $productTable = config('ibrand.app.database.prefix', 'ibrand_') . 'goods_product';
+        $modelTable = config('ibrand.app.database.prefix', 'ibrand_') . 'goods_model';
         $products = Product::join($goodsTable, $goodsTable . '.id', '=', $productTable . '.goods_id')
             ->join($modelTable, $modelTable . '.id', '=', $goodsTable . '.model_id')
             ->select($goodsTable . '.id',
@@ -208,7 +206,7 @@ class ProductRepository extends BaseRepository
                 $goodsTable . '.is_del',
                 $productTable . '.store_nums',
                 $goodsTable . '.tags',
-                $productTable . '.specID as spec1'
+                $productTable . '.spec_ids as spec1'
             );
         $view = !empty(request('view')) ? request('view') : 0;
         $products = $products->where($goodsTable . '.is_del', $view);
@@ -254,10 +252,15 @@ class ProductRepository extends BaseRepository
         $products = $products->orderBy($goodsTable . '.id')->paginate($limit);
         $lastPage = $products->lastPage();
         $products = $products->items();
-        $specs = DB::table('el_goods_specs_value')->join('el_goods_spec', 'el_goods_spec.id', '=', 'el_goods_specs_value.spec_id')
-            ->select('el_goods_specs_value.id as id', 'el_goods_specs_value.spec_id as spec_id', 'el_goods_spec.name as spec', 'el_goods_specs_value.name as value')
+
+        $goodsSpecTable = config('ibrand.app.database.prefix', 'ibrand_') . 'goods_spec';
+        $goodsSpecValueTable = config('ibrand.app.database.prefix', 'ibrand_') . 'goods_spec_value';
+        $specs = DB::table($goodsSpecValueTable)->join($goodsSpecTable, $goodsSpecTable . '.id', '=', $goodsSpecValueTable . '.spec_id')
+            ->select($goodsSpecValueTable . '.id as id', $goodsSpecValueTable . '.spec_id as spec_id', $goodsSpecTable . '.name as spec', $goodsSpecValueTable . '.name as value')
             ->get();
 
+
+        $goodsSpecRelationTable = config('ibrand.app.database.prefix', 'ibrand_') . 'goods_spec_relation';
         foreach ($products as $key => &$product) {
             $product = $product->toArray();
             $products[$key]['sku_market_price'] = !$product['sku_market_price'] ? $product['market_price'] : $product['sku_market_price'];
@@ -271,12 +274,6 @@ class ProductRepository extends BaseRepository
                 foreach ($specIds as $id) {
                     $spec = $specs->where('id', $id)->first();
                     if ($spec) {
-                        /*if ($spec->spec == '尺码') {
-                            $products[$key]['spec1'] = $spec->value;
-                        }
-                        if ($spec->spec == '颜色') {
-                            $products[$key]['spec2'] = $spec->value;
-                        }*/
                         if ($spec->spec != 2) {
                             $products[$key]['spec1'] = $spec->value;
                         }
@@ -285,7 +282,7 @@ class ProductRepository extends BaseRepository
                         }
 
                         if ($spec->spec_id == 2) {
-                            $alias = DB::table('el_goods_spec_relation')->where('spec_value_id', $spec->id)->where('goods_id', $product['id'])->first();
+                            $alias = DB::table($goodsSpecRelationTable)->where('spec_value_id', $spec->id)->where('goods_id', $product['id'])->first();
                             $products[$key]['spec3'] = isset($alias->alias) ? $alias->alias : '';
                         }
 
@@ -300,27 +297,6 @@ class ProductRepository extends BaseRepository
                 $cate .= $category->name . ',';
             }
             $products[$key]['cate'] = $cate;
-            $attr = '';
-
-            $attributes = $goods->attr;
-            if (count($attributes) > 0 AND !is_array($attributes)) {
-                $attributes = $attributes->toArray();
-            } elseif (!$attributes) {
-                $attributes = [];
-            }
-
-
-            /*if(is_array($goods->attr))
-            {
-                $attributes = $goods->attr;
-            }else{
-                $attributes = $goods->attr->toArray();
-            }*/
-
-            foreach ($attributes as $key_ => $attribute) {
-                $attr .= $attribute['name'] . ':' . $attribute['attribute_value'] . ',';
-            }
-            $products[$key]['attr'] = $attr;
         }
         return [
             'products' => $products,

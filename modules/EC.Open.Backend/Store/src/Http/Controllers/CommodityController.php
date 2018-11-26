@@ -690,7 +690,7 @@ class CommodityController extends Controller
         }
 
         if ($page == $lastPage) {
-            $title = ['商品ID', 'SKU', '商品编号', '商品名称', '类型', 'SPU吊牌价', 'SPU销售价', 'SKU市场价', 'SKU销售价', '上架', '库存', '标签', '尺码', '颜色', '自定义颜色', '分类', '参数'];
+            $title = ['商品ID', 'SKU', '商品编号', '商品名称', '类型', 'SPU吊牌价', 'SPU销售价', 'SKU市场价', 'SKU销售价', '上架', '库存', '标签', '尺码', '颜色', '自定义颜色', '分类'];
 
             return $this->ajaxJson(true, ['status' => 'done', 'url' => '', 'type' => $type, 'title' => $title, 'cache' => $cacheName, 'prefix' => 'goods_data_']);
         } else {

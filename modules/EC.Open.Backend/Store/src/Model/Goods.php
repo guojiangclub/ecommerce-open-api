@@ -132,17 +132,5 @@ class Goods extends Model implements Transformable
         return '￥ ' . $min . ' - ￥ ' . $max;
     }
 
-    public function setExtendImageAttribute($value)
-    {
-        if ($value) {
-            $this->attributes['extend_image'] = json_encode($value);
-        }
-    }
-
-    public function getExtendImageAttribute()
-    {
-        if ($this->attributes['extend_image']) {
-            return json_decode($this->attributes['extend_image'], true);
-        }
-    }
+   
 }
