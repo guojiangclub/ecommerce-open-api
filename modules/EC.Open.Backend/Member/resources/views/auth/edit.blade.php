@@ -165,7 +165,7 @@
     </div>
 
 </div>
-@include('store-backend::auth.script')
+
 {!! Html::script(env("APP_URL").'/assets/backend/libs/formvalidation/dist/js/framework/bootstrap.min.js') !!}
 {!! Html::script(env("APP_URL").'/assets/backend/libs/formvalidation/dist/js/language/zh_CN.js') !!}
 {!! Html::script(env("APP_URL").'/assets/backend/libs/jquery.form.min.js') !!}

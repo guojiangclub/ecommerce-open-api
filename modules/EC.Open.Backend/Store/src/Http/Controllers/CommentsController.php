@@ -2,7 +2,7 @@
 
 namespace iBrand\EC\Open\Backend\Store\Http\Controllers;
 
-use ElementVip\Component\User\Models\User;
+use iBrand\EC\Open\Backend\Member\Models\User;
 use iBrand\Backend\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use iBrand\EC\Open\Backend\Store\Repositories\CommentsRepository;
@@ -61,9 +61,6 @@ class CommentsController extends Controller
 
             $content->body(view('store-backend::comments.index', compact('view', 'comments_list', 'comments_list_num')));
         });
-
-
-//        return view('store-backend::comments.index', compact('view', 'comments_list', 'comments_list_num'));
     }
 
     /**
@@ -73,12 +70,8 @@ class CommentsController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function edit($id)
-    {
-        //
+    {       
         $comment = $this->commentsRepository->find($id);
-        /*$goods_id=json_decode($comment->item_meta)->detail_id;
-        $goods=$this->goodsRepository->find($goods_id);*/
-
         return view('store-backend::comments.edit', compact('comment'));
 
     }
@@ -116,7 +109,6 @@ class CommentsController extends Controller
      */
     public function destroy($id)
     {
-        //
         $this->commentsRepository->destroy($id);
         return redirect()->back()->withFlashSuccess('评论已删除');
 
@@ -137,7 +129,6 @@ class CommentsController extends Controller
             $content->body(view('store-backend::comments.create'));
         });
 
-//        return view('store-backend::comments.create');
     }
 
     public function searchGoods()
@@ -162,23 +153,18 @@ class CommentsController extends Controller
             return $this->ajaxJson(false, [], 404, '请输入昵称');
         }
 
-        /*if (!$user_id = $request->input('user_id')) {
-            return $this->ajaxJson(false, [], 404, '请选择评论用户');
-        }*/
         $goods = $this->goodsRepository->find($goods_id);
 
         $data['item_meta'] = json_encode(['image' => $goods->img, 'spec_text' => '']);
-        $data['user_meta'] = json_encode(['nick_name' => $nickName, 'avatar' => $request->input('avatar'), 'grade' => $request->input('grade')]);
         $data['pic_list'] = serialize($request->input('img') ? $request->input('img') : []);
         $data['contents'] = $request->input('contents');
         $data['status'] = 'show';
         $data['point'] = $request->input('point');
-        /*$data['user_id'] = $request->input('user_id');*/
         $data['user_id'] = 0;
-        $data['goods_id'] = $goods_id;
+        $data['item_id'] = $goods_id;
         $this->commentsRepository->create($data);
 
-        $goods->comments += 1;
+        $goods->comment_count += 1;
         $goods->grade += $request->input('point');
         $goods->save();
 

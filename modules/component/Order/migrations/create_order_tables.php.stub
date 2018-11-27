@@ -57,8 +57,6 @@ class CreateOrderTables extends Migration
             $table->string('message')->nullable();  //用户留言
 
             $table->integer('type')->default(0); //各种订单类型，拼团订单，秒杀订单，折扣订单等
-            $table->string('channel')->default('ec'); //ec 电商，shop 代表门店
-            $table->unsignedInteger('channel_id')->default(0); //channel=ec  channel_id=0, 否则 channel_id= shopid
 
             $table->string('cancel_reason')->nullable();  //取消原因
             $table->string('note')->nullable();     //管理员备注

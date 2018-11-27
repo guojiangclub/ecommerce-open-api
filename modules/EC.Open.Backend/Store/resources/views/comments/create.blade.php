@@ -1,21 +1,5 @@
-{{--@extends ('store-backend::dashboard')
-
-@section ('title','新增评论')
-
-@section('after-styles-end')--}}
     <link href="{{env("APP_URL")}}/assets/backend/libs/webuploader-0.1.5/webuploader.css" rel="stylesheet">
-{{--@endsection
 
-@section ('breadcrumbs')
-    <h2>新增评论</h2>
-    <ol class="breadcrumb">
-        <li><a href="{!!route('admin.store.index')!!}"><i class="fa fa-dashboard"></i> 首页</a></li>
-        <li class="">{!! link_to_route('admin.comments.index', '评论管理') !!}</li>
-        <li class="active">新增评论</li>
-    </ol>
-@stop
-
-@section('content')--}}
     <div class="ibox float-e-margins">
         <div class="ibox-content" style="display: block;">
             {!! Form::open( [ 'url' => [route('admin.comments.store')], 'method' => 'POST', 'id' => 'base-form','class'=>'form-horizontal'] ) !!}
@@ -121,10 +105,7 @@
                     <!-- /.tab-content -->
         </div>
     </div>
-{{--@endsection
 
-@section('before-scripts-end')
-    {!! Html::script(env("APP_URL").'/assets/backend/libs/jquery.form.min.js') !!}--}}
     <script src="{{env("APP_URL")}}/assets/backend/libs/webuploader-0.1.5/webuploader.js"></script>
     <script>
         $('#search-goods').on('click', function () {
@@ -164,7 +145,7 @@
         uploader.on('uploadSuccess', function (file, response) {
             $('input[name="dmp_config[backend_logo]"]').val(response.url);
             $('.backend_logo').attr('src', response.url);
-            var imgUrl = '{{env('APP_URL')}}' + response.url;
+            var imgUrl = response.url;
             var img = '<img src=' + imgUrl + ' width=100 />';
             var input = '<input name=img[] type=hidden value=' + imgUrl + '>';
 
@@ -187,8 +168,8 @@
 
         // 文件上传成功，给item添加成功class, 用样式标记上传成功。
         avatarUploader.on('uploadSuccess', function (file, response) {
-            $('input[name="avatar]').val('{{env('APP_URL')}}' + response.url);
-            $('#avatar').attr('src', '{{env('APP_URL')}}' + response.url);
+            $('input[name="avatar]').val(response.url);
+            $('#avatar').attr('src', response.url);
 
         });
 
@@ -211,4 +192,3 @@
         });
 
     </script>
-{{--@stop--}}

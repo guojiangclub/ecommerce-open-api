@@ -18,7 +18,6 @@
         <div class="form-group">
             {!! Form::label('','商品名称：', ['class' => 'col-lg-2 control-label']) !!}
             <div class="col-lg-9">
-                {{--<input type="text" class="form-control"  placeholder="" value="{{$goods_name}}" disabled>--}}
                 <input type="text" class="form-control" placeholder="" value="{{$comment->goods->name}}" disabled>
             </div>
         </div>

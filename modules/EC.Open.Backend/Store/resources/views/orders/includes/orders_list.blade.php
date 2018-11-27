@@ -11,7 +11,6 @@
                 <th>下单会员</th>
                 <th>收货人</th>
                 <th>订单状态</th>
-                <th>售后状态</th>
                 <th>商品数量</th>
                 <th>总金额</th>
                 <th>应付金额</th>
@@ -34,36 +33,29 @@
                     </td>
 
                     <td>{{$order->StatusText}}</td>
-                    <td>{{$order->refund_status}}</td>
                     <td>{{$order->count}}</td>
                     <td>{{$order->items_total}}</td>
                     <td>{{$order->total}}</td>
-                    <td>{{$order->created_at}}</td>
+                    <td>{{$order->submit_time}}</td>
 
                     <td style="position: relative;">
                         <a href="{{route('admin.orders.show',['id'=>$order->id])}}"
                            class="btn btn-xs btn-success">
                             <i class="fa fa-eye" data-toggle="tooltip" data-placement="top" title="查看"></i></a>
-                        @if($order->status==2 AND $order->groupon_status)
+
+                        @if($order->status==2)
                             <a class="btn btn-xs btn-success" id="chapter-create-btn" data-toggle="modal"
                                data-target="#modal" data-backdrop="static" data-keyboard="false"
                                data-url="{{route('admin.orders.deliver',['id'=>$order->id,'redirect_url'=>urlencode(Request::getRequestUri())])}}">
                                 <i class="fa fa-send" data-toggle="tooltip" data-placement="top" title="发货"></i></a>
-
                         @endif
+
                         @if($order->status==3)
                             <a class="btn btn-xs btn-success" id="chapter-create-btn" data-toggle="modal"
                                data-target="#modal" data-backdrop="static" data-keyboard="false"
                                data-url="{{route('admin.orders.deliver.edit',['id'=>$order->id])}}">
                                 <i class="fa fa-pencil" data-toggle="tooltip" data-placement="top"
                                    title="修改快递信息"></i></a>
-                        @endif
-
-                        @if($order->status == 2 AND $order->invoiceOrder)
-                            <a class="btn btn-xs btn-success" id="chapter-create-btn" data-toggle="modal"
-                               data-target="#modal_invoice" data-backdrop="static" data-keyboard="false"
-                               data-url="{{route('admin.orders.invoice.edit',['id'=>$order->invoiceOrder->id])}}">
-                                <i class="fa fa-file-zip-o" data-toggle="tooltip" data-placement="top" title="开具发票"></i></a>
                         @endif
 
                         <a href="javascript:" class="btn btn-xs btn-danger close-order"

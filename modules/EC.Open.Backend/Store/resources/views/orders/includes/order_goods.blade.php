@@ -22,20 +22,15 @@
             </td>
             <td>{{$item->unit_price}}</td>
             <td>{{$item->quantity}}</td>
-            @if(!$isSupplier)
-                <td>{{$item->adjustments_total}}</td>
-                <td>{{$item->total}}</td>
-                <td>{{$item->supplier->name}}</td>
-            @endif
+            <td>{{$item->adjustments_total}}</td>
+            <td>{{$item->total}}</td>
+
             <td>{{!empty($item->item_info['specs_text'])?$item->item_info['specs_text']:''}}</td>
             <td>
                 {{$item->getModel() ? $item->getModel()->sku : ''}}
             </td>
             <td>
-                @if($item->is_send==1)
-                    已发货<br>
-                    发货单号：{{$item->shipping->tracking}}
-                @elseif($item->is_send==0 AND $order->distribution_status==1 AND $item->status==1)
+                @if($order->distribution_status==1)
                     已发货<br>
                     发货单号：{{$order->shipping->first()->tracking}}
                 @else

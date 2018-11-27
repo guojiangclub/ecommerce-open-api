@@ -35,7 +35,7 @@
     }
 
     $(document).ready(function () {
-        var getUrl = '{{route('admin.users.getUserPointList',['id' =>$user->id,'type' => 'online'])}}';
+        var getUrl = '{{route('admin.users.getUserPointList',['id' =>$user->id])}}';
         getList(getUrl);
 
         $('.viewPoint').on('click', function () {

@@ -9,7 +9,6 @@ use iBrand\EC\Open\Backend\Store\Model\ElDiscountAction;
 use iBrand\EC\Open\Backend\Store\Model\ElDiscountRule;
 use iBrand\EC\Open\Backend\Store\Repositories\DiscountRepository;
 use Illuminate\Http\Request;
-use ElementVip\Component\User\Models\Role;
 use iBrand\EC\Open\Backend\Store\Repositories\CategoryRepository;
 use iBrand\EC\Open\Backend\Store\Service\DiscountService;
 use DB;

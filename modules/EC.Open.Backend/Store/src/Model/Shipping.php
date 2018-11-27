@@ -7,13 +7,12 @@
  */
 
 namespace iBrand\EC\Open\Backend\Store\Model;
+
 use Illuminate\Database\Eloquent\Model;
 
 class Shipping extends Model
 {
-
-  
-    protected $guarded  =['id'];
+    protected $guarded = ['id'];
 
     public function __construct(array $attributes = [])
     {
@@ -24,7 +23,8 @@ class Shipping extends Model
         $this->setTable($prefix . 'shipping');
     }
 
-    public function shippingMethod(){
+    public function shippingMethod()
+    {
         return $this->belongsTo('iBrand\EC\Open\Backend\Store\Model\ShippingMethod', 'method_id');
     }
 

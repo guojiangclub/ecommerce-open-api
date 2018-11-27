@@ -323,51 +323,7 @@ class UserController extends Controller
     }
 
 
-    /**
-     * 用户积分记录列表.
-     *
-     * @param $id
-     *
-     * @return mixed
-     */
-    public function integrallist($id)
-    {
-        if ($user = $this->userRepository->findOrThrowException($id, true)) {
-            return view('member-backend::auth.includes.user-integral-list')
-                ->withIntegral($this->integralRepository->getIntegralLogsPaginated(['user_id' => $user->id], 50));
-        }
-    }
-
-    /**
-     * 用户优惠券记录列表.
-     *
-     * @param $id
-     *
-     * @return mixed
-     */
-    public function couponslist($id)
-    {
-        if ($user = $this->userRepository->findOrThrowException($id, true)) {
-            return view('member-backend::auth.includes.user-coupons-list')
-                ->withCoupons($this->couponHistoryRepository->getCouponsHistoryPaginated(['user_id' => $user->id], 50));
-        }
-    }
-
-    /**
-     * 用户订单记录列表.
-     *
-     * @param $id
-     *
-     * @return mixed
-     */
-    public function orderslist($id)
-    {
-        if ($user = $this->userRepository->findOrThrowException($id, true)) {
-            return view('member-backend::auth.includes.user-orders-list')
-                ->withOrders($this->orderLogRepository->getUserOrderLogPaginated(['user_id' => $user->id], 50));
-        }
-    }
-
+  
     /**用户搜索
      * @param array $where
      * @param bool $delete

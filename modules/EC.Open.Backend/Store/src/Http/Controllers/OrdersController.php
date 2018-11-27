@@ -143,14 +143,14 @@ class OrdersController extends Controller
 
         $order = $this->orderRepository->findOrThrowException($id);
         $order_deliver = $order->deliver;
-     
+
         $adjustments = $this->orderRepository->getOrderAdjustments($order);
         $shipping = $this->orderRepository->getShippingMethod($order);
         $orderPoint = $this->orderRepository->getOrderPoints($order->items);
         $orderConsumePoint = $this->orderRepository->getOrderConsumePoint($order->id);
 
-      
-        return LaravelAdmin::content(function (Content $content) use ($order, $order_deliver, $shipping, $adjustments, $orderPoint, $orderConsumePoint ) {
+
+        return LaravelAdmin::content(function (Content $content) use ($order, $order_deliver, $shipping, $adjustments, $orderPoint, $orderConsumePoint) {
 
             $content->header('订单详情');
 
@@ -162,10 +162,10 @@ class OrdersController extends Controller
 
             $content->body(view('store-backend::orders.show', compact('order', 'order_deliver', 'orderGoods', 'shipping', 'adjustments', 'orderPoint', 'orderConsumePoint')));
         });
-        
+
     }
 
-    
+
     /**
      * 单个订单发货modal
      * @param  $id
@@ -178,14 +178,11 @@ class OrdersController extends Controller
         $order_id = $id;
         $freightCompany = ShippingMethod::all();
         $redirect_url = request('redirect_url');
-        $order = Order::find($id);
-        $is_deliver_enable = OrderService::checkOrderDeliver($order);
-        $status = OrderService::checkOrderRefund($order);
 
-        return view('store-backend::orders.includes.order_deliver', compact('order_id', 'freightCompany', 'redirect_url', 'status', 'is_deliver_enable'));
+        return view('store-backend::orders.includes.order_deliver', compact('order_id', 'freightCompany', 'redirect_url'));
     }
 
-    
+
     /**
      * @param Request $request
      * @param         $id
@@ -196,12 +193,7 @@ class OrdersController extends Controller
     public function ordersDeliverEdit(Request $request, $id)
     {
         $freightCompany = ShippingMethod::all();
-        $orderItem = $this->orderItemsRepository->findWhere(['order_id' => $id, 'supplier_id' => session('admin_supplier_id')[0]])->first();
-        if ($orderItem) {
-            $shipping = Shipping::find($orderItem->shipping_id);
-        } else {
-            $shipping = Shipping::where(['order_id' => $id])->first();
-        }
+        $shipping = Shipping::where(['order_id' => $id])->first();
         $order_id = $id;
 
         return view('store-backend::orders.includes.order_deliver_edit', compact('order_id', 'freightCompany', 'shipping'));
@@ -260,38 +252,14 @@ class OrdersController extends Controller
                 continue;
             }
 
-            if (!$order->groupon_status) {
+            if ($order->distribution_status == 1) {
                 continue;
             }
 
-            $totalItem = count($order->items);
-            $deliveringItems = $order->items->filter(function ($value) { //未发货的item
-                return $value->is_send == 0 AND $value->status == 1;
-            });
-            if (count($deliveringItems) <= 0) {
-                continue;
-            }
-
-            $hasDelivered = $totalItem - count($deliveringItems); //已发货的item数量
-            $deliveringItems = $deliveringItems->groupBy('supplier_id');
-            foreach ($deliveringItems as $key => $item) {
-               
-                $shippingMessage['order_id'] = $orderId;
-                $shipping = Shipping::create($shippingMessage);
-                $hasDelivered += count($item);
-                OrderItem::whereIn('id', array_column($item->toArray(), 'id'))->update(['is_send' => 1, 'shipping_id' => $shipping->id]);
-            }
-
-            if ($hasDelivered > 0 && $hasDelivered < $totalItem) { //如果已发货的item小于所有item数量（即部分发货）
-                $order->distribution_status = 2;
-            }
-
-            if ($totalItem == $hasDelivered) {
-                $order->distribution_status = 1;
-                $order->status = Order::STATUS_DELIVERED;
-                $order->send_time = $shippingMessage['delivery_time'];
-                $order->distribution = $shipping->id;
-            }
+            $shipping = Shipping::create($shippingMessage);
+            $order->distribution_status = 1;
+            $order->status = Order::STATUS_DELIVERED;
+            $order->send_time = $shippingMessage['delivery_time'];
 
             $order->save();
         }
@@ -299,7 +267,7 @@ class OrdersController extends Controller
         return true;
     }
 
-   
+
     /**
      * 批量导入订单发货modal
      *
@@ -352,12 +320,6 @@ class OrdersController extends Controller
                         continue;
                     }
 
-                    $status = OrderService::checkOrderRefund($order);
-                    if (!$status) {
-                        $error_list[] = '订单 ' . $order_no . ' 有未完成的售后；';
-                        continue;
-                    }
-
                     $shippingMessage = [
                         'method_id' => $freightCompany->id,
                         'tracking' => $number,
@@ -380,7 +342,7 @@ class OrdersController extends Controller
         }
     }
 
-   
+
     public function close($id)
     {
         $order = Order::find($id);
@@ -394,7 +356,7 @@ class OrdersController extends Controller
         return $this->ajaxJson(true, [], 200, '订单取消成功');
     }
 
-  
+
     /**
      * 获取需要导出的数据
      */
@@ -411,7 +373,7 @@ class OrdersController extends Controller
 
         $orders = $this->orderRepository->getExportOrdersData($where, 50, $time, $pay_time);
         $lastPage = $orders->lastPage();
-        
+
         foreach ($orders as $item) {
             $item->pay_type = isset($item->payment->channel) ? $item->payment->channel : '';
             $item->channel_no = isset($item->payment->channel_no) ? $item->payment->channel_no : '';
@@ -432,7 +394,7 @@ class OrdersController extends Controller
         }
 
         if ($page == $lastPage) {
-            $title = ['订单编号', '所属品牌', '供应商', '订单类型', '下单会员', '收货人', '省', '市', '区', '收货地址', '联系电话', '邮箱地址', '商品名称', 'sku', '规格', '吊牌价', '售价', '购买数量', '商品应付金额', '优惠活动名称', '优惠抵扣金额', '积分抵扣金额', '订单状态', '支付状态', '支付平台', '支付流水号', '发货状态', '订单应付金额', '下单时间', '付款时间', '售后状态', '用户留言'];
+            $title = ['订单编号', '所属品牌', '下单会员', '收货人', '省', '市', '区', '收货地址', '联系电话', '邮箱地址', '商品名称', 'sku', '规格', '吊牌价', '售价', '购买数量', '商品应付金额', '优惠活动名称', '优惠抵扣金额', '积分抵扣金额', '订单状态', '支付状态', '支付平台', '支付流水号', '发货状态', '订单应付金额', '下单时间', '付款时间', '用户留言'];
 
             return $this->ajaxJson(true, ['status' => 'done', 'url' => '', 'type' => $type, 'title' => $title, 'cache' => $cacheName, 'prefix' => 'orders_data_']);
         } else {

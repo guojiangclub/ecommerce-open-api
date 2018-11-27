@@ -155,10 +155,7 @@ $router->group(['prefix' => 'admin/store/promotion'], function () use ($router) 
         $router->get('getUsedExportData', 'CouponController@getUsedExportData')->name('admin.promotion.coupon.getUsedExportData');
         $router->get('getCouponsExportData', 'CouponController@getCouponsExportData')->name('admin.promotion.coupon.getCouponsExportData');
     });
-
-
 });
-
 
 
 //物流管理
@@ -170,19 +167,9 @@ $router->group(['prefix' => 'admin/store/shippingmethod'], function () use ($rou
     $router->post('delcompany/{id}', 'ShippingMethodController@deletedCompany')->name('admin.shippingmethod.deletedCompany');
 });
 
-//运费模板
-$router->group(['prefix' => 'admin/shipping/template'], function () use ($router) {
-    $router->get('/', 'ShippingTemplateController@index')->name('admin.shipping.template.index');
-    $router->get('create', 'ShippingTemplateController@create')->name('admin.shipping.template.create');
-    $router->get('edit/{id}', 'ShippingTemplateController@edit')->name('admin.shipping.template.edit');
-    $router->post('store', 'ShippingTemplateController@store')->name('admin.shipping.template.store');
-    $router->post('delete/{id}', 'ShippingTemplateController@delete')->name('admin.shipping.template.delete');
-});
-
 
 //订单
 $router->group(['prefix' => 'admin/store/order'], function () use ($router) {
-    //订单
     $router->get('/', 'OrdersController@index')->name('admin.orders.index');
 
     $router->get('detail/{id}', 'OrdersController@show')->name('admin.orders.show');
@@ -221,21 +208,4 @@ $router->group(['prefix' => 'admin/store/comments'], function () use ($router) {
     $router->post('searchGoods', 'CommentsController@searchGoods')->name('admin.comments.searchGoods');
     $router->post('searchUsers', 'CommentsController@searchUsers')->name('admin.comments.searchUsers');
     $router->post('store', 'CommentsController@store')->name('admin.comments.store');
-});
-
-$router->group(['prefix' => 'admin'], function () use ($router) {
-
-
-    $router->post('setting/save', 'SettingController@saveSettings')->name('admin.setting.save');
-
-    $router->get('setting/sms', 'SettingController@sms')->name('admin.setting.sms');
-
-
-    $router->get('setting/backend', 'SettingController@backend')->name('admin.setting.backend');
-
-
-    $router->group(['prefix' => 'setting/uploads'], function () use ($router) {
-        $router->get('/', 'UploadVerifyFileController@index')->name('admin.uploads.index');
-        $router->post('/up', 'UploadVerifyFileController@upload')->name('admin.uploads.up');
-    });
 });

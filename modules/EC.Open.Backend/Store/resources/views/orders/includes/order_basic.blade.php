@@ -26,7 +26,7 @@
             {!! $order->status_text !!}
 
         </td>
-        <td>{{$order->created_at}}</td>
+        <td>{{$order->submit_time}}</td>
 
     </tr>
 
@@ -45,15 +45,13 @@
 
     @if($order->pay_status)
         <tr>
-            <th>pingxx交易号</th>
+            <th>付款时间</th>
             <th>支付平台交易流水号</th>
         </tr>
         <tr>
             @if($order->payments)
                 <td>
-                    @foreach($order->payments as $val)
-                        {{$val->pingxx_no}}<br>
-                    @endforeach
+                    {{$order->pay_time?$order->pay_time:'/'}}
                 </td>
                 <td>
                     @foreach($order->payments as $val)
@@ -63,15 +61,6 @@
             @endif
         </tr>
     @endif
-
-    <tr>
-        <th>付款时间</th>
-    </tr>
-    <tr>
-        <td>
-            {{$order->pay_time?$order->pay_time:'/'}}
-        </td>
-    </tr>
 
     </tbody>
 </table>

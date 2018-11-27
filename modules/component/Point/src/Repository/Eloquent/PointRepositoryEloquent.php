@@ -64,4 +64,36 @@ class PointRepositoryEloquent extends BaseRepository implements PointRepository
         $this->applyConditions($where);
         return $this->orderBy('created_at', 'desc')->paginate($limit);
     }
+
+    public function distributePercentage($order)
+    {
+        if (!$adjustment = $order->getAdjustments() OR !$adjustment = $adjustment->where('origin_type', 'point')->first()) {
+            return false;
+        }
+        $amount = (-1) * $adjustment->amount;
+        $splitDiscountAmount = [];
+        $numberOfTargets = $order->countItems();
+        $percentageTotal = 100;
+        $i = 1;
+        $items = $order->getItems();
+        foreach ($items as $item) {
+            if ($i > $numberOfTargets) {
+                break;
+            }
+            if ($i == $numberOfTargets) {
+                $percentageItem = $percentageTotal;
+            } else {
+                //因为Backend下的Order模型定义了items_total获取时自动 / 100，percentageItem计算时原本应该 * 100，这里没有处理
+                //所以此方法暂时只适用于Backend下导出订单
+                $percentageItem = (int) ($item->units_total / $order->items_total);
+                $percentageTotal -= $percentageItem;
+            }
+            $splitDiscountAmount[] = [
+                'item_id' => $item->id,
+                'value' => (int) ($amount * $percentageItem / 100)
+            ];
+            $i++;
+        }
+        return $splitDiscountAmount;
+    }
 }

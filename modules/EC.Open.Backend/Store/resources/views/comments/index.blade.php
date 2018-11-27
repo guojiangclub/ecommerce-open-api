@@ -1,17 +1,3 @@
-{{--@extends('store-backend::dashboard')
-
-@section ('title','评论列表')
-
-@section('breadcrumbs')
-    <h2>评论列表</h2>
-    <ol class="breadcrumb">
-        <li><a href="{!!route('admin.store.index')!!}"><i class="fa fa-dashboard"></i> 首页</a></li>
-        <li class="active">评论列表</li>
-    </ol>
-@endsection
-
-@section('content')--}}
-
     @if(Session::has('message'))
         <div class="alert alert-success alert-dismissable">
             <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
@@ -24,11 +10,11 @@
         <ul class="nav nav-tabs">
             <li class="{{ Active::query('status','show') }}"><a no-pjax href="{{route('admin.comments.index',['status'=>'show'])}}">评论列表
                     <span class="badge">
-                         {{$view=='show'?$comments_list_num:\ElementVip\Store\Backend\Model\OrderComment::where('status','show')->count()}}
+                         {{$view=='show'?$comments_list_num:\iBrand\EC\Open\Backend\Store\Model\OrderComment::where('status','show')->count()}}
                     </span></a></li>
             <li class="{{ Active::query('status','hidden') }}"><a no-pjax href="{{route('admin.comments.index',['status'=>'hidden'])}}">待审核
                     <span class="badge">
-                        {{$view=='hidden'?$comments_list_num:\ElementVip\Store\Backend\Model\OrderComment::where('status','hidden')->count()}}
+                        {{$view=='hidden'?$comments_list_num:\iBrand\EC\Open\Backend\Store\Model\OrderComment::where('status','hidden')->count()}}
                     </span></a></li>
 
         </ul>

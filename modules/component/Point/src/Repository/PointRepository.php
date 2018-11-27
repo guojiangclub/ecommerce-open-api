@@ -32,4 +32,6 @@ interface PointRepository
 
 	public function getPointsByConditions($where, $limit = 20);
 	
+	public function distributePercentage($order);
+	
 }

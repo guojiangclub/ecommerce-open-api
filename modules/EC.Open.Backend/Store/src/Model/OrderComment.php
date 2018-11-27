@@ -15,12 +15,20 @@ class OrderComment extends Model implements Transformable
     use TransformableTrait;
     use BelongToUserTrait;
 
-    protected $table = 'el_order_comment';
     protected $guarded = ['id'];
+
+    public function __construct(array $attributes = [])
+    {
+        parent::__construct($attributes);
+
+        $prefix = config('ibrand.app.database.prefix', 'ibrand_');
+
+        $this->setTable($prefix . 'order_comment');
+    }
 
     public function orderItem()
     {
-        return $this->belongsTo('iBrand\EC\Open\Backend\Store\Model\OrderItem', 'order_item_id')->withDefault();
+        return $this->belongsTo(OrderItem::class, 'order_item_id')->withDefault();
     }
 
     public function getCommentPicAttribute()
@@ -38,7 +46,7 @@ class OrderComment extends Model implements Transformable
 
     public function goods()
     {
-        return $this->belongsTo('iBrand\EC\Open\Backend\Store\Model\Goods', 'goods_id')->withDefault();
+        return $this->belongsTo(Goods::class, 'item_id')->withDefault();
     }
 
     public function getEditNameAttribute()
@@ -46,10 +54,7 @@ class OrderComment extends Model implements Transformable
         if ($user = $this->user) {
             return $user->nick_name ? $user->nick_name : $user->mobile;
         }
-        if ($user = $this->attributes['user_meta']) {
-           
-            return json_decode($user, true)['nick_name'];
-        }
+       
         return '';
     }
 }

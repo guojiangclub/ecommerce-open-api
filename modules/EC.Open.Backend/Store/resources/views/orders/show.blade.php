@@ -8,11 +8,7 @@
         <li class=""><a href="#tab_5" data-toggle="tab" aria-expanded="false">费用信息</a></li>
         <li class=""><a href="#tab_9" data-toggle="tab" aria-expanded="false">优惠信息</a></li>
         <li class=""><a href="#tab_10" data-toggle="tab" aria-expanded="false">积分信息</a></li>
-        <li class=""><a href="#tab_6" data-toggle="tab" aria-expanded="false">发票信息</a></li>
         <li class=""><a href="#tab_8" data-toggle="tab" aria-expanded="false">订单评论</a></li>
-
-        <li class=""><a href="#tab_11" data-toggle="tab" aria-expanded="false">售后状态</a></li>
-
         <li class=""><a href="#tab_7" data-toggle="tab" aria-expanded="false">用户留言</a></li>
     </ul>
     <div class="tab-content">
@@ -47,12 +43,6 @@
             </div>
         </div>
 
-        <div class="tab-pane" id="tab_6">
-            <div class="panel-body">
-                @include('store-backend::orders.includes.order_invoice')
-            </div>
-        </div>
-
         <div class="tab-pane" id="tab_7">
             <div class="panel-body">
                 <div class="ibox-content">
@@ -81,11 +71,6 @@
             </div>
         </div>
 
-        <div class="tab-pane" id="tab_11">
-            <div class="panel-body">
-                @include('store-backend::orders.includes.order_refund')
-            </div>
-        </div>
 
     </div>
 

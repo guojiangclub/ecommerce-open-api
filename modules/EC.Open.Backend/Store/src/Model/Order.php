@@ -32,7 +32,6 @@ class Order extends Model implements Transformable
     const STATUS_DELETED = 9;//已删除订单
 
     protected $guarded = ['id'];
-    protected $appends = ['groupon_status'];
 
     public function __construct(array $attributes = [])
     {
@@ -142,9 +141,6 @@ class Order extends Model implements Transformable
             case 1:
                 return '已发货';
                 break;
-            case 2:
-                return '部分发货';
-                break;
         }
 
         return '';
@@ -186,24 +182,15 @@ class Order extends Model implements Transformable
         return $value / 100;
     }
 
-    public function invoiceOrder()
-    {
-        return $this->hasOne('iBrand\EC\Open\Backend\Store\Model\Invoice', 'order_id');
-    }
 
     public function comments()
     {
-        return $this->hasMany('iBrand\EC\Open\Backend\Store\Model\OrderComment', 'order_id');
+        return $this->hasMany(OrderComment::class, 'order_id');
     }
-
-    public function refunds()
-    {
-        return $this->hasMany(Refund::class);
-    }
-
+    
     public function payment()
     {
-        return $this->hasOne('ElementVip\Component\Payment\Models\Payment', 'order_id');
+        return $this->hasOne(\iBrand\EC\Open\Backend\Store\Model\Payment::class, 'order_id');
     }
 
     public function adjustments()
@@ -229,25 +216,7 @@ class Order extends Model implements Transformable
     public function countItems()
     {
         return $this->items->count();
-    }
-
-    public function getRefundStatusAttribute()
-    {
-        $refund = $this->refunds;
-
-        if (count($refund) > 0) {
-            $filtered = $refund->filter(function ($value, $key) {
-                return $value->status <> 3;
-            });
-
-            if ($filtered->count() > 0) {
-                return $filtered->first()->StatusText;
-            }
-            return '已完成';
-        }
-
-        return '';
-    }
+    }    
 
     public function getOrderTypeAttribute()
     {
@@ -257,33 +226,6 @@ class Order extends Model implements Transformable
                 break;
             case 1:
                 return '折扣订单';
-                break;
-            case 2:
-                return '内购订单';
-                break;
-            case 3:
-                return '礼品订单';
-                break;
-            case 4:
-                return '套餐订单';
-                break;
-            case 5:
-                return '积分商城订单';
-                break;
-            case 6:
-                return 'O2O门店订单';
-                break;
-            case 7:
-                return '秒杀订单';
-                break;
-            case 8:
-                return '拼团订单';
-                break;
-            case 9:
-                return '积赞订单';
-                break;
-            case 10:
-                return '拼团订单';
                 break;
         }
 
@@ -337,9 +279,7 @@ class Order extends Model implements Transformable
             })->count();
         } else {
             return $model->where('status', $status)->whereHas('items', function ($query) use ($status) {
-                if ($status == 2) {
-                    $query->where('is_send', 0);
-                }
+              
             })->count();
         }
 

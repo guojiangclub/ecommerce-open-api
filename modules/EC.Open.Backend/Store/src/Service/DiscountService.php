@@ -3,17 +3,15 @@
 namespace iBrand\EC\Open\Backend\Store\Service;
 
 use Carbon\Carbon;
-use ElementVip\Component\Discount\Models\Discount;
-use ElementVip\Shop\Core\Models\O2oDiscountRelation;
+
 use iBrand\EC\Open\Backend\Store\Model\ElDiscount;
 use iBrand\EC\Open\Backend\Store\Model\ElDiscountAction;
 use iBrand\EC\Open\Backend\Store\Model\ElDiscountRule;
-use iBrand\EC\Open\Backend\Store\Model\SingleDiscount;
-use iBrand\EC\Open\Backend\Store\Model\SingleDiscountCondition;
+
 use iBrand\EC\Open\Backend\Store\Repositories\ProductRepository;
 use Excel;
 use iBrand\EC\Open\Backend\Store\Model\User;
-use iBrand\EC\Open\Backend\Store\Facades\ExcelExportsService;
+
 
 class DiscountService
 {
@@ -25,102 +23,6 @@ class DiscountService
         $this->productRepository = app(ProductRepository::class);
         $this->cache = cache();
     }
-
-    /**
-     * 处理单品折扣数据
-     *
-     * @param $data
-     *
-     * @return array
-     */
-    public function handleItemDiscountData($data)
-    {
-        if (!isset($data['_conditionValue'])) {
-            return [[], []];
-        }
-
-        $value = [];
-        $conditionArr = [];
-        $discountConditionType = [];
-        $conditionValue = $data['_conditionValue'];
-        $delSku = isset($data['delID']) ? $data['delID'] : '';
-        $delSkuArr = explode(',', ltrim($delSku, ','));  //删除的数据
-
-        foreach ($data as $key => $val) {
-            if (strpos($key, 'type_') !== false) {
-                $discountConditionType[$key] = $val;    //促销优惠方式数据
-            }
-        }
-
-        foreach ($discountConditionType as $key => $val) {
-            foreach ($val as $k => $item) {
-                if ($item) {
-                    $value[$k][$key] = $item;
-                }
-            }
-        }
-
-        foreach ($conditionValue as $key => $val) {
-            if (isset($value[$key]) AND $product = $this->productRepository->getProductBySku($val)) {
-                $conditionArr[$key]['name'] = $val;
-                $conditionArr[$key]['type'] = array_keys($value[$key])[0];
-                $conditionArr[$key]['price'] = current($value[$key]);
-                $conditionArr[$key]['value'] = $value[$key];
-                $conditionArr[$key]['goods_id'] = $product->goods_id;
-            }/*else{
-                 $conditionArr[$key]['value'] = 0;
-             }*/
-        }
-
-        return [$conditionArr, $delSkuArr];
-    }
-
-    /**
-     * 单品折扣创建
-     *
-     * @param $data
-     */
-    /* public function updatePriceByDiscount($condition)
-     {
-
-         foreach ($condition as $key => $val) {
-             $type = $val['value'];
-
-             $product = $this->productRepository->getProductBySku($val['name']);
-
-             if ($product) {
-                 switch (key($type)) {
-                     case 'type_cash':
-                         $price = $type['type_cash'];
-                         break;
-
-                     case 'type_discount';
-                         $price = $product->goods->market_price * ($type['type_discount']);
-                 }
-
-
-                 $this->productRepository->update(['sell_price' => $price], $product->id);
-             }
-
-         }
-
-     }
-    */
-
-    /**
-     * 删除sku折扣
-     *
-     * @param $delSku
-     */
-    /*public function delItemDiscountSku($delSku)
-    {
-        $product = $this->productRepository->findWhereIn('sku', $delSku);
-
-        foreach ($product as $key => $val) {
-            $val->sell_price = $val->goods->sell_price;
-            $val->save();
-        }
-    }*/
 
     /**获取搜索到的全部导Excel数据
      *
@@ -135,14 +37,8 @@ class DiscountService
         if (count($coupons) > 0) {
             $i = 0;
             foreach ($coupons as $coupon) {
-                /*foreach ($coupon->created_at as $value) {
-                    $date[$i][] = basename($value, "." . substr(strchr($value, '.'), 1));
-                }*/
-
                 $date[$i][] = $coupon->used_at;
-
-                $date[$i][] = Discount::find($coupon->discount_id)->title;
-//                foreach($coupon['relations'] as $item){
+                $date[$i][] = ElDiscount::find($coupon->discount_id)->title;
                 $date[$i][] = $coupon->code;
                 $date[$i][] = $coupon->order[0]->order_no;
                 $date[$i][] = $coupon->order[0]->total;
@@ -165,8 +61,6 @@ class DiscountService
                     $date[$i][] = "已取消";
                 }
                 $date[$i][] = User::find($coupon->user_id)->name;
-
-//                }
 
                 $date[$i][] = $coupon->note;
                 $i++;
@@ -216,7 +110,6 @@ class DiscountService
             foreach ($coupons as $coupon) {
 
                 $date[$i][] = $coupon->label;
-//                foreach($coupon['relations'] as $item){
                 $date[$i][] = $coupon->order->order_no;
                 $date[$i][] = $coupon->order->total;
 
@@ -241,9 +134,6 @@ class DiscountService
                 $userInfo = User::find($coupon->order->user_id);
 
                 $date[$i][] = isset($userInfo->name) ? $userInfo->name : '';
-
-//                }
-
                 foreach ($coupon->created_at as $value) {
                     $date[$i][] = basename($value, "." . substr(strchr($value, '.'), 1));
                 }
@@ -258,107 +148,9 @@ class DiscountService
         return $date;
     }
 
-    public function cacheSingleDiscount($discount_id)
-    {
-        $discount = SingleDiscount::find($discount_id);
-        $diffDiscount = SingleDiscount::where('id', '<>', $discount_id)
-            ->where('status', 1)
-            ->where('ends_at', '>', Carbon::now())
-            ->count();
+    
 
-        if ($discount->status == 1) {
-            SingleDiscount::where('id', '<>', $discount_id)
-                ->where('status', 1)
-                ->update(['status' => 0]);
-
-            $end = new Carbon($discount->ends_at);
-            $expressAt = $end->diffInMinutes(Carbon::now());
-            $data = $this->setCacheData($discount);
-
-            $this->cache->forget('singleDiscount');
-            $this->cache->put('singleDiscount', $data, $expressAt + 1);
-        } elseif ($diffDiscount == 0 AND $discount->status == 0) {
-            $this->cache->forget('singleDiscount');
-            $this->cache->forever('singleDiscount', []);
-        }
-    }
-
-    protected function setCacheData($discount)
-    {
-        $condition = collect();
-        $data = [];
-        if (count($singleCondition = SingleDiscountCondition::where('single_discount_id', $discount->id)->get()) > 0) {
-            /*foreach ($singleCondition as $key => $item) {
-                $condition->push(['sku'=>$item->name,'type'=>$item->type,'value'=>$item->price]);
-            }*/
-
-            $data = $discount;
-            $data['condition'] = $singleCondition;
-
-//            $data = $discount->toArray();
-//            $data['condition'] = $condition;
-        }
-
-        return $data;
-    }
-
-    /**
-     * 统计单品折扣信息
-     *
-     * @param $discount_id
-     *
-     * @return array
-     */
-    public function calculationDiscount($discount_id)
-    {
-        $discount = SingleDiscount::find($discount_id);
-
-        $filterSection = [
-            0 => [0, 1],
-            1 => [1, 2],
-            2 => [2, 3],
-            3 => [3, 4],
-            4 => [4, 5],
-            5 => [5, 11],
-        ];
-        $count = [];
-        foreach ($filterSection as $value) {
-            $filtered = $discount->hasManyCondition->filter(function ($item) use ($value) {
-                /*if (isset($item->value['type_discount'])) {
-                    return $item->value['type_discount'] >= $value[0] AND $item->value['type_discount'] < $value[1];
-                }
-
-                if (isset($item->value['type_cash']) AND $product = $this->productRepository->getProductBySku($item->name)) {
-
-                    if ($market = $product->market_price) {
-                        return (($item->value['type_cash'] / $market) * 10 >= $value[0] AND ($item->value['type_cash'] / $market) * 10 < $value[1]);
-                    } else {
-                        $market = $product->goods->market_price;
-                        return (($item->value['type_cash'] / $market) * 10 >= $value[0] AND ($item->value['type_cash'] / $market) * 10 < $value[1]);
-                    }
-
-                }*/
-                if ($item->type == 'type_discount') {
-                    return $item->price >= $value[0] AND $item->price < $value[1];
-                }
-
-                if ($item->type == 'type_cash' AND $product = $this->productRepository->getProductBySku($item->name)) {
-
-                    if ($market = $product->market_price > 0) {
-                        return (($item->price / $market) * 10 >= $value[0] AND ($item->price / $market) * 10 < $value[1]);
-                    } else {
-                        $market = $product->goods->market_price;
-
-                        return (($item->price / $market) * 10 >= $value[0] AND ($item->price / $market) * 10 < $value[1]);
-                    }
-                }
-            })->count();
-            $count[] = $filtered;
-        }
-
-        return $count;
-    }
-
+   
     /**
      * 过滤活动规则
      *
@@ -397,7 +189,6 @@ class DiscountService
         }
 
         if (count($data) == 0) {
-            //return ['status' => false, 'message' => '请至少设置一种规则'];
             return [];
         }
 

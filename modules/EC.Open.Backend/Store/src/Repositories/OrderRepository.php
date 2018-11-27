@@ -2,15 +2,13 @@
 
 namespace iBrand\EC\Open\Backend\Store\Repositories;
 
-use ElementVip\Component\Payment\Models\Payment;
-use ElementVip\Component\Point\Model\Point;
+use iBrand\Component\Point\Models\Point;
 use iBrand\EC\Open\Backend\Store\Model\OrderItem;
 use iBrand\EC\Open\Backend\Store\Model\Product;
 use Prettus\Repository\Eloquent\BaseRepository;
 use Prettus\Repository\Criteria\RequestCriteria;
 use iBrand\EC\Open\Backend\Store\Model\Order;
 use iBrand\EC\Open\Backend\Store\Exceptions\GeneralException;
-use ElementVip\Component\Discount\Models\Coupon;
 use iBrand\EC\Open\Backend\Store\Model\ShippingMethod;
 use DB;
 
@@ -379,7 +377,7 @@ class OrderRepository extends BaseRepository
             $data = $data->whereIn('id', $ids);
         }
 
-        $data = $data->with('payment', 'adjustments', 'user', 'refunds', 'grouponUser')->orderBy('created_at', 'desc');
+        $data = $data->with('payment', 'adjustments', 'user')->orderBy('created_at', 'desc');
 
 
         if ($limit == 0) {

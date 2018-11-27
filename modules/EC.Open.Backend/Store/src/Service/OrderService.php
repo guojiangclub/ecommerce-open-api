@@ -2,8 +2,10 @@
 
 namespace iBrand\EC\Open\Backend\Store\Service;
 
+use iBrand\Component\Point\Repository\PointRepository;
+use iBrand\EC\Open\Backend\Member\Models\User;
 use iBrand\EC\Open\Backend\Store\Model\Order;
-use iBrand\EC\Open\Backend\Store\Model\Refund;
+
 use iBrand\EC\Open\Backend\Store\Model\SpecialType;
 use iBrand\EC\Open\Backend\Store\Repositories\OrderRepository;
 use Excel;
@@ -11,11 +13,9 @@ use iBrand\EC\Open\Backend\Store\Facades\ExcelExportsService;
 use iBrand\EC\Open\Backend\Store\Repositories\GoodsRepository;
 use iBrand\EC\Open\Backend\Store\Repositories\ProductRepository;
 use iBrand\EC\Open\Backend\Store\Repositories\BrandRepository;
-use iBrand\EC\Open\Backend\Store\Model\User;
 use iBrand\EC\Open\Backend\Store\Model\Product;
 use iBrand\EC\Open\Backend\Store\Model\Goods;
-use Maatwebsite\Excel\Classes\PHPExcel;
-use ElementVip\Component\Point\Repository\PointRepository;
+
 
 class OrderService
 {
@@ -61,8 +61,7 @@ class OrderService
                         $goods_name = isset($value->item_name) ? $value->item_name : '';
                         $goods_value = isset($item_meta->spec_text) ? $item_meta->spec_text : '';
                         $product = Product::find($value->item_id);
-//                        if ($product && count($product)>0)
-//                        {
+
                         $sku = isset($product->sku) ? $product->sku : '';
                         if (isset($product->goods_id)) {
                             $goods = Goods::find($product->goods_id);
@@ -92,7 +91,7 @@ class OrderService
                         $data[$i][] = $value->unit_price;
                         $data[$i][] = $value->quantity;
                         $data[$i][] = $value->total;
-//                        $date[$i][]=$goodsInfo;
+
                         $labels = '';
                         $discount = 0;
                         $point_discount = 0;
@@ -208,15 +207,7 @@ class OrderService
 
                         $data[$i][] = $item->order_no;
                         $data[$i][] = $goods_brand_name;
-                        $data[$i][] = $value->supplier ? $value->supplier->name : '';
 
-
-                        $specialType = SpecialType::where('order_id', $item->id)->where('origin_type', 'suit')->first();
-                        if ($specialType AND $suit = $specialType->suit) {
-                            $data[$i][] = $item->order_type . '(' . $suit->title . ')';
-                        } else {
-                            $data[$i][] = $item->order_type;
-                        }
 
                         $data[$i][] = $user ? ($user->name ? $user->name : $user->mobile) : '';
                         $data[$i][] = $item->accept_name;
@@ -275,9 +266,7 @@ class OrderService
                         $data[$i][] = isset($item->PayTypeText) ? $item->PayTypeText : '';
                         $data[$i][] = isset($item->channel_no) ? $item->channel_no : '';
 
-                        if ($value->is_send == 1) {
-                            $data[$i][] = '已发货';
-                        } elseif ($item->distribution_status == 1 AND $value->is_send == 0) {
+                        if ($item->distribution_status == 1) {
                             $data[$i][] = '已发货';
                         } else {
                             $data[$i][] = '未发货';
@@ -285,9 +274,8 @@ class OrderService
 
                         $data[$i][] = $item->total;
 
-                        $data[$i][] = $item->created_at;
+                        $data[$i][] = $item->submit_time;
                         $data[$i][] = $item->pay_time;
-                        $data[$i][] = $this->getRefundStatus($value->id);
                         $data[$i][] = $item->note;
 
                         $i++;
@@ -297,59 +285,5 @@ class OrderService
         }
 
         return $data;
-    }
-
-    protected function getRefundStatus($id)
-    {
-        $status = '';
-        $refund = Refund::where('order_item_id', $id)->get();
-        if (count($refund) > 0) {
-            foreach ($refund as $item) {
-                $status = $status . $item->status_text . '，';
-            }
-        }
-        return $status;
-    }
-
-    /**
-     * 判断订单售后状态
-     *
-     * @param Order $order
-     *
-     * @return bool
-     */
-    public function checkOrderRefund(Order $order)
-    {
-        $refunds = $order->refunds;
-        if (count($refunds) > 0) {
-            $filtered = $refunds->filter(function ($item) {
-                return $item->status == 2 OR $item->status == 4 OR $item->status == 3;
-            });
-            if (count($filtered) == count($refunds)) {
-                return true;
-            }
-
-            return false;
-        }
-
-        return true;
-    }
-
-    /**
-     * 检测当前订单是否有item属于当前登录商家
-     *
-     * @param Order $order
-     *
-     * @return bool
-     */
-    public function checkOrderDeliver(Order $order)
-    {
-        $items = $order->items()->where('is_send', 0)->get()->toArray();
-        $supplierIds = array_column($items, 'supplier_id');
-        if (array_intersect(session('admin_supplier_id'), $supplierIds)) {
-            return true;
-        }
-
-        return false;
     }
 }

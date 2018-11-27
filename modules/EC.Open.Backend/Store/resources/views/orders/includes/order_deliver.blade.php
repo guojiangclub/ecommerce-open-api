@@ -59,49 +59,6 @@
     </button>
 
     <script>
-        $(function () {
-            var status = '{{$status}}';
-	        var is_deliver_enable = '{{$is_deliver_enable}}';
-	        if (!is_deliver_enable) {
-		        swal({
-				        title: "警告！",
-				        text: "该订单属于其他供应商，无法发货！",
-				        type: "warning",
-				        confirmButtonColor: "#DD6B55",
-				        confirmButtonText: "确定",
-				        closeOnConfirm: true
-			        },
-			        function () {
-				        swal.close();
-				        $('#modal').modal('hide');
-			        });
-		        return;
-	        }
-
-            if (!status) {
-                swal({
-                            title: "警告！",
-                            text: "该订单有未完成的售后，确认操作发货吗?",
-                            type: "warning",
-                            showCancelButton: true,
-                            confirmButtonColor: "#DD6B55",
-                            confirmButtonText: "确定",
-                            cancelButtonText: "取消",
-                            closeOnConfirm: false,
-                            closeOnCancel: false
-                        },
-                        function (isConfirm) {
-                            if (isConfirm) {
-                                swal.close();
-                            } else {
-                                swal.close();
-                                $('#modal').modal('hide');
-                            }
-
-                        });
-            }
-        });
-
         $('.form_datetime').datetimepicker({
             language: 'zh-CN',
             weekStart: 1,
