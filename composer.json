@@ -1,7 +1,7 @@
 {
-    "name": "laravel/laravel",
-    "description": "The Laravel Framework.",
-    "keywords": ["framework", "laravel"],
+    "name": "ibrand/open-ecommerce",
+    "description": "iBrand's ecommerce is an laravel open source project, This is an easy-to-use e-commerce solution.",
+    "keywords": ["ibrand", "ecommerce","laravel","vue","miniprogram"],
     "license": "MIT",
     "type": "project",
     "require": {
