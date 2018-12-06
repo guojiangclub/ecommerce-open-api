@@ -6,7 +6,7 @@ iBrand EC 是一个免费的开源电子商务解决方案，使用 PHP 基于 L
 
 管理后台：[iBrand e-commerce admin]( https://demo-open-admin.ibrand.cc/admin)
 
-后台账号密码请关注公众号 [iBrand社交新零售](https://iyoyo.oss-cn-hangzhou.aliyuncs.com/post/wechat.jpg)  (微信号：ibrand_cc) 获取。
+后台账号密码请关注公众号 [iBrand社交新零售](https://iyoyo.oss-cn-hangzhou.aliyuncs.com/post/wechat.jpg)  (微信号：ibrand_cc) ，并回复关键词：password 获取。
 
 扫码体验小程序：
 
