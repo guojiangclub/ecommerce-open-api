@@ -16,6 +16,14 @@ iBrand EC 是一个免费的开源电子商务解决方案，使用 PHP 基于 L
 
 目前 2.x 版本正在更新中，更新日志请见此[文档](./CHANGELOG.md)
 
+## 功能清单
+
+[开源版本功能清单](https://iyoyo.oss-cn-hangzhou.aliyuncs.com/post/iBrand%20%E5%BC%80%E6%BA%90%E7%94%B5%E5%95%86.png)
+
+## 小程序
+
+小程序端源码在此：[miniprogram-open-source](https://github.com/ibrandcc/miniprogram-ecommerce-open-source)
+
 ## 文档
 
 - [API 文档](https://www.ibrand.cc/docs/api/)
@@ -37,3 +45,7 @@ iBrand EC 是一个免费的开源电子商务解决方案，使用 PHP 基于 L
 该项目正在持续迭代更新中，如果你想参与到本项目中来，请提交 Pull Request !
 
 如果你发现任何错误或者问题，请提交到[官方社区](https://www.ibrand.cc/open/discuss)或者[提交ISSUE](https://github.com/ibrandcc/ecommerce-open-api/issues)
+
+## 讨论交流
+
+![iBrand联系我们](https://iyoyo.oss-cn-hangzhou.aliyuncs.com/post/%E4%BA%8C%E7%BB%B4%E7%A0%81.jpg)
