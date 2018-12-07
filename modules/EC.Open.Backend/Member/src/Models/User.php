@@ -33,10 +33,15 @@ class User extends \iBrand\Component\User\Models\User
 
     public function getActionButtonsAttribute()
     {
-        return $this->getEditButtonAttribute().
-        $this->getChangePasswordButtonAttribute().' '.
-        $this->getStatusButtonAttribute().
-        $this->getDeleteButtonAttribute();
+        return $this->getEditButtonAttribute() .
+            $this->getChangePasswordButtonAttribute() . ' ' .
+            $this->getStatusButtonAttribute() .
+            $this->getDeleteButtonAttribute();
+    }
+
+    public function getMobileAttribute($value)
+    {
+        return substr_replace($value, '****', 3, 5);
     }
 
     /**
@@ -44,7 +49,7 @@ class User extends \iBrand\Component\User\Models\User
      */
     public function getEditButtonAttribute()
     {
-        return '<a href="'.route('admin.users.edit', ['id' => $this->id, 'redirect_url' => urlencode(\Request::getRequestUri())]).'" class="btn btn-xs btn-primary"><i class="fa fa-pencil" data-toggle="tooltip" data-placement="top" title="'.'编辑'.'"></i></a> ';
+        return '<a href="' . route('admin.users.edit', ['id' => $this->id, 'redirect_url' => urlencode(\Request::getRequestUri())]) . '" class="btn btn-xs btn-primary"><i class="fa fa-pencil" data-toggle="tooltip" data-placement="top" title="' . '编辑' . '"></i></a> ';
     }
 
     /**
@@ -52,7 +57,7 @@ class User extends \iBrand\Component\User\Models\User
      */
     public function getChangePasswordButtonAttribute()
     {
-        return '<a href="'.route('admin.user.change-password', $this->id).'" class="btn btn-xs btn-info"><i class="fa fa-refresh" data-toggle="tooltip" data-placement="top" title="'.'设置密码'.'"></i></a>';
+        return '<a href="' . route('admin.user.change-password', $this->id) . '" class="btn btn-xs btn-info"><i class="fa fa-refresh" data-toggle="tooltip" data-placement="top" title="' . '设置密码' . '"></i></a>';
 
     }
 
@@ -64,17 +69,17 @@ class User extends \iBrand\Component\User\Models\User
 
         switch ($this->status) {
             case 0:
-                return '<a href="'.route('admin.user.mark', [$this->id, 1]).'" class="btn btn-xs btn-success"><i class="fa fa-play" data-toggle="tooltip" data-placement="top" title="'.'启用'.'"></i></a> ';
+                return '<a href="' . route('admin.user.mark', [$this->id, 1]) . '" class="btn btn-xs btn-success"><i class="fa fa-play" data-toggle="tooltip" data-placement="top" title="' . '启用' . '"></i></a> ';
                 break;
 
             case 1:
                 $buttons = '';
-                $buttons .= '<a href="'.route('admin.user.mark', [$this->id, 2]).'" class="btn btn-xs btn-danger"><i class="fa fa-times" data-toggle="tooltip" data-placement="top" title="'.'禁用'.'"></i></a> ';
+                $buttons .= '<a href="' . route('admin.user.mark', [$this->id, 2]) . '" class="btn btn-xs btn-danger"><i class="fa fa-times" data-toggle="tooltip" data-placement="top" title="' . '禁用' . '"></i></a> ';
 
                 return $buttons;
                 break;
             case 2:
-                return '<a href="'.route('admin.user.mark', [$this->id, 1]).'" class="btn btn-xs btn-success"><i class="fa fa-play" data-toggle="tooltip" data-placement="top" title="'.'激活'.'"></i></a> ';
+                return '<a href="' . route('admin.user.mark', [$this->id, 1]) . '" class="btn btn-xs btn-success"><i class="fa fa-play" data-toggle="tooltip" data-placement="top" title="' . '激活' . '"></i></a> ';
                 break;
             default:
                 return '';
@@ -86,7 +91,7 @@ class User extends \iBrand\Component\User\Models\User
     {
         if (!$this->confirmed) {
 
-            return '<a href="'.route('admin.account.confirm.resend', $this->id).'" class="btn btn-xs btn-success"><i class="fa fa-refresh" data-toggle="tooltip" data-placement="top" title="重新发送激活邮件"></i></a> ';
+            return '<a href="' . route('admin.account.confirm.resend', $this->id) . '" class="btn btn-xs btn-success"><i class="fa fa-refresh" data-toggle="tooltip" data-placement="top" title="重新发送激活邮件"></i></a> ';
         }
 
     }
@@ -105,7 +110,7 @@ class User extends \iBrand\Component\User\Models\User
 
     public function bind()
     {
-        return $this->hasOne(UserBind::class,'user_id','id')->withDefault();
+        return $this->hasOne(UserBind::class, 'user_id', 'id')->withDefault();
     }
 
     public function hasManyOrders()

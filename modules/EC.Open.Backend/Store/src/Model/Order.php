@@ -284,4 +284,9 @@ class Order extends Model implements Transformable
         }
 
     }
+
+    public function getMobileAttribute($value)
+    {
+        return substr_replace($value, '****', 3, 5);
+    }
 }
