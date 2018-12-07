@@ -2,7 +2,7 @@
 
 
 namespace iBrand\EC\Open\Backend\Store\Model\Relations;
-use iBrand\Component\User\Models\User;
+use iBrand\EC\Open\Backend\Member\Models\User;
 
 /**
  * This is the has many pages trait.
