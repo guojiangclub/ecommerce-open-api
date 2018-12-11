@@ -5,8 +5,6 @@ namespace iBrand\EC\Open\Backend\Store\Http\Controllers\Promotion;
 use Carbon\Carbon;
 use iBrand\Backend\Http\Controllers\Controller;
 use iBrand\EC\Open\Backend\Store\Model\ElDiscount;
-use iBrand\EC\Open\Backend\Store\Model\ElDiscountAction;
-use iBrand\EC\Open\Backend\Store\Model\ElDiscountRule;
 use iBrand\EC\Open\Backend\Store\Repositories\DiscountRepository;
 use Illuminate\Http\Request;
 use iBrand\EC\Open\Backend\Store\Repositories\CategoryRepository;

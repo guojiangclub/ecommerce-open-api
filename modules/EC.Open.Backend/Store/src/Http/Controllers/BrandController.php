@@ -76,16 +76,11 @@ class BrandController extends Controller
 
         if (request('id')) {
             $this->brandRepository->update($input, request('id'));
-            $id = request('id');
         } else {
-            $band = $this->brandRepository->create($input);
-            $id = $band->id;
+            $this->brandRepository->create($input);
         }
 
-        return response()->json(['status' => true
-            , 'error_code' => 0
-            , 'error' => ''
-            , 'data' => $id]);
+        return $this->ajaxJson();
     }
 
 

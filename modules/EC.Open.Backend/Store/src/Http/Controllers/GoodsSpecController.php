@@ -7,7 +7,6 @@ use iBrand\EC\Open\Backend\Store\Model\Spec;
 use iBrand\EC\Open\Backend\Store\Model\SpecsValue;
 use iBrand\Backend\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-
 use DB;
 use Validator;
 use Encore\Admin\Facades\Admin as LaravelAdmin;
@@ -77,10 +76,7 @@ class GoodsSpecController extends Controller
         } else {
             $spec = Spec::create($input);
         }
-        return response()->json(['status' => true
-            , 'error_code' => 0
-            , 'error' => ''
-            , 'data' => $spec->id]);
+        return $this->ajaxJson();
     }
 
 
@@ -106,8 +102,6 @@ class GoodsSpecController extends Controller
 
             $content->body(view('store-backend::specs.edit', compact('spec')));
         });
-
-//        return view('store-backend::specs.edit', compact('spec'));
     }
 
 
@@ -166,8 +160,6 @@ class GoodsSpecController extends Controller
 
             $content->body(view('store-backend::specs.value.edit', compact('spec','color')));
         });
-
-//        return view('store-backend::specs.value.edit', compact('spec', 'color'));
     }
 
     public function getSpeValueData()

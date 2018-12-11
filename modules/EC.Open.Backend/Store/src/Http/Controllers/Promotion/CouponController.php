@@ -4,7 +4,6 @@ namespace iBrand\EC\Open\Backend\Store\Http\Controllers\Promotion;
 use Carbon\Carbon;
 use iBrand\Backend\Http\Controllers\Controller;
 use iBrand\EC\Open\Backend\Store\Model\ElDiscount;
-use iBrand\EC\Open\Backend\Store\Model\User;
 use iBrand\EC\Open\Backend\Store\Repositories\DiscountRepository;
 use Illuminate\Http\Request;
 use iBrand\EC\Open\Backend\Store\Repositories\CategoryRepository;
@@ -338,102 +337,7 @@ class CouponController extends Controller
 
         return [$time, $where];
     }
-
-
-    /**
-     * 发送优惠券页面
-     * @return mixed
-     */
-    public function sendCoupon()
-    {
-        $id = request('id');
-        $coupon = $this->discountRepository->find($id);
-
-        return view('store-backend::promotion.coupon.send', compact('coupon', 'id'));
-    }
-
-    /**
-     * 筛选用户
-     * */
-    public function filterUser()
-    {
-        return view('store-backend::promotion.coupon.includes.send_user');
-    }
-
-    /**
-     * 搜索用户
-     * @param Request $request
-     * @return mixed
-     */
-    public function getUsers(Request $request)
-    {
-        $ids = explode(',', $request->input('ids'));
-        if (!empty(request('value'))) {
-            $user = User::where('name', 'like', '%' . request('value') . '%')
-                ->orWhere('mobile', 'like', '%' . request('value') . '%')
-                ->orWhere('nick_name', 'like', '%' . request('value') . '%')
-                ->paginate(15)->toArray();
-        } else {
-            $user = User::paginate(15)->toArray();
-        }
-        $user['ids'] = $ids;
-        return $this->ajaxJson(true, $user);
-    }
-
-    /**
-     * 获取已选择的用户
-     * @param Request $request
-     * @return mixed
-     */
-    public function getSelectedUsersByID(Request $request)
-    {
-        $ids = explode(',', $request->input('ids'));
-        $user = User::whereIn('id', $ids)->get();
-        return $this->ajaxJson(true, $user);
-    }
-
-
-    /**
-     * 给用户发送优惠券
-     */
-    public function sendAction()
-    {
-        $user_ids = explode(',', request('user_ids'));
-        $discount_id = request('discount_id');
-        $discount = ElDiscount::find($discount_id);
-
-        if ($discount->status == 0 OR ($discount->status == 1 AND ($discount->ends_at < Carbon::now() OR $discount->starts_at > Carbon::now()))) {
-            return $this->ajaxJson(false, [], 404, '无效的优惠券');
-        }
-
-        if (!request('user_ids')) {
-            return $this->ajaxJson(false, [], 404, '未选择任何用户');
-        }
-
-        if ($discount->usage_limit < count($user_ids)) {
-            return $this->ajaxJson(false, [], 404, '该优惠券剩余发行量小于发送的用户总数');
-        }
-
-        try {
-            DB::beginTransaction();
-            foreach ($user_ids as $item) {
-                if (!$this->couponRepository->userGetCoupons($item, $discount_id)) {
-                    return $this->ajaxJson(false, [], 404, '发送失败');
-                }
-            }
-            DB::commit();
-
-            return $this->ajaxJson(true, ['count' => count($user_ids)], 0, '');
-
-        } catch (\Exception $exception) {
-            DB::rollBack();
-            \Log::info($exception);
-            return $this->ajaxJson(false, [], 404, '发送失败');
-        }
-
-
-    }
-
+    
     
     /**
      * 导出使用记录

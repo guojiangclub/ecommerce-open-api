@@ -109,14 +109,6 @@ $router->group(['prefix' => 'admin/store'], function () use ($router) {
     $router->post('category/delete', 'CategoryController@destroy')->name('admin.category.delete');
 
     $router->get('category/category_sort', 'CategoryController@category_sort')->name('admin.category.category_sort');
-
-    $router->get('/limit', 'GoodsPurchaseController@index')->name('admin.store.goods.limit');
-    $router->get("/limit/sync", "GoodsPurchaseController@syncGoods")->name('admin.store.goods.limit.syncGoods');
-    $router->get("/limit/editGoods", "GoodsPurchaseController@editGoods")->name('admin.store.goods.limit.editGoods');
-    $router->post("/limit/saveGoods", "GoodsPurchaseController@saveGoods")->name('admin.store.goods.limit.saveGoods');
-    $router->post("/limit/postSyncGoods", "GoodsPurchaseController@postSyncGoods")->name('admin.store.goods.limit.postSyncGoods');
-    $router->get("/limit/editBatchGoods", "GoodsPurchaseController@editBatchGoods")->name('admin.store.goods.limit.editBatchGoods');
-    $router->post("/limit/saveBatchGoods", "GoodsPurchaseController@saveBatchGoods")->name('admin.store.goods.limit.saveBatchGoods');
 });
 
 //促销
@@ -141,13 +133,7 @@ $router->group(['prefix' => 'admin/store/promotion'], function () use ($router) 
         $router->get('useRecord', 'CouponController@useRecord')->name('admin.promotion.coupon.useRecord');
 
         $router->get('show', 'CouponController@showCoupons')->name('admin.promotion.coupon.show');
-
-        $router->get('sendCoupon', 'CouponController@sendCoupon')->name('admin.promotion.coupon.sendCoupon');
-        $router->get('filterUser', 'CouponController@filterUser')->name('admin.promotion.coupon.sendCoupon.filterUser');
-        $router->post('getUsers', 'CouponController@getUsers')->name('admin.promotion.coupon.getUsers');
-        $router->post('getSelectedUsersByID', 'CouponController@getSelectedUsersByID')->name('admin.promotion.coupon.getSelectedUsersByID');
-        $router->post('sendAction', 'CouponController@sendAction')->name('admin.promotion.coupon.sendAction');
-
+       
         $router->get('couponCode', 'CouponController@couponCode')->name('admin.promotion.coupon.couponCode');
         $router->post('createCouponCode', 'CouponController@createCouponCode')->name('admin.promotion.coupon.createCouponCode');
         $router->get('getExportData', 'CouponController@getExportData')->name('admin.promotion.coupon.getExportData');

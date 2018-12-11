@@ -4,7 +4,6 @@ namespace iBrand\EC\Open\Backend\Store\Http\Controllers;
 
 use iBrand\EC\Open\Backend\Store\Model\ShippingMethod;
 use Illuminate\Http\Request;
-
 use iBrand\Backend\Http\Controllers\Controller;
 use Encore\Admin\Facades\Admin as LaravelAdmin;
 use Encore\Admin\Layout\Content;
@@ -19,7 +18,6 @@ class ShippingMethodController extends Controller
      */
     public function company()
     {
-
         $company_list = ShippingMethod::all();
 
         return LaravelAdmin::content(function (Content $content) use ($company_list) {
@@ -94,13 +92,9 @@ class ShippingMethodController extends Controller
             if (ShippingMethod::where('code', $input['code'])->orWhere('name', $input['name'])->first()) {
                 return $this->ajaxJson(false, [], 404, '该物流信息已存在');
             }
-            $company = ShippingMethod::create($input);
+            ShippingMethod::create($input);
         }
-        return response()->json([
-            'status' => true
-            , 'error_code' => 0
-            , 'error' => ''
-            , 'data' => $company->id]);
+        return $this->ajaxJson();
 
     }
 
@@ -111,11 +105,10 @@ class ShippingMethodController extends Controller
      */
     public function deletedCompany($id)
     {
-        if(ShippingMethod::destroy($id)){
+        if (ShippingMethod::destroy($id)) {
             return $this->ajaxJson(true);
         }
         return $this->ajaxJson(false);
-
     }
 
 

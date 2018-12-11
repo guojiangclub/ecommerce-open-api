@@ -62,20 +62,14 @@ class CategoryController extends Controller
     {
         $input = $request->except('_token');
         if (!$input['name']) {
-            return response()->json(['status' => false
-                , 'error_code' => 0
-                , 'error' => '请填写分类名称'
-                , 'data' => []]);
+            return $this->ajaxJson(false, [], 500, '请填写分类名称');
         }
 
         $category = $this->categoryRepository->create($input);
 
         $this->categoryRepository->setCategoryLevel($category->id, $input['parent_id']);
 
-        return response()->json(['status' => true
-            , 'error_code' => 0
-            , 'error' => ''
-            , 'data' => $category]);
+        return $this->ajaxJson();
     }
 
     public function edit($id)
@@ -104,20 +98,14 @@ class CategoryController extends Controller
     {
         $input = $request->except('_token');
         if (!$input['name']) {
-            return response()->json(['status' => false
-                , 'error_code' => 0
-                , 'error' => '请填写分类名称'
-                , 'data' => []]);
+            return $this->ajaxJson(false, [], 500, '请填写分类名称');
         }
         $category = $this->categoryRepository->update($input, $id);
 
         $this->categoryRepository->setCategoryLevel($category->id, $input['parent_id']);
         $this->categoryRepository->setSonCategoryLevel($category->id);
 
-        return response()->json(['status' => true
-            , 'error_code' => 0
-            , 'error' => ''
-            , 'data' => $category]);
+        return $this->ajaxJson();
     }
 
     public function check()
@@ -130,10 +118,7 @@ class CategoryController extends Controller
         if ($goods->first()) {
             $status = false;
         }
-
-        return response()->json(['status' => $status
-            , 'error_code' => 0
-            , 'error' => '']);
+        return $this->ajaxJson($status);
     }
 
     public function destroy()
@@ -143,10 +128,7 @@ class CategoryController extends Controller
         if ($this->categoryRepository->delCategory($id)) {
             $status = true;
         }
-
-        return response()->json(['status' => $status
-            , 'error_code' => 0
-            , 'error' => '']);
+        return $this->ajaxJson($status);
     }
 
     public function category_sort(Request $request)
@@ -154,13 +136,7 @@ class CategoryController extends Controller
         $input = $request->except('_token');
         $id = $request->input('id');
         $this->categoryRepository->update($input, $id);
-
-        return response()->json([
-            'error' => '',
-            'status' => true,
-            'data' => '1',
-            'error_code' => 0,
-        ]);
+        return $this->ajaxJson();
     }
 
 }

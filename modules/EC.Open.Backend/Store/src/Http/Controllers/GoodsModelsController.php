@@ -2,7 +2,6 @@
 
 namespace iBrand\EC\Open\Backend\Store\Http\Controllers;
 
-
 use iBrand\EC\Open\Backend\Store\Model\AttributeValue;
 use iBrand\EC\Open\Backend\Store\Model\Goods;
 use iBrand\EC\Open\Backend\Store\Model\GoodsAttr;
@@ -15,7 +14,6 @@ use iBrand\EC\Open\Backend\Store\Model\Attribute;
 use iBrand\EC\Open\Backend\Store\Repositories\ModelsRepository;
 use iBrand\EC\Open\Backend\Store\Repositories\SpecRepository;
 use iBrand\EC\Open\Backend\Store\Repositories\AttributeRepository;
-//use Illuminate\Support\Facades\DB;
 use DB;
 use Encore\Admin\Facades\Admin as LaravelAdmin;
 use Encore\Admin\Layout\Content;
@@ -102,10 +100,10 @@ class GoodsModelsController extends Controller
         $attrIds = isset($input['attr_ids']) ? $input['attr_ids'] : [];
 
         $base = ['name' => $input['name'], 'spec_ids' => $specIds];
-        if(!$specIds){
+        if (!$specIds) {
             unset($base['spec_ids']);
         }
-      
+
         try {
             DB::beginTransaction();
 
@@ -256,9 +254,12 @@ class GoodsModelsController extends Controller
      */
     public function checkSpec($id, $model_id)
     {
-        $result = DB::table('el_goods')
-            ->join('el_goods_spec_relation', 'el_goods.id', '=', 'el_goods_spec_relation.goods_id')
-            ->where(['el_goods.model_id' => $model_id, 'el_goods_spec_relation.spec_id' => $id])
+        $goodsTable = config('ibrand.app.database.prefix', 'ibrand_') . 'goods';
+        $goodsSpecRelationTable = config('ibrand.app.database.prefix', 'ibrand_') . 'goods_spec_relation';
+
+        $result = DB::table($goodsTable)
+            ->join($goodsSpecRelationTable, $goodsTable . '.id', '=', $goodsSpecRelationTable . '.goods_id')
+            ->where([$goodsTable . '.model_id' => $model_id, $goodsSpecRelationTable . '.spec_id' => $id])
             ->get();
 
         if (count($result)) {
