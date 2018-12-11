@@ -58,8 +58,6 @@ class BackendServiceProvider extends ServiceProvider
                 __DIR__ . '/../../resources/assets/template' => public_path('assets/template'),
                 __DIR__ . '/../../resources/assets/libs/sweetalert' => public_path('vendor/laravel-admin/sweetalert'),
             ], 'store-backend-assets');
-
-            $this->registerMigrations();
         }
 
         $this->commands([
@@ -67,8 +65,6 @@ class BackendServiceProvider extends ServiceProvider
             SpecCommand::class,
             SetDefaultValueCommand::class
         ]);
-
-        $this->registerMenu();
 
         Product::observe(ProductObserver::class);
 
@@ -116,30 +112,9 @@ class BackendServiceProvider extends ServiceProvider
         });
     }
 
-    private function registerMenu()
-    {
-        Menu::make('topMenu', function ($menu) {
-
-            $menu->add('<i class="iconfont icon-shangchengguanli-"></i>
-                            <span>商城管理</span>', ['url' => 'admin/store', 'secure' => env('SECURE')])
-                ->active('admin/store/*')
-                ->active('admin/image/*')
-                ->active('admin/promotion/*')
-                ->active('admin/order/*')
-                ->active('admin/refund/*')
-                ->active('admin/comments/*')
-                ->active('admin/shippingmethod/*');
-        });
-    }
-
     public function provides()
     {
         return ['GoodsService', 'OrderService', 'ExcelExportsService', 'DiscountService', 'RefundService', 'RegistrationsService'];
-    }
-
-    protected function registerMigrations()
-    {
-        return $this->loadMigrationsFrom(__DIR__ . '/../../migrations');
     }
 
     private function mergeUeditorConfig()
