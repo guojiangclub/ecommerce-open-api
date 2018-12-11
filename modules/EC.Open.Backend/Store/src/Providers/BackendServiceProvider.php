@@ -39,8 +39,7 @@ class BackendServiceProvider extends ServiceProvider
     {
         //publish a config file
         $this->publishes([
-            __DIR__ . '/../config.php' => config_path('store.php'),
-            __DIR__ . '/../dmp.php' => config_path('dmp.php')
+            __DIR__ . '/../config.php' => config_path('ibrand/store.php'),
         ]);
 
         if (!$this->app->routesAreCached()) {
@@ -73,6 +72,11 @@ class BackendServiceProvider extends ServiceProvider
 
     public function register()
     {
+
+        $this->mergeConfigFrom(
+            __DIR__ . '/../config.php', 'ibrand.store'
+        );
+
 
         $this->app->register(\iBrand\EC\Open\Backend\Member\Providers\BackendServiceProvider::class);
         $this->app->register(UEditorServiceProvider::class);

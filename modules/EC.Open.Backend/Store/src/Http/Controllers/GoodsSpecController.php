@@ -152,7 +152,7 @@ class GoodsSpecController extends Controller
     public function specValue($id)
     {
         $spec = Spec::find($id);
-        $color = config('store.color');
+        $color = config('ibrand.store.color');
 
         return LaravelAdmin::content(function (Content $content) use ($spec,$color) {
 
@@ -234,7 +234,7 @@ class GoodsSpecController extends Controller
     public function editSpecValue()
     {
         $specValue = SpecsValue::find(request('id'));
-        $color = config('store.color');
+        $color = config('ibrand.store.color');
         return view('store-backend::specs.value.edit_value', compact('specValue', 'color'));
     }
 
@@ -284,7 +284,7 @@ class GoodsSpecController extends Controller
 
     public function addSpecValue($spec_id)
     {
-        $color = config('store.color');
+        $color = config('ibrand.store.color');
         return view('store-backend::specs.value.add_value', compact('spec_id', 'color'));
     }
 }
