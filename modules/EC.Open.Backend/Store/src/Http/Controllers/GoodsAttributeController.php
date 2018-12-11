@@ -192,7 +192,7 @@ class GoodsAttributeController extends Controller
     public function specValue($id)
     {
         $spec = Spec::find($id);
-        $color = config('store.color');
+        $color = config('ibrand.store.color');
         return view('store-backend::specs.value.edit', compact('spec', 'color'));
     }
 
