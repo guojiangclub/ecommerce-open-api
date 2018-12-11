@@ -1,10 +1,10 @@
 {
     "_readme": [
         "This file locks the dependencies of your project to a known state",
-        "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
+        "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "ad6fbf1e3bbc7cc0f3d4eb4490b5abd8",
+    "content-hash": "b5062b2e85aeb71dfa129a1a7f128318",
     "packages": [
         {
             "name": "anam/phantomjs-linux-x86-binary",
@@ -1068,23 +1068,17 @@
         },
         {
             "name": "encore/laravel-admin",
-            "version": "v1.6.7",
+            "version": "dev-ibrand",
             "source": {
                 "type": "git",
-                "url": "https://github.com/z-song/laravel-admin.git",
-                "reference": "2c7de6c1d8e3aad3c300a1ba3e8fa0f82403845d"
+                "url": "https://github.com/ibrandcc/laravel-admin.git",
+                "reference": "1dbd9a8ce0a7173fd999fe1854bef10b5f59076e"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/z-song/laravel-admin/zipball/2c7de6c1d8e3aad3c300a1ba3e8fa0f82403845d",
-                "reference": "2c7de6c1d8e3aad3c300a1ba3e8fa0f82403845d",
-                "shasum": "",
-                "mirrors": [
-                    {
-                        "url": "https://dl.laravel-china.org/%package%/%reference%.%type%",
-                        "preferred": true
-                    }
-                ]
+                "url": "https://api.github.com/repos/ibrandcc/laravel-admin/zipball/1dbd9a8ce0a7173fd999fe1854bef10b5f59076e",
+                "reference": "1dbd9a8ce0a7173fd999fe1854bef10b5f59076e",
+                "shasum": ""
             },
             "require": {
                 "doctrine/dbal": "2.*",
@@ -1123,7 +1117,20 @@
                     "src/helpers.php"
                 ]
             },
-            "notification-url": "https://packagist.org/downloads/",
+            "autoload-dev": {
+                "psr-4": {
+                    "Tests\\Models\\": "tests/models",
+                    "Tests\\Controllers\\": "tests/controllers"
+                },
+                "classmap": [
+                    "tests/TestCase.php"
+                ]
+            },
+            "scripts": {
+                "test": [
+                    "./vendor/bin/phpunit"
+                ]
+            },
             "license": [
                 "MIT"
             ],
@@ -1141,7 +1148,10 @@
                 "grid",
                 "laravel"
             ],
-            "time": "2018-11-01T02:13:08+00:00"
+            "support": {
+                "source": "https://github.com/ibrandcc/laravel-admin/tree/ibrand"
+            },
+            "time": "2018-12-11T11:34:41+00:00"
         },
         {
             "name": "erusev/parsedown",
@@ -1651,16 +1661,16 @@
         },
         {
             "name": "ibrand/backend",
-            "version": "v2.0.0",
+            "version": "v2.0.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/ibrandcc/backend.git",
-                "reference": "18208cde3cefbf75e3284cbbaf64d58c48f9ead8"
+                "reference": "e0a0f537b091def325ba5c83f1bacc545ecce0ed"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/ibrandcc/backend/zipball/18208cde3cefbf75e3284cbbaf64d58c48f9ead8",
-                "reference": "18208cde3cefbf75e3284cbbaf64d58c48f9ead8",
+                "url": "https://api.github.com/repos/ibrandcc/backend/zipball/e0a0f537b091def325ba5c83f1bacc545ecce0ed",
+                "reference": "e0a0f537b091def325ba5c83f1bacc545ecce0ed",
                 "shasum": "",
                 "mirrors": [
                     {
@@ -1670,7 +1680,7 @@
                 ]
             },
             "require": {
-                "encore/laravel-admin": "~1.6",
+                "encore/laravel-admin": "dev-ibrand as 1.6.7",
                 "ibrand/laravel-sms": "~1.0",
                 "laravel-admin-ext/backup": "~1.0",
                 "laravel-admin-ext/helpers": "~1.0",
@@ -1718,7 +1728,7 @@
                 "grid",
                 "laravel"
             ],
-            "time": "2018-12-11T03:57:24+00:00"
+            "time": "2018-12-11T12:29:29+00:00"
         },
         {
             "name": "ibrand/laravel-active",
@@ -10604,10 +10614,18 @@
             "time": "2017-04-07T12:08:54+00:00"
         }
     ],
-    "aliases": [],
+    "aliases": [
+        {
+            "alias": "1.6.7",
+            "alias_normalized": "1.6.7.0",
+            "version": "dev-ibrand",
+            "package": "encore/laravel-admin"
+        }
+    ],
     "minimum-stability": "stable",
     "stability-flags": {
-        "dingo/api": 15
+        "dingo/api": 15,
+        "encore/laravel-admin": 20
     },
     "prefer-stable": false,
     "prefer-lowest": false,
