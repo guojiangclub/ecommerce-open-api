@@ -20,14 +20,14 @@ class SetDefaultValueCommand extends Command
      *
      * @var string
      */
-    protected $signature = 'dmp-store:default-value';
+    protected $signature = 'ibrand:store-default-value';
 
     /**
      * The console command description.
      *
      * @var string
      */
-    protected $description = 'install dmp\'s store system default value.';
+    protected $description = 'install ibrand\'s store system default value.';
 
     /**
      * Execute the console command.
@@ -80,7 +80,5 @@ class SetDefaultValueCommand extends Command
                 'parent_id' => 0,
             ]);
         }
-
-        $this->call('el_goods_spec:factory');
     }
 }

@@ -14,9 +14,6 @@ use iBrand\EC\Open\Backend\Store\Service\GoodsService;
 use iBrand\EC\Open\Backend\Store\Service\OrderService;
 use iBrand\EC\Open\Backend\Store\Service\ExcelExportsService;
 use iBrand\EC\Open\Backend\Store\Service\DiscountService;
-use iBrand\EC\Open\Backend\Store\Service\RefundService;
-use Menu;
-use Event;
 
 class BackendServiceProvider extends ServiceProvider
 {

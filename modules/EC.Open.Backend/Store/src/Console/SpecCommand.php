@@ -15,7 +15,7 @@ use DB;
 class SpecCommand extends Command
 {
 
-    protected $signature = 'el_goods_spec:factory';
+    protected $signature = 'ibrand:store-default-specs';
 
     protected $description = 'create specs default data.';
 
@@ -26,7 +26,6 @@ class SpecCommand extends Command
      */
     public function handle()
     {
-
         return $this->generateSpecData();
     }
 
