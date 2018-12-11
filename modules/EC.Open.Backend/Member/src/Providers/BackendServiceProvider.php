@@ -39,8 +39,6 @@ class BackendServiceProvider extends ServiceProvider
         MemberBackend::boot();
 
         $this->loadViewsFrom(__DIR__.'/../../resources/views', 'member-backend');
-        $this->registerMigrations();
-        $this->registerMenu();
 
         if ($this->app->runningInConsole()) {
             $this->publishes([
@@ -64,6 +62,7 @@ class BackendServiceProvider extends ServiceProvider
 
     public function register()
     {
+
     }
 
     /**
@@ -81,16 +80,4 @@ class BackendServiceProvider extends ServiceProvider
         });
     }
 
-    private function registerMenu()
-    {
-        Menu::make('topMenu', function ($menu) {
-            $menu->add('<i class="iconfont icon-huiyuanguanli-"></i>
-                            <span>会员管理</span>', ['url' => 'admin/member/users', 'secure' => env('SECURE')])->active('admin/member/*')->active('admin/manager*');
-        });
-    }
-
-    protected function registerMigrations()
-    {
-        return $this->loadMigrationsFrom(__DIR__.'/../../migrations');
-    }
 }
