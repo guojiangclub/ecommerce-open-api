@@ -11,7 +11,6 @@ namespace iBrand\EC\Open\Backend\Store\Http\Controllers\Promotion;
 use iBrand\EC\Open\Backend\Store\Service\GoodsService;
 use Illuminate\Http\Request;
 use iBrand\EC\Open\Backend\Store\Repositories\GoodsRepository;
-use iBrand\EC\Open\Backend\Store\Repositories\WecahtGroupRepository;
 use iBrand\Backend\Http\Controllers\Controller;
 use iBrand\EC\Open\Backend\Store\Facades\ExcelExportsService;
 use Response;
@@ -20,14 +19,12 @@ class PublicController extends Controller
 {
 	protected $goodsRepository;
 	protected $goodsService;
-	protected $wechat;
 
 	public function __construct(GoodsRepository $goodsRepository
-		, GoodsService $goodsService, WecahtGroupRepository $wecahtGroupRepository)
+		, GoodsService $goodsService)
 	{
 		$this->goodsRepository = $goodsRepository;
 		$this->goodsService    = $goodsService;
-		$this->wechat          = $wecahtGroupRepository;
 	}
 
 	public function getSpu(Request $request)
@@ -108,31 +105,7 @@ class PublicController extends Controller
 		return $this->ajaxJson(true, $goods);
 	}
 
-	public function getWechatGroupData(Request $request)
-	{
-		$ids    = explode(',', $request->input('ids'));
-		$action = $request->input('action');
-
-		$where = [];
-		if (request('field') && !empty(request('value'))) {
-			$where[request('field')] = ['like', '%' . request('value') . '%'];
-		}
-
-		$group_ids = [];
-		if ($action == 'view' OR $action == 'view_exclude') {
-			$group_ids = array_merge($group_ids, $ids);
-		}
-
-		$groups = $this->wechat->getPaginated($where, $group_ids, 15)->toArray();
-		if (count($groups) == 0) {
-			$groups['data'] = [];
-		}
-
-		$groups['ids'] = $ids;
-
-		return $this->ajaxJson(true, $groups);
-	}
-
+	
 	// 保存excel到服务器
 	public function excelExport()
 	{

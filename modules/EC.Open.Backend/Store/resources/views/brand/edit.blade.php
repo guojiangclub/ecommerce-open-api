@@ -20,7 +20,6 @@
                 {!! Form::label('name','品牌LOGO：', ['class' => 'col-md-3 control-label']) !!}
                 <div class="col-md-9">
                     <input type="hidden" name="logo" value="{{$brand_list->logo}}"/>
-                    {{--<div id="fileList" class="uploader-list"></div>--}}
                     <img class="banner-image" src="{{$brand_list->logo}}">
                     <div id="filePicker">选择图片</div>
 

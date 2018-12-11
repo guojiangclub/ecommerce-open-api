@@ -1,9 +1,6 @@
-{{--@section('after-scripts-end')--}}
-
     <script>
         $('#base-form').ajaxForm({
             success: function (result) {
-//                console.log(result)
                 $("input[name='id']").val(result.data);
                 swal({
                     title: "保存成功！",
@@ -19,7 +16,6 @@
 
         $(function () {
             var uploader = WebUploader.create({
-
                 // 选完文件后，是否自动上传。
                 auto: true,
                 swf: '{{url(env("APP_URL").'/assets/backend/libs/webuploader-0.1.5/Uploader.swf')}}',
@@ -34,14 +30,10 @@
             });
             // 文件上传成功，给item添加成功class, 用样式标记上传成功。
             uploader.on('uploadSuccess', function (file, response) {
-                /* $('#' + file.id).addClass('upload-state-done');*/
-                /*$('#' + file.id).append('<input type="hidden" name="banner_pic" value="' + response.url + '" >');*/
                 $('.banner-image').attr('src', response.url).show();
-                $("input[name='banner_pic']").val(response.file)
-                $("input[name='logo']").val(response.url)
+                $("input[name='banner_pic']").val(response.file);
+                $("input[name='logo']").val(response.url);
 
             });
         })
     </script>
-
-{{--@stop--}}

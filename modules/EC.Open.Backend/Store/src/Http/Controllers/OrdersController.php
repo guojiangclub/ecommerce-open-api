@@ -4,19 +4,15 @@ namespace iBrand\EC\Open\Backend\Store\Http\Controllers;
 
 use Carbon\Carbon;
 use iBrand\Backend\Http\Controllers\Controller;
-use iBrand\EC\Open\Backend\Store\Model\OrderItem;
-use iBrand\EC\Open\Backend\Store\Model\OrderProduce;
 use iBrand\EC\Open\Backend\Store\Model\Shipping;
 use iBrand\EC\Open\Backend\Store\Model\ShippingMethod;
 use iBrand\EC\Open\Backend\Store\Model\Order;
-
 use Illuminate\Http\Request;
 use Response;
 use iBrand\EC\Open\Backend\Store\Repositories\OrderRepository;
 use iBrand\EC\Open\Backend\Store\Repositories\OrderItemRepository;
 use Excel;
 use iBrand\EC\Open\Backend\Store\Facades\OrderService;
-use iBrand\EC\Open\Backend\Store\Facades\ExcelExportsService;
 use DB;
 use Encore\Admin\Facades\Admin as LaravelAdmin;
 use Encore\Admin\Layout\Content;
@@ -350,8 +346,6 @@ class OrdersController extends Controller
         $order->status = Order::STATUS_CANCEL;
         $order->completion_time = Carbon::now();
         $order->save();
-
-        //TODO: 用户未付款前取消订单后，需要还原库存
 
         return $this->ajaxJson(true, [], 200, '订单取消成功');
     }

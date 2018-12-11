@@ -4,7 +4,6 @@ namespace iBrand\EC\Open\Backend\Store\Http\Controllers;
 
 use iBrand\EC\Open\Backend\Store\Model\Attribute;
 use iBrand\EC\Open\Backend\Store\Model\AttributeValue;
-use iBrand\EC\Open\Backend\Store\Model\GoodsAttr;
 use iBrand\EC\Open\Backend\Store\Model\Models;
 use iBrand\EC\Open\Backend\Store\Model\Spec;
 use iBrand\EC\Open\Backend\Store\Model\SpecsValue;
@@ -204,16 +203,9 @@ class GoodsAttributeController extends Controller
         if (isset($input['value'])) {
             $updateData = $input['value'];
             foreach ($updateData as $item) {
-
-//                 if(count(SpecsValue::judge($item['name'], $input['spec_id'],$item['id'])))
-//                 {
-//                     return $this->ajaxJson(false);
-//                 }
-
                 SpecsValue::find($item['id'])->update($item);
             }
         }
-
 
         if (isset($input['delete_id'])) {
             $deleteData = $input['delete_id'];
