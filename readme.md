@@ -25,7 +25,7 @@ iBrand EC 是一个免费的开源电子商务解决方案，使用 PHP 基于 L
 小程序端源码在此：[miniprogram-open-source](https://github.com/ibrandcc/miniprogram-ecommerce-open-source)
 
 ## 文档
-
+- [Wiki](https://github.com/ibrandcc/ecommerce-open-api/wiki)
 - [API 文档](https://www.ibrand.cc/docs/api/)
 - [iBrand 电商系统教程](https://www.ibrand.cc/open/article)
 
