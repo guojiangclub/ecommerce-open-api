@@ -168,9 +168,6 @@ $router->group(['prefix' => 'admin/store/order'], function () use ($router) {
     $router->get('multiple_deliver', 'OrdersController@ordersMultipleDeliver')->name('admin.orders.multiple.deliver');
 
     $router->post('doDeliver', 'OrdersController@deliver')->name('admin.orders.savedeliver');
-    $router->get('invoice/{id}', 'InvoiceController@edit')->name('admin.orders.invoice.edit');
-    $router->post('invoice/update', 'InvoiceController@update')->name('admin.orders.invoice.update');
-
 
     $router->post('close/{id}', 'OrdersController@close')->name('admin.orders.close');
 
