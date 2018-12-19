@@ -100,8 +100,6 @@ class MiniProgramLoginController extends Controller
 
         $token = $user->createToken($user->id)->accessToken;
 
-        $this->bindOpenPlatform($user->id);
-
         $this->userService->bindPlatform($user->id, request('open_id'), config('wechat.mini_program.default.app_id'), 'miniprogram');
 
         return $this->success(['token_type' => 'Bearer', 'access_token' => $token]);
