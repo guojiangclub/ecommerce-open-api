@@ -12,9 +12,9 @@
 namespace iBrand\EC\Open\Core\Discount\Checkers;
 
 use iBrand\Component\Discount\Contracts\DiscountContract;
-use iBrand\Component\Discount\Contracts\DiscountItemContract;
 use iBrand\Component\Discount\Contracts\DiscountSubjectContract;
-use iBrand\Component\Discount\Contracts\RuleCheckerContract;
+use iBrand\EC\Open\Core\Discount\Contracts\DiscountItemContract;
+use iBrand\EC\Open\Core\Discount\Contracts\RuleCheckerContract;
 use Illuminate\Support\Collection;
 
 class ContainsProductRuleChecker implements RuleCheckerContract
