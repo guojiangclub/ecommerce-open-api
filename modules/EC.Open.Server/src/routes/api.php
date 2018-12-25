@@ -26,6 +26,8 @@ $router->get('category', 'HomeController@category')->name('api.home.category');
 
 $router->post('wechat/notify', 'WechatPayNotifyController@notify');
 
+$router->post('shoppingCart/discount', 'DiscountController@shoppingCartDiscount')->name('api.shopping.cart.discount');
+
 $router->group(config('ibrand.ec-open-api.routeAuthAttributes'), function ($router) {
 
     /************************* 购物车 **********************/
