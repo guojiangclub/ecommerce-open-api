@@ -15,12 +15,13 @@ use Exception;
 use iBrand\Component\Discount\Applicators\DiscountApplicator;
 use iBrand\Component\Discount\Checkers\CouponEligibilityChecker;
 use iBrand\Component\Discount\Checkers\DatesEligibilityChecker;
-use iBrand\Component\Discount\Checkers\DiscountEligibilityChecker;
 use iBrand\Component\Discount\Contracts\DiscountSubjectContract;
 use iBrand\Component\Discount\Models\Coupon;
 use iBrand\Component\Discount\Models\Discount;
 use iBrand\Component\Discount\Repositories\CouponRepository;
 use iBrand\Component\Discount\Repositories\DiscountRepository;
+use iBrand\EC\Open\Core\Discount\Checkers\DiscountEligibilityChecker;
+use iBrand\EC\Open\Core\Discount\Contracts\DiscountItemContract;
 
 class DiscountService
 {
@@ -31,7 +32,12 @@ class DiscountService
     protected $applicator;
     protected $datesEligibilityChecker;
 
-    public function __construct(DiscountRepository $discountRepository, DiscountEligibilityChecker $discountEligibilityChecker, CouponRepository $couponRepository, CouponEligibilityChecker $couponEligibilityChecker, DiscountApplicator $discountApplicator, DatesEligibilityChecker $datesEligibilityChecker)
+    public function __construct(DiscountRepository $discountRepository
+        , DiscountEligibilityChecker $discountEligibilityChecker
+        , CouponRepository $couponRepository
+        , CouponEligibilityChecker $couponEligibilityChecker
+        , DiscountApplicator $discountApplicator
+        , DatesEligibilityChecker $datesEligibilityChecker)
     {
         $this->discountRepository = $discountRepository;
         $this->discountChecker = $discountEligibilityChecker;
@@ -101,5 +107,19 @@ class DiscountService
     public function checkCoupon(DiscountSubjectContract $subject, Coupon $coupon)
     {
         return $this->couponChecker->isEligible($subject, $coupon);
+    }
+
+    public function getDiscountsByGoods(DiscountItemContract $discountItemContract)
+    {
+        $discounts = $this->discountRepository->findActive(2);
+        $discounts = $discounts->filter(function ($item) use ($discountItemContract) {
+            return $this->discountChecker->isEligibleItem($discountItemContract, $item) AND $item->is_open;
+        });
+
+        if ($discounts instanceof Collection) {
+            return $discounts;
+        }
+
+        return collect();
     }
 }
