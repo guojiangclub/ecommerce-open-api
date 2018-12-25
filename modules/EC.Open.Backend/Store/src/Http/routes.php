@@ -141,6 +141,15 @@ $router->group(['prefix' => 'admin/store/promotion'], function () use ($router) 
         $router->get('getUsedExportData', 'CouponController@getUsedExportData')->name('admin.promotion.coupon.getUsedExportData');
         $router->get('getCouponsExportData', 'CouponController@getCouponsExportData')->name('admin.promotion.coupon.getCouponsExportData');
     });
+
+    $router->group(['prefix' => 'pubic', 'namespace' => 'Promotion'], function () use ($router) {
+        $router->get('getSpu', 'PublicController@getSpu')->name('admin.promotion.getSpu');
+        $router->get('getWechatGroup', 'PublicController@getWechatGroup')->name('admin.promotion.getWechatGroup');
+        $router->post('getSpuData', 'PublicController@getSpuData')->name('admin.promotion.getSpuData');
+        $router->post('getWechatGroupData', 'PublicController@getWechatGroupData')->name('admin.promotion.getWechatGroupData');
+        $router->post('export/excelExport', 'PublicController@excelExport')->name('admin.promotion.excelExport');
+        $router->get('export/download/{url}', 'PublicController@download')->name('admin.promotion.download');
+    });
 });
 
 

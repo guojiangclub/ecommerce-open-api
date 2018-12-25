@@ -91,12 +91,3 @@
         </div>
     </div>
     <div id="modal" class="modal inmodal fade"></div>
-    {!! Html::script(env("APP_URL").'/assets/backend/libs/jquery.zclip/jquery.zclip.js') !!}
-    <script>
-        $('.copyBtn').zclip({
-            path: "{{url('assets/backend/libs/jquery.zclip/ZeroClipboard.swf')}}",
-            copy: function(){
-                return $(this).prev().val();
-            }
-        });
-    </script>

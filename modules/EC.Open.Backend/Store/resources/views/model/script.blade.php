@@ -1,5 +1,3 @@
-{{--@section('after-scripts-end')--}}
-
     <script>
         $(function () {
             @if(isset($goodsCount) AND $goodsCount>0)
@@ -8,7 +6,6 @@
                 text: "",
                 type: "warning"
             }, function () {
-                //that.iCheck('check');
             });
             @endif
         });
@@ -214,5 +211,3 @@
             $('#value_' + index).append(html);
         }
     </script>
-
-{{--@stop--}}
