@@ -34,8 +34,6 @@ class OrderAdjustmentRepository extends BaseRepository
 
     public function getOrderAdjustmentHistory($where, $limit = 50, $time = [])
     {
-
-
         if(isset($where['order_no'])){
             $order_no=$where['order_no'];
             unset($where['order_no']);
@@ -64,39 +62,7 @@ class OrderAdjustmentRepository extends BaseRepository
                 }
             }
         }
-
-        /*$query = $this->whereHas('order', function ($query) use ($where,$time){
-            $query = $query->whereNotIn('origin_type', ['coupon']);
-
-            if (is_array($where)) {
-                foreach ($where as $key => $value) {
-                    $query->where(function($query) use ($value,$key){
-                        $key = $key == 'created_at' ? $this->model->getTable().'.created_at' : $key;
-                        if (is_array($value)) {
-                            list($operate, $va) = $value;
-                            $query = $query->where($key, $operate, $va);
-                        } else {
-                            $query = $query->where($key, $value);
-                        }
-                        return $query;
-                    });
-                }
-            }
-
-            if(is_array($time)){
-                foreach ($time as $key => $value) {
-                    $key = $this->model->getTable().'.created_at';
-                    if (is_array($value)) {
-                        list($operate, $va) = $value;
-                        $query = $query->where($key, $operate, $va);
-                    } else {
-                        $query = $query->where($key, $value);
-                    }
-                }
-            }
-
-        });*/
-
+        
         if(isset($order_no[1])){
             $query = $query
                 ->whereHas('order', function ($query) use ($order_no) {
@@ -113,7 +79,6 @@ class OrderAdjustmentRepository extends BaseRepository
         } else {
             return $query->paginate($limit);
         }
-
 
     }
 }

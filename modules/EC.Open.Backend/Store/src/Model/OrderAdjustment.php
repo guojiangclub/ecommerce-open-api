@@ -8,11 +8,15 @@ use Prettus\Repository\Traits\TransformableTrait;
 
 class OrderAdjustment extends Model implements Transformable
 {
-    use TransformableTrait;
-
-    protected $table = 'el_order_adjustment';
+    use TransformableTrait;    
 
     protected $guarded = ['id'];
+
+    public function __construct(array $attributes = [])
+    {
+        parent::__construct($attributes);
+        $this->setTable(config('ibrand.app.database.prefix', 'ibrand_') . 'order_adjustment');
+    }
 
     public function discount()
     {

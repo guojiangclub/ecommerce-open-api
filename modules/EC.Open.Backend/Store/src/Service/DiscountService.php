@@ -1,16 +1,12 @@
 <?php
 
 namespace iBrand\EC\Open\Backend\Store\Service;
-
-use Carbon\Carbon;
-
+use iBrand\Component\User\Models\User;
 use iBrand\EC\Open\Backend\Store\Model\ElDiscount;
 use iBrand\EC\Open\Backend\Store\Model\ElDiscountAction;
 use iBrand\EC\Open\Backend\Store\Model\ElDiscountRule;
-
 use iBrand\EC\Open\Backend\Store\Repositories\ProductRepository;
 use Excel;
-use iBrand\EC\Open\Backend\Store\Model\User;
 
 
 class DiscountService

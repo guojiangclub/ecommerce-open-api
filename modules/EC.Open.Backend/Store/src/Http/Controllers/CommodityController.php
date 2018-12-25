@@ -800,13 +800,8 @@ class CommodityController extends Controller
         foreach ($goodsIds as $id) {
             $goods = $this->goodsRepository->find($id);
             if ($status == 2) { //如果是下架操作
-                $status = $this->goodsService->checkPromotionStatusByGoodsID($id);
-                if ($status) {
-                    $goods->is_del = 2;
-                    $goods->save();
-                } else {
-                    $error_list[] = '货号为：' . $goods->goods_no . ' 的商品正在参与促销活动，下架失败';
-                }
+                $goods->is_del = 2;
+                $goods->save();
             } else {
                 $goods->is_del = 0;
                 $goods->save();

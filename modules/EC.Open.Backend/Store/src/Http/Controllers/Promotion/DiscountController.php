@@ -210,9 +210,9 @@ class DiscountController extends Controller
 		$time      = $condition[0];
 		$id        = request('id');
 
-		$coupons = $this->orderAdjustmentRepository->getOrderAdjustmentHistory($where, 20, $time);
+		$discounts = $this->orderAdjustmentRepository->getOrderAdjustmentHistory($where, 20, $time);
 
-		return LaravelAdmin::content(function (Content $content) use ($coupons, $id) {
+		return LaravelAdmin::content(function (Content $content) use ($discounts, $id) {
 
 			$content->header('促销活动使用记录');
 
@@ -222,9 +222,8 @@ class DiscountController extends Controller
 
 			);
 
-			$content->body(view('store-backend::promotion.discount.use_record', compact('coupons', 'id')));
+			$content->body(view('store-backend::promotion.discount.use_record', compact('discounts', 'id')));
 		});
-//        return view('store-backend::promotion.discount.use_record', compact('coupons', 'id'));
 
 	}
 

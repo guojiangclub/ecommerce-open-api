@@ -39,7 +39,7 @@ class DiscountCouponRepository extends BaseRepository
 
         if (count($where) > 0) {
             foreach ($where as $key => $value) {
-                if ($key != 'order_no' AND $key!='mobile') {
+                if ($key != 'order_no' AND $key != 'mobile') {
                     if (is_array($value)) {
                         list($operate, $va) = $value;
                         $query = $query->where($key, $operate, $va);
@@ -72,12 +72,12 @@ class DiscountCouponRepository extends BaseRepository
         });
 
         $query->whereHas('user', function ($query) use ($where) {
-               $query->where(function ($query) use ($where) {
-                    if (isset($where['mobile'])) {
-                        list($operate, $va) = $where['mobile'];
-                        $query->where('el_user.mobile', $operate, $va);
-                    }
-                });
+            $query->where(function ($query) use ($where) {
+                if (isset($where['mobile'])) {
+                    list($operate, $va) = $where['mobile'];
+                    $query->where(config('ibrand.app.database.prefix', 'ibrand_') . 'user.mobile', $operate, $va);
+                }
+            });
         });
 
         $query = $query->with('order')->with('user');
@@ -89,43 +89,6 @@ class DiscountCouponRepository extends BaseRepository
         }
     }
 
-
-    /**
-     * 用户获取优惠券
-     * @param $user_id
-     * @param $coupon_id
-     * @return bool
-     */
-    public function userGetCoupons($user_id, $coupon_id, $type = 0)
-    {
-        $coupon = new ElDiscountCoupon();
-        $input['user_id'] = $user_id;
-        $input['discount_id'] = $coupon_id;
-        if ($type == 1) {
-            $coupon_code = createOfflineCouponCode();
-            $coupon_list = ElDiscountCoupon::where(['code' => $coupon_code])->first();
-            if (count($coupon_list)) {
-                $coupon_code = createOfflineCouponCode();
-            }
-            $input['code'] = $coupon_code;
-            $input['expires_at'] = Carbon::now()->addMonth(6);
-
-        } else {
-            $input['code'] = build_order_no('C');
-        }
-        $coupon = $coupon->create($input);
-        if ($coupon) {
-            $decrementDiscount = ElDiscount::where(['id' => $coupon_id])->decrement('usage_limit');
-            $incrementDisount = ElDiscount::where(['id' => $coupon_id])->increment('used');
-            if ($decrementDiscount && $incrementDisount) {
-                return true;
-            } else {
-                return false;
-            }
-        } else {
-            return false;
-        }
-    }
 
     public function getExportDataPaginate($discount_id, $limit)
     {
@@ -154,7 +117,7 @@ class DiscountCouponRepository extends BaseRepository
 
         if (count($where) > 0) {
             foreach ($where as $key => $value) {
-                if ($key!='mobile') {
+                if ($key != 'mobile') {
                     if (is_array($value)) {
                         list($operate, $va) = $value;
                         $query = $query->where($key, $operate, $va);
@@ -174,13 +137,13 @@ class DiscountCouponRepository extends BaseRepository
                     $query = $query->where($key, $value);
                 }
             }
-        }      
+        }
 
         $query->whereHas('user', function ($query) use ($where) {
             $query->where(function ($query) use ($where) {
                 if (isset($where['mobile'])) {
                     list($operate, $va) = $where['mobile'];
-                    $query->where('el_user.mobile', $operate, $va);
+                    $query->where(config('ibrand.app.database.prefix', 'ibrand_').'user.mobile', $operate, $va);
                 }
             });
         });

@@ -1,10 +1,10 @@
 {
     "_readme": [
         "This file locks the dependencies of your project to a known state",
-        "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
+        "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "content-hash": "b5062b2e85aeb71dfa129a1a7f128318",
+    "content-hash": "f71902c12bf725d0ac0f45f5bfea7557",
     "packages": [
         {
             "name": "anam/phantomjs-linux-x86-binary",
@@ -654,16 +654,16 @@
         },
         {
             "name": "doctrine/dbal",
-            "version": "v2.9.0",
+            "version": "v2.9.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/doctrine/dbal.git",
-                "reference": "21fdabe2fc01e004e1966f200d900554876bc63c"
+                "reference": "ec74d6e300d78fbc896669c3ca57ef9719adc9c6"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/doctrine/dbal/zipball/21fdabe2fc01e004e1966f200d900554876bc63c",
-                "reference": "21fdabe2fc01e004e1966f200d900554876bc63c",
+                "url": "https://api.github.com/repos/doctrine/dbal/zipball/ec74d6e300d78fbc896669c3ca57ef9719adc9c6",
+                "reference": "ec74d6e300d78fbc896669c3ca57ef9719adc9c6",
                 "shasum": "",
                 "mirrors": [
                     {
@@ -738,7 +738,7 @@
                 "php",
                 "queryobject"
             ],
-            "time": "2018-12-04T04:39:48+00:00"
+            "time": "2018-12-14T04:51:13+00:00"
         },
         {
             "name": "doctrine/event-manager",
@@ -1068,23 +1068,29 @@
         },
         {
             "name": "encore/laravel-admin",
-            "version": "dev-ibrand",
+            "version": "v1.5.19",
             "source": {
                 "type": "git",
-                "url": "https://github.com/ibrandcc/laravel-admin.git",
-                "reference": "1dbd9a8ce0a7173fd999fe1854bef10b5f59076e"
+                "url": "https://github.com/z-song/laravel-admin.git",
+                "reference": "9841d34ca028cb151c54aa9988bb3f783839fa2a"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/ibrandcc/laravel-admin/zipball/1dbd9a8ce0a7173fd999fe1854bef10b5f59076e",
-                "reference": "1dbd9a8ce0a7173fd999fe1854bef10b5f59076e",
-                "shasum": ""
+                "url": "https://api.github.com/repos/z-song/laravel-admin/zipball/9841d34ca028cb151c54aa9988bb3f783839fa2a",
+                "reference": "9841d34ca028cb151c54aa9988bb3f783839fa2a",
+                "shasum": "",
+                "mirrors": [
+                    {
+                        "url": "https://dl.laravel-china.org/%package%/%reference%.%type%",
+                        "preferred": true
+                    }
+                ]
             },
             "require": {
                 "doctrine/dbal": "2.*",
                 "laravel/framework": "~5.5",
                 "php": ">=7.0.0",
-                "symfony/dom-crawler": "~3.1|~4.0"
+                "symfony/dom-crawler": "~3.1"
             },
             "require-dev": {
                 "fzaninotto/faker": "~1.4",
@@ -1117,20 +1123,7 @@
                     "src/helpers.php"
                 ]
             },
-            "autoload-dev": {
-                "psr-4": {
-                    "Tests\\Models\\": "tests/models",
-                    "Tests\\Controllers\\": "tests/controllers"
-                },
-                "classmap": [
-                    "tests/TestCase.php"
-                ]
-            },
-            "scripts": {
-                "test": [
-                    "./vendor/bin/phpunit"
-                ]
-            },
+            "notification-url": "https://packagist.org/downloads/",
             "license": [
                 "MIT"
             ],
@@ -1148,10 +1141,7 @@
                 "grid",
                 "laravel"
             ],
-            "support": {
-                "source": "https://github.com/ibrandcc/laravel-admin/tree/ibrand"
-            },
-            "time": "2018-12-11T11:34:41+00:00"
+            "time": "2018-08-22T11:27:57+00:00"
         },
         {
             "name": "erusev/parsedown",
@@ -1661,16 +1651,16 @@
         },
         {
             "name": "ibrand/backend",
-            "version": "v2.0.2",
+            "version": "v3.0.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/ibrandcc/backend.git",
-                "reference": "e0a0f537b091def325ba5c83f1bacc545ecce0ed"
+                "reference": "cacef6751515680eb605bc027503f2a0ce74204b"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/ibrandcc/backend/zipball/e0a0f537b091def325ba5c83f1bacc545ecce0ed",
-                "reference": "e0a0f537b091def325ba5c83f1bacc545ecce0ed",
+                "url": "https://api.github.com/repos/ibrandcc/backend/zipball/cacef6751515680eb605bc027503f2a0ce74204b",
+                "reference": "cacef6751515680eb605bc027503f2a0ce74204b",
                 "shasum": "",
                 "mirrors": [
                     {
@@ -1680,13 +1670,14 @@
                 ]
             },
             "require": {
-                "encore/laravel-admin": "dev-ibrand as 1.6.7",
+                "encore/laravel-admin": "1.5.19",
                 "ibrand/laravel-sms": "~1.0",
-                "laravel-admin-ext/backup": "~1.0",
-                "laravel-admin-ext/helpers": "~1.0",
-                "laravel-admin-ext/log-viewer": "~1.0",
-                "laravel-admin-ext/redis-manager": "~1.0",
-                "laravel-admin-ext/scheduling": "~1.0",
+                "ibrand/setting": "~1.0",
+                "laravel-admin-ext/backup": "1.0.2",
+                "laravel-admin-ext/helpers": "1.0.2",
+                "laravel-admin-ext/log-viewer": "1.0.2",
+                "laravel-admin-ext/redis-manager": "1.0.1",
+                "laravel-admin-ext/scheduling": "1.0.1",
                 "maatwebsite/excel": "~2.1.23",
                 "php": ">=7.0.0"
             },
@@ -1728,7 +1719,7 @@
                 "grid",
                 "laravel"
             ],
-            "time": "2018-12-11T12:29:29+00:00"
+            "time": "2018-12-20T13:35:50+00:00"
         },
         {
             "name": "ibrand/laravel-active",
@@ -2130,16 +2121,16 @@
         },
         {
             "name": "ibrand/setting",
-            "version": "v1.1.2",
+            "version": "v1.2.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/ibrandcc/setting.git",
-                "reference": "054be4872eac2969931c4a0c3d82f700abdd37b1"
+                "reference": "e922c2a7bb680d836af7a6def9507f39bbce1ee9"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/ibrandcc/setting/zipball/054be4872eac2969931c4a0c3d82f700abdd37b1",
-                "reference": "054be4872eac2969931c4a0c3d82f700abdd37b1",
+                "url": "https://api.github.com/repos/ibrandcc/setting/zipball/e922c2a7bb680d836af7a6def9507f39bbce1ee9",
+                "reference": "e922c2a7bb680d836af7a6def9507f39bbce1ee9",
                 "shasum": "",
                 "mirrors": [
                     {
@@ -2189,7 +2180,7 @@
                 "ibrand",
                 "setting"
             ],
-            "time": "2018-10-16T06:50:30+00:00"
+            "time": "2018-12-19T05:56:45+00:00"
         },
         {
             "name": "intervention/image",
@@ -2369,16 +2360,16 @@
         },
         {
             "name": "jaybizzle/crawler-detect",
-            "version": "v1.2.75",
+            "version": "v1.2.76",
             "source": {
                 "type": "git",
                 "url": "https://github.com/JayBizzle/Crawler-Detect.git",
-                "reference": "50e06c81bea8a9c443708be496868ccb55bdd396"
+                "reference": "728dd7f210819ccafbf008a6ef7956f4f3c3571c"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/JayBizzle/Crawler-Detect/zipball/50e06c81bea8a9c443708be496868ccb55bdd396",
-                "reference": "50e06c81bea8a9c443708be496868ccb55bdd396",
+                "url": "https://api.github.com/repos/JayBizzle/Crawler-Detect/zipball/728dd7f210819ccafbf008a6ef7956f4f3c3571c",
+                "reference": "728dd7f210819ccafbf008a6ef7956f4f3c3571c",
                 "shasum": "",
                 "mirrors": [
                     {
@@ -2420,7 +2411,7 @@
                 "crawlerdetect",
                 "php crawler detect"
             ],
-            "time": "2018-12-10T19:38:45+00:00"
+            "time": "2018-12-18T08:52:44+00:00"
         },
         {
             "name": "jenssegers/agent",
@@ -2735,16 +2726,16 @@
         },
         {
             "name": "laravel-admin-ext/helpers",
-            "version": "v1.1.1",
+            "version": "v1.0.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/laravel-admin-extensions/helpers.git",
-                "reference": "67b2573029f90ca1873e1598a2d46ae8d9acca66"
+                "reference": "c670d85e827bf2347d2ff0c26161ab1497f7a5ed"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/laravel-admin-extensions/helpers/zipball/67b2573029f90ca1873e1598a2d46ae8d9acca66",
-                "reference": "67b2573029f90ca1873e1598a2d46ae8d9acca66",
+                "url": "https://api.github.com/repos/laravel-admin-extensions/helpers/zipball/c670d85e827bf2347d2ff0c26161ab1497f7a5ed",
+                "reference": "c670d85e827bf2347d2ff0c26161ab1497f7a5ed",
                 "shasum": "",
                 "mirrors": [
                     {
@@ -2754,10 +2745,12 @@
                 ]
             },
             "require": {
-                "encore/laravel-admin": "~1.6",
+                "encore/laravel-admin": "1.5.*",
+                "laravel/framework": "~5.5",
                 "php": ">=7.0.0"
             },
             "require-dev": {
+                "laravel/laravel": "~5.5",
                 "phpunit/phpunit": "~6.0"
             },
             "type": "library",
@@ -2789,20 +2782,20 @@
                 "helpers",
                 "laravel-admin"
             ],
-            "time": "2018-10-24T15:21:11+00:00"
+            "time": "2018-04-24T09:35:32+00:00"
         },
         {
             "name": "laravel-admin-ext/log-viewer",
-            "version": "v1.0.3",
+            "version": "v1.0.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/laravel-admin-extensions/log-viewer.git",
-                "reference": "742a2550746c9346d463249ba16b8fba9ac9cf97"
+                "reference": "19c78d7b81b0f062d4a1a61fb0c0310305b097c2"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/laravel-admin-extensions/log-viewer/zipball/742a2550746c9346d463249ba16b8fba9ac9cf97",
-                "reference": "742a2550746c9346d463249ba16b8fba9ac9cf97",
+                "url": "https://api.github.com/repos/laravel-admin-extensions/log-viewer/zipball/19c78d7b81b0f062d4a1a61fb0c0310305b097c2",
+                "reference": "19c78d7b81b0f062d4a1a61fb0c0310305b097c2",
                 "shasum": "",
                 "mirrors": [
                     {
@@ -2812,10 +2805,12 @@
                 ]
             },
             "require": {
-                "encore/laravel-admin": "~1.6",
+                "encore/laravel-admin": "~1.5",
+                "laravel/framework": "~5.5",
                 "php": ">=7.0.0"
             },
             "require-dev": {
+                "laravel/laravel": "~5.5",
                 "phpunit/phpunit": "~6.0"
             },
             "type": "library",
@@ -2848,20 +2843,20 @@
                 "laravel-admin",
                 "log"
             ],
-            "time": "2018-11-13T17:17:36+00:00"
+            "time": "2018-04-25T06:14:03+00:00"
         },
         {
             "name": "laravel-admin-ext/redis-manager",
-            "version": "v1.0.2",
+            "version": "v1.0.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/laravel-admin-extensions/redis-manager.git",
-                "reference": "bada3f797320ad8f9b5a541ce77bdf2bcc6ecfe8"
+                "reference": "391d683fc7fa27535142c20de5a70aa9f94ef23c"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/laravel-admin-extensions/redis-manager/zipball/bada3f797320ad8f9b5a541ce77bdf2bcc6ecfe8",
-                "reference": "bada3f797320ad8f9b5a541ce77bdf2bcc6ecfe8",
+                "url": "https://api.github.com/repos/laravel-admin-extensions/redis-manager/zipball/391d683fc7fa27535142c20de5a70aa9f94ef23c",
+                "reference": "391d683fc7fa27535142c20de5a70aa9f94ef23c",
                 "shasum": "",
                 "mirrors": [
                     {
@@ -2910,7 +2905,7 @@
                 "manager",
                 "redis"
             ],
-            "time": "2018-11-26T06:09:04+00:00"
+            "time": "2018-05-03T07:59:06+00:00"
         },
         {
             "name": "laravel-admin-ext/scheduling",
@@ -4815,16 +4810,16 @@
         },
         {
             "name": "phpseclib/phpseclib",
-            "version": "2.0.12",
+            "version": "2.0.13",
             "source": {
                 "type": "git",
                 "url": "https://github.com/phpseclib/phpseclib.git",
-                "reference": "8814dc7841db159daed0b32c2b08fb7e03c6afe7"
+                "reference": "42603ce3f42a27f7e14e54feab95db7b680ad473"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/phpseclib/phpseclib/zipball/8814dc7841db159daed0b32c2b08fb7e03c6afe7",
-                "reference": "8814dc7841db159daed0b32c2b08fb7e03c6afe7",
+                "url": "https://api.github.com/repos/phpseclib/phpseclib/zipball/42603ce3f42a27f7e14e54feab95db7b680ad473",
+                "reference": "42603ce3f42a27f7e14e54feab95db7b680ad473",
                 "shasum": "",
                 "mirrors": [
                     {
@@ -4909,7 +4904,7 @@
                 "x.509",
                 "x509"
             ],
-            "time": "2018-11-04T05:45:48+00:00"
+            "time": "2018-12-16T17:45:25+00:00"
         },
         {
             "name": "pimple/pimple",
@@ -6338,16 +6333,16 @@
         },
         {
             "name": "symfony/dom-crawler",
-            "version": "v4.2.1",
+            "version": "v3.4.20",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/dom-crawler.git",
-                "reference": "7438a32108fdd555295f443605d6de2cce473159"
+                "reference": "b6e94248eb4f8602a5825301b0bea1eb8cc82cfa"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/dom-crawler/zipball/7438a32108fdd555295f443605d6de2cce473159",
-                "reference": "7438a32108fdd555295f443605d6de2cce473159",
+                "url": "https://api.github.com/repos/symfony/dom-crawler/zipball/b6e94248eb4f8602a5825301b0bea1eb8cc82cfa",
+                "reference": "b6e94248eb4f8602a5825301b0bea1eb8cc82cfa",
                 "shasum": "",
                 "mirrors": [
                     {
@@ -6357,12 +6352,12 @@
                 ]
             },
             "require": {
-                "php": "^7.1.3",
+                "php": "^5.5.9|>=7.0.8",
                 "symfony/polyfill-ctype": "~1.8",
                 "symfony/polyfill-mbstring": "~1.0"
             },
             "require-dev": {
-                "symfony/css-selector": "~3.4|~4.0"
+                "symfony/css-selector": "~2.8|~3.0|~4.0"
             },
             "suggest": {
                 "symfony/css-selector": ""
@@ -6370,7 +6365,7 @@
             "type": "library",
             "extra": {
                 "branch-alias": {
-                    "dev-master": "4.2-dev"
+                    "dev-master": "3.4-dev"
                 }
             },
             "autoload": {
@@ -6397,7 +6392,7 @@
             ],
             "description": "Symfony DomCrawler Component",
             "homepage": "https://symfony.com",
-            "time": "2018-11-26T10:55:26+00:00"
+            "time": "2018-11-26T10:17:44+00:00"
         },
         {
             "name": "symfony/event-dispatcher",
@@ -7608,16 +7603,16 @@
         },
         {
             "name": "webmozart/assert",
-            "version": "1.3.0",
+            "version": "1.4.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/webmozart/assert.git",
-                "reference": "0df1908962e7a3071564e857d86874dad1ef204a"
+                "reference": "83e253c8e0be5b0257b881e1827274667c5c17a9"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/webmozart/assert/zipball/0df1908962e7a3071564e857d86874dad1ef204a",
-                "reference": "0df1908962e7a3071564e857d86874dad1ef204a",
+                "url": "https://api.github.com/repos/webmozart/assert/zipball/83e253c8e0be5b0257b881e1827274667c5c17a9",
+                "reference": "83e253c8e0be5b0257b881e1827274667c5c17a9",
                 "shasum": "",
                 "mirrors": [
                     {
@@ -7627,7 +7622,8 @@
                 ]
             },
             "require": {
-                "php": "^5.3.3 || ^7.0"
+                "php": "^5.3.3 || ^7.0",
+                "symfony/polyfill-ctype": "^1.8"
             },
             "require-dev": {
                 "phpunit/phpunit": "^4.6",
@@ -7660,7 +7656,7 @@
                 "check",
                 "validate"
             ],
-            "time": "2018-01-29T19:49:41+00:00"
+            "time": "2018-12-25T11:19:39+00:00"
         },
         {
             "name": "wikimedia/composer-merge-plugin",
@@ -7719,16 +7715,16 @@
         },
         {
             "name": "yansongda/pay",
-            "version": "v2.5.9",
+            "version": "v2.6.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/yansongda/pay.git",
-                "reference": "1130dfbfdd7c3f91b5d1921a03ad129555ddd89e"
+                "reference": "7f69785bfec6e24be1cf331f0108af65c0f7748c"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/yansongda/pay/zipball/1130dfbfdd7c3f91b5d1921a03ad129555ddd89e",
-                "reference": "1130dfbfdd7c3f91b5d1921a03ad129555ddd89e",
+                "url": "https://api.github.com/repos/yansongda/pay/zipball/7f69785bfec6e24be1cf331f0108af65c0f7748c",
+                "reference": "7f69785bfec6e24be1cf331f0108af65c0f7748c",
                 "shasum": "",
                 "mirrors": [
                     {
@@ -7742,6 +7738,7 @@
                 "ext-simplexml": "*",
                 "monolog/monolog": "^1.23",
                 "php": ">=7.0",
+                "symfony/event-dispatcher": "^3.0|^4.0",
                 "symfony/http-foundation": "^3.0|^4.0",
                 "yansongda/supports": "^1.8"
             },
@@ -7771,7 +7768,7 @@
                 "pay",
                 "wechat"
             ],
-            "time": "2018-11-29T13:27:14+00:00"
+            "time": "2018-12-25T01:31:10+00:00"
         },
         {
             "name": "yansongda/supports",
@@ -7954,16 +7951,16 @@
         },
         {
             "name": "barryvdh/laravel-ide-helper",
-            "version": "v2.5.2",
+            "version": "v2.5.3",
             "source": {
                 "type": "git",
                 "url": "https://github.com/barryvdh/laravel-ide-helper.git",
-                "reference": "981ff45b43e0cf808af0a5a5f40f6369e0e29499"
+                "reference": "3d7f1240896a075aa23b13f82dfcbe165dadeef2"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/barryvdh/laravel-ide-helper/zipball/981ff45b43e0cf808af0a5a5f40f6369e0e29499",
-                "reference": "981ff45b43e0cf808af0a5a5f40f6369e0e29499",
+                "url": "https://api.github.com/repos/barryvdh/laravel-ide-helper/zipball/3d7f1240896a075aa23b13f82dfcbe165dadeef2",
+                "reference": "3d7f1240896a075aa23b13f82dfcbe165dadeef2",
                 "shasum": "",
                 "mirrors": [
                     {
@@ -7973,7 +7970,7 @@
                 ]
             },
             "require": {
-                "barryvdh/reflection-docblock": "^2.0.4",
+                "barryvdh/reflection-docblock": "^2.0.6",
                 "composer/composer": "^1.6",
                 "illuminate/console": "^5.5,<5.8",
                 "illuminate/filesystem": "^5.5,<5.8",
@@ -8030,20 +8027,20 @@
                 "phpstorm",
                 "sublime"
             ],
-            "time": "2018-10-06T09:35:51+00:00"
+            "time": "2018-12-19T12:12:05+00:00"
         },
         {
             "name": "barryvdh/reflection-docblock",
-            "version": "v2.0.5",
+            "version": "v2.0.6",
             "source": {
                 "type": "git",
                 "url": "https://github.com/barryvdh/ReflectionDocBlock.git",
-                "reference": "64165bd4ba9a550d11ea57569463b7c722dc6b0a"
+                "reference": "6b69015d83d3daf9004a71a89f26e27d27ef6a16"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/barryvdh/ReflectionDocBlock/zipball/64165bd4ba9a550d11ea57569463b7c722dc6b0a",
-                "reference": "64165bd4ba9a550d11ea57569463b7c722dc6b0a",
+                "url": "https://api.github.com/repos/barryvdh/ReflectionDocBlock/zipball/6b69015d83d3daf9004a71a89f26e27d27ef6a16",
+                "reference": "6b69015d83d3daf9004a71a89f26e27d27ef6a16",
                 "shasum": "",
                 "mirrors": [
                     {
@@ -8085,7 +8082,7 @@
                     "email": "mike.vanriel@naenius.com"
                 }
             ],
-            "time": "2018-10-25T19:09:52+00:00"
+            "time": "2018-12-13T10:34:14+00:00"
         },
         {
             "name": "composer/ca-bundle",
@@ -10614,18 +10611,10 @@
             "time": "2017-04-07T12:08:54+00:00"
         }
     ],
-    "aliases": [
-        {
-            "alias": "1.6.7",
-            "alias_normalized": "1.6.7.0",
-            "version": "dev-ibrand",
-            "package": "encore/laravel-admin"
-        }
-    ],
+    "aliases": [],
     "minimum-stability": "stable",
     "stability-flags": {
-        "dingo/api": 15,
-        "encore/laravel-admin": 20
+        "dingo/api": 15
     },
     "prefer-stable": false,
     "prefer-lowest": false,
