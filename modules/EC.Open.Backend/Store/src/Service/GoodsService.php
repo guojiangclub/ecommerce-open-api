@@ -4,9 +4,7 @@ namespace iBrand\EC\Open\Backend\Store\Service;
 
 use iBrand\EC\Open\Backend\Store\Model\AttributeValue;
 use iBrand\EC\Open\Backend\Store\Model\Brand;
-use iBrand\EC\Open\Backend\Store\Model\Product;
 use iBrand\EC\Open\Backend\Store\Model\Category;
-use iBrand\EC\Open\Backend\Store\Model\PromotionGoodsRelation;
 use iBrand\EC\Open\Backend\Store\Model\Spec;
 use iBrand\EC\Open\Backend\Store\Model\SpecsValue;
 use iBrand\EC\Open\Backend\Store\Repositories\CategoryRepository;
@@ -15,10 +13,7 @@ use iBrand\EC\Open\Backend\Store\Model\Models;
 use iBrand\EC\Open\Backend\Store\Repositories\GoodsRepository;
 use iBrand\EC\Open\Backend\Store\Repositories\ProductRepository;
 use iBrand\EC\Open\Backend\Store\Repositories\SpecRepository;
-use iBrand\EC\Open\Backend\Store\Repositories\SearchSpecRepository;
 use iBrand\EC\Open\Backend\Store\Repositories\GoodsCategoryRepository;
-use Illuminate\Support\Collection;
-use Illuminate\Support\Facades\DB;
 
 class GoodsService
 {
@@ -781,28 +776,7 @@ class GoodsService
             }
         }
     }
-
-    /**
-     * 商品删除或下架操作时判断当前商品是否参与了活动
-     *
-     * @param $goods_id
-     *
-     * @return bool
-     */
-    public function checkPromotionStatusByGoodsID($goods_id)
-    {
-        /*$suit = $this->suitRepository->getSuitByGoodsId($goods_id);
-        $seckill = $this->seckillItemRepositor->getSeckillItemByGoodsID($goods_id);
-
-        if (count($suit) > 0 OR $seckill) {
-            return false;
-        }*/
-
-        $relation = PromotionGoodsRelation::where('goods_id', $goods_id)->first();
-        if ($relation) return false;
-
-        return true;
-    }
+    
 
     public function checkSellPrice($data)
     {
