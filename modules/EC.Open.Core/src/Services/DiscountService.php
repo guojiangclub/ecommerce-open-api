@@ -22,6 +22,7 @@ use iBrand\Component\Discount\Repositories\CouponRepository;
 use iBrand\Component\Discount\Repositories\DiscountRepository;
 use iBrand\EC\Open\Core\Discount\Checkers\DiscountEligibilityChecker;
 use iBrand\EC\Open\Core\Discount\Contracts\DiscountItemContract;
+use Illuminate\Support\Collection;
 
 class DiscountService
 {
@@ -113,13 +114,9 @@ class DiscountService
     {
         $discounts = $this->discountRepository->findActive(2);
         $discounts = $discounts->filter(function ($item) use ($discountItemContract) {
-            return $this->discountChecker->isEligibleItem($discountItemContract, $item) AND $item->is_open;
+            return $this->discountChecker->isEligibleItem($discountItemContract, $item);
         });
 
-        if ($discounts instanceof Collection) {
-            return $discounts;
-        }
-
-        return collect();
+        return $discounts;
     }
 }
