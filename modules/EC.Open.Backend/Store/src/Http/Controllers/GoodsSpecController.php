@@ -242,7 +242,7 @@ class GoodsSpecController extends Controller
         $specValue = SpecsValue::find($id);
 
         $rules = array(
-            'name' => 'required|unique:el_goods_specs_value,name,' . $id . ',id,spec_id,' . $specValue->spec_id
+            'name' => 'required|unique:'.config('ibrand.app.database.prefix', 'ibrand_').'goods_specs_value,name,' . $id . ',id,spec_id,' . $specValue->spec_id
         );
         $message = array(
             "required" => ":attribute 不能为空",
