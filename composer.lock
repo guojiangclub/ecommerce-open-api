@@ -1,7 +1,7 @@
 {
     "_readme": [
         "This file locks the dependencies of your project to a known state",
-        "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
+        "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
     "content-hash": "f71902c12bf725d0ac0f45f5bfea7557",
@@ -1651,16 +1651,16 @@
         },
         {
             "name": "ibrand/backend",
-            "version": "v3.0.1",
+            "version": "v3.0.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/ibrandcc/backend.git",
-                "reference": "cacef6751515680eb605bc027503f2a0ce74204b"
+                "reference": "1ebd7ca038abc1df273b834394af34a057e7cfc9"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/ibrandcc/backend/zipball/cacef6751515680eb605bc027503f2a0ce74204b",
-                "reference": "cacef6751515680eb605bc027503f2a0ce74204b",
+                "url": "https://api.github.com/repos/ibrandcc/backend/zipball/1ebd7ca038abc1df273b834394af34a057e7cfc9",
+                "reference": "1ebd7ca038abc1df273b834394af34a057e7cfc9",
                 "shasum": "",
                 "mirrors": [
                     {
@@ -1719,7 +1719,7 @@
                 "grid",
                 "laravel"
             ],
-            "time": "2018-12-20T13:35:50+00:00"
+            "time": "2018-12-27T12:09:11+00:00"
         },
         {
             "name": "ibrand/laravel-active",
@@ -4180,16 +4180,16 @@
         },
         {
             "name": "nikic/php-parser",
-            "version": "v4.1.0",
+            "version": "v4.1.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/nikic/PHP-Parser.git",
-                "reference": "d0230c5c77a7e3cfa69446febf340978540958c0"
+                "reference": "8aae5b59b83bb4d0dbf07b0a835f2680a658f610"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/nikic/PHP-Parser/zipball/d0230c5c77a7e3cfa69446febf340978540958c0",
-                "reference": "d0230c5c77a7e3cfa69446febf340978540958c0",
+                "url": "https://api.github.com/repos/nikic/PHP-Parser/zipball/8aae5b59b83bb4d0dbf07b0a835f2680a658f610",
+                "reference": "8aae5b59b83bb4d0dbf07b0a835f2680a658f610",
                 "shasum": "",
                 "mirrors": [
                     {
@@ -4233,7 +4233,7 @@
                 "parser",
                 "php"
             ],
-            "time": "2018-10-10T09:24:14+00:00"
+            "time": "2018-12-26T11:32:39+00:00"
         },
         {
             "name": "overtrue/easy-sms",
