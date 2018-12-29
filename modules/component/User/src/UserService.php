@@ -1,7 +1,7 @@
 <?php
 
 /*
- * This file is part of ibrand/EC-Open-Core.
+ * This file is part of ibrand/user.
  *
  * (c) iBrand <https://www.ibrand.cc>
  *
@@ -9,7 +9,7 @@
  * file that was distributed with this source code.
  */
 
-namespace iBrand\EC\Open\Core\Services;
+namespace iBrand\Component\User;
 
 use iBrand\Component\User\Repository\UserBindRepository;
 

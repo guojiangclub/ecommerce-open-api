@@ -11,10 +11,10 @@
 
 namespace iBrand\EC\Open\Server\Http\Controllers;
 
-use EasyWeChat;
 use iBrand\Component\User\Repository\UserBindRepository;
 use iBrand\Component\User\Repository\UserRepository;
-use iBrand\EC\Open\Core\Services\UserService;
+use iBrand\Component\User\UserService;
+use EasyWeChat;
 
 class MiniProgramLoginController extends Controller
 {

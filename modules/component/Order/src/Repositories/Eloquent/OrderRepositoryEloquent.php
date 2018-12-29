@@ -92,7 +92,7 @@ class OrderRepositoryEloquent extends BaseRepository implements OrderRepository
 
     public function getOrdersByCriteria($andConditions, $orConditions, $limit = 15)
     {
-        $orderItemTable = 'el_order_item';
+        $orderItemTable = 'ibrand_order_item';
         $query = $this->model->join($orderItemTable, $this->model->getQualifiedKeyName(), '=', $orderItemTable.'.order_id');
 
         foreach ($andConditions as $field => $value) {

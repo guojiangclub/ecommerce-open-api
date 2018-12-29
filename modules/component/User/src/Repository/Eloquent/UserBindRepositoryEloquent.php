@@ -59,7 +59,7 @@ class UserBindRepositoryEloquent extends BaseRepository implements UserBindRepos
      * @param $openId
      * @param $userId
      *
-     * @return mixed|void
+     * @return mixed
      *
      * @throws \Exception
      * @throws \Prettus\Validator\Exceptions\ValidatorException
@@ -70,6 +70,7 @@ class UserBindRepositoryEloquent extends BaseRepository implements UserBindRepos
         if (!$userBind) {
             throw new \Exception('This user bind model does not exist.');
         }
-        $this->update(['user_id' => $userId], $userBind->id);
+
+        return $this->update(['user_id' => $userId], $userBind->id);
     }
 }

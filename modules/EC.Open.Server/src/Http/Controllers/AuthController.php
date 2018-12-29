@@ -14,7 +14,7 @@ namespace iBrand\EC\Open\Server\Http\Controllers;
 use iBrand\Component\User\Repository\UserBindRepository;
 use iBrand\Component\User\Repository\UserRepository;
 use iBrand\EC\Open\Core\Auth\User;
-use iBrand\EC\Open\Core\Services\UserService;
+use iBrand\Component\User\UserService;
 use iBrand\Sms\Facade as Sms;
 
 class AuthController extends Controller
