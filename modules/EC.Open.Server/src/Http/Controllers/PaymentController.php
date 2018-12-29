@@ -11,8 +11,11 @@
 
 namespace iBrand\EC\Open\Server\Http\Controllers;
 
+use Carbon\Carbon;
 use iBrand\Component\Order\Models\Order;
 use iBrand\Component\Order\Repositories\OrderRepository;
+use iBrand\Component\Pay\Facades\Charge;
+use iBrand\Component\Pay\Facades\PayNotify;
 use iBrand\Component\Payment\Models\Payment;
 use iBrand\Component\Payment\Services\PaymentService;
 use EasyWeChat;
@@ -45,17 +48,26 @@ class PaymentController extends Controller
 
         //在pay_debug=true 状态下，可以调用此接口直接更改订单支付状态
         if (config('ibrand.app.pay_debug')) {
-            $charge['metadata']['order_no'] = $order_no;
-            $charge['amount'] = $order->total;
-            $charge['transaction_no'] = '';
-            $charge['time_paid'] = time();
-            $charge['details'] = '';
-            $charge['channel'] = 'test';
 
-            $order = $this->payment->paySuccess($charge);
+            $charge = \iBrand\Component\Pay\Models\Charge::where('order_no', $order_no)->orderBy('created_at', 'desc')->first();
+            $charge->transaction_no = '';
+            $charge->time_paid = Carbon::now();
+            $charge->paid = 1;
+            $charge->channel = 'test';
+            $charge->amount = $order->total;
+            $charge->save();
+
+            $order = PayNotify::success($charge->type, $charge);
+
         } else {
             //同步查询微信订单状态，防止异步通信失败导致订单状态更新失败
-            $payment = EasyWeChat::payment();
+
+            $charge = Charge::find(request('charge_id'));
+
+            $order = PayNotify::success($charge->type, $charge);
+
+
+            /*$payment = EasyWeChat::payment();
             $result = $payment->order->queryByOutTradeNumber($order_no);
 
             if ('FAIL' == $result['return_code']) {
@@ -77,7 +89,7 @@ class PaymentController extends Controller
             $charge['details'] = json_encode($result);
             $charge['channel'] = 'wx_lite';
 
-            $order = $this->payment->paySuccess($charge);
+            $order = $this->payment->paySuccess($charge);*/
         }
 
         if (Order::STATUS_PAY == $order->status) {

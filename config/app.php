@@ -182,6 +182,8 @@ return [
         Prettus\Repository\Providers\RepositoryServiceProvider::class,
         HieuLe\Active\ActiveServiceProvider::class,
 
+        iBrand\Component\Pay\PayServiceProvider::class,
+
         iBrand\EC\Open\Core\Providers\AppServiceProvider::class,
         iBrand\EC\Open\Server\Providers\ServerServiceProvider::class,
 
@@ -248,6 +250,8 @@ return [
         'View' => Illuminate\Support\Facades\View::class,
         'Active' => HieuLe\Active\Facades\Active::class,
 
+        'Charge'=> iBrand\Component\Pay\Facades\Charge::class,
+        'PayNotify' => iBrand\Component\Pay\Facades\PayNotify::class,
     ],
 
 ];
