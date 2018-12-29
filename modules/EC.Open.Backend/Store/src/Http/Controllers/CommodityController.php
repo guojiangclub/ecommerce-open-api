@@ -1,6 +1,7 @@
 <?php
 
 namespace iBrand\EC\Open\Backend\Store\Http\Controllers;
+
 use iBrand\EC\Open\Backend\Store\Model\Goods;
 use iBrand\EC\Open\Backend\Store\Model\Models;
 use iBrand\EC\Open\Backend\Store\Model\Product;
@@ -213,7 +214,7 @@ class CommodityController extends Controller
 
         if ($validator->fails()) {
             $warnings = $validator->messages();
-            $show_warning = $warnings->first();        
+            $show_warning = $warnings->first();
             return response()->json(['status' => false
                 , 'error_code' => 0
                 , 'error' => $show_warning
@@ -222,7 +223,7 @@ class CommodityController extends Controller
         }
 
         $input = $request->except('_token', 'file', 'specJson', 'upload_image');
-    
+
         $data = $this->goodsService->handleGoodsData($input);   //将商品数据进行分组处理
 
         if (isset($data['status']) AND !$data['status']) {
@@ -357,7 +358,7 @@ class CommodityController extends Controller
 
         $attributes = [
             "name" => '商品名称',
-            "brand_id" => '品牌选择',        
+            "brand_id" => '品牌选择',
             "model_id" => '模型选择',
             'store_nums' => '商品数量',
             '_imglist' => '商品图片',
@@ -368,22 +369,22 @@ class CommodityController extends Controller
             '_spec.*.market_price' => 'SKU市场价',
             '_spec.*.sell_price' => 'SKU销售价',
             '_spec.*.store_nums' => 'SKU库存',
-            '_spec' => '规格选择',           
+            '_spec' => '规格选择',
             'sort' => '排序',
         ];
-   
+
         $validator = Validator::make(request()->all(), $rules, $message, $attributes);
 
-        $validator->sometimes('goods_no', "unique:".config('ibrand.app.database.prefix', 'ibrand_')."goods,goods_no,$id", function ($input) {
+        $validator->sometimes('goods_no', "unique:" . config('ibrand.app.database.prefix', 'ibrand_') . "goods,goods_no,$id", function ($input) {
             return $input->id;
         });
 
-        $validator->sometimes('goods_no', "unique:".config('ibrand.app.database.prefix', 'ibrand_')."goods,goods_no", function ($input) {
+        $validator->sometimes('goods_no', "unique:" . config('ibrand.app.database.prefix', 'ibrand_') . "goods,goods_no", function ($input) {
             return !$input->id;
-        });       
+        });
 
         $validator->sometimes(['_spec.*.market_price', '_spec.*.sell_price', '_spec.*.store_nums'], 'required', function ($input) {
-            return count($input->_spec) > 0;
+            return isset($input->_spec) AND count($input->_spec) > 0;
         });
 
         return $validator;
@@ -523,7 +524,7 @@ class CommodityController extends Controller
             $categories = $this->categoryRepository->getOneLevelCategory(request('parentId'));
 
             return response()->json($categories);
-        } else {           
+        } else {
             $categories = $this->categoryRepository->getOneLevelCategory();
             return view('store-backend::commodity.includes.category-item', compact('categories'));
         }
