@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "f71902c12bf725d0ac0f45f5bfea7557",
+    "content-hash": "8a1c6bb6a677837b1d323f55f952fa7c",
     "packages": [
         {
             "name": "anam/phantomjs-linux-x86-binary",
@@ -1650,6 +1650,65 @@
             "time": "2017-10-28T11:24:20+00:00"
         },
         {
+            "name": "hidehalo/nanoid-php",
+            "version": "1.1.4",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/hidehalo/nanoid-php.git",
+                "reference": "0f4ffdd3b56200e2a927501b01bae31b62a35df7"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/hidehalo/nanoid-php/zipball/0f4ffdd3b56200e2a927501b01bae31b62a35df7",
+                "reference": "0f4ffdd3b56200e2a927501b01bae31b62a35df7",
+                "shasum": "",
+                "mirrors": [
+                    {
+                        "url": "https://dl.laravel-china.org/%package%/%reference%.%type%",
+                        "preferred": true
+                    }
+                ]
+            },
+            "require": {
+                "paragonie/random_compat": ">=2.0",
+                "php": "~5.6|~7.0"
+            },
+            "require-dev": {
+                "phpunit/phpunit": ">=5.6",
+                "squizlabs/php_codesniffer": "^2.3"
+            },
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "1.0-dev"
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Hidehalo\\Nanoid\\": "src"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "hidehalo",
+                    "email": "tianchen_cc@yeah.net",
+                    "homepage": "https://github.com/hidehalo",
+                    "role": "Owner"
+                }
+            ],
+            "description": "A copy of nanoid in PHP",
+            "homepage": "https://github.com/hidehalo/nanoid-php",
+            "keywords": [
+                "hidehalo",
+                "nanoid-php"
+            ],
+            "time": "2018-10-03T02:53:38+00:00"
+        },
+        {
             "name": "ibrand/backend",
             "version": "v3.0.2",
             "source": {
@@ -2118,6 +2177,71 @@
                 "ueditor"
             ],
             "time": "2018-11-22T09:33:21+00:00"
+        },
+        {
+            "name": "ibrand/pay",
+            "version": "v0.1.1",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/ibrandcc/pay.git",
+                "reference": "4d8419dcbea621307896adb85397412dab471a81"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/ibrandcc/pay/zipball/4d8419dcbea621307896adb85397412dab471a81",
+                "reference": "4d8419dcbea621307896adb85397412dab471a81",
+                "shasum": "",
+                "mirrors": [
+                    {
+                        "url": "https://dl.laravel-china.org/%package%/%reference%.%type%",
+                        "preferred": true
+                    }
+                ]
+            },
+            "require": {
+                "hidehalo/nanoid-php": "^1.1",
+                "php": ">=7.0",
+                "yansongda/pay": "^2.5"
+            },
+            "require-dev": {
+                "mockery/mockery": "~1.0",
+                "orchestra/database": "~3.5",
+                "orchestra/testbench": "~3.5",
+                "phpunit/phpunit": "~6.0"
+            },
+            "type": "library",
+            "extra": {
+                "laravel": {
+                    "providers": [
+                        "iBrand\\Component\\Pay\\PayServiceProvider"
+                    ],
+                    "aliases": {
+                        "Charge": "iBrand\\Component\\Pay\\Facades\\Charge"
+                    }
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "iBrand\\Component\\Pay\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "shjchen",
+                    "email": "ibrand.shjchen@foxmail.com"
+                }
+            ],
+            "description": "ibrand pay component",
+            "keywords": [
+                "component",
+                "ibrand",
+                "pay"
+            ],
+            "time": "2018-12-29T03:37:46+00:00"
         },
         {
             "name": "ibrand/setting",
@@ -3438,7 +3562,7 @@
                 {
                     "name": "Luís Otávio Cobucci Oblonczyk",
                     "email": "lcobucci@gmail.com",
-                    "role": "Developer"
+                    "role": "developer"
                 }
             ],
             "description": "A simple library to work with JSON Web Token and JSON Web Signature",
@@ -4116,16 +4240,16 @@
         },
         {
             "name": "nesbot/carbon",
-            "version": "1.36.1",
+            "version": "1.36.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/briannesbitt/Carbon.git",
-                "reference": "63da8cdf89d7a5efe43aabc794365f6e7b7b8983"
+                "reference": "cd324b98bc30290f233dd0e75e6ce49f7ab2a6c9"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/briannesbitt/Carbon/zipball/63da8cdf89d7a5efe43aabc794365f6e7b7b8983",
-                "reference": "63da8cdf89d7a5efe43aabc794365f6e7b7b8983",
+                "url": "https://api.github.com/repos/briannesbitt/Carbon/zipball/cd324b98bc30290f233dd0e75e6ce49f7ab2a6c9",
+                "reference": "cd324b98bc30290f233dd0e75e6ce49f7ab2a6c9",
                 "shasum": "",
                 "mirrors": [
                     {
@@ -4176,7 +4300,7 @@
                 "datetime",
                 "time"
             ],
-            "time": "2018-11-22T18:23:02+00:00"
+            "time": "2018-12-28T10:07:33+00:00"
         },
         {
             "name": "nikic/php-parser",
@@ -5789,16 +5913,16 @@
         },
         {
             "name": "spatie/laravel-backup",
-            "version": "5.11.3",
+            "version": "5.12.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/spatie/laravel-backup.git",
-                "reference": "ff06262cfa2fa1104f727e758fc4111a6f7413da"
+                "reference": "9f6466ad6b51dedba0ceccc65aff8a613d5f4521"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/spatie/laravel-backup/zipball/ff06262cfa2fa1104f727e758fc4111a6f7413da",
-                "reference": "ff06262cfa2fa1104f727e758fc4111a6f7413da",
+                "url": "https://api.github.com/repos/spatie/laravel-backup/zipball/9f6466ad6b51dedba0ceccc65aff8a613d5f4521",
+                "reference": "9f6466ad6b51dedba0ceccc65aff8a613d5f4521",
                 "shasum": "",
                 "mirrors": [
                     {
@@ -5808,7 +5932,12 @@
                 ]
             },
             "require": {
-                "laravel/framework": "~5.5.0|~5.6.0|~5.7.0",
+                "illuminate/console": "~5.5.0|~5.6.0|~5.7.0",
+                "illuminate/contracts": "~5.5.0|~5.6.0|~5.7.0",
+                "illuminate/events": "~5.5.0|~5.6.0|~5.7.0",
+                "illuminate/filesystem": "~5.5.0|~5.6.0|~5.7.0",
+                "illuminate/notifications": "~5.5.0|~5.6.0|~5.7.0",
+                "illuminate/support": "~5.5.0|~5.6.0|~5.7.0",
                 "league/flysystem": "^1.0.27",
                 "php": "^7.1",
                 "spatie/db-dumper": "^2.11.1",
@@ -5859,7 +5988,7 @@
                 "laravel-backup",
                 "spatie"
             ],
-            "time": "2018-11-05T13:09:53+00:00"
+            "time": "2018-12-28T07:57:48+00:00"
         },
         {
             "name": "spatie/temporary-directory",
