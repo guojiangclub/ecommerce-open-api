@@ -46,6 +46,10 @@ iBrand EC 是一个免费的开源电子商务解决方案，使用 PHP 基于 L
 
 如果你发现任何问题或者需求，请[提交ISSUE](https://github.com/ibrandcc/ecommerce-open-api/issues)
 
+## 社交账号
+
+[Laravel-China](https://laravel-china.org/ibrand)   ·  [掘金](https://juejin.im/user/5aab2cfa518825556534407a/posts)    ·  [segmentfault](https://segmentfault.com/u/ibrand)  
+
 ## 讨论交流
 
 ![iBrand联系我们](https://iyoyo.oss-cn-hangzhou.aliyuncs.com/post/%E4%BA%8C%E7%BB%B4%E7%A0%81.jpg)
