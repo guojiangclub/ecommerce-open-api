@@ -159,16 +159,7 @@
     //删除商品
     $('.off-goods').on('click', function () {
 	    var deleteUrl = $(this).data('href');
-	    var checkUrl = $(this).data('check');
-
-	    $.post(checkUrl, {token: _token}, function (result) {
-		    if (result.status) {
-			    delete_goods(deleteUrl, '删除后可以在已删除商品列表恢复');
-		    } else {
-			    swal('警告', '该商品正在参与促销活动,不能删除', 'warning');
-
-		    }
-	    });
+		delete_goods(deleteUrl, '删除后可以在已删除商品列表恢复');
     });
 
     //彻底删除商品

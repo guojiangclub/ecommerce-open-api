@@ -277,7 +277,6 @@
                                                        class="fa fa-pencil-square-o"
                                                        title="编辑"></i></a>
                                                 <a class="btn btn-xs btn-danger off-goods"
-                                                   data-check="{{route('admin.goods.checkPromotionStatus',['id'=>$item->id])}}"
                                                    data-href="{{route('admin.goods.delete',['id'=>$item->id])}}">
                                                     <i data-toggle="tooltip" data-placement="top"
                                                        class="fa fa-trash"
