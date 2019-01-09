@@ -802,11 +802,12 @@ class CommodityController extends Controller
             $goods = $this->goodsRepository->find($id);
             if ($status == 2) { //如果是下架操作
                 $goods->is_del = 2;
-                $goods->save();
+            } elseif ($status == 1) {  //删除
+                $goods->is_del = 1;
             } else {
                 $goods->is_del = 0;
-                $goods->save();
             }
+            $goods->save();
         }
 
         return $this->ajaxJson(true, ['error_list' => $error_list]);

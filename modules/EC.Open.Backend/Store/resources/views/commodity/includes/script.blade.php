@@ -30,12 +30,13 @@
 		    arr[i] = gid;
 	    }
 
-	    if ($(this).attr('status') == 1) {
-		    var url = "{{route('admin.goods.saveIsDel',['lineGoods'=>1])}}";
-	    }
-	    if (($(this).attr('status') == 2)) {
-		    var url = "{{route('admin.goods.saveIsDel',['lineGoods'=>2])}}";
-	    }
+		var status = $(this).data('status');
+		var url = "{{route('admin.goods.saveIsDel',['lineGoods'=>1])}}";  //删除
+		if (status == 2) {
+			url = "{{route('admin.goods.saveIsDel',['lineGoods'=>2])}}"; //下架
+		} else if (status == 3) {
+			url = "{{route('admin.goods.saveIsDel',['lineGoods'=>0])}}"; //上架
+		}
 
 	    $.post(url, {gid: arr, token: _token}, function (result) {
 		    swal({
