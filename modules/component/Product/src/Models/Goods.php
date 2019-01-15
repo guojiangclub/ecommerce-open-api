@@ -98,7 +98,7 @@ class Goods extends LaravelModel
 
     public function specificationValue()
     {
-        return $this->belongsToMany(SpecificationValue::class, 'ibrand_goods_spec_relation', 'goods_id', 'spec_value_id')
+        return $this->belongsToMany(SpecificationValue::class, config('ibrand.app.database.prefix', 'ibrand_').'goods_spec_relation', 'goods_id', 'spec_value_id')
             ->withPivot('spec_id', 'alias', 'img', 'sort')->withTimestamps();
     }
 
