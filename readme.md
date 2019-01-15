@@ -28,6 +28,7 @@ iBrand EC 是一个免费的开源电子商务解决方案，使用 PHP 基于 L
 - [Wiki](https://github.com/ibrandcc/ecommerce-open-api/wiki)
 - [API 文档](https://www.ibrand.cc/docs/api/)
 - [iBrand 电商系统教程](https://www.ibrand.cc/open/article)
+- [设计稿](https://lanhuapp.com/url/v7Bfb)  密码： YgK7
 
 ## 特性
 
