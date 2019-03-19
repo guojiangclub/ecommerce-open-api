@@ -1,5 +1,87 @@
 SET FOREIGN_KEY_CHECKS=0;
 
+
+-- ----------------------------
+-- Table structure for `ibrand_category`
+-- ----------------------------
+DROP TABLE IF EXISTS `ibrand_category`;
+CREATE TABLE `ibrand_category` (
+  `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `name` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `description` text COLLATE utf8mb4_unicode_ci,
+  `sort` int(10) unsigned NOT NULL DEFAULT '0',
+  `status` tinyint(4) NOT NULL DEFAULT '1',
+  `parent_id` int(10) unsigned DEFAULT NULL,
+  `level` int(11) DEFAULT '1',
+  `path` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT '/',
+  `_lft` int(10) unsigned DEFAULT '0',
+  `_rgt` int(10) unsigned DEFAULT '0',
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL,
+  `deleted_at` timestamp NULL DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  KEY `ibrand_category__lft__rgt_parent_id_index` (`_lft`,`_rgt`,`parent_id`)
+) ENGINE=InnoDB AUTO_INCREMENT=61 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+-- ----------------------------
+-- Records of ibrand_category
+-- ----------------------------
+INSERT INTO `ibrand_category` VALUES ('1', '男童专区', null, '2', '1', '0', '1', '/1/', null, null, '2017-05-11 11:30:20', '2017-09-22 13:07:52', null);
+INSERT INTO `ibrand_category` VALUES ('2', '女童专区', null, '3', '1', '0', '1', '/2/', null, null, '2017-05-11 11:45:26', '2017-09-22 13:07:52', null);
+INSERT INTO `ibrand_category` VALUES ('3', '男童T恤/衬衫', null, '0', '1', '1', '2', '/1/3/', null, null, '2017-05-11 11:46:11', '2018-05-16 15:57:36', null);
+INSERT INTO `ibrand_category` VALUES ('4', '休闲裤', null, '0', '1', '1', '2', '/1/4/', null, null, '2017-05-11 11:46:36', '2017-09-22 13:07:52', null);
+INSERT INTO `ibrand_category` VALUES ('5', '套装', null, '0', '1', '1', '2', '/1/5/', null, null, '2017-05-11 11:46:54', '2017-09-22 13:07:52', null);
+INSERT INTO `ibrand_category` VALUES ('6', '女童T恤/衬衫', null, '0', '1', '2', '2', '/2/6/', null, null, '2017-05-11 11:47:11', '2018-05-16 15:57:46', null);
+INSERT INTO `ibrand_category` VALUES ('7', '裙装', null, '0', '1', '2', '2', '/2/7/', null, null, '2017-05-11 11:47:21', '2017-09-22 13:07:52', null);
+INSERT INTO `ibrand_category` VALUES ('8', '裤装', null, '0', '1', '2', '2', '/2/8/', null, null, '2017-05-11 11:47:58', '2017-09-22 13:07:52', null);
+INSERT INTO `ibrand_category` VALUES ('9', '外套', null, '0', '1', '2', '2', '/2/9/', null, null, '2017-05-11 11:48:05', '2017-09-22 13:07:52', null);
+INSERT INTO `ibrand_category` VALUES ('10', '促销专区', null, '999', '1', '0', '1', '/10/', null, null, '2017-05-11 11:48:49', '2019-01-23 11:28:02', null);
+INSERT INTO `ibrand_category` VALUES ('11', '热卖专区', null, '1', '1', '0', '1', '/11/', null, null, '2017-05-11 11:49:00', '2017-09-22 13:07:52', null);
+INSERT INTO `ibrand_category` VALUES ('12', '套装', null, '0', '1', '2', '2', '/2/12/', null, null, '2017-05-11 11:50:52', '2017-09-22 13:07:52', null);
+INSERT INTO `ibrand_category` VALUES ('13', '5.11伞', null, '0', '1', '0', '1', '/13/', null, null, '2017-09-22 13:13:18', '2017-09-22 13:13:18', null);
+INSERT INTO `ibrand_category` VALUES ('14', '玩具', null, '0', '1', '0', '1', '/14/', null, null, '2017-10-16 15:02:28', '2017-10-16 15:02:28', null);
+INSERT INTO `ibrand_category` VALUES ('15', '亲子装', null, '0', '1', '0', '1', '/15/', null, null, '2018-05-15 15:51:10', '2018-05-15 15:51:10', null);
+INSERT INTO `ibrand_category` VALUES ('16', '母女亲子装', null, '0', '1', '15', '2', '/15/16/', null, null, '2018-05-15 15:51:49', '2018-05-15 15:51:49', null);
+INSERT INTO `ibrand_category` VALUES ('17', '一家三口亲子装', null, '0', '1', '15', '2', '/15/17/', null, null, '2018-05-15 15:52:05', '2018-05-15 15:52:05', null);
+INSERT INTO `ibrand_category` VALUES ('18', '新品', null, '1', '1', '0', '1', '/18/', null, null, '2018-05-21 11:20:08', '2018-08-10 16:52:40', null);
+INSERT INTO `ibrand_category` VALUES ('19', '5.22上新第一波', null, '2', '1', '18', '2', '/18/19/', null, null, '2018-05-21 11:21:21', '2018-08-10 16:52:49', null);
+INSERT INTO `ibrand_category` VALUES ('20', '家居服', null, '0', '1', '0', '1', '/20/', null, null, '2018-05-21 13:56:40', '2018-05-21 13:56:40', null);
+INSERT INTO `ibrand_category` VALUES ('21', '防晒服', null, '0', '1', '0', '1', '/21/', null, null, '2018-05-21 13:56:48', '2018-05-21 13:56:48', null);
+INSERT INTO `ibrand_category` VALUES ('23', '春夏款', null, '0', '1', '20', '2', '/20/23/', null, null, '2018-05-21 14:56:13', '2018-05-21 14:56:13', null);
+INSERT INTO `ibrand_category` VALUES ('24', '秋冬款', null, '0', '1', '20', '2', '/20/24/', null, null, '2018-05-21 14:56:29', '2018-05-21 14:56:29', null);
+INSERT INTO `ibrand_category` VALUES ('25', '背心', null, '0', '1', '1', '2', '/1/25/', null, null, '2018-05-25 14:06:41', '2018-05-25 14:07:09', null);
+INSERT INTO `ibrand_category` VALUES ('26', '5.28上新第二波', null, '3', '1', '18', '2', '/18/26/', null, null, '2018-05-31 16:52:18', '2018-08-10 16:53:18', null);
+INSERT INTO `ibrand_category` VALUES ('27', '防蚊防晒', null, '0', '1', '41', '2', '/41/27/', null, null, '2018-06-05 15:43:20', '2018-06-11 10:55:10', null);
+INSERT INTO `ibrand_category` VALUES ('28', '午睡毯', null, '0', '1', '32', '3', '/41/32/28/', null, null, '2018-06-05 15:43:55', '2018-06-11 12:34:13', null);
+INSERT INTO `ibrand_category` VALUES ('29', '防蚊', null, '0', '1', '27', '3', '/41/27/29/', null, null, '2018-06-07 11:08:49', '2018-06-11 10:55:10', null);
+INSERT INTO `ibrand_category` VALUES ('31', '防晒', null, '0', '1', '27', '3', '/41/27/31/', null, null, '2018-06-07 11:09:18', '2018-06-11 10:55:10', null);
+INSERT INTO `ibrand_category` VALUES ('32', '居家收纳', null, '0', '1', '41', '2', '/41/32/', null, null, '2018-06-07 14:51:39', '2018-06-11 10:55:01', null);
+INSERT INTO `ibrand_category` VALUES ('33', '上装', null, '0', '1', '0', '1', '/33/', null, null, '2018-06-08 11:43:05', '2018-06-08 11:43:05', null);
+INSERT INTO `ibrand_category` VALUES ('34', 'T恤', null, '0', '1', '33', '2', '/33/34/', null, null, '2018-06-08 11:43:16', '2018-06-08 11:43:16', null);
+INSERT INTO `ibrand_category` VALUES ('35', '背心', null, '0', '1', '33', '2', '/33/35/', null, null, '2018-06-08 11:43:26', '2018-06-08 11:43:26', null);
+INSERT INTO `ibrand_category` VALUES ('36', '上装', null, '0', '1', '0', '1', '/36/', null, null, '2018-06-08 11:43:44', '2018-06-08 11:43:44', null);
+INSERT INTO `ibrand_category` VALUES ('37', 'T恤', null, '0', '1', '36', '2', '/36/37/', null, null, '2018-06-08 11:44:07', '2018-06-08 11:44:07', null);
+INSERT INTO `ibrand_category` VALUES ('38', '背心', null, '0', '1', '36', '2', '/36/38/', null, null, '2018-06-08 11:44:17', '2018-06-08 11:44:26', null);
+INSERT INTO `ibrand_category` VALUES ('39', '连衣裙', null, '0', '1', '7', '3', '/2/7/39/', null, null, '2018-06-11 10:21:47', '2018-06-11 10:21:47', null);
+INSERT INTO `ibrand_category` VALUES ('40', '短裙', null, '0', '1', '7', '3', '/2/7/40/', null, null, '2018-06-11 10:22:05', '2018-06-11 10:22:05', null);
+INSERT INTO `ibrand_category` VALUES ('41', '夏季爆款', null, '0', '1', '0', '1', '/41/', null, null, '2018-06-11 10:53:19', '2018-09-03 14:36:21', null);
+INSERT INTO `ibrand_category` VALUES ('42', '6.8上新第三波', null, '3', '1', '18', '2', '/18/42/', null, null, '2018-06-11 12:37:16', '2018-06-11 12:37:16', null);
+INSERT INTO `ibrand_category` VALUES ('43', '2018秋新品', null, '4', '1', '18', '2', '/18/43/', null, null, '2018-08-10 16:50:45', '2018-08-10 16:53:03', null);
+INSERT INTO `ibrand_category` VALUES ('44', '外套', null, '0', '1', '1', '2', '/1/44/', null, null, '2018-08-10 16:51:05', '2018-08-10 16:51:05', null);
+INSERT INTO `ibrand_category` VALUES ('45', '儿童配饰', null, '0', '1', '0', '1', '/45/', null, null, '2018-08-16 16:12:35', '2018-09-19 11:08:30', null);
+INSERT INTO `ibrand_category` VALUES ('46', '渔夫帽', null, '0', '1', '45', '2', '/45/46/', null, null, '2018-08-16 16:12:45', '2018-08-16 16:12:45', null);
+INSERT INTO `ibrand_category` VALUES ('47', '棒球帽', null, '0', '1', '45', '2', '/45/47/', null, null, '2018-08-16 16:12:58', '2018-08-16 16:12:58', null);
+INSERT INTO `ibrand_category` VALUES ('48', '童鞋', null, '0', '1', '0', '1', '/48/', null, null, '2018-09-03 14:36:34', '2018-09-03 14:36:34', null);
+INSERT INTO `ibrand_category` VALUES ('49', '帆布鞋', null, '1', '1', '48', '2', '/48/49/', null, null, '2018-09-03 14:37:07', '2018-09-03 14:37:07', null);
+INSERT INTO `ibrand_category` VALUES ('50', '儿童内裤', null, '0', '1', '0', '1', '/50/', null, null, '2018-09-04 19:40:41', '2018-09-04 19:40:41', null);
+INSERT INTO `ibrand_category` VALUES ('51', '女童内裤', null, '0', '1', '50', '2', '/50/51/', null, null, '2018-09-04 19:41:06', '2018-09-04 19:41:06', null);
+INSERT INTO `ibrand_category` VALUES ('52', '男童内裤', null, '0', '1', '50', '2', '/50/52/', null, null, '2018-09-04 19:41:29', '2018-09-04 19:41:29', null);
+INSERT INTO `ibrand_category` VALUES ('53', '儿童袜子', null, '0', '1', '0', '1', '/53/', null, null, '2018-09-05 09:13:20', '2018-09-05 09:13:20', null);
+INSERT INTO `ibrand_category` VALUES ('54', '女童打底裤', null, '0', '1', '8', '3', '/2/8/54/', null, null, '2018-09-11 17:01:33', '2018-09-11 17:01:33', null);
+INSERT INTO `ibrand_category` VALUES ('55', '围巾', null, '0', '1', '45', '2', '/45/55/', null, null, '2018-09-18 10:23:32', '2018-09-19 11:07:08', null);
+INSERT INTO `ibrand_category` VALUES ('56', '儿童包包', null, '0', '1', '45', '2', '/45/56/', null, null, '2018-09-18 10:47:59', '2018-09-19 11:08:16', null);
+INSERT INTO `ibrand_category` VALUES ('57', '水杯', null, '0', '1', '0', '1', '/57/', null, null, '2018-09-18 13:10:43', '2018-09-18 13:10:43', null);
+
 -- ----------------------------
 -- Table structure for ibrand_goods
 -- ----------------------------
