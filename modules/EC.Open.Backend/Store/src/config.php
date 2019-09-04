@@ -17,11 +17,9 @@ return [
         '棕色',
         '灰色'
     ],
-    'produce' => false,
 
-    'goods_point' => false,
+    'page_title' => env('BACKEND_PAGE_TITLE', 'ibrand后台管理系统'),
 
-    'goods_share_top_tips' => env('GOODS_SHARE_TOP_TIPS', '力推时尚全能好货'),
+    'short_title' => env('BACKEND_PAGE_TITLE', 'ibrand'),
 
-    'goods_share_bottom_tips' => env('GOODS_SHARE_BOTTOM_TIPS', '米尔优选 为您挑选全球好货')
 ];

@@ -34,16 +34,6 @@ class ImageController extends Controller
         return response()->json(['success' => true, 'file' => asset($path), 'url' => $url]);
     }
 
-    /*public function ExcelUpload(Request $request)
-    {
-        $prefix = 'storage/';
-        $file   = $request->file('upload_excel');
-        $path   = $prefix . $file->store('uploads/excel/' . date('Y_m_d'), 'public');
-        $url    = $this->replaceImgCDN(asset($path));
-
-        return response()->json(['success' => true, 'file' => asset($path), 'url' => $url]);
-    }*/
-
     public function ExcelUpload(Request $request)
     {
         $destinationPath = '/uploads/excel/';

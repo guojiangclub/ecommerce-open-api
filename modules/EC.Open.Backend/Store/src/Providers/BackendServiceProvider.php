@@ -14,9 +14,6 @@ use iBrand\EC\Open\Backend\Store\Service\GoodsService;
 use iBrand\EC\Open\Backend\Store\Service\OrderService;
 use iBrand\EC\Open\Backend\Store\Service\ExcelExportsService;
 use iBrand\EC\Open\Backend\Store\Service\DiscountService;
-use iBrand\EC\Open\Backend\Store\Service\RefundService;
-use Menu;
-use Event;
 
 class BackendServiceProvider extends ServiceProvider
 {
@@ -39,8 +36,7 @@ class BackendServiceProvider extends ServiceProvider
     {
         //publish a config file
         $this->publishes([
-            __DIR__ . '/../config.php' => config_path('store.php'),
-            __DIR__ . '/../dmp.php' => config_path('dmp.php')
+            __DIR__ . '/../config.php' => config_path('ibrand/store.php'),
         ]);
 
         if (!$this->app->routesAreCached()) {
@@ -58,8 +54,6 @@ class BackendServiceProvider extends ServiceProvider
                 __DIR__ . '/../../resources/assets/template' => public_path('assets/template'),
                 __DIR__ . '/../../resources/assets/libs/sweetalert' => public_path('vendor/laravel-admin/sweetalert'),
             ], 'store-backend-assets');
-
-            $this->registerMigrations();
         }
 
         $this->commands([
@@ -68,8 +62,6 @@ class BackendServiceProvider extends ServiceProvider
             SetDefaultValueCommand::class
         ]);
 
-        $this->registerMenu();
-
         Product::observe(ProductObserver::class);
 
         $this->mergeUeditorConfig();
@@ -77,6 +69,11 @@ class BackendServiceProvider extends ServiceProvider
 
     public function register()
     {
+
+        $this->mergeConfigFrom(
+            __DIR__ . '/../config.php', 'ibrand.store'
+        );
+
 
         $this->app->register(\iBrand\EC\Open\Backend\Member\Providers\BackendServiceProvider::class);
         $this->app->register(UEditorServiceProvider::class);
@@ -116,30 +113,9 @@ class BackendServiceProvider extends ServiceProvider
         });
     }
 
-    private function registerMenu()
-    {
-        Menu::make('topMenu', function ($menu) {
-
-            $menu->add('<i class="iconfont icon-shangchengguanli-"></i>
-                            <span>商城管理</span>', ['url' => 'admin/store', 'secure' => env('SECURE')])
-                ->active('admin/store/*')
-                ->active('admin/image/*')
-                ->active('admin/promotion/*')
-                ->active('admin/order/*')
-                ->active('admin/refund/*')
-                ->active('admin/comments/*')
-                ->active('admin/shippingmethod/*');
-        });
-    }
-
     public function provides()
     {
         return ['GoodsService', 'OrderService', 'ExcelExportsService', 'DiscountService', 'RefundService', 'RegistrationsService'];
-    }
-
-    protected function registerMigrations()
-    {
-        return $this->loadMigrationsFrom(__DIR__ . '/../../migrations');
     }
 
     private function mergeUeditorConfig()

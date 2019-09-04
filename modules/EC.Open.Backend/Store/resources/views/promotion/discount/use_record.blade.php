@@ -1,22 +1,5 @@
-{{--@extends('store-backend::dashboard')
-
-@section ('title','促销活动使用记录')
-
-@section('breadcrumbs')
-    <h2>促销活动使用记录</h2>
-    <ol class="breadcrumb">
-        <li><a href="{!!route('admin.store.index')!!}"><i class="fa fa-dashboard"></i> 首页</a></li>
-        <li class="active">促销活动使用记录</li>
-    </ol>
-@endsection
-
-@section('after-styles-end')--}}
     {!! Html::style(env("APP_URL").'/assets/backend/admin/css/plugins/ladda/ladda-themeless.min.css') !!}
     {!! Html::style(env("APP_URL").'/assets/backend/libs/datepicker/bootstrap-datetimepicker.min.css') !!}
-{{--@stop
-
-
-@section('content')--}}
 
     @if(Session::has('message'))
         <div class="alert alert-success alert-dismissable">
@@ -106,69 +89,37 @@
                                     <tbody>
                                     <!--tr-th start-->
                                     <tr>
-                                        {{--<th><input type="checkbox" class="check-all"></th>--}}
-
                                         <th>促销说明</th>
-                                        {{--<th>优惠券码</th>--}}
                                         <th>订单编号</th>
                                         <th>订单总金额</th>
                                         <th>订单状态</th>
                                         <th>会员名</th>
                                         <th>使用时间</th>
-                                        {{--<th>摘要</th>--}}
                                     </tr>
-                                    @if($coupons->count()>0)
+                                    @if($discounts->count()>0)
                                             <!--tr-th end-->
-                                    @foreach ($coupons as $coupon)
-                                        <tr class="coupon{{$coupon->id}}">
-                                            {{--<td><input class="checkbox" type="checkbox" value="{{$coupon->id}}"--}}
-                                                       {{--name="ids[]"></td>--}}
+                                    @foreach ($discounts as $discount)
+                                        <tr class="coupon{{$discount->id}}">
+                                            <td>{{$discount->label}}</td>
 
-                                            <td>{{$coupon->label}}</td>
+                                            <td><a href="{{route('admin.orders.show',['id'=>$discount->order->id])}}"
+                                                   target="_blank">{{$discount->order->order_no}}</a></td>
 
-                                            <td><a href="{{route('admin.orders.show',['id'=>$coupon->order->id])}}"
-                                                   target="_blank">{{$coupon->order->order_no}}</a></td>
-
-                                            <td>{{$coupon->order->total}}</td>
-                                            <td>
-                                                @if($coupon->order->status==7)
-                                                    退款中
-                                                @elseif($coupon->order->status==1)
-                                                    待付款
-                                                @elseif($coupon->order->status==0)
-                                                    临时订单
-                                                @elseif($coupon->order->status==2)
-                                                    待发货
-                                                @elseif($coupon->order->status==3)
-                                                    配送中待收货
-                                                @elseif($coupon->order->status==4)
-                                                    已收货待评价
-                                                @elseif($coupon->order->status==5)
-                                                    已完成
-                                                @elseif($coupon->order->status==6)
-                                                    已取消
-                                                @elseif($coupon->order->status==9)
-                                                    已取消
-                                                @elseif($coupon->order->status==8)
-                                                    已作废
-                                                @endif
-                                            </td>
-                                            {{--@endforeach--}}
-                                            {{--<td>{!! ElementVip\Store\Backend\Model\User::find($coupon->order->user_id)->name!!}</td>--}}
-                                            <td>{{$coupon->order->user->name?$coupon->order->user->name:$coupon->order->user->mobile}}</td>
+                                            <td>{{$discount->order->total}}</td>
+                                            <td>{{$discount->order->status_text}}</td>
+                                            <td>{{$discount->order->user->mobile}}</td>
                                             <td>{{$coupon->created_at}}</td>
-                                            {{--<td>{{$coupon->note}}</td>--}}
                                         </tr>
                                     @endforeach
                                     @endif
                                     </tbody>
                                 </table>
                                 <div class="pull-left">
-                                    &nbsp;&nbsp;共&nbsp;{!! $coupons->total() !!} 条记录
+                                    &nbsp;&nbsp;共&nbsp;{!! $discounts->total() !!} 条记录
                                 </div>
 
                                 <div class="pull-right">
-                                    {!! $coupons->appends(request()->except('page'))->render() !!}
+                                    {!! $discounts->appends(request()->except('page'))->render() !!}
                                 </div>
                                 <!-- /.box-body -->
                             </div>
@@ -181,19 +132,9 @@
         </div>
     </div>
     <div id="download_modal" class="modal inmodal fade"></div>
-{{--@endsection
 
-@section('before-scripts-end')--}}
     {!! Html::script(env("APP_URL").'/assets/backend/libs/datepicker/bootstrap-datetimepicker.js') !!}
     {!! Html::script(env("APP_URL").'/assets/backend/libs/datepicker/bootstrap-datetimepicker.zh-CN.js') !!}
     {!! Html::script(env("APP_URL").'/assets/backend/libs/loader/jquery.loader.min.js') !!}
     {!! Html::script(env("APP_URL").'/assets/backend/libs/jquery.el/el.common.js') !!}
     @include('store-backend::promotion.public.discount_used_script')
-{{--@endsection--}}
-
-
-
-
-
-
-

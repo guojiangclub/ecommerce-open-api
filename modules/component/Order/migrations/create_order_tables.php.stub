@@ -95,7 +95,6 @@ class CreateOrderTables extends Migration
                 $table->increments('id');
                 $table->integer('order_id')->unsigned()->nullable();
                 $table->integer('order_item_id')->unsigned()->nullable();
-                $table->integer('order_item_unit_id')->unsigned()->nullable();
 
                 $table->string('type');  //优惠对象，订单, 商品，运费等
                 $table->string('label')->nullable();  // 文案描述："9折"

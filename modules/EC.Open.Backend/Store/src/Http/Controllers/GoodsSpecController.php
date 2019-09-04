@@ -7,7 +7,6 @@ use iBrand\EC\Open\Backend\Store\Model\Spec;
 use iBrand\EC\Open\Backend\Store\Model\SpecsValue;
 use iBrand\Backend\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-
 use DB;
 use Validator;
 use Encore\Admin\Facades\Admin as LaravelAdmin;
@@ -77,10 +76,7 @@ class GoodsSpecController extends Controller
         } else {
             $spec = Spec::create($input);
         }
-        return response()->json(['status' => true
-            , 'error_code' => 0
-            , 'error' => ''
-            , 'data' => $spec->id]);
+        return $this->ajaxJson();
     }
 
 
@@ -106,8 +102,6 @@ class GoodsSpecController extends Controller
 
             $content->body(view('store-backend::specs.edit', compact('spec')));
         });
-
-//        return view('store-backend::specs.edit', compact('spec'));
     }
 
 
@@ -119,7 +113,7 @@ class GoodsSpecController extends Controller
      */
     public function destroy($id)
     {
-        $result = DB::table('el_goods_spec_relation')->where('spec_id', $id)->get();
+        $result = DB::table(config('ibrand.app.database.prefix', 'ibrand_').'goods_spec_relation')->where('spec_id', $id)->get();
         if (count($result) OR $id == 2) {
             return $this->ajaxJson(false);
         } else {
@@ -152,7 +146,7 @@ class GoodsSpecController extends Controller
     public function specValue($id)
     {
         $spec = Spec::find($id);
-        $color = config('store.color');
+        $color = config('ibrand.store.color');
 
         return LaravelAdmin::content(function (Content $content) use ($spec,$color) {
 
@@ -166,8 +160,6 @@ class GoodsSpecController extends Controller
 
             $content->body(view('store-backend::specs.value.edit', compact('spec','color')));
         });
-
-//        return view('store-backend::specs.value.edit', compact('spec', 'color'));
     }
 
     public function getSpeValueData()
@@ -218,7 +210,7 @@ class GoodsSpecController extends Controller
     public function delSpecValue()
     {
         $id = request('id');
-        $result = DB::table('el_goods_spec_relation')->where('spec_value_id', $id)->get();
+        $result = DB::table(config('ibrand.app.database.prefix', 'ibrand_').'goods_spec_relation')->where('spec_value_id', $id)->get();
         if (count($result)) {
             return $this->ajaxJson(false);
         } else {
@@ -234,7 +226,7 @@ class GoodsSpecController extends Controller
     public function editSpecValue()
     {
         $specValue = SpecsValue::find(request('id'));
-        $color = config('store.color');
+        $color = config('ibrand.store.color');
         return view('store-backend::specs.value.edit_value', compact('specValue', 'color'));
     }
 
@@ -250,7 +242,7 @@ class GoodsSpecController extends Controller
         $specValue = SpecsValue::find($id);
 
         $rules = array(
-            'name' => 'required|unique:el_goods_specs_value,name,' . $id . ',id,spec_id,' . $specValue->spec_id
+            'name' => 'required|unique:'.config('ibrand.app.database.prefix', 'ibrand_').'goods_spec_value,name,' . $id . ',id,spec_id,' . $specValue->spec_id
         );
         $message = array(
             "required" => ":attribute 不能为空",
@@ -284,7 +276,7 @@ class GoodsSpecController extends Controller
 
     public function addSpecValue($spec_id)
     {
-        $color = config('store.color');
+        $color = config('ibrand.store.color');
         return view('store-backend::specs.value.add_value', compact('spec_id', 'color'));
     }
 }

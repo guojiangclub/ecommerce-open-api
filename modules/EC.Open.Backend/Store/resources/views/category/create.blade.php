@@ -19,7 +19,7 @@
             success: function (result) {
                 if(!result.status)
                 {
-                    swal("保存失败!", result.error, "error")
+                    swal("保存失败!", result.message, "error")
                 }else{
                     swal({
                         title: "保存成功！",

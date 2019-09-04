@@ -4,7 +4,6 @@ namespace iBrand\EC\Open\Backend\Store\Http\Controllers;
 
 use iBrand\EC\Open\Backend\Store\Model\Attribute;
 use iBrand\EC\Open\Backend\Store\Model\AttributeValue;
-use iBrand\EC\Open\Backend\Store\Model\GoodsAttr;
 use iBrand\EC\Open\Backend\Store\Model\Models;
 use iBrand\EC\Open\Backend\Store\Model\Spec;
 use iBrand\EC\Open\Backend\Store\Model\SpecsValue;
@@ -159,7 +158,7 @@ class GoodsAttributeController extends Controller
      */
     public function destroy($id)
     {
-        $result = DB::table('el_goods_spec_relation')->where('spec_id', $id)->get();
+        $result = DB::table(config('ibrand.app.database.prefix', 'ibrand_').'goods_spec_relation')->where('spec_id', $id)->get();
         if (count($result)) {
             return $this->ajaxJson(false);
         } else {
@@ -192,7 +191,7 @@ class GoodsAttributeController extends Controller
     public function specValue($id)
     {
         $spec = Spec::find($id);
-        $color = config('store.color');
+        $color = config('ibrand.store.color');
         return view('store-backend::specs.value.edit', compact('spec', 'color'));
     }
 
@@ -204,16 +203,9 @@ class GoodsAttributeController extends Controller
         if (isset($input['value'])) {
             $updateData = $input['value'];
             foreach ($updateData as $item) {
-
-//                 if(count(SpecsValue::judge($item['name'], $input['spec_id'],$item['id'])))
-//                 {
-//                     return $this->ajaxJson(false);
-//                 }
-
                 SpecsValue::find($item['id'])->update($item);
             }
         }
-
 
         if (isset($input['delete_id'])) {
             $deleteData = $input['delete_id'];
@@ -244,7 +236,7 @@ class GoodsAttributeController extends Controller
      */
     public function delSpecValue($id)
     {
-        $result = DB::table('el_goods_spec_relation')->where('spec_value_id', $id)->get();
+        $result = DB::table(config('ibrand.app.database.prefix', 'ibrand_').'goods_spec_relation')->where('spec_value_id', $id)->get();
         if (count($result)) {
             return $this->ajaxJson(false);
         } else {

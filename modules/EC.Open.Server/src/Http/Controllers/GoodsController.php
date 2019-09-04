@@ -21,6 +21,7 @@ use iBrand\Component\Product\Models\Specification;
 use iBrand\Component\Product\Models\SpecificationRelation;
 use iBrand\Component\Product\Models\SpecificationValue;
 use iBrand\Component\Product\Repositories\GoodsRepository;
+use iBrand\EC\Open\Core\Services\DiscountService;
 use iBrand\EC\Open\Server\Transformers\GoodsTransformer;
 use iBrand\Miniprogram\Poster\MiniProgramShareImg;
 use Storage;
@@ -34,7 +35,8 @@ class GoodsController extends Controller
     public function __construct(GoodsRepository $goodsRepository,
                                 CouponRepository $couponRepository,
                                 CategoryRepository $categoryRepository
-    ) {
+    )
+    {
         $this->goodsRepository = $goodsRepository;
         $this->couponRepository = $couponRepository;
         $this->categoryRepository = $categoryRepository;
@@ -53,7 +55,7 @@ class GoodsController extends Controller
             $categoryIds = [];
 
             $categoryIds = $this->categoryRepository->getSubIdsById($categoryId);
-            $goodsCategoryTable = config('ibrand.app.database.prefix', 'ibrand_').'goods_category';
+            $goodsCategoryTable = config('ibrand.app.database.prefix', 'ibrand_') . 'goods_category';
             $categoryGoodsIds = DB::table($goodsCategoryTable)->whereIn('category_id', $categoryIds)->select('goods_id')->distinct()->get()
                 ->pluck('goods_id')->toArray();
             $hasFlag = true;
@@ -68,7 +70,7 @@ class GoodsController extends Controller
             foreach ($specArray as $key => $item) {
                 if ('size' == $key) {
                     $tempIds[$k] = SpecificationRelation::where('spec_value_id', $item)->select('goods_id')->distinct()->get()->pluck('goods_id')->toArray();
-                //old code. $tempIds[$k] = DB::table('el_goods_spec_relation')->where('spec_value_id', $item)->select('goods_id')->distinct()->get()->pluck('goods_id')->toArray();
+                    //old code. $tempIds[$k] = DB::table('el_goods_spec_relation')->where('spec_value_id', $item)->select('goods_id')->distinct()->get()->pluck('goods_id')->toArray();
                 } else {
                     $specValueIds = SpecificationValue::where('color', $item)->select('id')->get()->pluck('id')->toArray();
                     $tempIds[$k] = SpecificationRelation::whereIn('spec_value_id', $specValueIds)->select('goods_id')->distinct()->get()->pluck('goods_id')->toArray();
@@ -155,7 +157,7 @@ class GoodsController extends Controller
 
             if (!empty($keyword = request('keyword'))) {
                 $query = $query->where(function ($query) use ($keyword) {
-                    $query->where('name', 'like', '%'.$keyword.'%')->orWhere('tags', 'like', '%'.$keyword.'%');
+                    $query->where('name', 'like', '%' . $keyword . '%')->orWhere('tags', 'like', '%' . $keyword . '%');
                 });
             }
 
@@ -173,7 +175,7 @@ class GoodsController extends Controller
         if ($categoryId = request('c_id')) {
             $categoryIds = $this->categoryRepository->getSubIdsById($categoryId);
 
-            $goodsCategoryTable = config('ibrand.app.database.prefix', 'ibrand_').'goods_category';
+            $goodsCategoryTable = config('ibrand.app.database.prefix', 'ibrand_') . 'goods_category';
             $categoryGoodsIds = DB::table($goodsCategoryTable)->whereIn('category_id', $categoryIds)->select('goods_id')->distinct()->get()
                 ->pluck('goods_id')->toArray();
 
@@ -204,7 +206,7 @@ class GoodsController extends Controller
                 $alias = 2 == $item->type ? 'color' : 'size';
                 $specValue = $item->values->whereIn('id', $SizeFilterID);
                 foreach ($specValue as $kitem) {
-                    $itemName = $item->name.':'.$alias;
+                    $itemName = $item->name . ':' . $alias;
                     if ($kitem->color) {
                         if (!isset($specArray[$itemName]) or
                             (isset($specArray[$itemName]) and !in_array($kitem->color, $specArray[$itemName]))
@@ -231,7 +233,7 @@ class GoodsController extends Controller
         $attrGoodsIds = $goodIds;
         if (request('attrValue') and $attrArray = array_unique(request('attrValue'))) {
             foreach ($attrArray as $key => $value) {
-                $tempAttrIds[$value] = SpecificationRelation::where('attribute_value', 'like', '%'.$value.'%')
+                $tempAttrIds[$value] = SpecificationRelation::where('attribute_value', 'like', '%' . $value . '%')
                     ->select('goods_id')
                     ->distinct()->get()->pluck('goods_id')->toArray();
             }
@@ -253,7 +255,17 @@ class GoodsController extends Controller
     {
         $goods = $this->goodsRepository->find($id);
 
-        return $this->response()->item($goods, new GoodsTransformer())->setMeta(['attributes' => $goods->attr]);
+        //获取优惠折扣
+        $discounts = app(DiscountService::class)->getDiscountsByGoods($goods);
+        if (!$discounts || count($discounts) == 0) {
+            $result = null;
+        } else {
+            $result['discounts'] = collect_to_array($discounts->where('coupon_based', 0));
+            $result['coupons'] = collect_to_array($discounts->where('coupon_based', 1));
+        }
+
+        return $this->response()->item($goods, new GoodsTransformer())
+            ->setMeta(['attributes' => $goods->attr, 'discounts' => $result]);
     }
 
     public function getStock($id)
@@ -358,7 +370,7 @@ class GoodsController extends Controller
 
         $avatar = isset($user->avatar) ? $user->avatar : '';
 
-        $filename = Storage::disk('public')->url('wxacode/'.$filename);
+        $filename = Storage::disk('public')->url('wxacode/' . $filename);
 
         $url = route('goods.share.view', compact('id', 'nick_name', 'avatar', 'filename'));
 

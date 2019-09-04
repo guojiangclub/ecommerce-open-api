@@ -31,7 +31,7 @@ abstract class Controller extends BaseController
      */
     public function success($data = [], $code = Response::HTTP_OK, $status = true)
     {
-        return new Response(['status' => $status, 'code' => $code, 'data' => (0 == count($data) or empty($data)) ? null : $data]);
+        return new Response(['status' => $status, 'code' => $code, 'data' => empty($data) ? null : $data]);
     }
 
     /**

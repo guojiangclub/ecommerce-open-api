@@ -8,6 +8,8 @@
 
 namespace iBrand\EC\Open\Backend\Store\Console;
 
+use iBrand\EC\Open\Backend\Member\Seeds\MemberBackendTablesSeeder;
+use iBrand\EC\Open\Backend\Store\Seeds\StoreBackendTablesSeeder;
 use Illuminate\Console\Command;
 
 class InstallCommand extends Command
@@ -17,14 +19,14 @@ class InstallCommand extends Command
      *
      * @var string
      */
-    protected $signature = 'dmp-store:install';
+    protected $signature = 'ibrand:store-install';
 
     /**
      * The console command description.
      *
      * @var string
      */
-    protected $description = 'install dmp\'s store system.';
+    protected $description = 'install ibrand\'s store backend system.';
 
     /**
      * Execute the console command.
@@ -33,6 +35,10 @@ class InstallCommand extends Command
      */
     public function handle()
     {
-        $this->call('dmp-store:default-value');
+        $this->call('ibrand:backend-install');
+        $this->call('ibrand:store-default-value');
+        $this->call('ibrand:store-default-specs');
+        $this->call('db:seed', ['--class' => StoreBackendTablesSeeder::class]);
+        $this->call('db:seed', ['--class' => MemberBackendTablesSeeder::class]);
     }
 }

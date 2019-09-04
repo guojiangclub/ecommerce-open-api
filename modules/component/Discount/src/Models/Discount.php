@@ -146,11 +146,17 @@ class Discount extends Model implements DiscountContract
     public function getActionTypeAttribute()
     {
         $action = $this->actions()->first();
+
         $type = [];
 
-        if ('order_fixed_discount' == $action->type) {
+        if(str_contains($action->type,'fixed')){
             $type['type'] = 'cash';
             $type['value'] = json_decode($action->configuration, true)['amount'] / 100;
+        }
+
+        if(str_contains($action->type,'percentage')){
+            $type['type'] = 'percentage';
+            $type['value'] = json_decode($action->configuration, true)['percentage'] / 100;
         }
 
         return $type;

@@ -124,8 +124,9 @@
                                    href="javascript:;" data-style="zoom-in">批量操作 <span
                                             class="caret"></span></a>
                                 <ul class="dropdown-menu">
-                                    <li><a class="lineGoods" status="1" href="javascript:;">商品上架</a></li>
-                                    <li><a class="lineGoods" status="2" href="javascript:;">商品下架</a></li>
+                                    <li><a class="lineGoods" data-status="3" href="javascript:;">上架商品</a></li>
+                                    <li><a class="lineGoods" data-status="2" href="javascript:;">下架商品</a></li>
+                                    <li><a class="lineGoods" data-status="1" href="javascript:;">删除商品</a></li>
                                     <li><a no-pjax href="{{ route('admin.goods.uplode_inventorys') }}">批量导入库存</a></li>
                                     <li><a data-toggle="modal-modify-title"
                                            data-target="#modal" data-backdrop="static" data-keyboard="false"
@@ -277,7 +278,6 @@
                                                        class="fa fa-pencil-square-o"
                                                        title="编辑"></i></a>
                                                 <a class="btn btn-xs btn-danger off-goods"
-                                                   data-check="{{route('admin.goods.checkPromotionStatus',['id'=>$item->id])}}"
                                                    data-href="{{route('admin.goods.delete',['id'=>$item->id])}}">
                                                     <i data-toggle="tooltip" data-placement="top"
                                                        class="fa fa-trash"

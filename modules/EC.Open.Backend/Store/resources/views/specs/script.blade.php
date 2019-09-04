@@ -1,4 +1,3 @@
-{{--@section('after-scripts-end')--}}
     <script type="text/html" id="page-temp">
         <tr>
             <td>
@@ -95,4 +94,3 @@
 
 
     </script>
-{{--@stop--}}

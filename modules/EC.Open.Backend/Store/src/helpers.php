@@ -191,32 +191,40 @@ function get_lt_rounder_corner($radius)
  * @param int $length
  * @return string
  */
-function generate_random_string($length = 10)
-{
-    $characters = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
-    $charactersLength = strlen($characters);
-    $randomString = '';
-    for ($i = 0; $i < $length; $i++) {
-        $randomString .= $characters[rand(0, $charactersLength - 1)];
+if(!function_exists('generate_random_string')){
+    function generate_random_string($length = 10)
+    {
+        $characters = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
+        $charactersLength = strlen($characters);
+        $randomString = '';
+        for ($i = 0; $i < $length; $i++) {
+            $randomString .= $characters[rand(0, $charactersLength - 1)];
+        }
+        return $randomString;
     }
-    return $randomString;
 }
+
 /**
  * 生成导出文件cache名
  * @param $prefix
  * @return string
  */
-function generate_export_cache_name($prefix)
-{
-    return $prefix . time() . '_' . generate_random_string();
+if(!function_exists('generate_export_cache_name')){
+    function generate_export_cache_name($prefix)
+    {
+        return $prefix . time() . '_' . generate_random_string();
+    }
 }
+
 
 /**
  * 生成导出文件名
  * @param $prefix
  * @return string
  */
-function generate_export_name($prefix)
-{
-    return $prefix . date('Y_m_d_H_i_s', time()) . '_' . generate_random_string(5);
+if(!function_exists('generate_export_name')){
+    function generate_export_name($prefix)
+    {
+        return $prefix . date('Y_m_d_H_i_s', time()) . '_' . generate_random_string(5);
+    }
 }

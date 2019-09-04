@@ -14,6 +14,7 @@ namespace iBrand\EC\Open\Server\Http\Controllers;
 use iBrand\Component\User\Repository\UserBindRepository;
 use iBrand\Component\User\Repository\UserRepository;
 use iBrand\Component\User\UserService;
+use EasyWeChat;
 
 class MiniProgramLoginController extends Controller
 {
@@ -99,8 +100,6 @@ class MiniProgramLoginController extends Controller
         }
 
         $token = $user->createToken($user->id)->accessToken;
-
-        $this->bindOpenPlatform($user->id);
 
         $this->userService->bindPlatform($user->id, request('open_id'), config('wechat.mini_program.default.app_id'), 'miniprogram');
 

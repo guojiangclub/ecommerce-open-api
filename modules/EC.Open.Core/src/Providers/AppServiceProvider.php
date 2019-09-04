@@ -19,6 +19,8 @@ use iBrand\Component\Order\Models\Adjustment;
 use iBrand\Component\Order\Providers\OrderServiceProvider;
 use iBrand\Component\Payment\Providers\PaymentServiceProvider;
 use iBrand\Component\Point\PointServiceProvider;
+use iBrand\Component\Product\Models\Goods;
+use iBrand\Component\Product\Models\Product;
 use iBrand\Component\Product\ProductServiceProvider;
 use iBrand\Component\User\Models\User as BaseUser;
 use iBrand\Component\User\UserServiceProvider;
@@ -67,6 +69,8 @@ class AppServiceProvider extends ServiceProvider
 
         $this->app->bind(BaseUser::class, User::class);
         $this->app->bind(AdjustmentContract::class, Adjustment::class);
+        $this->app->bind(Goods::class,\iBrand\EC\Open\Core\Models\Goods::class);
+        $this->app->bind(Product::class,\iBrand\EC\Open\Core\Models\Product::class);
     }
 
     protected function registerComponent()

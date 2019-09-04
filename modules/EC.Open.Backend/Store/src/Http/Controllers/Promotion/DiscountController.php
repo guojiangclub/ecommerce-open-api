@@ -5,8 +5,6 @@ namespace iBrand\EC\Open\Backend\Store\Http\Controllers\Promotion;
 use Carbon\Carbon;
 use iBrand\Backend\Http\Controllers\Controller;
 use iBrand\EC\Open\Backend\Store\Model\ElDiscount;
-use iBrand\EC\Open\Backend\Store\Model\ElDiscountAction;
-use iBrand\EC\Open\Backend\Store\Model\ElDiscountRule;
 use iBrand\EC\Open\Backend\Store\Repositories\DiscountRepository;
 use Illuminate\Http\Request;
 use iBrand\EC\Open\Backend\Store\Repositories\CategoryRepository;
@@ -212,9 +210,9 @@ class DiscountController extends Controller
 		$time      = $condition[0];
 		$id        = request('id');
 
-		$coupons = $this->orderAdjustmentRepository->getOrderAdjustmentHistory($where, 20, $time);
+		$discounts = $this->orderAdjustmentRepository->getOrderAdjustmentHistory($where, 20, $time);
 
-		return LaravelAdmin::content(function (Content $content) use ($coupons, $id) {
+		return LaravelAdmin::content(function (Content $content) use ($discounts, $id) {
 
 			$content->header('促销活动使用记录');
 
@@ -224,9 +222,8 @@ class DiscountController extends Controller
 
 			);
 
-			$content->body(view('store-backend::promotion.discount.use_record', compact('coupons', 'id')));
+			$content->body(view('store-backend::promotion.discount.use_record', compact('discounts', 'id')));
 		});
-//        return view('store-backend::promotion.discount.use_record', compact('coupons', 'id'));
 
 	}
 
