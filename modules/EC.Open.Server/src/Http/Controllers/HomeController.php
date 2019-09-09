@@ -11,7 +11,7 @@
 
 namespace iBrand\EC\Open\Server\Http\Controllers;
 
-use iBrand\Component\Advert\Repository\AdvertItemRepository;
+use iBrand\Component\Advert\Repositories\AdvertItemRepository;
 use iBrand\EC\Open\Core\Services\GoodsService;
 
 class HomeController extends Controller
