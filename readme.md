@@ -6,11 +6,16 @@ iBrand EC 是一个免费的开源电子商务解决方案，使用 PHP 基于 L
 
 管理后台：[iBrand e-commerce admin]( https://demo-open-admin.ibrand.cc/admin)
 
-后台账号密码请关注公众号 [iBrand社交新零售](https://iyoyo.oss-cn-hangzhou.aliyuncs.com/post/wechat.jpg)  (微信号：ibrand_cc) ，并回复关键词：password 获取。
+后台账号密码请关注公众号 [PHP果酱](https://iyoyo.oss-cn-hangzhou.aliyuncs.com/post/wechat.jpg)  (微信号：phpjam) ，并回复关键词：password 获取。
 
 扫码体验小程序：
 
 ![体验小店](https://iyoyo.oss-cn-hangzhou.aliyuncs.com/post/miniprogramcode/1.jpg)
+
+## 更新计划
+1. 9月份预计更新拼团，分销以及微页面功能
+2. 10月预计更新砍价功能
+3. 11月预计更新 swoole 版本
 
 ## 更新日志
 
