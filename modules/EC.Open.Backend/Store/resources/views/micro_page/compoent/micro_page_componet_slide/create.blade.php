@@ -1,3 +1,5 @@
+@include('store-backend::micro_page.compoent.common.style')
+
 <style>
     .advert_li {
         display: flex;

@@ -135,6 +135,9 @@
 </style>
 
 {!! Html::style(env("APP_URL").'/assets/backend/libs/pager/css/kkpager_orange.css') !!}
+
+@include('store-backend::micro_page.compoent.common.style')
+
 <script>
     window.img_input=null;
 </script>

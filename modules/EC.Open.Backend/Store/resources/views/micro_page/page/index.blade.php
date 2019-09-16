@@ -54,8 +54,8 @@
                         <th class="col-sm-2">标题</th>
                         <th class="col-sm-2">推广链接</th>
                         <th class="col-sm-2">code</th>
-                        <th class="col-sm-2">创建时间</th>
-                        <th class="col-sm-1">操作</th>
+                        <th class="col-sm-1">创建时间</th>
+                        <th class="col-sm-2">操作</th>
                     </tr>
                     </thead>
                     <tbody>
@@ -70,6 +70,11 @@
                                     @if($item->page_type==2)
                                     <span  class="label label-info pull-right">首页</span>
                                     @endif
+
+                                    @if($item->page_type==3)
+                                        <span  class="label label-info pull-right">分类页</span>
+                                    @endif
+
                                 </td>
 
                                 <td id="foo{{$item->id}}">
@@ -97,10 +102,20 @@
                                             </span>
 
                                     @if($item->page_type==1)
+
                                     <span  class="btn btn-xs btn-default index"  data-href="{{route('admin.setting.micro.page.setIndexPage',['id'=>$item->id])}}">
                                                 <i class="fa" data-toggle="tooltip" data-placement="top"
                                                    title="设为首页">设为首页</i>
                                             </span>
+                                    @endif
+
+                                    @if($item->page_type==1)
+
+                                    <span  class="btn btn-xs btn-default category"  data-href="{{route('admin.setting.micro.page.setCategoryPage',['id'=>$item->id])}}">
+                                                <i class="fa" data-toggle="tooltip" data-placement="top"
+                                                   title="设为分类页">设为分类页</i>
+                                     </span>
+
                                     @endif
                                 </td>
 
@@ -269,6 +284,43 @@
         };
         swal({
             title: "确定要设置该微页面为首页么？",
+            text: "",
+            type: "warning",
+            showCancelButton: true,
+            confirmButtonColor: "#DD6B55",
+            confirmButtonText: "确认",
+            cancelButtonText: '取消',
+            closeOnConfirm: false
+        }, function () {
+            $.post(postUrl, body, function (result) {
+                if (result.status) {
+                    swal({
+                        title: "保存成功",
+                        text: "",
+                        type: "success"
+                    }, function () {
+                        location = '{{route('admin.setting.micro.page.index')}}';
+                    });
+                } else {
+                    swal({
+                        title: '保存失败',
+                        text: result.message,
+                        type: "error"
+                    });
+                }
+            });
+        });
+    });
+
+
+    $('.category').on('click', function () {
+        var that = $(this);
+        var postUrl = that.data('href');
+        var body = {
+            _token: _token
+        };
+        swal({
+            title: "确定要设置该微页面为分类页么？",
             text: "",
             type: "warning",
             showCancelButton: true,

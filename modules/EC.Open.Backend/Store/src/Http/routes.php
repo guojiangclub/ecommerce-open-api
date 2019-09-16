@@ -17,6 +17,8 @@ $router->group(['prefix' => 'admin/store'], function () use ($router) {
             $router->get('/store', 'MicroPageController@store')->name('admin.setting.micro.page.store');
             $router->post('/{id}/delete', 'MicroPageController@delete')->name('admin.setting.micro.page.delete');
             $router->post('/{id}/setIndexPage', 'MicroPageController@setIndexPage')->name('admin.setting.micro.page.setIndexPage');
+            $router->post('/{id}/setCategoryPage', 'MicroPageController@setCategoryPage')->name('admin.setting.micro.page.setCategoryPage');
+
             $router->post('/name/update', 'MicroPageController@update')->name('admin.setting.micro.page.name.update');
             $router->post('/{id}/updateMicroPageAd', 'MicroPageController@updateMicroPageAd')->name('admin.setting.micro.page.updateMicroPageAd');
             $router->get('/{id}/edit', 'MicroPageController@edit')->name('admin.setting.micro.page.name.edit');

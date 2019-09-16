@@ -83,8 +83,6 @@
 {!! Html::script(env("APP_URL").'/assets/backend/libs/ladda/ladda.jquery.min.js') !!}
 {!! Html::script(env("APP_URL").'/assets/backend/libs/loader/jquery.loader.min.js') !!}
 
-{!! Html::script(env("APP_URL").'/assets/backend/libs/alpaca-spa-2.1.js') !!}
-
 
 @section('footer')
     {!! Html::script(env("APP_URL").'/assets/backend/libs/jquery.form.min.js') !!}
@@ -120,7 +118,9 @@
                      value: $('#coupon_id_'+coupon_id).data('value'),
                  };
 
-                 if(data.type=='cash'){
+                 var compoent_componet_html='';
+
+                if(data.type=='cash'){
                      var compoent_componet_html=compoent_componet_html_1.replace('{#value#}',data.value);
                       compoent_componet_html=compoent_componet_html.replace('{#time#}',data.time);
                       compoent_componet_html=compoent_componet_html.replace('{#id#}',data.id);
@@ -132,6 +132,9 @@
                      compoent_componet_html=compoent_componet_html.replace('{#id#}',data.id);
                      compoent_componet_html=compoent_componet_html.replace('{#title#}',data.title);
                  }
+
+
+
                 $('#bar').append(compoent_componet_html);
 
                 var index="{{request('index')}}"

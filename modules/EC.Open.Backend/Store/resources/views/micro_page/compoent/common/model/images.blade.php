@@ -30,7 +30,7 @@
                style="margin-bottom: 10px;margin-top: 10px;">
 
         <input  type="text" id="group_name" name="group_name" value="{{request('title')}}" class="form-control" placeholder="分组名称"
-               style="margin-bottom: 10px;margin-top: 10px;margin-left: 12px;width:520px;">
+               style="margin-bottom: 10px;margin-top: 10px;margin-left: 12px;width:465px;">
 
         <div class="form-group advert">
             {{--<label class="col-sm-2 control-label text-right"></label>--}}
@@ -77,10 +77,10 @@
                                                 <option value=0>——请选择链接类型——</option>
                                                 <option value="store_detail" @if($item->type=='store_detail') selected  @endif    data-page="/pages/store/detail/detail?id=">商品详情页</option>
                                                 <option value="store_list"   @if($item->type=='store_list') selected  @endif  data-page="/pages/store/list/list?c_id=">商品分类页</option>
-                                                <option value="store_seckill" @if($item->type=='store_seckill') selected  @endif data-page="/pages/store/seckill/seckill">秒杀列表页</option>
-                                                <option value="store_groups"  @if($item->type=='store_groups') selected  @endif  data-page="/pages/store/groups/groups">拼团列表页</option>
-                                                <option value="store_callList"  @if($item->type=='store_callList') selected  @endif  data-page="/pages/store/callList/callList">集CALL列表页</option>
-                                                <option value="store_mealList"  @if($item->type=='store_mealList') selected  @endif data-page="/pages/store/mealList/mealList">套餐列表页</option>
+                                                {{--<option value="store_seckill" @if($item->type=='store_seckill') selected  @endif data-page="/pages/store/seckill/seckill">秒杀列表页</option>--}}
+                                                {{--<option value="store_groups"  @if($item->type=='store_groups') selected  @endif  data-page="/pages/store/groups/groups">拼团列表页</option>--}}
+                                                {{--<option value="store_callList"  @if($item->type=='store_callList') selected  @endif  data-page="/pages/store/callList/callList">集CALL列表页</option>--}}
+                                                {{--<option value="store_mealList"  @if($item->type=='store_mealList') selected  @endif data-page="/pages/store/mealList/mealList">套餐列表页</option>--}}
                                                 <option value="other_micro" @if($item->type=='other_micro') selected  @endif data-page="/pages/index/microPages/microPages?id=">微页面</option>
                                                 <option value="other_links"  @if($item->type=='other_links') selected  @endif data-page="/pages/other/links/links?url=">公众号文章</option>
                                                 <option value="other"  @if($item->type=='other') selected  @endif data-page="other">自定义</option>

@@ -57,7 +57,7 @@ class MicroPageController extends Controller
                 $microPage = $this->microPage->where('code', $code)->first();
         }
 
-        if (!$microPage) return $this->api();
+        if (!$microPage) return $this->success();
 
         $microPageAdverts = $this->microPageAdvert->where('micro_page_id', $microPage->id)
             ->with(['advert' => function ($query) {
@@ -127,7 +127,7 @@ class MicroPageController extends Controller
 
         $data['micro_page'] = $microPage;
 
-        return $this->api($data);
+        return $this->success($data);
     }
 
 
@@ -156,37 +156,22 @@ class MicroPageController extends Controller
 
                     case 'category':
 
+                        $prefix = config('ibrand.app.database.prefix', 'ibrand_');
+
                         $category_id = $item->associate_id;
 
-                        $categoryGoodsIds = DB::table('el_goods_category')->where('category_id', $category_id)
+                        $categoryGoodsIds = DB::table($prefix . 'goods_category')
+                            ->where('category_id', $category_id)
                             ->select('goods_id')->distinct()->get()
                             ->pluck('goods_id')->toArray();
 
-                        $goodsList = DB::table('el_goods')
+                        $goodsList = DB::table($prefix . 'goods')
                             ->whereIn('id', $categoryGoodsIds)
-                            ->where('is_del', 0)->where('is_largess', 0)
-                            ->orderBy('sort', 'desc')->limit($item->meta['limit'])->get();
+                            ->where('is_del', 0)
+                            ->orderBy('sort', 'desc')
+                            ->limit($item->meta['limit'])->get();
 
                         $item->goodsList = $goodsList;
-
-                        return $item;
-
-                        break;
-
-                    case null:
-
-                        if ($item->children AND $item->children->count()) {
-
-                            foreach ($item->children as $citem) {
-
-                                if ($citem->associate_type == 'goods') {
-
-                                    $citem->goods_id = $citem->associate_id;
-                                }
-
-
-                            }
-                        }
 
                         return $item;
 

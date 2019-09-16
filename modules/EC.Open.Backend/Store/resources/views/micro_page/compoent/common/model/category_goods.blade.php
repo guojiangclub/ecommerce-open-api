@@ -10,15 +10,12 @@
 
 @section('after-styles-end')
     {!! Html::style(env("APP_URL").'/assets/backend/libs/ladda/ladda-themeless.min.css') !!}
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.6-rc.0/css/select2.min.css" rel="stylesheet" />
 @stop
 
 @section('body')
 
     <div class="row" style="height:350px">
-
-
-        <link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.6-rc.0/css/select2.min.css" rel="stylesheet" />
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.6-rc.0/js/select2.min.js"></script>
 
         <form class="form-horizontal"  action="" method="get" id="">
 
@@ -27,13 +24,18 @@
                     <label for="exampleInputEmail1" class="col-sm-3 control-label"> 分类名称:</label>
                     <div class="col-sm-6">
                         <select class="form-control category" name="category">
-                            <option value=0>请选择分类</option>
 
                             @if(count($categorys))　
 
                                 @foreach($categorys as $item)
 
-                                    <option  value="{{$item->id}}###{{$item->name}}">{{$item->html}}{{$item->name}}</option>
+                                    <option  value="{{$item->id}}###{{$item->name}}">
+
+                                        {{str_replace('0','&nbsp;&nbsp;',$item->html)}}
+
+                                        {{$item->name}}
+
+                                    </option>
 
                                 @endforeach
 
@@ -47,12 +49,6 @@
 
         </form>
 
-        <script>
-            $(document).ready(function() {
-                var  obj=$('.category').select2();
-                obj.val("{{request('category_id')}}").trigger("change");
-            })
-        </script>
 
         <div class="panel-body">
             <div class="col-sm-2">
@@ -69,15 +65,28 @@
         </div>
     </div>
 @stop
-{!! Html::script(env("APP_URL").'/assets/backend/libs/ladda/spin.min.js') !!}
-{!! Html::script(env("APP_URL").'/assets/backend/libs/ladda/ladda.min.js') !!}
-{!! Html::script(env("APP_URL").'/assets/backend/libs/ladda/ladda.jquery.min.js') !!}
-{!! Html::script(env("APP_URL").'/assets/backend/libs/loader/jquery.loader.min.js') !!}
-{!! Html::script(env("APP_URL").'/assets/backend/libs/pager/js/kkpager.min.js') !!}
+{{--{!! Html::script(env("APP_URL").'/assets/backend/libs/ladda/spin.min.js') !!}--}}
+{{--{!! Html::script(env("APP_URL").'/assets/backend/libs/ladda/ladda.min.js') !!}--}}
+{{--{!! Html::script(env("APP_URL").'/assets/backend/libs/ladda/ladda.jquery.min.js') !!}--}}
+{{--{!! Html::script(env("APP_URL").'/assets/backend/libs/loader/jquery.loader.min.js') !!}--}}
+{{--{!! Html::script(env("APP_URL").'/assets/backend/libs/pager/js/kkpager.min.js') !!}--}}
 
 
 @section('footer')
-    {!! Html::script(env("APP_URL").'/assets/backend/libs/jquery.form.min.js') !!}
+    {{--{!! Html::script(env("APP_URL").'/assets/backend/libs/jquery.form.min.js') !!}--}}
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.6-rc.0/js/select2.min.js"></script>
+
+    <script>
+        $(document).ready(function() {
+            var  obj=$('.category').select2({
+                placeholder:'请选择分类',
+                dropdownParent:$('#goods_modal')
+            });
+            obj.val("{{request('category_id')}}").trigger("change");
+        })
+    </script>
+
     <button type="button" class="btn btn-link" data-dismiss="modal" onclick="cancel();">取消</button>
     <button type="button" onclick="sendIds();"  class="ladda-button btn btn-primary" > 确定
         <script>

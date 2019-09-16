@@ -118,6 +118,8 @@
 
 {!! Html::style(env("APP_URL").'/assets/backend/libs/pager/css/kkpager_orange.css') !!}
 
+@include('store-backend::micro_page.compoent.common.style')
+
 <div class="ibox float-e-margins">
 
     <a style="display: none"  class="btn btn-primary margin-bottom" id="promote-goods-btn" data-toggle="modal"

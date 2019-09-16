@@ -225,6 +225,27 @@ class MicroPageController extends Controller
     }
 
 
+    public function setCategoryPage($id)
+    {
+
+        if ($page = $this->microPage->where('page_type', 3)->first()) {
+
+            $page->page_type = 1;
+
+            $page->save();
+        };
+
+        $index_page = $this->microPage->find($id);
+
+        $index_page->page_type = 3;
+
+        $index_page->save();
+
+        return $this->ajaxJson();
+
+    }
+
+
     public function update()
     {
         $page = $this->microPage->find(request('id'));

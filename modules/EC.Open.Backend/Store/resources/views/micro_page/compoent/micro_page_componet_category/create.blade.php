@@ -116,7 +116,10 @@
 
 </style>
 
+
 {!! Html::style(env("APP_URL").'/assets/backend/libs/pager/css/kkpager_orange.css') !!}
+
+@include('store-backend::micro_page.compoent.common.style')
 
 <div class="ibox float-e-margins">
 
@@ -188,6 +191,7 @@
 
         </div>
     </div>
+
 
     <div id="goods_modal" class="modal inmodal fade" data-type="{{$type}}"></div>
 
