@@ -168,7 +168,7 @@ class MicroPageController extends Controller
                         $goodsList = DB::table($prefix . 'goods')
                             ->whereIn('id', $categoryGoodsIds)
                             ->where('is_del', 0)
-                            ->orderBy('sort', 'desc')
+//                            ->orderBy('sort', 'desc')
                             ->limit($item->meta['limit'])->get();
 
                         $item->goodsList = $goodsList;
