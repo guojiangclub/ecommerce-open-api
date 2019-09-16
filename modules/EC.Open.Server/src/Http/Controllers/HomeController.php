@@ -1,4 +1,4 @@
-<?php
+﻿<?php
 
 /*
  * This file is part of ibrand/EC-Open-Server.
@@ -79,19 +79,22 @@ class HomeController extends Controller
 
                 if ($item->advert_id > 0) {
 
-                    $data['pages'][$i]['name'] = $item->advert->type;
+                    if($item->advert->type=='micro_page_componet_category'){
 
-                    $data['pages'][$i]['title'] = $item->advert->title;
+                        $data['pages'][$i]['name'] = $item->advert->type;
 
-                    $data['pages'][$i]['is_show_title'] = $item->advert->is_show_title;
+                        $data['pages'][$i]['title'] = $item->advert->title;
 
-                    $advertItem = $this->advertItem->getItemsByCode($item->advert->code, []);
+                        $data['pages'][$i]['is_show_title'] = $item->advert->is_show_title;
 
-                    $data['pages'][$i]['value'] = array_values($advertItem);
+                        $advertItem = $this->getAdvertItem($item->advert->code, []);
+
+                        $data['pages'][$i]['value'] = array_values($advertItem);
+
+                        $i++;
+                    }
 
                 }
-
-                $i++;
 
             }
 
@@ -107,5 +110,55 @@ class HomeController extends Controller
 //        return $this->success($items);
     }
 
+
+    public function getAdvertItem($code, $associate_with)
+
+    {
+        $advertItem = $this->advertItem->getItemsByCode($code, $associate_with);
+
+        if ($advertItem->count()) {
+
+            $filtered = $advertItem->filter(function ($item)  {
+
+                if (!$item->associate AND $item->associate_id) return [];
+
+                switch ($item->associate_type) {
+
+                    case 'category':
+
+                        $prefix = config('ibrand.app.database.prefix', 'ibrand_');
+
+                        $category_id = $item->associate_id;
+
+                        $categoryGoodsIds = DB::table($prefix . 'goods_category')
+                            ->where('category_id', $category_id)
+                            ->select('goods_id')->distinct()->get()
+                            ->pluck('goods_id')->toArray();
+
+                        $goodsList = DB::table($prefix . 'goods')
+                            ->whereIn('id', $categoryGoodsIds)
+                            ->where('is_del', 0)
+                            ->limit($item->meta['limit'])->get();
+
+                        $item->goodsList = $goodsList;
+
+                        return $item;
+
+                        break;
+
+                    default:
+
+                        return $item;
+
+                }
+
+            });
+
+            return $filtered->all();
+        }
+
+        return $advertItem;
+
+    }
 
 }
