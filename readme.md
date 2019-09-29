@@ -62,4 +62,4 @@ iBrand EC 是一个免费的开源电子商务解决方案，使用 PHP 基于 L
 
 ## 讨论交流
 
-![iBrand联系我们](https://iyoyo.oss-cn-hangzhou.aliyuncs.com/post/qrcode.jpg)
+![iBrand联系我们](https://iyoyo.oss-cn-hangzhou.aliyuncs.com/post/qrcodenew.jpg)
