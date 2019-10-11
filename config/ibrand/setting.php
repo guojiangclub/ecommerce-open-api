@@ -10,8 +10,9 @@
  */
 
 return [
-
     'table_name' => 'ibrand_system_settings',
 
     'cache' => true,
+
+    'minute' => 120
 ];

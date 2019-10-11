@@ -39,7 +39,7 @@ class AlbumBackendServiceProvider extends ServiceProvider
     public function register()
     {
         $this->mergeConfigFrom(
-            __DIR__.'/../config.php', 'dmp-file-manage'
+            __DIR__.'/../config.php', 'file-manage'
         );
     }
 
@@ -49,7 +49,7 @@ class AlbumBackendServiceProvider extends ServiceProvider
     protected function loadConfig()
     {
         $this->publishes([
-            __DIR__.'/../config.php' => config_path('dmp-file-manage.php'),
+            __DIR__.'/../config.php' => config_path('ibrand/file-manage.php'),
         ]);
     }
 

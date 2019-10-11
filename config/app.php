@@ -184,6 +184,8 @@ return [
 
         iBrand\Component\Pay\PayServiceProvider::class,
 
+        iBrand\Backend\BackendServiceProvider::class,
+
         iBrand\EC\Open\Core\Providers\AppServiceProvider::class,
         iBrand\EC\Open\Server\Providers\ServerServiceProvider::class,
 
@@ -252,6 +254,8 @@ return [
 
         'Charge'=> iBrand\Component\Pay\Facades\Charge::class,
         'PayNotify' => iBrand\Component\Pay\Facades\PayNotify::class,
+
+        "BackendMenu"=> iBrand\Backend\Facades\Menu::class,
     ],
 
 ];

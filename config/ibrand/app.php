@@ -1,7 +1,7 @@
 <?php
 
 /*
- * This file is part of ibrand/core.
+ * This file is part of ibrand/EC-Open-Core.
  *
  * (c) iBrand <https://www.ibrand.cc>
  *
@@ -10,6 +10,7 @@
  */
 
 return [
+
     'database' => [
         'prefix' => 'ibrand_'
     ],

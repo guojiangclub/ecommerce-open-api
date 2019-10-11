@@ -40,6 +40,21 @@ return array(
 
     /*
     |--------------------------------------------------------------------------
+    | Write Eloquent Model Mixins
+    |--------------------------------------------------------------------------
+    |
+    | This will add the necessary DocBlock mixins to the model class
+    | contained in the Laravel Framework. This helps the IDE with
+    | auto-completion.
+    |
+    | Please be aware that this setting changes a file within the /vendor directory.
+    |
+    */
+
+    'write_eloquent_model_mixins' => false,
+
+    /*
+    |--------------------------------------------------------------------------
     | Helper files to include
     |--------------------------------------------------------------------------
     |
@@ -83,18 +98,7 @@ return array(
         'Session' => array('Illuminate\Session\Store'),
     ),
 
-    'magic' => array(
-        'Log' => array(
-            'debug'     => 'Monolog\Logger::addDebug',
-            'info'      => 'Monolog\Logger::addInfo',
-            'notice'    => 'Monolog\Logger::addNotice',
-            'warning'   => 'Monolog\Logger::addWarning',
-            'error'     => 'Monolog\Logger::addError',
-            'critical'  => 'Monolog\Logger::addCritical',
-            'alert'     => 'Monolog\Logger::addAlert',
-            'emergency' => 'Monolog\Logger::addEmergency',
-        )
-    ),
+    'magic' => array(),
 
     /*
     |--------------------------------------------------------------------------
@@ -174,8 +178,20 @@ return array(
     | Cast the given "real type" to the given "type".
     |
     */
-   'type_overrides' => array(
+    'type_overrides' => array(
         'integer' => 'int',
         'boolean' => 'bool',
-   ),
+    ),
+
+    /*
+    |--------------------------------------------------------------------------
+    | Include DocBlocks from classes
+    |--------------------------------------------------------------------------
+    |
+    | Include DocBlocks from classes to allow additional code inspection for
+    | magic methods and properties.
+    |
+    */
+    'include_class_docblocks' => false,
+
 );
