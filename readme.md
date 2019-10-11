@@ -1,16 +1,16 @@
-# iBrand E-Commerce open source project
+# 果酱小店开源电商系统
 
-iBrand EC 是一个免费的开源电子商务解决方案，使用 PHP 基于 Laravel 框架进行编写。基于模块化开发，易扩展，可基于个性需求快速实现定制化需求，功能符合国内电商绝大部分使用场景。
+果酱小店是一个免费的开源电子商务解决方案，使用 PHP 基于 Laravel 框架进行编写。基于模块化开发，易扩展，可基于个性需求快速实现定制化需求，功能符合国内电商绝大部分使用场景。
 
 > 基于目前移动互联网的发展趋势，目前只提供 API 和 后端管理，不提供PC端商城。如有需要可理解项目架构后自行实现。
 
-管理后台：[iBrand e-commerce admin]( https://demo-open-admin.ibrand.cc/admin)
+管理后台：[果酱小店管理后台]( https://demo-open-admin.ibrand.cc/admin)
 
 后台账号密码请关注公众号 [PHP果酱](https://iyoyo.oss-cn-hangzhou.aliyuncs.com/post/wechat.jpg)  (微信号：phpjam) ，并回复关键词：password 获取。
 
 扫码体验小程序：
 
-![体验小店](https://iyoyo.oss-cn-hangzhou.aliyuncs.com/post/miniprogramcode/1.jpg)
+![体验小店](https://iyoyo.oss-cn-hangzhou.aliyuncs.com/post/miniprogramcode/ec.qrcode.png)
 
 ## 更新计划
 1. 9月份预计更新拼团，分销以及微页面功能
@@ -32,7 +32,7 @@ iBrand EC 是一个免费的开源电子商务解决方案，使用 PHP 基于 L
 ## 文档
 - [Wiki](https://github.com/ibrandcc/ecommerce-open-api/wiki)
 - [API 文档](https://www.ibrand.cc/docs/api/)
-- [iBrand 电商系统教程](https://www.ibrand.cc/open/article)
+- [果酱社区电商系统教程](https://www.ibrand.cc/open/article)
 - [设计稿](https://lanhuapp.com/url/v7Bfb)  密码： YgK7
 
 ## 特性
