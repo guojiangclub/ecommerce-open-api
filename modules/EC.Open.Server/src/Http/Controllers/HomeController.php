@@ -1,5 +1,4 @@
 ﻿<?php
-
 namespace GuoJiangClub\EC\Open\Server\Http\Controllers;
 
 use GuoJiangClub\Component\Advert\Repositories\AdvertItemRepository;
