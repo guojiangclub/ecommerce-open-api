@@ -9,14 +9,14 @@
  * file that was distributed with this source code.
  */
 
-namespace iBrand\Component\Payment\Services;
+namespace GuoJiangClub\Component\Payment\Services;
 
 use Carbon\Carbon;
-use iBrand\Component\Order\Models\Order;
-use iBrand\Component\Order\Repositories\OrderRepository;
-use iBrand\Component\Pay\Contracts\PayNotifyContract;
-use iBrand\Component\Pay\Models\Charge;
-use iBrand\Component\Payment\Models\Payment;
+use GuoJiangClub\Component\Order\Models\Order;
+use GuoJiangClub\Component\Order\Repositories\OrderRepository;
+use GuoJiangClub\Component\Pay\Contracts\PayNotifyContract;
+use GuoJiangClub\Component\Pay\Models\Charge;
+use GuoJiangClub\Component\Payment\Models\Payment;
 
 /**
  * Created by PhpStorm.

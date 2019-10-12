@@ -9,20 +9,20 @@
  * file that was distributed with this source code.
  */
 
-namespace iBrand\EC\Open\Server\Http\Controllers;
+namespace GuoJiangClub\EC\Open\Server\Http\Controllers;
 
 use DB;
 use EasyWeChat;
-use iBrand\Component\Category\RepositoryContract as CategoryRepository;
-use iBrand\Component\Discount\Repositories\CouponRepository;
-use iBrand\Component\Product\AttributeRelation;
-use iBrand\Component\Product\Models\Attribute;
-use iBrand\Component\Product\Models\Specification;
-use iBrand\Component\Product\Models\SpecificationRelation;
-use iBrand\Component\Product\Models\SpecificationValue;
-use iBrand\Component\Product\Repositories\GoodsRepository;
-use iBrand\EC\Open\Core\Services\DiscountService;
-use iBrand\EC\Open\Server\Transformers\GoodsTransformer;
+use GuoJiangClub\Component\Category\RepositoryContract as CategoryRepository;
+use GuoJiangClub\Component\Discount\Repositories\CouponRepository;
+use GuoJiangClub\Component\Product\AttributeRelation;
+use GuoJiangClub\Component\Product\Models\Attribute;
+use GuoJiangClub\Component\Product\Models\Specification;
+use GuoJiangClub\Component\Product\Models\SpecificationRelation;
+use GuoJiangClub\Component\Product\Models\SpecificationValue;
+use GuoJiangClub\Component\Product\Repositories\GoodsRepository;
+use GuoJiangClub\EC\Open\Core\Services\DiscountService;
+use GuoJiangClub\EC\Open\Server\Transformers\GoodsTransformer;
 use iBrand\Miniprogram\Poster\MiniProgramShareImg;
 use Storage;
 

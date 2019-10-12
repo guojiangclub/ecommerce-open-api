@@ -11,10 +11,10 @@
 
 return [
     'models' => [
-        'goods' => iBrand\Component\Product\Models\Goods::class,
-        'discount' => iBrand\Component\Discount\Models\Discount::class,
-        'category' => iBrand\Component\Category\Category::class,
-        'microPage' => iBrand\Component\Advert\Models\MicroPage::class
+        'goods' => GuoJiangClub\Component\Product\Models\Goods::class,
+        'discount' => GuoJiangClub\Component\Discount\Models\Discount::class,
+        'category' => GuoJiangClub\Component\Category\Category::class,
+        'microPage' => GuoJiangClub\Component\Advert\Models\MicroPage::class
     ],
     'type'=>[
         'store_detail'=>[

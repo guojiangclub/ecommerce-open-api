@@ -9,15 +9,15 @@
  * file that was distributed with this source code.
  */
 
-namespace iBrand\EC\Open\Core\Discount\Actions;
+namespace GuoJiangClub\EC\Open\Core\Discount\Actions;
 
-use iBrand\Component\Discount\Contracts\AdjustmentContract;
-use iBrand\Component\Discount\Contracts\DiscountActionContract;
-use iBrand\Component\Discount\Contracts\DiscountContract;
-use iBrand\Component\Discount\Models\Rule;
-use iBrand\Core\Discount\Checkers\ContainsCategoryRuleChecker;
-use iBrand\Core\Discount\Checkers\ContainsProductRuleChecker;
-use iBrand\Core\Discount\Contracts\DiscountItemContract;
+use GuoJiangClub\Component\Discount\Contracts\AdjustmentContract;
+use GuoJiangClub\Component\Discount\Contracts\DiscountActionContract;
+use GuoJiangClub\Component\Discount\Contracts\DiscountContract;
+use GuoJiangClub\Component\Discount\Models\Rule;
+use GuoJiangClub\EC\Open\Core\Discount\Checkers\ContainsCategoryRuleChecker;
+use GuoJiangClub\EC\Open\Core\Discount\Checkers\ContainsProductRuleChecker;
+use GuoJiangClub\EC\Open\Core\Discount\Contracts\DiscountItemContract;
 
 /**
  * Class DiscountUnitActionContract

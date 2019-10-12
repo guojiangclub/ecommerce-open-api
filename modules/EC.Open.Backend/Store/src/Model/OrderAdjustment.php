@@ -1,6 +1,6 @@
 <?php
 
-namespace iBrand\EC\Open\Backend\Store\Model;
+namespace GuoJiangClub\EC\Open\Backend\Store\Model;
 
 use Illuminate\Database\Eloquent\Model;
 use Prettus\Repository\Contracts\Transformable;
@@ -25,7 +25,7 @@ class OrderAdjustment extends Model implements Transformable
 
     public function order()
     {
-        return $this->hasOne('iBrand\EC\Open\Backend\Store\Model\Order', 'id', 'order_id');
+        return $this->hasOne('GuoJiangClub\EC\Open\Backend\Store\Model\Order', 'id', 'order_id');
     }
 
 

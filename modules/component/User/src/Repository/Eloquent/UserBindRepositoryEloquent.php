@@ -9,10 +9,10 @@
  * file that was distributed with this source code.
  */
 
-namespace iBrand\Component\User\Repository\Eloquent;
+namespace GuoJiangClub\Component\User\Repository\Eloquent;
 
-use iBrand\Component\User\Models\UserBind;
-use iBrand\Component\User\Repository\UserBindRepository;
+use GuoJiangClub\Component\User\Models\UserBind;
+use GuoJiangClub\Component\User\Repository\UserBindRepository;
 use Prettus\Repository\Eloquent\BaseRepository;
 use Prettus\Repository\Traits\CacheableRepository;
 

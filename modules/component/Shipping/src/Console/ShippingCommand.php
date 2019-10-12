@@ -9,9 +9,9 @@
  * file that was distributed with this source code.
  */
 
-namespace iBrand\Component\Shipping\Console;
+namespace GuoJiangClub\Component\Shipping\Console;
 
-use iBrand\Component\Shipping\Models\ShippingMethod;
+use GuoJiangClub\Component\Shipping\Models\ShippingMethod;
 use Illuminate\Console\Command;
 
 /**

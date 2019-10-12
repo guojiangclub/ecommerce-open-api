@@ -1,9 +1,9 @@
 <?php
 
-namespace iBrand\EC\Open\Backend\Store\Repositories;
+namespace GuoJiangClub\EC\Open\Backend\Store\Repositories;
 
 use Prettus\Repository\Eloquent\BaseRepository;
-use iBrand\Component\Advert\Models\MicroPage;
+use GuoJiangClub\Component\Advert\Models\MicroPage;
 
 class MicroPageRepository extends BaseRepository
 {

@@ -1,13 +1,13 @@
 <?php
 
-namespace iBrand\EC\Open\Backend\Store\Model;
+namespace GuoJiangClub\EC\Open\Backend\Store\Model;
 
 use Illuminate\Database\Eloquent\Model;
 use Prettus\Repository\Contracts\Transformable;
 use Prettus\Repository\Traits\TransformableTrait;
 
 use Illuminate\Database\Eloquent\SoftDeletes;
-use iBrand\EC\Open\Backend\Store\Model\Relations\BelongToUserTrait;
+use GuoJiangClub\EC\Open\Backend\Store\Model\Relations\BelongToUserTrait;
 
 class OrderComment extends Model implements Transformable
 {

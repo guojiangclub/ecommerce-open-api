@@ -26,13 +26,13 @@
   },
   "autoload": {
     "psr-4": {
-      "iBrand\\Component\\Advert\\": "src/"
+      "GuoJiangClub\\Component\\Advert\\": "src/"
     }
   },
   "extra": {
     "laravel": {
       "providers": [
-        "iBrand\\Component\\Advert\\AdvertServiceProvider"
+        "GuoJiangClub\\Component\\Advert\\AdvertServiceProvider"
       ]
     }
   },

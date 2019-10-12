@@ -1,7 +1,7 @@
 <?php
-namespace iBrand\EC\Open\Backend\Store\Observers;
+namespace GuoJiangClub\EC\Open\Backend\Store\Observers;
 
-use iBrand\EC\Open\Backend\Store\Model\Product;
+use GuoJiangClub\EC\Open\Backend\Store\Model\Product;
 
 /**
  * Created by PhpStorm.

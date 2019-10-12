@@ -9,7 +9,7 @@
  * file that was distributed with this source code.
  */
 
-namespace iBrand\Component\Category;
+namespace GuoJiangClub\Component\Category;
 
 use Prettus\Repository\Eloquent\BaseRepository;
 use Prettus\Repository\Traits\CacheableRepository;

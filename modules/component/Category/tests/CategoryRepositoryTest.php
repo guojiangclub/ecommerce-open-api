@@ -9,7 +9,7 @@
  * file that was distributed with this source code.
  */
 
-namespace iBrand\Component\Category\Test;
+namespace GuoJiangClub\Component\Category\Test;
 
 
 class CategoryRepositoryTest extends BaseTest

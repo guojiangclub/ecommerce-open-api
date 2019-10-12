@@ -29,18 +29,18 @@
       "src/helpers.php"
     ],
     "psr-4": {
-      "iBrand\\Component\\Order\\": "src/"
+      "GuoJiangClub\\Component\\Order\\": "src/"
     }
   },
   "autoload-dev": {
     "psr-4": {
-      "iBrand\\Component\\Order\\Test\\": "tests"
+      "GuoJiangClub\\Component\\Order\\Test\\": "tests"
     }
   },
   "extra": {
     "laravel": {
       "providers": [
-        "iBrand\\Component\\Order\\Providers\\OrderServiceProvider"
+        "GuoJiangClub\\Component\\Order\\Providers\\OrderServiceProvider"
       ]
     }
   },

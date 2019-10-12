@@ -27,18 +27,18 @@
 	},
 	"autoload": {
 		"psr-4": {
-			"iBrand\\Component\\Point\\": "src/"
+			"GuoJiangClub\\Component\\Point\\": "src/"
 		}
 	},
 	"autoload-dev": {
 		"psr-4": {
-			"iBrand\\Component\\Point\\Test\\": "tests"
+			"GuoJiangClub\\Component\\Point\\Test\\": "tests"
 		}
 	},
 	"extra": {
 		"laravel": {
 			"providers": [
-				"iBrand\\Component\\Point\\PointServiceProvider"
+				"GuoJiangClub\\Component\\Point\\PointServiceProvider"
 			]
 		}
 	},

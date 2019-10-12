@@ -9,9 +9,9 @@
  * file that was distributed with this source code.
  */
 
-namespace iBrand\EC\Open\Server\Providers;
+namespace GuoJiangClub\EC\Open\Server\Providers;
 
-use iBrand\EC\Open\Server\Schedule\OrderRemindSchedule;
+use GuoJiangClub\EC\Open\Server\Schedule\OrderRemindSchedule;
 use Illuminate\Support\ServiceProvider;
 
 class ServerServiceProvider extends ServiceProvider

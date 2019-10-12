@@ -1,24 +1,24 @@
 <?php
 
-namespace iBrand\EC\Open\Backend\Store\Http\Controllers;
+namespace GuoJiangClub\EC\Open\Backend\Store\Http\Controllers;
 
-use iBrand\EC\Open\Backend\Store\Model\Goods;
-use iBrand\EC\Open\Backend\Store\Model\Models;
-use iBrand\EC\Open\Backend\Store\Model\Product;
-use iBrand\EC\Open\Backend\Store\Model\GoodsPhoto;
-use iBrand\EC\Open\Backend\Store\Model\Spec;
+use GuoJiangClub\EC\Open\Backend\Store\Model\Goods;
+use GuoJiangClub\EC\Open\Backend\Store\Model\Models;
+use GuoJiangClub\EC\Open\Backend\Store\Model\Product;
+use GuoJiangClub\EC\Open\Backend\Store\Model\GoodsPhoto;
+use GuoJiangClub\EC\Open\Backend\Store\Model\Spec;
 use iBrand\Backend\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-use iBrand\EC\Open\Backend\Store\Repositories\ModelsRepository;
-use iBrand\EC\Open\Backend\Store\Repositories\SpecRepository;
-use iBrand\EC\Open\Backend\Store\Repositories\AttributeRepository;
-use iBrand\EC\Open\Backend\Store\Repositories\BrandRepository;
-use iBrand\EC\Open\Backend\Store\Repositories\GoodsRepository;
-use iBrand\EC\Open\Backend\Store\Repositories\CategoryRepository;
+use GuoJiangClub\EC\Open\Backend\Store\Repositories\ModelsRepository;
+use GuoJiangClub\EC\Open\Backend\Store\Repositories\SpecRepository;
+use GuoJiangClub\EC\Open\Backend\Store\Repositories\AttributeRepository;
+use GuoJiangClub\EC\Open\Backend\Store\Repositories\BrandRepository;
+use GuoJiangClub\EC\Open\Backend\Store\Repositories\GoodsRepository;
+use GuoJiangClub\EC\Open\Backend\Store\Repositories\CategoryRepository;
 use DB;
 use Maatwebsite\Excel\Facades\Excel;
-use iBrand\EC\Open\Backend\Store\Repositories\ProductRepository;
-use iBrand\EC\Open\Backend\Store\Service\GoodsService;
+use GuoJiangClub\EC\Open\Backend\Store\Repositories\ProductRepository;
+use GuoJiangClub\EC\Open\Backend\Store\Service\GoodsService;
 use Response;
 use Route;
 use Encore\Admin\Facades\Admin as LaravelAdmin;

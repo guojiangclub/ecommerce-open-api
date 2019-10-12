@@ -9,7 +9,7 @@
  * file that was distributed with this source code.
  */
 
-namespace iBrand\EC\Open\Backend\Store\Seeds;
+namespace GuoJiangClub\EC\Open\Backend\Store\Seeds;
 
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;

@@ -9,7 +9,7 @@
  * file that was distributed with this source code.
  */
 
-namespace iBrand\Component\Balance\Test;
+namespace GuoJiangClub\Component\Balance\Test;
 
 use Illuminate\Support\ServiceProvider;
 

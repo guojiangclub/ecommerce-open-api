@@ -1,15 +1,15 @@
 <?php
 
-namespace iBrand\EC\Open\Backend\Store\Http\Controllers\MicroPage;
+namespace GuoJiangClub\EC\Open\Backend\Store\Http\Controllers\MicroPage;
 
 use DB;
 use iBrand\Backend\Http\Controllers\Controller;
 use Encore\Admin\Facades\Admin as LaravelAdmin;
 use Encore\Admin\Layout\Content;
-use iBrand\Component\Advert\Models\MicroPage;
-use iBrand\Component\Advert\Models\MicroPageAdvert;
-use iBrand\Component\Advert\Repositories\AdvertRepository;
-use iBrand\Component\Advert\Models\Advert;
+use GuoJiangClub\Component\Advert\Models\MicroPage;
+use GuoJiangClub\Component\Advert\Models\MicroPageAdvert;
+use GuoJiangClub\Component\Advert\Repositories\AdvertRepository;
+use GuoJiangClub\Component\Advert\Models\Advert;
 
 class MicroPageController extends Controller
 {

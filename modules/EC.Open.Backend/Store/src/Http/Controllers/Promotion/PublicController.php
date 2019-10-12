@@ -6,13 +6,13 @@
  * Time: 23:04
  */
 
-namespace iBrand\EC\Open\Backend\Store\Http\Controllers\Promotion;
+namespace GuoJiangClub\EC\Open\Backend\Store\Http\Controllers\Promotion;
 
-use iBrand\EC\Open\Backend\Store\Service\GoodsService;
+use GuoJiangClub\EC\Open\Backend\Store\Service\GoodsService;
 use Illuminate\Http\Request;
-use iBrand\EC\Open\Backend\Store\Repositories\GoodsRepository;
+use GuoJiangClub\EC\Open\Backend\Store\Repositories\GoodsRepository;
 use iBrand\Backend\Http\Controllers\Controller;
-use iBrand\EC\Open\Backend\Store\Facades\ExcelExportsService;
+use GuoJiangClub\EC\Open\Backend\Store\Facades\ExcelExportsService;
 use Response;
 
 class PublicController extends Controller

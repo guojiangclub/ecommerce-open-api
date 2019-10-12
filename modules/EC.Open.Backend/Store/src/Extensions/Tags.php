@@ -1,6 +1,6 @@
 <?php
 
-namespace iBrand\EC\Open\Backend\Store\Extensions;
+namespace GuoJiangClub\EC\Open\Backend\Store\Extensions;
 
 use Encore\Admin\Form\Field;
 

@@ -9,10 +9,10 @@
  * file that was distributed with this source code.
  */
 
-namespace iBrand\Component\Order\Repositories\Eloquent;
+namespace GuoJiangClub\Component\Order\Repositories\Eloquent;
 
-use iBrand\Component\Order\Models\Order;
-use iBrand\Component\Order\Repositories\OrderRepository;
+use GuoJiangClub\Component\Order\Models\Order;
+use GuoJiangClub\Component\Order\Repositories\OrderRepository;
 use Prettus\Repository\Eloquent\BaseRepository;
 
 class OrderRepositoryEloquent extends BaseRepository implements OrderRepository

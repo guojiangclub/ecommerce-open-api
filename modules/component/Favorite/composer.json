@@ -26,18 +26,18 @@
   },
   "autoload": {
     "psr-4": {
-      "iBrand\\Component\\Favorite\\": "src/"
+      "GuoJiangClub\\Component\\Favorite\\": "src/"
     }
   },
   "autoload-dev": {
     "psr-4": {
-      "iBrand\\Component\\Favorite\\Test\\": "tests"
+      "GuoJiangClub\\Component\\Favorite\\Test\\": "tests"
     }
   },
   "extra": {
     "laravel": {
       "providers": [
-        "iBrand\\Component\\Favorite\\FavoriteServiceProvider"
+        "GuoJiangClub\\Component\\Favorite\\FavoriteServiceProvider"
       ]
     }
   },

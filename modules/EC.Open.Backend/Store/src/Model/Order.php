@@ -1,15 +1,15 @@
 <?php
 
-namespace iBrand\EC\Open\Backend\Store\Model;
+namespace GuoJiangClub\EC\Open\Backend\Store\Model;
 
-use iBrand\Component\Order\Models\Adjustment;
-use iBrand\Component\Payment\Models\Payment;
+use GuoJiangClub\Component\Order\Models\Adjustment;
+use GuoJiangClub\Component\Payment\Models\Payment;
 use Illuminate\Database\Eloquent\Model;
 use Prettus\Repository\Contracts\Transformable;
 use Prettus\Repository\Traits\TransformableTrait;
 
 use Illuminate\Database\Eloquent\SoftDeletes;
-use iBrand\EC\Open\Backend\Store\Model\Relations\BelongToUserTrait;
+use GuoJiangClub\EC\Open\Backend\Store\Model\Relations\BelongToUserTrait;
 
 class Order extends Model implements Transformable
 {
@@ -190,7 +190,7 @@ class Order extends Model implements Transformable
     
     public function payment()
     {
-        return $this->hasOne(\iBrand\EC\Open\Backend\Store\Model\Payment::class, 'order_id');
+        return $this->hasOne(\GuoJiangClub\EC\Open\Backend\Store\Model\Payment::class, 'order_id');
     }
 
     public function adjustments()

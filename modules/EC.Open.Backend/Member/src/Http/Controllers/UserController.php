@@ -9,15 +9,15 @@
  * file that was distributed with this source code.
  */
 
-namespace iBrand\EC\Open\Backend\Member\Http\Controllers;
+namespace GuoJiangClub\EC\Open\Backend\Member\Http\Controllers;
 
-use iBrand\Component\Point\Models\Point;
-use iBrand\Component\Point\Repository\PointRepository;
-use iBrand\EC\Open\Backend\Member\Models\User;
+use GuoJiangClub\Component\Point\Models\Point;
+use GuoJiangClub\Component\Point\Repository\PointRepository;
+use GuoJiangClub\EC\Open\Backend\Member\Models\User;
 use Encore\Admin\Facades\Admin as LaravelAdmin;
 use Encore\Admin\Layout\Content;
 use Excel;
-use iBrand\EC\Open\Backend\Member\Repository\UserRepository;
+use GuoJiangClub\EC\Open\Backend\Member\Repository\UserRepository;
 use Illuminate\Http\Request;
 use Response;
 use Validator;

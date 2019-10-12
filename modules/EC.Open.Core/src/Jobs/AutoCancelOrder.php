@@ -1,10 +1,10 @@
 <?php
 
-namespace iBrand\EC\Open\Core\Jobs;
+namespace GuoJiangClub\EC\Open\Core\Jobs;
 
 use Carbon\Carbon;
-use iBrand\Component\Order\Models\Order;
-use iBrand\EC\Open\Core\Processor\OrderProcessor;
+use GuoJiangClub\Component\Order\Models\Order;
+use GuoJiangClub\EC\Open\Core\Processor\OrderProcessor;
 use Illuminate\Bus\Queueable;
 use Illuminate\Queue\SerializesModels;
 use Illuminate\Queue\InteractsWithQueue;

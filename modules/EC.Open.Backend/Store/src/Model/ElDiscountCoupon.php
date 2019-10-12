@@ -1,9 +1,9 @@
 <?php
 
-namespace iBrand\EC\Open\Backend\Store\Model;
+namespace GuoJiangClub\EC\Open\Backend\Store\Model;
 
 use Illuminate\Database\Eloquent\Model;
-use iBrand\EC\Open\Backend\Store\Model\Relations\BelongToUserTrait;
+use GuoJiangClub\EC\Open\Backend\Store\Model\Relations\BelongToUserTrait;
 
 class ElDiscountCoupon extends Model
 {
@@ -18,7 +18,7 @@ class ElDiscountCoupon extends Model
 
     public function order()
     {
-        return $this->belongsToMany('iBrand\EC\Open\Backend\Store\Model\Order', config('ibrand.app.database.prefix', 'ibrand_').'order_adjustment', 'origin_id', 'order_id');
+        return $this->belongsToMany('GuoJiangClub\EC\Open\Backend\Store\Model\Order', config('ibrand.app.database.prefix', 'ibrand_').'order_adjustment', 'origin_id', 'order_id');
     }
 
     public function getOrder()

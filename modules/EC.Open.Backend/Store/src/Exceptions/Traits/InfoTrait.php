@@ -9,7 +9,7 @@
  * file that was distributed with this source code.
  */
 
-namespace iBrand\EC\Open\Backend\Store\Exceptions\Traits;
+namespace GuoJiangClub\EC\Open\Backend\Store\Exceptions\Traits;
 
 /**
  * This is the exception info trait.

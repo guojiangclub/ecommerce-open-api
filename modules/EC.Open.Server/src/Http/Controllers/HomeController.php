@@ -1,18 +1,11 @@
 ﻿<?php
-/*
- * This file is part of ibrand/EC-Open-Server.
- *
- * (c) iBrand <https://www.ibrand.cc>
- *
- * For the full copyright and license information, please view the LICENSE
- * file that was distributed with this source code.
- */
-namespace iBrand\EC\Open\Server\Http\Controllers;
 
-use iBrand\Component\Advert\Repositories\AdvertItemRepository;
-use iBrand\EC\Open\Core\Services\GoodsService;
-use iBrand\Component\Advert\Models\MicroPage;
-use iBrand\Component\Advert\Models\MicroPageAdvert;
+namespace GuoJiangClub\EC\Open\Server\Http\Controllers;
+
+use GuoJiangClub\Component\Advert\Repositories\AdvertItemRepository;
+use GuoJiangClub\EC\Open\Core\Services\GoodsService;
+use GuoJiangClub\Component\Advert\Models\MicroPage;
+use GuoJiangClub\Component\Advert\Models\MicroPageAdvert;
 use DB;
 
 class HomeController extends Controller

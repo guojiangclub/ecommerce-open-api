@@ -6,7 +6,7 @@
  * Time: 14:37
  */
 
-namespace iBrand\Component\Discount\Test\Models;
+namespace GuoJiangClub\Component\Discount\Test\Models;
 
 use Illuminate\Foundation\Auth\User as Authenticatable;
 

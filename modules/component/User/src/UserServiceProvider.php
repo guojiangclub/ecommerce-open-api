@@ -9,12 +9,12 @@
  * file that was distributed with this source code.
  */
 
-namespace iBrand\Component\User;
+namespace GuoJiangClub\Component\User;
 
-use iBrand\Component\User\Repository\Eloquent\UserBindRepositoryEloquent;
-use iBrand\Component\User\Repository\Eloquent\UserRepositoryEloquent;
-use iBrand\Component\User\Repository\UserBindRepository;
-use iBrand\Component\User\Repository\UserRepository;
+use GuoJiangClub\Component\User\Repository\Eloquent\UserBindRepositoryEloquent;
+use GuoJiangClub\Component\User\Repository\Eloquent\UserRepositoryEloquent;
+use GuoJiangClub\Component\User\Repository\UserBindRepository;
+use GuoJiangClub\Component\User\Repository\UserRepository;
 use Illuminate\Support\ServiceProvider;
 
 class UserServiceProvider extends ServiceProvider

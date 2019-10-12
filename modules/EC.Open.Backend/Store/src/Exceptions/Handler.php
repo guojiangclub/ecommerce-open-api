@@ -1,6 +1,6 @@
 <?php
 
-namespace iBrand\EC\Open\Backend\Store\Exceptions;
+namespace GuoJiangClub\EC\Open\Backend\Store\Exceptions;
 
 use Exception;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
@@ -10,9 +10,9 @@ use Illuminate\Foundation\Exceptions\Handler as ExceptionHandler;
 use Illuminate\Contracts\Config\Repository as Config;
 use Illuminate\Contracts\Container\Container;
 use Psr\Log\LoggerInterface as Log;
-use iBrand\EC\Open\Backend\Store\Exceptions\Displayers\ArrayDisplayer;
-use iBrand\EC\Open\Backend\Store\Exceptions\Displayers\DebugDisplayer;
-use iBrand\EC\Open\Backend\Store\Exceptions\Displayers\PlainDisplayer;
+use GuoJiangClub\EC\Open\Backend\Store\Exceptions\Displayers\ArrayDisplayer;
+use GuoJiangClub\EC\Open\Backend\Store\Exceptions\Displayers\DebugDisplayer;
+use GuoJiangClub\EC\Open\Backend\Store\Exceptions\Displayers\PlainDisplayer;
 
 use Symfony\Component\Debug\Exception\FlattenException;
 use Symfony\Component\HttpFoundation\JsonResponse;

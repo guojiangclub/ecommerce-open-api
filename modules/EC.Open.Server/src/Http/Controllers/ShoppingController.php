@@ -9,27 +9,27 @@
  * file that was distributed with this source code.
  */
 
-namespace iBrand\EC\Open\Server\Http\Controllers;
+namespace GuoJiangClub\EC\Open\Server\Http\Controllers;
 
 use Carbon\Carbon;
 use Cart;
 use DB;
-use iBrand\Component\Address\RepositoryContract as AddressRepository;
-use iBrand\Component\Discount\Applicators\DiscountApplicator;
-use iBrand\Component\Discount\Models\Coupon;
-use iBrand\Component\Discount\Models\Discount;
-use iBrand\Component\Discount\Repositories\CouponRepository;
-use iBrand\Component\Order\Models\Comment;
-use iBrand\Component\Order\Models\Order;
-use iBrand\Component\Order\Models\OrderItem;
-use iBrand\Component\Order\Repositories\OrderRepository;
-use iBrand\Component\Point\Repository\PointRepository;
-use iBrand\Component\Product\Repositories\GoodsRepository;
-use iBrand\Component\Product\Repositories\ProductRepository;
-use iBrand\Component\Shipping\Models\Shipping;
-use iBrand\EC\Open\Core\Applicators\PointApplicator;
-use iBrand\EC\Open\Core\Processor\OrderProcessor;
-use iBrand\EC\Open\Core\Services\DiscountService;
+use GuoJiangClub\Component\Address\RepositoryContract as AddressRepository;
+use GuoJiangClub\Component\Discount\Applicators\DiscountApplicator;
+use GuoJiangClub\Component\Discount\Models\Coupon;
+use GuoJiangClub\Component\Discount\Models\Discount;
+use GuoJiangClub\Component\Discount\Repositories\CouponRepository;
+use GuoJiangClub\Component\Order\Models\Comment;
+use GuoJiangClub\Component\Order\Models\Order;
+use GuoJiangClub\Component\Order\Models\OrderItem;
+use GuoJiangClub\Component\Order\Repositories\OrderRepository;
+use GuoJiangClub\Component\Point\Repository\PointRepository;
+use GuoJiangClub\Component\Product\Repositories\GoodsRepository;
+use GuoJiangClub\Component\Product\Repositories\ProductRepository;
+use GuoJiangClub\Component\Shipping\Models\Shipping;
+use GuoJiangClub\EC\Open\Core\Applicators\PointApplicator;
+use GuoJiangClub\EC\Open\Core\Processor\OrderProcessor;
+use GuoJiangClub\EC\Open\Core\Services\DiscountService;
 use Illuminate\Support\Collection;
 
 class ShoppingController extends Controller

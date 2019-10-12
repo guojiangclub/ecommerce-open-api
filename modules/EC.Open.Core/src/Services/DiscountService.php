@@ -9,19 +9,19 @@
  * file that was distributed with this source code.
  */
 
-namespace iBrand\EC\Open\Core\Services;
+namespace GuoJiangClub\EC\Open\Core\Services;
 
 use Exception;
-use iBrand\Component\Discount\Applicators\DiscountApplicator;
-use iBrand\Component\Discount\Checkers\CouponEligibilityChecker;
-use iBrand\Component\Discount\Checkers\DatesEligibilityChecker;
-use iBrand\Component\Discount\Contracts\DiscountSubjectContract;
-use iBrand\Component\Discount\Models\Coupon;
-use iBrand\Component\Discount\Models\Discount;
-use iBrand\Component\Discount\Repositories\CouponRepository;
-use iBrand\Component\Discount\Repositories\DiscountRepository;
-use iBrand\EC\Open\Core\Discount\Checkers\DiscountEligibilityChecker;
-use iBrand\EC\Open\Core\Discount\Contracts\DiscountItemContract;
+use GuoJiangClub\Component\Discount\Applicators\DiscountApplicator;
+use GuoJiangClub\Component\Discount\Checkers\CouponEligibilityChecker;
+use GuoJiangClub\Component\Discount\Checkers\DatesEligibilityChecker;
+use GuoJiangClub\Component\Discount\Contracts\DiscountSubjectContract;
+use GuoJiangClub\Component\Discount\Models\Coupon;
+use GuoJiangClub\Component\Discount\Models\Discount;
+use GuoJiangClub\Component\Discount\Repositories\CouponRepository;
+use GuoJiangClub\Component\Discount\Repositories\DiscountRepository;
+use GuoJiangClub\EC\Open\Core\Discount\Checkers\DiscountEligibilityChecker;
+use GuoJiangClub\EC\Open\Core\Discount\Contracts\DiscountItemContract;
 use Illuminate\Support\Collection;
 
 class DiscountService

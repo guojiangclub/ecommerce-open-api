@@ -9,7 +9,7 @@
  * file that was distributed with this source code.
  */
 
-namespace iBrand\Component\Advert\Models;
+namespace GuoJiangClub\Component\Advert\Models;
 
 use Illuminate\Database\Eloquent\Model;
 

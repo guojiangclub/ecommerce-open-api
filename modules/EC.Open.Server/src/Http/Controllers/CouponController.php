@@ -9,12 +9,12 @@
  * file that was distributed with this source code.
  */
 
-namespace iBrand\EC\Open\Server\Http\Controllers;
+namespace GuoJiangClub\EC\Open\Server\Http\Controllers;
 
-use iBrand\Component\Discount\Repositories\CouponRepository;
-use iBrand\Component\Discount\Repositories\DiscountRepository;
-use iBrand\EC\Open\Core\Services\DiscountService;
-use iBrand\EC\Open\Server\Transformers\CouponTransformer;
+use GuoJiangClub\Component\Discount\Repositories\CouponRepository;
+use GuoJiangClub\Component\Discount\Repositories\DiscountRepository;
+use GuoJiangClub\EC\Open\Core\Services\DiscountService;
+use GuoJiangClub\EC\Open\Server\Transformers\CouponTransformer;
 
 class CouponController extends Controller
 {

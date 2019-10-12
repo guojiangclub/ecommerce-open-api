@@ -6,12 +6,12 @@
  * Time: 14:07
  */
 
-namespace iBrand\EC\Open\Backend\Store\Console;
+namespace GuoJiangClub\EC\Open\Backend\Store\Console;
 
-use iBrand\EC\Open\Backend\Album\Models\ImageCategory;
+use GuoJiangClub\EC\Open\Backend\Album\Models\ImageCategory;
 use Illuminate\Console\Command;
 
-use iBrand\EC\Open\Backend\Store\Model\Category as ElCategory;
+use GuoJiangClub\EC\Open\Backend\Store\Model\Category as ElCategory;
 
 class SetDefaultValueCommand extends Command
 {

@@ -1,12 +1,12 @@
 <?php
 
-namespace iBrand\EC\Open\Backend\Store\Http\Controllers;
+namespace GuoJiangClub\EC\Open\Backend\Store\Http\Controllers;
 
-use iBrand\EC\Open\Backend\Member\Models\User;
+use GuoJiangClub\EC\Open\Backend\Member\Models\User;
 use iBrand\Backend\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-use iBrand\EC\Open\Backend\Store\Repositories\CommentsRepository;
-use iBrand\EC\Open\Backend\Store\Repositories\GoodsRepository;
+use GuoJiangClub\EC\Open\Backend\Store\Repositories\CommentsRepository;
+use GuoJiangClub\EC\Open\Backend\Store\Repositories\GoodsRepository;
 use Encore\Admin\Facades\Admin as LaravelAdmin;
 use Encore\Admin\Layout\Content;
 

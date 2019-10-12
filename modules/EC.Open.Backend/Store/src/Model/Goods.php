@@ -1,6 +1,6 @@
 <?php
 
-namespace iBrand\EC\Open\Backend\Store\Model;
+namespace GuoJiangClub\EC\Open\Backend\Store\Model;
 
 use Illuminate\Database\Eloquent\Model;
 use Prettus\Repository\Contracts\Transformable;
@@ -25,50 +25,50 @@ class Goods extends Model implements Transformable
 
     public function hasManyProducts()
     {
-        return $this->hasMany('iBrand\EC\Open\Backend\Store\Model\Product', 'goods_id');
+        return $this->hasMany('GuoJiangClub\EC\Open\Backend\Store\Model\Product', 'goods_id');
     }
 
     public function hasManyAttribute()
     {
-        return $this->belongsToMany('iBrand\EC\Open\Backend\Store\Model\Attribute', config('ibrand.app.database.prefix', 'ibrand_').'goods_attribute_relation', 'goods_id', 'attribute_id')
+        return $this->belongsToMany('GuoJiangClub\EC\Open\Backend\Store\Model\Attribute', config('ibrand.app.database.prefix', 'ibrand_').'goods_attribute_relation', 'goods_id', 'attribute_id')
             ->withPivot('attribute_value_id', 'model_id', 'attribute_value');
     }
 
     public function model()
     {
-        return $this->belongsTo('iBrand\EC\Open\Backend\Store\Model\Models', 'model_id', 'id');
+        return $this->belongsTo('GuoJiangClub\EC\Open\Backend\Store\Model\Models', 'model_id', 'id');
     }
 
     public function hasManySpec()
     {
-        return $this->belongsToMany('iBrand\EC\Open\Backend\Store\Model\Spec', config('ibrand.app.database.prefix', 'ibrand_').'goods_spec_relation', 'goods_id', 'spec_id');
+        return $this->belongsToMany('GuoJiangClub\EC\Open\Backend\Store\Model\Spec', config('ibrand.app.database.prefix', 'ibrand_').'goods_spec_relation', 'goods_id', 'spec_id');
     }
 
     public function category()
     {
-        return $this->belongsTo('iBrand\EC\Open\Backend\Store\Model\Category', 'category_id');
+        return $this->belongsTo('GuoJiangClub\EC\Open\Backend\Store\Model\Category', 'category_id');
     }
 
     public function categories()
     {
-        return $this->belongsToMany('iBrand\EC\Open\Backend\Store\Model\Category', config('ibrand.app.database.prefix', 'ibrand_').'goods_category', 'goods_id', 'category_id');
+        return $this->belongsToMany('GuoJiangClub\EC\Open\Backend\Store\Model\Category', config('ibrand.app.database.prefix', 'ibrand_').'goods_category', 'goods_id', 'category_id');
     }
 
     public function specs()
     {
-        return $this->belongsToMany('iBrand\EC\Open\Backend\Store\Model\Spec', config('ibrand.app.database.prefix', 'ibrand_').'goods_spec_relation', 'goods_id', 'spec_id')
+        return $this->belongsToMany('GuoJiangClub\EC\Open\Backend\Store\Model\Spec', config('ibrand.app.database.prefix', 'ibrand_').'goods_spec_relation', 'goods_id', 'spec_id')
             ->withPivot('spec_value', 'category_id')->withTimestamps();
     }
 
 
     public function GoodsPhotos()
     {
-        return $this->hasMany('iBrand\EC\Open\Backend\Store\Model\GoodsPhoto', 'goods_id');
+        return $this->hasMany('GuoJiangClub\EC\Open\Backend\Store\Model\GoodsPhoto', 'goods_id');
     }
 
     public function SearchSpec()
     {
-        return $this->hasMany('iBrand\EC\Open\Backend\Store\Model\SearchSpec', 'goods_id');
+        return $this->hasMany('GuoJiangClub\EC\Open\Backend\Store\Model\SearchSpec', 'goods_id');
     }
 
     public function getArrayTagsAttribute()

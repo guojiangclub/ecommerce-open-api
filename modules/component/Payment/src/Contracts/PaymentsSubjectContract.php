@@ -9,9 +9,9 @@
  * file that was distributed with this source code.
  */
 
-namespace iBrand\Component\Payment\Contracts;
+namespace GuoJiangClub\Component\Payment\Contracts;
 
-use iBrand\Component\Payment\Models\Payment;
+use GuoJiangClub\Component\Payment\Models\Payment;
 
 /**
  * Created by PhpStorm.

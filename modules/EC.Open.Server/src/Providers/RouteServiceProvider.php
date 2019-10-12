@@ -9,10 +9,10 @@
  * file that was distributed with this source code.
  */
 
-namespace iBrand\EC\Open\Server\Providers;
+namespace GuoJiangClub\EC\Open\Server\Providers;
 
 use Dingo\Api\Transformer\Adapter\Fractal;
-use iBrand\EC\Open\Server\Serializer\DataArraySerializer;
+use GuoJiangClub\EC\Open\Server\Serializer\DataArraySerializer;
 use Illuminate\Foundation\Support\Providers\RouteServiceProvider as ServiceProvider;
 use League\Fractal\Manager;
 use Route;
@@ -26,7 +26,7 @@ class RouteServiceProvider extends ServiceProvider
      *
      * @var string
      */
-    protected $namespace = 'iBrand\EC\Open\Server\Http\Controllers';
+    protected $namespace = 'GuoJiangClub\EC\Open\Server\Http\Controllers';
 
     public function boot()
     {

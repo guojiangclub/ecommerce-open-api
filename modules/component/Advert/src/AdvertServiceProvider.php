@@ -9,13 +9,13 @@
  * file that was distributed with this source code.
  */
 
-namespace iBrand\Component\Advert;
+namespace GuoJiangClub\Component\Advert;
 
 use Illuminate\Database\Eloquent\Relations\Relation;
-use iBrand\Component\Advert\Repositories\AdvertItemRepository;
-use iBrand\Component\Advert\Repositories\AdvertRepository;
-use iBrand\Component\Advert\Repositories\Eloquent\AdvertItemRepositoryEloquent;
-use iBrand\Component\Advert\Repositories\Eloquent\AdvertRepositoryEloquent;
+use GuoJiangClub\Component\Advert\Repositories\AdvertItemRepository;
+use GuoJiangClub\Component\Advert\Repositories\AdvertRepository;
+use GuoJiangClub\Component\Advert\Repositories\Eloquent\AdvertItemRepositoryEloquent;
+use GuoJiangClub\Component\Advert\Repositories\Eloquent\AdvertRepositoryEloquent;
 use Illuminate\Support\ServiceProvider;
 
 class AdvertServiceProvider extends ServiceProvider

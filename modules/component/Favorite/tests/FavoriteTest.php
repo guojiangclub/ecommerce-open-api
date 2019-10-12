@@ -9,9 +9,9 @@
  * file that was distributed with this source code.
  */
 
-namespace iBrand\Component\Favorite\Test;
+namespace GuoJiangClub\Component\Favorite\Test;
 
-use iBrand\Component\Favorite\Favorite;
+use GuoJiangClub\Component\Favorite\Favorite;
 
 class FavoriteTest extends BaseTest
 {
@@ -29,7 +29,7 @@ class FavoriteTest extends BaseTest
         $this->assertEquals(3, count($list_activity));
 
         $isFavorite = $this->repository->isFavorite(1, 1, 'goods');
-        $this->assertEquals('iBrand\Component\Favorite\Favorite', get_class($isFavorite));
+        $this->assertEquals('GuoJiangClub\Component\Favorite\Favorite', get_class($isFavorite));
         $this->assertEquals('goods', $isFavorite->favoriteable_type);
         $this->assertEquals(1, $isFavorite->favoriteable_id);
 
@@ -47,7 +47,7 @@ class FavoriteTest extends BaseTest
 
         //Batch deleting
         $isFavorite_2 = $this->repository->isFavorite(1, 2, 'goods');
-        $this->assertEquals('iBrand\Component\Favorite\Favorite', get_class($isFavorite_2));
+        $this->assertEquals('GuoJiangClub\Component\Favorite\Favorite', get_class($isFavorite_2));
         $this->assertEquals('goods', $isFavorite_2->favoriteable_type);
         $this->assertEquals(2, $isFavorite_2->favoriteable_id);
 

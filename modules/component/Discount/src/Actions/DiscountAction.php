@@ -9,11 +9,11 @@
  * file that was distributed with this source code.
  */
 
-namespace iBrand\Component\Discount\Actions;
+namespace GuoJiangClub\Component\Discount\Actions;
 
-use iBrand\Component\Discount\Contracts\AdjustmentContract;
-use iBrand\Component\Discount\Contracts\DiscountActionContract;
-use iBrand\Component\Discount\Contracts\DiscountContract;
+use GuoJiangClub\Component\Discount\Contracts\AdjustmentContract;
+use GuoJiangClub\Component\Discount\Contracts\DiscountActionContract;
+use GuoJiangClub\Component\Discount\Contracts\DiscountContract;
 
 abstract class DiscountAction implements DiscountActionContract
 {

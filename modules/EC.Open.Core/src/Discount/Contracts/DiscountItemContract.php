@@ -9,7 +9,7 @@
  * file that was distributed with this source code.
  */
 
-namespace iBrand\EC\Open\Core\Discount\Contracts;
+namespace GuoJiangClub\EC\Open\Core\Discount\Contracts;
 
 interface DiscountItemContract
 {

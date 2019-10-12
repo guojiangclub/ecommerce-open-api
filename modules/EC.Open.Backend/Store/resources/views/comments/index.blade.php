@@ -10,11 +10,11 @@
         <ul class="nav nav-tabs">
             <li class="{{ Active::query('status','show') }}"><a no-pjax href="{{route('admin.comments.index',['status'=>'show'])}}">评论列表
                     <span class="badge">
-                         {{$view=='show'?$comments_list_num:\iBrand\EC\Open\Backend\Store\Model\OrderComment::where('status','show')->count()}}
+                         {{$view=='show'?$comments_list_num:\GuoJiangClub\EC\Open\Backend\Store\Model\OrderComment::where('status','show')->count()}}
                     </span></a></li>
             <li class="{{ Active::query('status','hidden') }}"><a no-pjax href="{{route('admin.comments.index',['status'=>'hidden'])}}">待审核
                     <span class="badge">
-                        {{$view=='hidden'?$comments_list_num:\iBrand\EC\Open\Backend\Store\Model\OrderComment::where('status','hidden')->count()}}
+                        {{$view=='hidden'?$comments_list_num:\GuoJiangClub\EC\Open\Backend\Store\Model\OrderComment::where('status','hidden')->count()}}
                     </span></a></li>
 
         </ul>

@@ -9,10 +9,10 @@
  * file that was distributed with this source code.
  */
 
-namespace iBrand\EC\Open\Core\Discount\Contracts;
-use iBrand\Component\Discount\Contracts\DiscountContract;
-use iBrand\Component\Discount\Contracts\DiscountSubjectContract;
-use iBrand\Component\Discount\Contracts\RuleCheckerContract as BaseRuleCheckerContract;
+namespace GuoJiangClub\EC\Open\Core\Discount\Contracts;
+use GuoJiangClub\Component\Discount\Contracts\DiscountContract;
+use GuoJiangClub\Component\Discount\Contracts\DiscountSubjectContract;
+use GuoJiangClub\Component\Discount\Contracts\RuleCheckerContract as BaseRuleCheckerContract;
 /**
  * Interface RuleCheckerContract.
  */

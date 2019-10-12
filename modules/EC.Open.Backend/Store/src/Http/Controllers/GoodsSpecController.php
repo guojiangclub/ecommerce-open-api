@@ -1,10 +1,10 @@
 <?php
 
-namespace iBrand\EC\Open\Backend\Store\Http\Controllers;
+namespace GuoJiangClub\EC\Open\Backend\Store\Http\Controllers;
 
-use iBrand\EC\Open\Backend\Store\Model\Models;
-use iBrand\EC\Open\Backend\Store\Model\Spec;
-use iBrand\EC\Open\Backend\Store\Model\SpecsValue;
+use GuoJiangClub\EC\Open\Backend\Store\Model\Models;
+use GuoJiangClub\EC\Open\Backend\Store\Model\Spec;
+use GuoJiangClub\EC\Open\Backend\Store\Model\SpecsValue;
 use iBrand\Backend\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use DB;

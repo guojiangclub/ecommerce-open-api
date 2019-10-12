@@ -1,5 +1,5 @@
 <?php
-namespace iBrand\EC\Open\Backend\Album\Models;
+namespace GuoJiangClub\EC\Open\Backend\Album\Models;
 
 use Illuminate\Database\Eloquent\Model;
 

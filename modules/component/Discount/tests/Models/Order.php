@@ -6,9 +6,9 @@
  * Time: 12:35
  */
 
-namespace iBrand\Component\Discount\Test\Models;
+namespace GuoJiangClub\Component\Discount\Test\Models;
 
-use iBrand\Component\Discount\Contracts\DiscountSubjectContract;
+use GuoJiangClub\Component\Discount\Contracts\DiscountSubjectContract;
 use Illuminate\Database\Eloquent\Model;
 
 class Order extends Model  implements DiscountSubjectContract

@@ -1,10 +1,10 @@
 <?php
 
-namespace iBrand\EC\Open\Backend\Store\Repositories;
+namespace GuoJiangClub\EC\Open\Backend\Store\Repositories;
 
 use Prettus\Repository\Eloquent\BaseRepository;
 use Prettus\Repository\Criteria\RequestCriteria;
-use iBrand\EC\Open\Backend\Store\Model\ElDiscount;
+use GuoJiangClub\EC\Open\Backend\Store\Model\ElDiscount;
 
 /**
  * Class DiscountConditionRepositoryEloquent

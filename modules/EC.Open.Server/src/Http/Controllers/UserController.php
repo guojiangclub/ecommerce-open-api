@@ -9,16 +9,16 @@
  * file that was distributed with this source code.
  */
 
-namespace iBrand\EC\Open\Server\Http\Controllers;
+namespace GuoJiangClub\EC\Open\Server\Http\Controllers;
 
-use iBrand\Component\Address\Address;
-use iBrand\Component\Discount\Repositories\CouponRepository;
-use iBrand\Component\Favorite\Favorite;
-use iBrand\Component\Order\Models\Order;
-use iBrand\Component\Order\Repositories\OrderRepository;
-use iBrand\Component\User\Models\User;
-use iBrand\Component\User\Repository\UserRepository;
-use iBrand\EC\Open\Server\Transformers\UserTransformer;
+use GuoJiangClub\Component\Address\Address;
+use GuoJiangClub\Component\Discount\Repositories\CouponRepository;
+use GuoJiangClub\Component\Favorite\Favorite;
+use GuoJiangClub\Component\Order\Models\Order;
+use GuoJiangClub\Component\Order\Repositories\OrderRepository;
+use GuoJiangClub\Component\User\Models\User;
+use GuoJiangClub\Component\User\Repository\UserRepository;
+use GuoJiangClub\EC\Open\Server\Transformers\UserTransformer;
 use iBrand\Sms\Facade as Sms;
 use Illuminate\Http\Request;
 use Image;

@@ -1,9 +1,9 @@
 {
   "name": "ibrand/ec-open-server",
   "type": "library",
-  "description": "iBrand EC's open source server.",
+  "description": "GuoJiangClub EC's open source server.",
   "keywords": [
-    "iBrand",
+    "GuoJiangClub",
     "e-commerce",
     "open source",
     "server"
@@ -25,12 +25,12 @@
   },
   "autoload": {
     "psr-4": {
-      "iBrand\\EC\\Open\\Server\\": "src/"
+      "GuoJiangClub\\EC\\Open\\Server\\": "src/"
     }
   },
   "autoload-dev": {
     "psr-4": {
-      "iBrand\\EC\\Open\\Server\\Test\\": "tests"
+      "GuoJiangClub\\EC\\Open\\Server\\Test\\": "tests"
     }
   },
   "extra": {

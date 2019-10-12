@@ -6,9 +6,9 @@
  * Time: 18:04
  */
 
-namespace iBrand\EC\Open\Backend\Store;
+namespace GuoJiangClub\EC\Open\Backend\Store;
 
-use iBrand\EC\Open\Backend\Store\Seeds\StoreBackendTablesSeeder;
+use GuoJiangClub\EC\Open\Backend\Store\Seeds\StoreBackendTablesSeeder;
 use Encore\Admin\Admin;
 use Encore\Admin\Extension;
 use Illuminate\Support\Facades\Artisan;

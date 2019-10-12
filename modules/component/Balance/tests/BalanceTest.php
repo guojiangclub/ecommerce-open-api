@@ -9,9 +9,9 @@
  * file that was distributed with this source code.
  */
 
-namespace iBrand\Component\Balance\Test;
+namespace GuoJiangClub\Component\Balance\Test;
 
-use iBrand\Component\Balance\Balance;
+use GuoJiangClub\Component\Balance\Balance;
 
 class BalanceTest extends BaseTest
 {

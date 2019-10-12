@@ -5,9 +5,9 @@
  * Date: 2018-06-27
  * Time: 12:36
  */
-namespace iBrand\Component\Discount\Test\Models;
+namespace GuoJiangClub\Component\Discount\Test\Models;
 
-use iBrand\Component\Discount\Contracts\AdjustmentContract;
+use GuoJiangClub\Component\Discount\Contracts\AdjustmentContract;
 use Illuminate\Database\Eloquent\Model;
 
 class Adjustment extends Model implements AdjustmentContract

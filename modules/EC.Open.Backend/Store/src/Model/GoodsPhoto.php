@@ -1,6 +1,6 @@
 <?php
 
-namespace iBrand\EC\Open\Backend\Store\Model;
+namespace GuoJiangClub\EC\Open\Backend\Store\Model;
 
 use Illuminate\Database\Eloquent\Model;
 use Prettus\Repository\Contracts\Transformable;
@@ -19,7 +19,7 @@ class GoodsPhoto extends Model implements Transformable
     }
 
     public function goods(){
-        return $this->belongsTo('iBrand\EC\Open\Backend\Store\Model\Goods','goods_id');
+        return $this->belongsTo('GuoJiangClub\EC\Open\Backend\Store\Model\Goods','goods_id');
     }
 
     public function getCheckedStatusAttribute()

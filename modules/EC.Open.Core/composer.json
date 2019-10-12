@@ -1,9 +1,9 @@
 {
   "name": "ibrand/ec-open-core",
   "type": "library",
-  "description": "iBrand EC's open source core.",
+  "description": "GuoJiangClub EC's open source core.",
   "keywords": [
-    "iBrand",
+    "GuoJiangClub",
     "e-commerce",
     "open source",
     "server"
@@ -25,7 +25,7 @@
   },
   "autoload": {
     "psr-4": {
-      "iBrand\\EC\\Open\\Core\\": "src/"
+      "GuoJiangClub\\EC\\Open\\Core\\": "src/"
     },
     "files": [
       "src/helpers.php"
@@ -33,7 +33,7 @@
   },
   "autoload-dev": {
     "psr-4": {
-      "iBrand\\EC\\Open\\Core\\Test\\": "tests"
+      "GuoJiangClub\\EC\\Open\\Core\\Test\\": "tests"
     }
   },
   "extra": {

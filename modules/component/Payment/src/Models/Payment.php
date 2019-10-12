@@ -9,7 +9,7 @@
  * file that was distributed with this source code.
  */
 
-namespace iBrand\Component\Payment\Models;
+namespace GuoJiangClub\Component\Payment\Models;
 
 use Illuminate\Database\Eloquent\Model;
 

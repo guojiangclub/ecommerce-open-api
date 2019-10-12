@@ -9,9 +9,9 @@
  * file that was distributed with this source code.
  */
 
-namespace iBrand\Component\Favorite\Test;
+namespace GuoJiangClub\Component\Favorite\Test;
 
-use iBrand\Component\Favorite\Favorite;
+use GuoJiangClub\Component\Favorite\Favorite;
 use Illuminate\Foundation\Testing\DatabaseMigrations;
 use Orchestra\Testbench\TestCase;
 
@@ -33,7 +33,7 @@ abstract class BaseTest extends TestCase
 
         $this->loadMigrationsFrom(__DIR__ . '/database');
 
-        $this->repository = $this->app->make(\iBrand\Component\Favorite\RepositoryContract::class);
+        $this->repository = $this->app->make(\GuoJiangClub\Component\Favorite\RepositoryContract::class);
 
         $this->seedFavorite();
         $this->seedGoods();
@@ -72,7 +72,7 @@ abstract class BaseTest extends TestCase
         return [
             \Prettus\Repository\Providers\RepositoryServiceProvider::class,
             \Orchestra\Database\ConsoleServiceProvider::class,
-            \iBrand\Component\Favorite\FavoriteServiceProvider::class,
+            \GuoJiangClub\Component\Favorite\FavoriteServiceProvider::class,
         ];
     }
 

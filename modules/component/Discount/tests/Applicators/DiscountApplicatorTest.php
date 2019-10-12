@@ -6,23 +6,23 @@
  * Time: 20:05
  */
 
-namespace iBrand\Component\Discount\Test\Applicators;
+namespace GuoJiangClub\Component\Discount\Test\Applicators;
 
 use Carbon\Carbon;
-use iBrand\Component\Discount\Actions\OrderFixedDiscountAction;
-use iBrand\Component\Discount\Actions\OrderPercentageDiscountAction;
-use iBrand\Component\Discount\Applicators\DiscountApplicator;
-use iBrand\Component\Discount\Checkers\DiscountEligibilityChecker;
-use iBrand\Component\Discount\Checkers\ItemTotalRuleChecker;
-use iBrand\Component\Discount\Models\Coupon;
-use iBrand\Component\Discount\Repositories\DiscountRepository;
-use iBrand\Component\Discount\Test\BaseTest;
-use iBrand\Component\Discount\Test\Models\Order;
+use GuoJiangClub\Component\Discount\Actions\OrderFixedDiscountAction;
+use GuoJiangClub\Component\Discount\Actions\OrderPercentageDiscountAction;
+use GuoJiangClub\Component\Discount\Applicators\DiscountApplicator;
+use GuoJiangClub\Component\Discount\Checkers\DiscountEligibilityChecker;
+use GuoJiangClub\Component\Discount\Checkers\ItemTotalRuleChecker;
+use GuoJiangClub\Component\Discount\Models\Coupon;
+use GuoJiangClub\Component\Discount\Repositories\DiscountRepository;
+use GuoJiangClub\Component\Discount\Test\BaseTest;
+use GuoJiangClub\Component\Discount\Test\Models\Order;
 use Faker\Factory;
-use iBrand\Component\Discount\Models\Action;
-use iBrand\Component\Discount\Models\Discount;
-use iBrand\Component\Discount\Models\Rule;
-use iBrand\Component\Discount\Test\Models\OrderItem;
+use GuoJiangClub\Component\Discount\Models\Action;
+use GuoJiangClub\Component\Discount\Models\Discount;
+use GuoJiangClub\Component\Discount\Models\Rule;
+use GuoJiangClub\Component\Discount\Test\Models\OrderItem;
 
 class DiscountApplicatorTest extends BaseTest
 {

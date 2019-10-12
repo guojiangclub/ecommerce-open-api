@@ -9,7 +9,7 @@
  * file that was distributed with this source code.
  */
 
-namespace iBrand\EC\Open\Server\Serializer;
+namespace GuoJiangClub\EC\Open\Server\Serializer;
 
 use League\Fractal\Serializer\ArraySerializer;
 

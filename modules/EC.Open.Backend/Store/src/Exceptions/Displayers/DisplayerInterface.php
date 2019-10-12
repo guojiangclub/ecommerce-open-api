@@ -9,7 +9,7 @@
  * file that was distributed with this source code.
  */
 
-namespace iBrand\EC\Open\Backend\Store\Exceptions\Displayers;
+namespace GuoJiangClub\EC\Open\Backend\Store\Exceptions\Displayers;
 
 use Exception;
 

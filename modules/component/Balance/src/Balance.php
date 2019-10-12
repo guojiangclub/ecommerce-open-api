@@ -9,7 +9,7 @@
  * file that was distributed with this source code.
  */
 
-namespace iBrand\Component\Balance;
+namespace GuoJiangClub\Component\Balance;
 
 use Illuminate\Database\Eloquent\Model;
 

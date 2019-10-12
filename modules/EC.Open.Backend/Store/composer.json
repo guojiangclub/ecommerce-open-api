@@ -1,9 +1,9 @@
 {
     "name": "ibrand/ec-open-backend",
     "type": "library",
-    "description": "iBrand EC's open source backend.",
+    "description": "GuoJiangClub EC's open source backend.",
     "keywords": [
-        "iBrand",
+        "GuoJiangClub",
         "e-commerce",
         "open source",
         "server",
@@ -21,7 +21,7 @@
         ],
 
         "psr-4": {
-            "iBrand\\EC\\Open\\Backend\\Store\\": "src/"
+            "GuoJiangClub\\EC\\Open\\Backend\\Store\\": "src/"
         }
     },
     "license": "MIT",

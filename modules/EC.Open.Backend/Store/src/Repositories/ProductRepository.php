@@ -1,12 +1,12 @@
 <?php
 
-namespace iBrand\EC\Open\Backend\Store\Repositories;
+namespace GuoJiangClub\EC\Open\Backend\Store\Repositories;
 
-use iBrand\EC\Open\Backend\Store\Model\Goods;
+use GuoJiangClub\EC\Open\Backend\Store\Model\Goods;
 use Prettus\Repository\Eloquent\BaseRepository;
 use Prettus\Repository\Criteria\RequestCriteria;
-use iBrand\EC\Open\Backend\Store\Model\Product;
-use iBrand\EC\Open\Backend\Store\Model\Category;
+use GuoJiangClub\EC\Open\Backend\Store\Model\Product;
+use GuoJiangClub\EC\Open\Backend\Store\Model\Category;
 use Maatwebsite\Excel\Facades\Excel;
 use DB;
 

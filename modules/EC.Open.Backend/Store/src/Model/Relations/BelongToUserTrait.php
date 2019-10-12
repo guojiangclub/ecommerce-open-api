@@ -1,8 +1,8 @@
 <?php
 
 
-namespace iBrand\EC\Open\Backend\Store\Model\Relations;
-use iBrand\EC\Open\Backend\Member\Models\User;
+namespace GuoJiangClub\EC\Open\Backend\Store\Model\Relations;
+use GuoJiangClub\EC\Open\Backend\Member\Models\User;
 
 /**
  * This is the has many pages trait.

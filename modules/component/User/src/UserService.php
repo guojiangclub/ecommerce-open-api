@@ -9,9 +9,9 @@
  * file that was distributed with this source code.
  */
 
-namespace iBrand\Component\User;
+namespace GuoJiangClub\Component\User;
 
-use iBrand\Component\User\Repository\UserBindRepository;
+use GuoJiangClub\Component\User\Repository\UserBindRepository;
 
 class UserService
 {

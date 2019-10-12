@@ -1,6 +1,6 @@
 <?php
 
-namespace iBrand\Component\Point\Repository;
+namespace GuoJiangClub\Component\Point\Repository;
 
 interface PointRepository
 {

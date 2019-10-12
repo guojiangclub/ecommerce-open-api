@@ -9,9 +9,9 @@
  * file that was distributed with this source code.
  */
 
-namespace iBrand\EC\Open\Server\Transformers;
+namespace GuoJiangClub\EC\Open\Server\Transformers;
 
-use iBrand\Component\Order\Repositories\CommentRepository;
+use GuoJiangClub\Component\Order\Repositories\CommentRepository;
 
 class GoodsTransformer extends BaseTransformer
 {

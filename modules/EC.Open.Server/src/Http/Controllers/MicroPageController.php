@@ -9,13 +9,13 @@
  * file that was distributed with this source code.
  */
 
-namespace iBrand\EC\Open\Server\Http\Controllers;
+namespace GuoJiangClub\EC\Open\Server\Http\Controllers;
 
 use Carbon\Carbon;
-use iBrand\Component\Advert\Models\MicroPage;
-use iBrand\Component\Advert\Models\MicroPageAdvert;
-use iBrand\Component\Advert\Repositories\AdvertItemRepository;
-use iBrand\Component\Product\Repositories\GoodsRepository;
+use GuoJiangClub\Component\Advert\Models\MicroPage;
+use GuoJiangClub\Component\Advert\Models\MicroPageAdvert;
+use GuoJiangClub\Component\Advert\Repositories\AdvertItemRepository;
+use GuoJiangClub\Component\Product\Repositories\GoodsRepository;
 use DB;
 
 class MicroPageController extends Controller

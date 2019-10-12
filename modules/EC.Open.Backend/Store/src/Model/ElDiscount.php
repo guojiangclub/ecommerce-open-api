@@ -1,6 +1,6 @@
 <?php
 
-namespace iBrand\EC\Open\Backend\Store\Model;
+namespace GuoJiangClub\EC\Open\Backend\Store\Model;
 
 use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Model;
@@ -18,24 +18,24 @@ class ElDiscount extends Model
 
     public function discountRules()
     {
-        return $this->hasMany('iBrand\EC\Open\Backend\Store\Model\ElDiscountRule', 'discount_id', 'id');
+        return $this->hasMany('GuoJiangClub\EC\Open\Backend\Store\Model\ElDiscountRule', 'discount_id', 'id');
     }
 
     public function discountActions()
     {
-        return $this->hasMany('iBrand\EC\Open\Backend\Store\Model\ElDiscountAction', 'discount_id', 'id');
+        return $this->hasMany('GuoJiangClub\EC\Open\Backend\Store\Model\ElDiscountAction', 'discount_id', 'id');
     }
 
     public function getDiscountActionAttribute()
     {
         return $this->discountActions()->where('type', '<>', 'goods_times_point')->first();
-        /* return $this->hasOne('iBrand\EC\Open\Backend\Store\Model\ElDiscountAction','discount_id','id');*/
+        /* return $this->hasOne('GuoJiangClub\EC\Open\Backend\Store\Model\ElDiscountAction','discount_id','id');*/
     }
 
     public function getDiscountPointActionAttribute()
     {
         return $this->discountActions()->where('type', 'goods_times_point')->first();
-        /* return $this->hasOne('iBrand\EC\Open\Backend\Store\Model\ElDiscountAction','discount_id','id');*/
+        /* return $this->hasOne('GuoJiangClub\EC\Open\Backend\Store\Model\ElDiscountAction','discount_id','id');*/
     }
 
     public function getDiscountItemTotalAttribute()

@@ -67,7 +67,7 @@ return [
     'providers' => [
         'users' => [
             'driver' => 'eloquent',
-            'model' => iBrand\EC\Open\Core\Auth\User::class,
+            'model' => GuoJiangClub\EC\Open\Core\Auth\User::class,
         ],
 
         // 'users' => [

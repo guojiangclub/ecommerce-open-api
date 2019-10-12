@@ -9,9 +9,9 @@
  * file that was distributed with this source code.
  */
 
-namespace iBrand\Component\Discount\Policies;
+namespace GuoJiangClub\Component\Discount\Policies;
 
-use iBrand\Component\Discount\Models\Coupon;
+use GuoJiangClub\Component\Discount\Models\Coupon;
 use Illuminate\Auth\Access\HandlesAuthorization;
 use Illuminate\Foundation\Auth\User;
 

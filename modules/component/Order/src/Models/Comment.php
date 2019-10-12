@@ -9,9 +9,9 @@
  * file that was distributed with this source code.
  */
 
-namespace iBrand\Component\Order\Models;
+namespace GuoJiangClub\Component\Order\Models;
 
-use iBrand\Component\User\Models\User;
+use GuoJiangClub\Component\User\Models\User;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 

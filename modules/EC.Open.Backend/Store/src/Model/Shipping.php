@@ -6,7 +6,7 @@
  * Time: 10:41
  */
 
-namespace iBrand\EC\Open\Backend\Store\Model;
+namespace GuoJiangClub\EC\Open\Backend\Store\Model;
 
 use Illuminate\Database\Eloquent\Model;
 
@@ -25,7 +25,7 @@ class Shipping extends Model
 
     public function shippingMethod()
     {
-        return $this->belongsTo('iBrand\EC\Open\Backend\Store\Model\ShippingMethod', 'method_id');
+        return $this->belongsTo('GuoJiangClub\EC\Open\Backend\Store\Model\ShippingMethod', 'method_id');
     }
 
 }

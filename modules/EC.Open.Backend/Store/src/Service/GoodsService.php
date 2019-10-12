@@ -1,19 +1,19 @@
 <?php
 
-namespace iBrand\EC\Open\Backend\Store\Service;
+namespace GuoJiangClub\EC\Open\Backend\Store\Service;
 
-use iBrand\EC\Open\Backend\Store\Model\AttributeValue;
-use iBrand\EC\Open\Backend\Store\Model\Brand;
-use iBrand\EC\Open\Backend\Store\Model\Category;
-use iBrand\EC\Open\Backend\Store\Model\Spec;
-use iBrand\EC\Open\Backend\Store\Model\SpecsValue;
-use iBrand\EC\Open\Backend\Store\Repositories\CategoryRepository;
-use iBrand\EC\Open\Backend\Store\Model\Attribute;
-use iBrand\EC\Open\Backend\Store\Model\Models;
-use iBrand\EC\Open\Backend\Store\Repositories\GoodsRepository;
-use iBrand\EC\Open\Backend\Store\Repositories\ProductRepository;
-use iBrand\EC\Open\Backend\Store\Repositories\SpecRepository;
-use iBrand\EC\Open\Backend\Store\Repositories\GoodsCategoryRepository;
+use GuoJiangClub\EC\Open\Backend\Store\Model\AttributeValue;
+use GuoJiangClub\EC\Open\Backend\Store\Model\Brand;
+use GuoJiangClub\EC\Open\Backend\Store\Model\Category;
+use GuoJiangClub\EC\Open\Backend\Store\Model\Spec;
+use GuoJiangClub\EC\Open\Backend\Store\Model\SpecsValue;
+use GuoJiangClub\EC\Open\Backend\Store\Repositories\CategoryRepository;
+use GuoJiangClub\EC\Open\Backend\Store\Model\Attribute;
+use GuoJiangClub\EC\Open\Backend\Store\Model\Models;
+use GuoJiangClub\EC\Open\Backend\Store\Repositories\GoodsRepository;
+use GuoJiangClub\EC\Open\Backend\Store\Repositories\ProductRepository;
+use GuoJiangClub\EC\Open\Backend\Store\Repositories\SpecRepository;
+use GuoJiangClub\EC\Open\Backend\Store\Repositories\GoodsCategoryRepository;
 
 class GoodsService
 {

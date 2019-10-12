@@ -9,10 +9,10 @@
  * file that was distributed with this source code.
  */
 
-namespace iBrand\EC\Open\Core\Services;
+namespace GuoJiangClub\EC\Open\Core\Services;
 
-use iBrand\Component\Category\RepositoryContract as CategoryRepository;
-use iBrand\Component\Product\Repositories\GoodsRepository;
+use GuoJiangClub\Component\Category\RepositoryContract as CategoryRepository;
+use GuoJiangClub\Component\Product\Repositories\GoodsRepository;
 use Illuminate\Support\Facades\DB;
 
 class GoodsService

@@ -9,10 +9,10 @@
  * file that was distributed with this source code.
  */
 
-namespace iBrand\Component\Balance;
+namespace GuoJiangClub\Component\Balance;
 
 use Event;
-use iBrand\Component\Balance\Listeners\BalanceOrderPaidSuccess;
+use GuoJiangClub\Component\Balance\Listeners\BalanceOrderPaidSuccess;
 use Illuminate\Support\ServiceProvider;
 
 class BalanceServiceProvider extends ServiceProvider

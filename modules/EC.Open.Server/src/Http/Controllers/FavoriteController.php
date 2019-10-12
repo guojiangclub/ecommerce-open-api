@@ -9,10 +9,10 @@
  * file that was distributed with this source code.
  */
 
-namespace iBrand\EC\Open\Server\Http\Controllers;
+namespace GuoJiangClub\EC\Open\Server\Http\Controllers;
 
-use iBrand\Component\Favorite\RepositoryContract as FavoriteRepository;
-use iBrand\EC\Open\Server\Transformers\FavoriteTransformer;
+use GuoJiangClub\Component\Favorite\RepositoryContract as FavoriteRepository;
+use GuoJiangClub\EC\Open\Server\Transformers\FavoriteTransformer;
 
 class FavoriteController extends Controller
 {

@@ -19,7 +19,7 @@
 
   "autoload": {
     "psr-4": {
-      "iBrand\\Component\\Shipping\\": "src/"
+      "GuoJiangClub\\Component\\Shipping\\": "src/"
     }
   },
   "minimum-stability": "dev",

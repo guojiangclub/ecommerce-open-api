@@ -9,7 +9,7 @@
  * file that was distributed with this source code.
  */
 
-namespace iBrand\Component\Discount\Repositories;
+namespace GuoJiangClub\Component\Discount\Repositories;
 
 use Prettus\Repository\Contracts\RepositoryInterface;
 

@@ -9,10 +9,10 @@
  * file that was distributed with this source code.
  */
 
-namespace iBrand\Component\Advert\Repositories\Eloquent;
+namespace GuoJiangClub\Component\Advert\Repositories\Eloquent;
 
-use iBrand\Component\Advert\Models\AdvertItem;
-use iBrand\Component\Advert\Repositories\AdvertItemRepository;
+use GuoJiangClub\Component\Advert\Models\AdvertItem;
+use GuoJiangClub\Component\Advert\Repositories\AdvertItemRepository;
 use Prettus\Repository\Eloquent\BaseRepository;
 use Prettus\Repository\Traits\CacheableRepository;
 use DB;

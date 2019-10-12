@@ -1,19 +1,19 @@
 <?php
 
-namespace iBrand\EC\Open\Backend\Store\Http\Controllers;
+namespace GuoJiangClub\EC\Open\Backend\Store\Http\Controllers;
 
-use iBrand\EC\Open\Backend\Store\Model\AttributeValue;
-use iBrand\EC\Open\Backend\Store\Model\Goods;
-use iBrand\EC\Open\Backend\Store\Model\GoodsAttr;
-use iBrand\EC\Open\Backend\Store\Model\Models;
-use iBrand\EC\Open\Backend\Store\Model\Spec;
-use iBrand\EC\Open\Backend\Store\Repositories\GoodsRepository;
+use GuoJiangClub\EC\Open\Backend\Store\Model\AttributeValue;
+use GuoJiangClub\EC\Open\Backend\Store\Model\Goods;
+use GuoJiangClub\EC\Open\Backend\Store\Model\GoodsAttr;
+use GuoJiangClub\EC\Open\Backend\Store\Model\Models;
+use GuoJiangClub\EC\Open\Backend\Store\Model\Spec;
+use GuoJiangClub\EC\Open\Backend\Store\Repositories\GoodsRepository;
 use iBrand\Backend\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-use iBrand\EC\Open\Backend\Store\Model\Attribute;
-use iBrand\EC\Open\Backend\Store\Repositories\ModelsRepository;
-use iBrand\EC\Open\Backend\Store\Repositories\SpecRepository;
-use iBrand\EC\Open\Backend\Store\Repositories\AttributeRepository;
+use GuoJiangClub\EC\Open\Backend\Store\Model\Attribute;
+use GuoJiangClub\EC\Open\Backend\Store\Repositories\ModelsRepository;
+use GuoJiangClub\EC\Open\Backend\Store\Repositories\SpecRepository;
+use GuoJiangClub\EC\Open\Backend\Store\Repositories\AttributeRepository;
 use DB;
 use Encore\Admin\Facades\Admin as LaravelAdmin;
 use Encore\Admin\Layout\Content;

@@ -1,6 +1,6 @@
 <?php
 
-namespace iBrand\EC\Open\Backend\Store\Model;
+namespace GuoJiangClub\EC\Open\Backend\Store\Model;
 
 use Illuminate\Database\Eloquent\Model;
 use Prettus\Repository\Contracts\Transformable;
@@ -26,17 +26,17 @@ class OrderItem extends Model implements Transformable
 
     public function units()
     {
-        return $this->hasMany('iBrand\EC\Open\Backend\Store\Model\OrderItemUnit','order_item_id');
+        return $this->hasMany('GuoJiangClub\EC\Open\Backend\Store\Model\OrderItemUnit','order_item_id');
     }
 
     public function order()
     {
-        return $this->belongsTo('iBrand\EC\Open\Backend\Store\Model\Order', 'order_id')->withDefault();
+        return $this->belongsTo('GuoJiangClub\EC\Open\Backend\Store\Model\Order', 'order_id')->withDefault();
     }
 
     public function product()
     {
-        return $this->hasOne('iBrand\EC\Open\Backend\Store\Model\Product', 'id', 'item_id');
+        return $this->hasOne('GuoJiangClub\EC\Open\Backend\Store\Model\Product', 'id', 'item_id');
     }
 
     /**

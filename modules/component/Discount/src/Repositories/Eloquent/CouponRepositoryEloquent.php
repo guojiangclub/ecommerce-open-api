@@ -9,11 +9,11 @@
  * file that was distributed with this source code.
  */
 
-namespace iBrand\Component\Discount\Repositories\Eloquent;
+namespace GuoJiangClub\Component\Discount\Repositories\Eloquent;
 
 use Carbon\Carbon;
-use iBrand\Component\Discount\Models\Coupon;
-use iBrand\Component\Discount\Repositories\CouponRepository;
+use GuoJiangClub\Component\Discount\Models\Coupon;
+use GuoJiangClub\Component\Discount\Repositories\CouponRepository;
 use Prettus\Repository\Eloquent\BaseRepository;
 
 /**

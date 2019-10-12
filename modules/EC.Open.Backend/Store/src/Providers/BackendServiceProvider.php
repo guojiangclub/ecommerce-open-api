@@ -1,19 +1,19 @@
 <?php
 
-namespace iBrand\EC\Open\Backend\Store\Providers;
-use iBrand\EC\Open\Backend\Store\Console\InstallCommand;
-use iBrand\EC\Open\Backend\Store\Console\SetDefaultValueCommand;
-use iBrand\EC\Open\Backend\Store\Console\SpecCommand;
-use iBrand\EC\Open\Backend\Store\Model\Product;
-use iBrand\EC\Open\Backend\Store\Observers\ProductObserver;
-use iBrand\EC\Open\Backend\Store\StoreBackend;
+namespace GuoJiangClub\EC\Open\Backend\Store\Providers;
+use GuoJiangClub\EC\Open\Backend\Store\Console\InstallCommand;
+use GuoJiangClub\EC\Open\Backend\Store\Console\SetDefaultValueCommand;
+use GuoJiangClub\EC\Open\Backend\Store\Console\SpecCommand;
+use GuoJiangClub\EC\Open\Backend\Store\Model\Product;
+use GuoJiangClub\EC\Open\Backend\Store\Observers\ProductObserver;
+use GuoJiangClub\EC\Open\Backend\Store\StoreBackend;
 use iBrand\UEditor\UEditorServiceProvider;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\ServiceProvider;
-use iBrand\EC\Open\Backend\Store\Service\GoodsService;
-use iBrand\EC\Open\Backend\Store\Service\OrderService;
-use iBrand\EC\Open\Backend\Store\Service\ExcelExportsService;
-use iBrand\EC\Open\Backend\Store\Service\DiscountService;
+use GuoJiangClub\EC\Open\Backend\Store\Service\GoodsService;
+use GuoJiangClub\EC\Open\Backend\Store\Service\OrderService;
+use GuoJiangClub\EC\Open\Backend\Store\Service\ExcelExportsService;
+use GuoJiangClub\EC\Open\Backend\Store\Service\DiscountService;
 
 class BackendServiceProvider extends ServiceProvider
 {
@@ -24,7 +24,7 @@ class BackendServiceProvider extends ServiceProvider
      *
      * @var string
      */
-    protected $namespace = 'iBrand\EC\Open\Backend\Store\Http\Controllers';
+    protected $namespace = 'GuoJiangClub\EC\Open\Backend\Store\Http\Controllers';
 
     
     /**
@@ -75,7 +75,7 @@ class BackendServiceProvider extends ServiceProvider
         );
 
 
-        $this->app->register(\iBrand\EC\Open\Backend\Member\Providers\BackendServiceProvider::class);
+        $this->app->register(\GuoJiangClub\EC\Open\Backend\Member\Providers\BackendServiceProvider::class);
         $this->app->register(UEditorServiceProvider::class);
 
         $this->app->singleton('GoodsService', function () {

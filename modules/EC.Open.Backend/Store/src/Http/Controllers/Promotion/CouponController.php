@@ -1,17 +1,17 @@
 <?php
-namespace iBrand\EC\Open\Backend\Store\Http\Controllers\Promotion;
+namespace GuoJiangClub\EC\Open\Backend\Store\Http\Controllers\Promotion;
 
 use Carbon\Carbon;
 use iBrand\Backend\Http\Controllers\Controller;
-use iBrand\EC\Open\Backend\Store\Model\ElDiscount;
-use iBrand\EC\Open\Backend\Store\Repositories\DiscountRepository;
+use GuoJiangClub\EC\Open\Backend\Store\Model\ElDiscount;
+use GuoJiangClub\EC\Open\Backend\Store\Repositories\DiscountRepository;
 use Illuminate\Http\Request;
-use iBrand\EC\Open\Backend\Store\Repositories\CategoryRepository;
-use iBrand\EC\Open\Backend\Store\Service\DiscountService;
+use GuoJiangClub\EC\Open\Backend\Store\Repositories\CategoryRepository;
+use GuoJiangClub\EC\Open\Backend\Store\Service\DiscountService;
 use DB;
 use Validator;
-use iBrand\EC\Open\Backend\Store\Repositories\OrderAdjustmentRepository;
-use iBrand\EC\Open\Backend\Store\Repositories\DiscountCouponRepository;
+use GuoJiangClub\EC\Open\Backend\Store\Repositories\OrderAdjustmentRepository;
+use GuoJiangClub\EC\Open\Backend\Store\Repositories\DiscountCouponRepository;
 use DNS2D;
 use Encore\Admin\Facades\Admin as LaravelAdmin;
 use Encore\Admin\Layout\Content;
