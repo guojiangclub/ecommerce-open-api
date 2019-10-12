@@ -31,6 +31,9 @@ use GuoJiangClub\EC\Open\Core\Applicators\PointApplicator;
 use GuoJiangClub\EC\Open\Core\Processor\OrderProcessor;
 use GuoJiangClub\EC\Open\Core\Services\DiscountService;
 use Illuminate\Support\Collection;
+use GuoJiangClub\Component\Product\Models\Goods;
+use GuoJiangClub\Component\Product\Models\Product;
+use iBrand\Shoppingcart\Item;
 
 class ShoppingController extends Controller
 {
@@ -74,7 +77,9 @@ class ShoppingController extends Controller
     {
         $user = request()->user();
 
-        $cartItems = $this->getSelectedItemFromCart();
+        $checkoutType = $this->getCheckoutType();
+
+        $cartItems = call_user_func(array($this, 'getSelectedItemFrom' . $checkoutType));
 
         if (0 == $cartItems->count()) {
             return $this->failed('未选中商品，无法提交订单');
@@ -103,11 +108,14 @@ class ShoppingController extends Controller
         //6.生成运费
         $order->payable_freight = 0;
 
+        $discountGroup = $this->discountService->getOrderDiscountGroup($order, new Collection($discounts), new Collection($coupons));
+
         return $this->success([
             'order' => $order,
             'discounts' => $discounts,
             'coupons' => $coupons,
             'address' => $defaultAddress,
+            'discountGroup' => $discountGroup,
             'orderPoint' => $orderPoint,
             'best_discount_id' => $bestDiscountId,
             'best_coupon_id' => $bestCouponID,
@@ -541,5 +549,50 @@ class ShoppingController extends Controller
         }
 
         return true;
+    }
+
+    private function getCheckoutType()
+    {
+        if ($ids = request('cart_ids') AND count($ids) > 0)
+            return 'Cart';
+        if (request('product_id'))
+            return 'Product';
+        return 'Cart';
+    }
+
+    private function getSelectedItemFromProduct()
+    {
+        $cartItems = new Collection();
+        $productId = request('product_id');
+        $__raw_id = md5(time() . request('product_id'));
+        $item = request()->all();
+        $input = ['__raw_id' => $__raw_id,
+            'id' => $productId,    //如果是SKU，表示SKU id，否则是SPU ID
+            'img' => isset($item['attributes']['img']) ? $item['attributes']['img'] : '',
+            'qty' => request('qty'),
+            'total' => isset($item['total']) ? $item['total'] : '',
+        ];
+        if (isset($item['attributes']['sku'])) {
+            $product = Product::find($productId);
+            $input['name'] = $product->name;
+            $input['price'] = $product->sell_price;
+            $input['color'] = isset($item['attributes']['color']) ? $item['attributes']['color'] : [];
+            $input['size'] = isset($item['attributes']['size']) ? $item['attributes']['size'] : [];
+            $input['com_id'] = isset($item['attributes']['com_id']) ? $item['attributes']['com_id'] : [];
+            $input['type'] = 'sku';
+            $input['__model'] = Product::class;
+        } else {
+            $goods = Goods::find($productId);
+            $input['name'] = $goods->name;
+            $input['price'] = $goods->sell_price;
+            $input['size'] = isset($item['size']) ? $item['size'] : '';
+            $input['color'] = isset($item['color']) ? $item['color'] : '';
+            $input['type'] = 'spu';
+            $input['__model'] = Goods::class;
+            $input['com_id'] = $item['id'];
+        }
+        $data = new Item(array_merge($input), $item);
+        $cartItems->put($__raw_id, $data);
+        return $cartItems;
     }
 }
