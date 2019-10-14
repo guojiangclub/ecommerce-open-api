@@ -9,9 +9,9 @@
  * file that was distributed with this source code.
  */
 
-namespace iBrand\Component\Point\Models;
+namespace GuoJiangClub\Component\Point\Models;
 
-use iBrand\Component\User\Models\User;
+use GuoJiangClub\Component\User\Models\User;
 use Illuminate\Database\Eloquent\Model;
 
 class Point extends Model
@@ -56,13 +56,13 @@ class Point extends Model
     public function point_order()
     {
         return $this->hasOne(Point::class, 'id')
-            ->where('item_type', 'iBrand\Component\Order\Models\Order')->with('order');
+            ->where('item_type', 'GuoJiangClub\Component\Order\Models\Order')->with('order');
     }
 
     public function point_order_item()
     {
 
         return $this->hasOne(Point::class, 'id')
-            ->where('item_type', 'iBrand\Component\Order\Models\OrderItem')->with('order_item.order');
+            ->where('item_type', 'GuoJiangClub\Component\Order\Models\OrderItem')->with('order_item.order');
     }
 }

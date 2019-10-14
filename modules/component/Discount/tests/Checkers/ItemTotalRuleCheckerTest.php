@@ -6,18 +6,18 @@
  * Time: 16:54
  */
 
-namespace iBrand\Component\Discount\Test\Checkers;
+namespace GuoJiangClub\Component\Discount\Test\Checkers;
 
 
 use Carbon\Carbon;
-use iBrand\Component\Discount\Actions\OrderFixedDiscountAction;
-use iBrand\Component\Discount\Checkers\ItemTotalRuleChecker;
-use iBrand\Component\Discount\Models\Action;
-use iBrand\Component\Discount\Models\Discount;
-use iBrand\Component\Discount\Models\Rule;
-use iBrand\Component\Discount\Test\BaseTest;
+use GuoJiangClub\Component\Discount\Actions\OrderFixedDiscountAction;
+use GuoJiangClub\Component\Discount\Checkers\ItemTotalRuleChecker;
+use GuoJiangClub\Component\Discount\Models\Action;
+use GuoJiangClub\Component\Discount\Models\Discount;
+use GuoJiangClub\Component\Discount\Models\Rule;
+use GuoJiangClub\Component\Discount\Test\BaseTest;
 use Faker\Factory;
-use iBrand\Component\Discount\Test\Models\Order;
+use GuoJiangClub\Component\Discount\Test\Models\Order;
 
 class ItemTotalRuleCheckerTest extends BaseTest
 {

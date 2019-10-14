@@ -9,10 +9,10 @@
  * file that was distributed with this source code.
  */
 
-namespace iBrand\EC\Open\Server\Http\Controllers;
+namespace GuoJiangClub\EC\Open\Server\Http\Controllers;
 
 use EasyWeChat;
-use iBrand\Component\Payment\Services\PaymentService;
+use GuoJiangClub\Component\Payment\Services\PaymentService;
 
 class WechatPayNotifyController extends Controller
 {

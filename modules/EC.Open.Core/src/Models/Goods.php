@@ -1,10 +1,10 @@
 <?php
 
-namespace iBrand\EC\Open\Core\Models;
+namespace GuoJiangClub\EC\Open\Core\Models;
 
-use iBrand\EC\Open\Core\Discount\Contracts\DiscountItemContract;
+use GuoJiangClub\EC\Open\Core\Discount\Contracts\DiscountItemContract;
 
-class Goods extends \iBrand\Component\Product\Models\Goods implements DiscountItemContract
+class Goods extends \GuoJiangClub\Component\Product\Models\Goods implements DiscountItemContract
 {
 
     /**

@@ -9,8 +9,9 @@
  * file that was distributed with this source code.
  */
 
-namespace iBrand\EC\Open\Server\Providers;
+namespace GuoJiangClub\EC\Open\Server\Providers;
 
+use GuoJiangClub\EC\Open\Server\Schedule\OrderRemindSchedule;
 use Illuminate\Support\ServiceProvider;
 
 class ServerServiceProvider extends ServiceProvider
@@ -37,5 +38,7 @@ class ServerServiceProvider extends ServiceProvider
         );
 
         $this->app->register(RouteServiceProvider::class);
+
+        //$this->app->make('iBrand\Scheduling\ScheduleList')->add(OrderRemindSchedule::class);
     }
 }

@@ -9,7 +9,7 @@
  * file that was distributed with this source code.
  */
 
-namespace iBrand\Component\Discount\Distributors;
+namespace GuoJiangClub\Component\Discount\Distributors;
 
 class PercentageIntegerDistributor
 {

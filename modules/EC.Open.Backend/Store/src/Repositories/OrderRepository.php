@@ -1,15 +1,15 @@
 <?php
 
-namespace iBrand\EC\Open\Backend\Store\Repositories;
+namespace GuoJiangClub\EC\Open\Backend\Store\Repositories;
 
-use iBrand\Component\Point\Models\Point;
-use iBrand\EC\Open\Backend\Store\Model\OrderItem;
-use iBrand\EC\Open\Backend\Store\Model\Product;
+use GuoJiangClub\Component\Point\Models\Point;
+use GuoJiangClub\EC\Open\Backend\Store\Model\OrderItem;
+use GuoJiangClub\EC\Open\Backend\Store\Model\Product;
 use Prettus\Repository\Eloquent\BaseRepository;
 use Prettus\Repository\Criteria\RequestCriteria;
-use iBrand\EC\Open\Backend\Store\Model\Order;
-use iBrand\EC\Open\Backend\Store\Exceptions\GeneralException;
-use iBrand\EC\Open\Backend\Store\Model\ShippingMethod;
+use GuoJiangClub\EC\Open\Backend\Store\Model\Order;
+use GuoJiangClub\EC\Open\Backend\Store\Exceptions\GeneralException;
+use GuoJiangClub\EC\Open\Backend\Store\Model\ShippingMethod;
 use DB;
 
 /**
@@ -263,7 +263,7 @@ class OrderRepository extends BaseRepository
             } else {
                 $products = Product::where('sku', $where['sku'])->pluck('id')->toArray();
             }
-            $order_ids = OrderItem::where('type', 'iBrand\Component\Product\Models\Product')
+            $order_ids = OrderItem::where('type', 'GuoJiangClub\Component\Product\Models\Product')
                 ->whereIn('item_id', $products)->pluck('order_id')->toArray();
             $data = $data->whereIn('id', $order_ids);
         }

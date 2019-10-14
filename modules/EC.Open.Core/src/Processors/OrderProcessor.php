@@ -1,9 +1,9 @@
 <?php
 
-namespace iBrand\EC\Open\Core\Processor;
+namespace GuoJiangClub\EC\Open\Core\Processor;
 
 use Carbon\Carbon;
-use iBrand\Component\Order\Models\Order;
+use GuoJiangClub\Component\Order\Models\Order;
 
 class OrderProcessor
 {

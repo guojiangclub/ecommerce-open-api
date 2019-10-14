@@ -1,8 +1,8 @@
 <?php
 
-namespace iBrand\EC\Open\Backend\Store\Http\Controllers;
+namespace GuoJiangClub\EC\Open\Backend\Store\Http\Controllers;
 
-use iBrand\EC\Open\Backend\Store\Model\ShippingMethod;
+use GuoJiangClub\EC\Open\Backend\Store\Model\ShippingMethod;
 use Illuminate\Http\Request;
 use iBrand\Backend\Http\Controllers\Controller;
 use Encore\Admin\Facades\Admin as LaravelAdmin;

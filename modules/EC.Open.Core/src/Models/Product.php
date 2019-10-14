@@ -1,17 +1,12 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: Administrator
- * Date: 2018/12/25
- * Time: 15:41
- */
-
-namespace iBrand\EC\Open\Core\Models;
 
 
-use iBrand\EC\Open\Core\Discount\Contracts\DiscountItemContract;
+namespace GuoJiangClub\EC\Open\Core\Models;
 
-class Product extends \iBrand\Component\Product\Models\Product implements DiscountItemContract
+
+use GuoJiangClub\EC\Open\Core\Discount\Contracts\DiscountItemContract;
+
+class Product extends \GuoJiangClub\Component\Product\Models\Product implements DiscountItemContract
 {
     /**
      * get item categories.

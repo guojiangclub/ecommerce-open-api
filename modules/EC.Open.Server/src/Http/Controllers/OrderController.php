@@ -9,10 +9,10 @@
  * file that was distributed with this source code.
  */
 
-namespace iBrand\EC\Open\Server\Http\Controllers;
+namespace GuoJiangClub\EC\Open\Server\Http\Controllers;
 
-use iBrand\Component\Order\Repositories\OrderRepository;
-use iBrand\EC\Open\Server\Transformers\OrderTransformer;
+use GuoJiangClub\Component\Order\Repositories\OrderRepository;
+use GuoJiangClub\EC\Open\Server\Transformers\OrderTransformer;
 
 class OrderController extends Controller
 {

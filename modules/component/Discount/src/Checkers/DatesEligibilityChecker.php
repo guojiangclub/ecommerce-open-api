@@ -9,10 +9,10 @@
  * file that was distributed with this source code.
  */
 
-namespace iBrand\Component\Discount\Checkers;
+namespace GuoJiangClub\Component\Discount\Checkers;
 
 use Carbon\Carbon;
-use iBrand\Component\Discount\Contracts\DiscountContract;
+use GuoJiangClub\Component\Discount\Contracts\DiscountContract;
 
 class DatesEligibilityChecker
 {

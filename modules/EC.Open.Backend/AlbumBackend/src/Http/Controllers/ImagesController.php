@@ -1,17 +1,11 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: admin
- * Date: 2017/3/10
- * Time: 14:07
- */
 
-namespace iBrand\EC\Open\Backend\Album\Http\Controllers;
+namespace GuoJiangClub\EC\Open\Backend\Album\Http\Controllers;
 
-use iBrand\EC\Open\Backend\Album\Models\Image;
-use iBrand\EC\Open\Backend\Album\Models\ImageCategory;
-use iBrand\EC\Open\Backend\Album\Repository\ImageRepository;
-use iBrand\EC\Open\Backend\Album\Repository\ImageCategoryRepository;
+use GuoJiangClub\EC\Open\Backend\Album\Models\Image;
+use GuoJiangClub\EC\Open\Backend\Album\Models\ImageCategory;
+use GuoJiangClub\EC\Open\Backend\Album\Repository\ImageRepository;
+use GuoJiangClub\EC\Open\Backend\Album\Repository\ImageCategoryRepository;
 use iBrand\Backend\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Encore\Admin\Facades\Admin as LaravelAdmin;

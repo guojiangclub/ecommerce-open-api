@@ -6,11 +6,11 @@
  * Time: 13:26
  */
 
-namespace iBrand\Component\Discount\Test\Repositories;
+namespace GuoJiangClub\Component\Discount\Test\Repositories;
 
-use iBrand\Component\Discount\Repositories\DiscountRepository;
+use GuoJiangClub\Component\Discount\Repositories\DiscountRepository;
 
-class DiscountRepositoryTest extends \iBrand\Component\Discount\Test\BaseTest
+class DiscountRepositoryTest extends \GuoJiangClub\Component\Discount\Test\BaseTest
 {
     public function testFindActive()
     {

@@ -1,9 +1,9 @@
 <?php
 
-namespace iBrand\Component\User\Test;
+namespace GuoJiangClub\Component\User\Test;
 
-use iBrand\Component\User\Models\User;
-use iBrand\Component\User\Models\UserBind;
+use GuoJiangClub\Component\User\Models\User;
+use GuoJiangClub\Component\User\Models\UserBind;
 
 class UserTest extends BaseTest
 {

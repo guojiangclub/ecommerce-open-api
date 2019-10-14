@@ -9,18 +9,18 @@
  * file that was distributed with this source code.
  */
 
-namespace iBrand\Component\Discount\Providers;
+namespace GuoJiangClub\Component\Discount\Providers;
 
-use iBrand\Component\Discount\Actions\OrderFixedDiscountAction;
-use iBrand\Component\Discount\Actions\OrderPercentageDiscountAction;
-use iBrand\Component\Discount\Checkers\CartQuantityRuleChecker;
-use iBrand\Component\Discount\Checkers\ItemTotalRuleChecker;
-use iBrand\Component\Discount\Models\Coupon;
-use iBrand\Component\Discount\Policies\CouponPolicy;
-use iBrand\Component\Discount\Repositories\CouponRepository;
-use iBrand\Component\Discount\Repositories\DiscountRepository;
-use iBrand\Component\Discount\Repositories\Eloquent\CouponRepositoryEloquent;
-use iBrand\Component\Discount\Repositories\Eloquent\DiscountRepositoryEloquent;
+use GuoJiangClub\Component\Discount\Actions\OrderFixedDiscountAction;
+use GuoJiangClub\Component\Discount\Actions\OrderPercentageDiscountAction;
+use GuoJiangClub\Component\Discount\Checkers\CartQuantityRuleChecker;
+use GuoJiangClub\Component\Discount\Checkers\ItemTotalRuleChecker;
+use GuoJiangClub\Component\Discount\Models\Coupon;
+use GuoJiangClub\Component\Discount\Policies\CouponPolicy;
+use GuoJiangClub\Component\Discount\Repositories\CouponRepository;
+use GuoJiangClub\Component\Discount\Repositories\DiscountRepository;
+use GuoJiangClub\Component\Discount\Repositories\Eloquent\CouponRepositoryEloquent;
+use GuoJiangClub\Component\Discount\Repositories\Eloquent\DiscountRepositoryEloquent;
 use Illuminate\Contracts\Auth\Access\Gate as GateContract;
 use Illuminate\Support\ServiceProvider;
 

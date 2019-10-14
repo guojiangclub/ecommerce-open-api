@@ -6,7 +6,7 @@
  * Time: 21:03
  */
 
-namespace iBrand\EC\Open\Backend\Store\Http\Controllers;
+namespace GuoJiangClub\EC\Open\Backend\Store\Http\Controllers;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;

@@ -9,10 +9,10 @@
  * file that was distributed with this source code.
  */
 
-namespace iBrand\Component\Advert\Repository\Eloquent;
+namespace GuoJiangClub\Component\Advert\Repositories\Eloquent;
 
-use iBrand\Component\Advert\Models\Advert;
-use iBrand\Component\Advert\Repository\AdvertRepository;
+use GuoJiangClub\Component\Advert\Models\Advert;
+use GuoJiangClub\Component\Advert\Repositories\AdvertRepository;
 use Prettus\Repository\Eloquent\BaseRepository;
 use Prettus\Repository\Traits\CacheableRepository;
 
@@ -37,8 +37,8 @@ class AdvertRepositoryEloquent extends BaseRepository implements AdvertRepositor
      *
      * @return mixed
      */
-    public function getByCode($code)
+    public function getByCode($code,$status=1)
     {
-        return $this->findByField('code', $code)->first();
+        return $this->findByField('code', $code)->where('status',$status)->first();
     }
 }

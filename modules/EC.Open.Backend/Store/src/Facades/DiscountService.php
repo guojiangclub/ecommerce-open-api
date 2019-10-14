@@ -6,7 +6,7 @@
  * Time: 11:47
  */
 
-namespace iBrand\EC\Open\Backend\Store\Facades;
+namespace GuoJiangClub\EC\Open\Backend\Store\Facades;
 
 use Illuminate\Support\Facades\Facade;
 

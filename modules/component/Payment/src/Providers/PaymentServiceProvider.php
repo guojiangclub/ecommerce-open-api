@@ -9,9 +9,9 @@
  * file that was distributed with this source code.
  */
 
-namespace iBrand\Component\Payment\Providers;
+namespace GuoJiangClub\Component\Payment\Providers;
 
-use iBrand\Component\Payment\Services\PaymentService;
+use GuoJiangClub\Component\Payment\Services\PaymentService;
 use Illuminate\Support\Facades\Event;
 use Illuminate\Support\ServiceProvider;
 

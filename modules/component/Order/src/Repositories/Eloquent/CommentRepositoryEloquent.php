@@ -9,10 +9,10 @@
  * file that was distributed with this source code.
  */
 
-namespace iBrand\Component\Order\Repositories\Eloquent;
+namespace GuoJiangClub\Component\Order\Repositories\Eloquent;
 
-use iBrand\Component\Order\Models\Comment;
-use iBrand\Component\Order\Repositories\CommentRepository;
+use GuoJiangClub\Component\Order\Models\Comment;
+use GuoJiangClub\Component\Order\Repositories\CommentRepository;
 use Prettus\Repository\Eloquent\BaseRepository;
 use Prettus\Repository\Traits\CacheableRepository;
 

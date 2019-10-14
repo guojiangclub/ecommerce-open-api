@@ -6,19 +6,19 @@
  * Time: 17:38
  */
 
-namespace iBrand\Component\Discount\Test\Checkers;
+namespace GuoJiangClub\Component\Discount\Test\Checkers;
 
 
-use iBrand\Component\Discount\Actions\OrderFixedDiscountAction;
-use iBrand\Component\Discount\Checkers\CartQuantityRuleChecker;
-use iBrand\Component\Discount\Checkers\CouponEligibilityChecker;
-use iBrand\Component\Discount\Models\Action;
-use iBrand\Component\Discount\Models\Coupon;
-use iBrand\Component\Discount\Models\Discount;
-use iBrand\Component\Discount\Models\Rule;
-use iBrand\Component\Discount\Repositories\CouponRepository;
-use iBrand\Component\Discount\Test\BaseTest;
-use iBrand\Component\Discount\Test\Models\Order;
+use GuoJiangClub\Component\Discount\Actions\OrderFixedDiscountAction;
+use GuoJiangClub\Component\Discount\Checkers\CartQuantityRuleChecker;
+use GuoJiangClub\Component\Discount\Checkers\CouponEligibilityChecker;
+use GuoJiangClub\Component\Discount\Models\Action;
+use GuoJiangClub\Component\Discount\Models\Coupon;
+use GuoJiangClub\Component\Discount\Models\Discount;
+use GuoJiangClub\Component\Discount\Models\Rule;
+use GuoJiangClub\Component\Discount\Repositories\CouponRepository;
+use GuoJiangClub\Component\Discount\Test\BaseTest;
+use GuoJiangClub\Component\Discount\Test\Models\Order;
 use Faker\Factory;
 use Illuminate\Support\Carbon;
 

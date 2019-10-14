@@ -6,7 +6,7 @@
  * Time: 20:20
  */
 
-namespace iBrand\EC\Open\Backend\Store\Model;
+namespace GuoJiangClub\EC\Open\Backend\Store\Model;
 
 
 class SpecialType extends \ElementVip\Component\Order\Models\SpecialType

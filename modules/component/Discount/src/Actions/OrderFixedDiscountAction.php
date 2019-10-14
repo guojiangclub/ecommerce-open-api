@@ -9,12 +9,12 @@
  * file that was distributed with this source code.
  */
 
-namespace iBrand\Component\Discount\Actions;
+namespace GuoJiangClub\Component\Discount\Actions;
 
-use iBrand\Component\Discount\Contracts\DiscountActionContract;
-use iBrand\Component\Discount\Contracts\DiscountContract;
-use iBrand\Component\Discount\Contracts\DiscountSubjectContract;
-use iBrand\Component\Discount\Distributors\PercentageIntegerDistributor;
+use GuoJiangClub\Component\Discount\Contracts\DiscountActionContract;
+use GuoJiangClub\Component\Discount\Contracts\DiscountContract;
+use GuoJiangClub\Component\Discount\Contracts\DiscountSubjectContract;
+use GuoJiangClub\Component\Discount\Distributors\PercentageIntegerDistributor;
 use Illuminate\Support\Collection;
 
 /**

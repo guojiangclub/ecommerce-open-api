@@ -6,12 +6,12 @@
  * Time: 15:20
  */
 
-namespace iBrand\Component\Discount\Test\Checkers;
+namespace GuoJiangClub\Component\Discount\Test\Checkers;
 
-use iBrand\Component\Discount\Checkers\DiscountEligibilityChecker;
-use iBrand\Component\Discount\Repositories\DiscountRepository;
-use iBrand\Component\Discount\Test\BaseTest;
-use iBrand\Component\Discount\Test\Models\Order;
+use GuoJiangClub\Component\Discount\Checkers\DiscountEligibilityChecker;
+use GuoJiangClub\Component\Discount\Repositories\DiscountRepository;
+use GuoJiangClub\Component\Discount\Test\BaseTest;
+use GuoJiangClub\Component\Discount\Test\Models\Order;
 
 class DiscountEligibilityCheckerTest extends BaseTest
 {

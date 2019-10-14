@@ -5,7 +5,7 @@
  * Date: 2018-06-27
  * Time: 12:35
  */
-namespace iBrand\Component\Discount\Test\Models;
+namespace GuoJiangClub\Component\Discount\Test\Models;
 
 use Illuminate\Database\Eloquent\Model;
 

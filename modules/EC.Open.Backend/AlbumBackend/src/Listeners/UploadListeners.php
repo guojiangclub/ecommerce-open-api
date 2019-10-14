@@ -1,6 +1,6 @@
 <?php
-namespace iBrand\EC\Open\Backend\Album\Listeners;
-use iBrand\EC\Open\Backend\Album\Models\Image;
+namespace GuoJiangClub\EC\Open\Backend\Album\Listeners;
+use GuoJiangClub\EC\Open\Backend\Album\Models\Image;
 
 class UploadListeners
 {
@@ -22,7 +22,7 @@ class UploadListeners
     {
         $events->listen(
             'image.uploaded',
-            'iBrand\EC\Open\Backend\Album\Listeners\UploadListeners@onUploaded'
+            'GuoJiangClub\EC\Open\Backend\Album\Listeners\UploadListeners@onUploaded'
         );
     }
 }

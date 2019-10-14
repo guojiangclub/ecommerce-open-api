@@ -9,12 +9,12 @@
  * file that was distributed with this source code.
  */
 
-namespace iBrand\EC\Open\Backend\Member\Models;
+namespace GuoJiangClub\EC\Open\Backend\Member\Models;
 
 
-use iBrand\Component\Order\Models\Order;
+use GuoJiangClub\Component\Order\Models\Order;
 
-class User extends \iBrand\Component\User\Models\User
+class User extends \GuoJiangClub\Component\User\Models\User
 {
 
     /**

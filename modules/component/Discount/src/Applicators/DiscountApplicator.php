@@ -9,11 +9,11 @@
  * file that was distributed with this source code.
  */
 
-namespace iBrand\Component\Discount\Applicators;
+namespace GuoJiangClub\Component\Discount\Applicators;
 
-use iBrand\Component\Discount\Checkers\ItemTotalRuleChecker;
-use iBrand\Component\Discount\Contracts\DiscountContract;
-use iBrand\Component\Discount\Contracts\DiscountSubjectContract;
+use GuoJiangClub\Component\Discount\Checkers\ItemTotalRuleChecker;
+use GuoJiangClub\Component\Discount\Contracts\DiscountContract;
+use GuoJiangClub\Component\Discount\Contracts\DiscountSubjectContract;
 
 /**
  * Class DiscountApplicator.

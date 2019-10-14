@@ -9,9 +9,9 @@
  * file that was distributed with this source code.
  */
 
-namespace iBrand\EC\Open\Server\Http\Controllers;
+namespace GuoJiangClub\EC\Open\Server\Http\Controllers;
 
-use iBrand\Component\Address\RepositoryContract as AddressRepository;
+use GuoJiangClub\Component\Address\RepositoryContract as AddressRepository;
 use Validator;
 
 class AddressController extends Controller

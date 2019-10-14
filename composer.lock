@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "3652853f5cccf96d3929c26ee7a8716d",
+    "content-hash": "4acbf824ff1ca512463f06866e8fbc76",
     "packages": [
         {
             "name": "anam/phantomjs-linux-x86-binary",
@@ -1720,6 +1720,78 @@
                 "nanoid-php"
             ],
             "time": "2019-09-25T07:00:58+00:00"
+        },
+        {
+            "name": "ibrand/backend",
+            "version": "dev-guojiang",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/guojiangclub/backend.git",
+                "reference": "670bf509801fa124fdb7766085dc8f895d84c117"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/guojiangclub/backend/zipball/670bf509801fa124fdb7766085dc8f895d84c117",
+                "reference": "670bf509801fa124fdb7766085dc8f895d84c117",
+                "shasum": "",
+                "mirrors": [
+                    {
+                        "url": "https://mirrors.aliyun.com/composer/dists/%package%/%reference%.%type%",
+                        "preferred": true
+                    }
+                ]
+            },
+            "require": {
+                "encore/laravel-admin": "1.5.19",
+                "ibrand/laravel-sms": "~1.0",
+                "ibrand/setting": "~1.0",
+                "laravel-admin-ext/backup": "1.0.2",
+                "laravel-admin-ext/helpers": "1.0.2",
+                "laravel-admin-ext/log-viewer": "1.0.2",
+                "laravel-admin-ext/redis-manager": "1.0.1",
+                "laravel-admin-ext/scheduling": "1.0.1",
+                "maatwebsite/excel": "~2.1.23",
+                "php": ">=7.0.0"
+            },
+            "require-dev": {
+                "orchestra/testbench": "~3.5",
+                "phpunit/phpunit": "~6.0"
+            },
+            "type": "library",
+            "extra": {
+                "laravel": {
+                    "providers": [
+                        "iBrand\\Backend\\BackendServiceProvider"
+                    ],
+                    "aliases": {
+                        "BackendMenu": "iBrand\\Backend\\Facades\\Menu"
+                    }
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "iBrand\\Backend\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "shjchen",
+                    "email": "ibrand.shjchen@foxmail.com"
+                }
+            ],
+            "description": "ibrand backend base laravel-admin",
+            "homepage": "https://github.com/ibrandcc/backend",
+            "keywords": [
+                "backend",
+                "form",
+                "grid",
+                "laravel"
+            ],
+            "time": "2019-10-14T11:05:41+00:00"
         },
         {
             "name": "ibrand/laravel-active",
@@ -3623,16 +3695,16 @@
         },
         {
             "name": "league/flysystem",
-            "version": "1.0.55",
+            "version": "1.0.56",
             "source": {
                 "type": "git",
                 "url": "https://github.com/thephpleague/flysystem.git",
-                "reference": "33c91155537c6dc899eacdc54a13ac6303f156e6"
+                "reference": "90e3f83cb10ef6b058d70f95267030e7a6236518"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/thephpleague/flysystem/zipball/33c91155537c6dc899eacdc54a13ac6303f156e6",
-                "reference": "33c91155537c6dc899eacdc54a13ac6303f156e6",
+                "url": "https://api.github.com/repos/thephpleague/flysystem/zipball/90e3f83cb10ef6b058d70f95267030e7a6236518",
+                "reference": "90e3f83cb10ef6b058d70f95267030e7a6236518",
                 "shasum": "",
                 "mirrors": [
                     {
@@ -3709,7 +3781,7 @@
                 "sftp",
                 "storage"
             ],
-            "time": "2019-08-24T11:17:19+00:00"
+            "time": "2019-10-12T13:05:59+00:00"
         },
         {
             "name": "league/fractal",
@@ -4233,16 +4305,16 @@
         },
         {
             "name": "nesbot/carbon",
-            "version": "1.39.0",
+            "version": "1.39.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/briannesbitt/Carbon.git",
-                "reference": "dd62a58af4e0775a45ea5f99d0363d81b7d9a1e0"
+                "reference": "4be0c005164249208ce1b5ca633cd57bdd42ff33"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/briannesbitt/Carbon/zipball/dd62a58af4e0775a45ea5f99d0363d81b7d9a1e0",
-                "reference": "dd62a58af4e0775a45ea5f99d0363d81b7d9a1e0",
+                "url": "https://api.github.com/repos/briannesbitt/Carbon/zipball/4be0c005164249208ce1b5ca633cd57bdd42ff33",
+                "reference": "4be0c005164249208ce1b5ca633cd57bdd42ff33",
                 "shasum": "",
                 "mirrors": [
                     {
@@ -4296,7 +4368,7 @@
                 "datetime",
                 "time"
             ],
-            "time": "2019-06-11T09:07:59+00:00"
+            "time": "2019-10-14T05:51:36+00:00"
         },
         {
             "name": "nikic/php-parser",
@@ -11152,7 +11224,8 @@
     "aliases": [],
     "minimum-stability": "stable",
     "stability-flags": {
-        "dingo/api": 15
+        "dingo/api": 15,
+        "ibrand/backend": 20
     },
     "prefer-stable": false,
     "prefer-lowest": false,

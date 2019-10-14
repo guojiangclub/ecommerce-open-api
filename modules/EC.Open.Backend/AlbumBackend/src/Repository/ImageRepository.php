@@ -1,7 +1,7 @@
 <?php
-namespace iBrand\EC\Open\Backend\Album\Repository;
+namespace GuoJiangClub\EC\Open\Backend\Album\Repository;
 
-use iBrand\EC\Open\Backend\Album\Models\Image;
+use GuoJiangClub\EC\Open\Backend\Album\Models\Image;
 use Prettus\Repository\Eloquent\BaseRepository;
 
 class ImageRepository extends BaseRepository

@@ -9,9 +9,9 @@
  * file that was distributed with this source code.
  */
 
-namespace iBrand\Component\Order\Models;
+namespace GuoJiangClub\Component\Order\Models;
 
-use iBrand\Component\Product\Models\Product;
+use GuoJiangClub\Component\Product\Models\Product;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
@@ -118,9 +118,9 @@ class OrderItem extends Model
     public function getItemSkuAttribute()
     {
         if ($model = $this->getModel()) {
-            if ('iBrand\\Component\\Product\\Models\\Product' == $this->type) {
+            if ('GuoJiangClub\\Component\\Product\\Models\\Product' == $this->type) {
                 return $this->getItemKey();
-            } elseif ('iBrand\\Component\\Product\\Models\\Goods' == $this->type) {
+            } elseif ('GuoJiangClub\\Component\\Product\\Models\\Goods' == $this->type) {
                 return $model->goods_no;
             }
         }

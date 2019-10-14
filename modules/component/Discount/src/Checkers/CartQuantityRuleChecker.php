@@ -9,11 +9,11 @@
  * file that was distributed with this source code.
  */
 
-namespace iBrand\Component\Discount\Checkers;
+namespace GuoJiangClub\Component\Discount\Checkers;
 
-use iBrand\Component\Discount\Contracts\DiscountContract;
-use iBrand\Component\Discount\Contracts\DiscountSubjectContract;
-use iBrand\Component\Discount\Contracts\RuleCheckerContract;
+use GuoJiangClub\Component\Discount\Contracts\DiscountContract;
+use GuoJiangClub\Component\Discount\Contracts\DiscountSubjectContract;
+use GuoJiangClub\Component\Discount\Contracts\RuleCheckerContract;
 
 /**
  * Class CartQuantityRuleChecker.

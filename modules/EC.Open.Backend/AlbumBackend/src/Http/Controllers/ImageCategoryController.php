@@ -1,10 +1,10 @@
 <?php
-namespace iBrand\EC\Open\Backend\Album\Http\Controllers;
+namespace GuoJiangClub\EC\Open\Backend\Album\Http\Controllers;
 
 use iBrand\Backend\Http\Controllers\Controller;
-use iBrand\EC\Open\Backend\Album\Models\Image;
-use iBrand\EC\Open\Backend\Album\Models\ImageCategory;
-use iBrand\EC\Open\Backend\Album\Repository\ImageCategoryRepository;
+use GuoJiangClub\EC\Open\Backend\Album\Models\Image;
+use GuoJiangClub\EC\Open\Backend\Album\Models\ImageCategory;
+use GuoJiangClub\EC\Open\Backend\Album\Repository\ImageCategoryRepository;
 use Illuminate\Http\Request;
 use DB;
 use Encore\Admin\Facades\Admin as LaravelAdmin;

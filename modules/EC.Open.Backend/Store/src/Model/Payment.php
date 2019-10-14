@@ -9,7 +9,7 @@
  * file that was distributed with this source code.
  */
 
-namespace iBrand\EC\Open\Backend\Store\Model;
+namespace GuoJiangClub\EC\Open\Backend\Store\Model;
 
 use Illuminate\Database\Eloquent\Model;
 
@@ -19,7 +19,7 @@ use Illuminate\Database\Eloquent\Model;
  * Date: 2016/10/7
  * Time: 16:35.
  */
-class Payment extends \iBrand\Component\Payment\Models\Payment
+class Payment extends \GuoJiangClub\Component\Payment\Models\Payment
 {
 
 }

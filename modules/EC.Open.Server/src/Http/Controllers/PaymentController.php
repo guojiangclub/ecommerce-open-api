@@ -9,15 +9,15 @@
  * file that was distributed with this source code.
  */
 
-namespace iBrand\EC\Open\Server\Http\Controllers;
+namespace GuoJiangClub\EC\Open\Server\Http\Controllers;
 
 use Carbon\Carbon;
-use iBrand\Component\Order\Models\Order;
-use iBrand\Component\Order\Repositories\OrderRepository;
+use GuoJiangClub\Component\Order\Models\Order;
+use GuoJiangClub\Component\Order\Repositories\OrderRepository;
 use iBrand\Component\Pay\Facades\Charge;
 use iBrand\Component\Pay\Facades\PayNotify;
-use iBrand\Component\Payment\Models\Payment;
-use iBrand\Component\Payment\Services\PaymentService;
+use GuoJiangClub\Component\Payment\Models\Payment;
+use GuoJiangClub\Component\Payment\Services\PaymentService;
 use EasyWeChat;
 
 class PaymentController extends Controller
@@ -49,7 +49,7 @@ class PaymentController extends Controller
         //在pay_debug=true 状态下，可以调用此接口直接更改订单支付状态
         if (config('ibrand.app.pay_debug')) {
 
-            $charge = \iBrand\Component\Pay\Models\Charge::where('order_no', $order_no)->orderBy('created_at', 'desc')->first();
+            $charge = \GuoJiangClub\Component\Pay\Models\Charge::where('order_no', $order_no)->orderBy('created_at', 'desc')->first();
             $charge->transaction_no = '';
             $charge->time_paid = Carbon::now();
             $charge->paid = 1;

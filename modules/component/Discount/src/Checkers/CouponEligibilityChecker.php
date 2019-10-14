@@ -9,10 +9,10 @@
  * file that was distributed with this source code.
  */
 
-namespace iBrand\Component\Discount\Checkers;
+namespace GuoJiangClub\Component\Discount\Checkers;
 
-use iBrand\Component\Discount\Contracts\DiscountSubjectContract;
-use iBrand\Component\Discount\Models\Coupon;
+use GuoJiangClub\Component\Discount\Contracts\DiscountSubjectContract;
+use GuoJiangClub\Component\Discount\Models\Coupon;
 
 /**
  * Class CouponEligibilityChecker.

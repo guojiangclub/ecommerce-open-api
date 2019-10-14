@@ -9,9 +9,9 @@
  * file that was distributed with this source code.
  */
 
-namespace iBrand\EC\Open\Server\Http\Controllers;
+namespace GuoJiangClub\EC\Open\Server\Http\Controllers;
 
-use iBrand\Component\Shipping\Models\ShippingMethod;
+use GuoJiangClub\Component\Shipping\Models\ShippingMethod;
 
 class ShippingController extends Controller
 {

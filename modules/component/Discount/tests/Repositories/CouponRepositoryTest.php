@@ -1,12 +1,12 @@
 <?php
 
-namespace iBrand\Component\Discount\Test\Repositories;
+namespace GuoJiangClub\Component\Discount\Test\Repositories;
 
 
-use iBrand\Component\Discount\Models\Coupon;
-use iBrand\Component\Discount\Repositories\CouponRepository;
-use iBrand\Component\Discount\Test\BaseTest;
-use iBrand\Component\Discount\Test\Models\User;
+use GuoJiangClub\Component\Discount\Models\Coupon;
+use GuoJiangClub\Component\Discount\Repositories\CouponRepository;
+use GuoJiangClub\Component\Discount\Test\BaseTest;
+use GuoJiangClub\Component\Discount\Test\Models\User;
 use Illuminate\Support\Carbon;
 
 class CouponRepositoryTest extends BaseTest

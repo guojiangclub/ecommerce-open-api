@@ -1,8 +1,8 @@
 <?php
-namespace iBrand\EC\Open\Backend\Store\Console;
+namespace GuoJiangClub\EC\Open\Backend\Store\Console;
 
-use iBrand\EC\Open\Backend\Store\Model\Spec;
-use iBrand\EC\Open\Backend\Store\Model\SpecsValue;
+use GuoJiangClub\EC\Open\Backend\Store\Model\Spec;
+use GuoJiangClub\EC\Open\Backend\Store\Model\SpecsValue;
 use Illuminate\Console\Command;
 use DB;
 

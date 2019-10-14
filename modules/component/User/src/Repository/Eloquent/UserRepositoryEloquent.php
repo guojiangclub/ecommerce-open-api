@@ -9,10 +9,10 @@
  * file that was distributed with this source code.
  */
 
-namespace iBrand\Component\User\Repository\Eloquent;
+namespace GuoJiangClub\Component\User\Repository\Eloquent;
 
-use iBrand\Component\User\Models\User;
-use iBrand\Component\User\Repository\UserRepository;
+use GuoJiangClub\Component\User\Models\User;
+use GuoJiangClub\Component\User\Repository\UserRepository;
 use Illuminate\Support\Str;
 use Prettus\Repository\Eloquent\BaseRepository;
 use Prettus\Repository\Traits\CacheableRepository;

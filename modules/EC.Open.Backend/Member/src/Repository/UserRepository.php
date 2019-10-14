@@ -1,12 +1,12 @@
 <?php
 
-namespace iBrand\EC\Open\Backend\Member\Repository;
+namespace GuoJiangClub\EC\Open\Backend\Member\Repository;
 
-use iBrand\Component\Point\Repository\PointRepository;
-use iBrand\EC\Open\Backend\Store\Exceptions\GeneralException;
+use GuoJiangClub\Component\Point\Repository\PointRepository;
+use GuoJiangClub\EC\Open\Backend\Store\Exceptions\GeneralException;
 use Prettus\Repository\Eloquent\BaseRepository;
 use Prettus\Repository\Criteria\RequestCriteria;
-use iBrand\EC\Open\Backend\Member\Models\User;
+use GuoJiangClub\EC\Open\Backend\Member\Models\User;
 
 /**
  * Class UserRepositoryEloquent

@@ -6,14 +6,14 @@
  * Time: 16:31
  */
 
-namespace iBrand\Component\Discount\Test\Checkers;
+namespace GuoJiangClub\Component\Discount\Test\Checkers;
 
 
-use iBrand\Component\Discount\Checkers\DatesEligibilityChecker;
-use iBrand\Component\Discount\Models\Coupon;
-use iBrand\Component\Discount\Test\BaseTest;
+use GuoJiangClub\Component\Discount\Checkers\DatesEligibilityChecker;
+use GuoJiangClub\Component\Discount\Models\Coupon;
+use GuoJiangClub\Component\Discount\Test\BaseTest;
 use Carbon\Carbon;
-use iBrand\Component\Discount\Models\Discount;
+use GuoJiangClub\Component\Discount\Models\Discount;
 use Faker\Factory;
 
 class DatesEligibilityCheckerTest extends BaseTest

@@ -28,29 +28,29 @@
     <div class="tabs-container">
         <ul class="nav nav-tabs">
             <li class="{{ Active::query('status','all') }}"><a no-pjax href="{{route('admin.orders.index',['status'=>'all'])}}">所有订单
-                    <span class="badge">{{\iBrand\EC\Open\Backend\Store\Model\Order::getOrdersCountByStatus([1,6])}}</span></a>
+                    <span class="badge">{{\GuoJiangClub\EC\Open\Backend\Store\Model\Order::getOrdersCountByStatus([1,6])}}</span></a>
             </li>
 
             <li class="{{ Active::query('status',1) }}"><a no-pjax href="{{route('admin.orders.index',['status'=>1])}}">待付款
-                    <span class="badge">{{\iBrand\EC\Open\Backend\Store\Model\Order::getOrdersCountByStatus(1)}}</span></a>
+                    <span class="badge">{{\GuoJiangClub\EC\Open\Backend\Store\Model\Order::getOrdersCountByStatus(1)}}</span></a>
             </li>
             <li class="{{ Active::query('status',2) }}"><a no-pjax href="{{route('admin.orders.index',['status'=>2])}}">待发货
-                    <span class="badge">{{\iBrand\EC\Open\Backend\Store\Model\Order::getOrdersCountByStatus(2)}}</span></a>
+                    <span class="badge">{{\GuoJiangClub\EC\Open\Backend\Store\Model\Order::getOrdersCountByStatus(2)}}</span></a>
             </li>
             <li class="{{ Active::query('status',3) }}"><a no-pjax href="{{route('admin.orders.index',['status'=>3])}}">待收货
-                    <span class="badge">{{\iBrand\EC\Open\Backend\Store\Model\Order::getOrdersCountByStatus(3)}}</span></a>
+                    <span class="badge">{{\GuoJiangClub\EC\Open\Backend\Store\Model\Order::getOrdersCountByStatus(3)}}</span></a>
             </li>
             <li class="{{ Active::query('status',4) }}"><a no-pjax href="{{route('admin.orders.index',['status'=>4])}}">已收货待评价
-                    <span class="badge">{{\iBrand\EC\Open\Backend\Store\Model\Order::getOrdersCountByStatus(4)}}</span></a>
+                    <span class="badge">{{\GuoJiangClub\EC\Open\Backend\Store\Model\Order::getOrdersCountByStatus(4)}}</span></a>
             </li>
             <li class="{{ Active::query('status',5) }}"><a no-pjax href="{{route('admin.orders.index',['status'=>5])}}">已完成
-                    <span class="badge">{{\iBrand\EC\Open\Backend\Store\Model\Order::getOrdersCountByStatus(5)}}</span></a>
+                    <span class="badge">{{\GuoJiangClub\EC\Open\Backend\Store\Model\Order::getOrdersCountByStatus(5)}}</span></a>
             </li>
             <li class="{{ Active::query('status',6) }}"><a no-pjax href="{{route('admin.orders.index',['status'=>6])}}">已取消
-                    <span class="badge">{{\iBrand\EC\Open\Backend\Store\Model\Order::getOrdersCountByStatus(6)}}</span></a>
+                    <span class="badge">{{\GuoJiangClub\EC\Open\Backend\Store\Model\Order::getOrdersCountByStatus(6)}}</span></a>
             </li>
             <li class="{{ Active::query('status',9) }}"><a no-pjax href="{{route('admin.orders.index',['status'=>9])}}">已删除
-                    <span class="badge">{{\iBrand\EC\Open\Backend\Store\Model\Order::getOrdersCountByStatus(9)}}</span></a>
+                    <span class="badge">{{\GuoJiangClub\EC\Open\Backend\Store\Model\Order::getOrdersCountByStatus(9)}}</span></a>
             </li>
 
         </ul>

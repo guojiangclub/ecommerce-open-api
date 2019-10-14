@@ -9,7 +9,7 @@
  * file that was distributed with this source code.
  */
 
-namespace iBrand\EC\Open\Server\Transformers;
+namespace GuoJiangClub\EC\Open\Server\Transformers;
 
 class FavoriteTransformer extends BaseTransformer
 {

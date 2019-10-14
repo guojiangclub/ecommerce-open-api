@@ -9,7 +9,7 @@
  * file that was distributed with this source code.
  */
 
-namespace iBrand\Component\Advert\Repository;
+namespace GuoJiangClub\Component\Advert\Repositories;
 
 use Prettus\Repository\Contracts\RepositoryInterface;
 
@@ -22,5 +22,5 @@ interface AdvertRepository extends RepositoryInterface
      *
      * @return mixed
      */
-    public function getByCode($code);
+    public function getByCode($code,$status=1);
 }

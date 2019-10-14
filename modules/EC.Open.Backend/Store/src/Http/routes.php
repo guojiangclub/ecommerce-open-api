@@ -11,6 +11,41 @@ $router->group(['prefix' => 'admin/store'], function () use ($router) {
     $router->post('upload/excel', 'ImageController@ExcelUpload')->name('upload.excel');
     $router->post('upload/uploadExcelFile', 'ImageController@uploadExcelFile')->name('upload.uploadExcelFile');
 
+    $router->group(['prefix' => 'setting'], function () use ($router) {
+        $router->group(['prefix' => 'micro/page','namespace' => 'MicroPage'], function () use ($router) {
+            $router->get('/', 'MicroPageController@index')->name('admin.setting.micro.page.index');
+            $router->get('/store', 'MicroPageController@store')->name('admin.setting.micro.page.store');
+            $router->post('/{id}/delete', 'MicroPageController@delete')->name('admin.setting.micro.page.delete');
+            $router->post('/{id}/setIndexPage', 'MicroPageController@setIndexPage')->name('admin.setting.micro.page.setIndexPage');
+            $router->post('/{id}/setCategoryPage', 'MicroPageController@setCategoryPage')->name('admin.setting.micro.page.setCategoryPage');
+
+            $router->post('/name/update', 'MicroPageController@update')->name('admin.setting.micro.page.name.update');
+            $router->post('/{id}/updateMicroPageAd', 'MicroPageController@updateMicroPageAd')->name('admin.setting.micro.page.updateMicroPageAd');
+            $router->get('/{id}/edit', 'MicroPageController@edit')->name('admin.setting.micro.page.name.edit');
+            $router->get('/get/advert', 'MicroPageController@getAdvertByType')->name('admin.setting.micro.page.get.advert');
+            $router->post('compoent/{id}/delete', 'CompoentController@delete')->name('admin.setting.micro.page.compoent.delete');
+            $router->post('/update', 'CompoentController@update')->name('admin.setting.micro.page.compoent.update');
+            $router->post('/store', 'CompoentController@store')->name('admin.setting.micro.page.compoent.store');
+            $router->get('/model/goods', 'CompoentController@modelGoods')->name('admin.setting.micro.page.compoent.model.goods');
+            $router->get('/model/coupons', 'CompoentController@modelCoupons')->name('admin.setting.micro.page.compoent.model.coupons');
+            $router->get('/model/categorys', 'CompoentController@modelCategorys')->name('admin.setting.micro.page.compoent.model.categorys');
+            $router->get('/model/pages', 'CompoentController@modelPages')->name('admin.setting.micro.page.compoent.model.pages');
+            $router->get('/model/images', 'CompoentController@modelImages')->name('admin.setting.micro.page.compoent.model.images');
+            $router->get('compoent/getGoodsData', 'CompoentController@getGoodsData')->name('admin.setting.micro.page.compoent.getGoodsData');
+            $router->get('compoent/getPagesData', 'CompoentController@getPagesData')->name('admin.setting.micro.page.compoent.getPagesData');
+            $router->get('compoent/getCategorysData', 'CompoentController@getCategorysData')->name('admin.setting.micro.page.compoent.getCategorysData');
+            $router->get('compoent/getCouponsData', 'CompoentController@getCouponsData')->name('admin.setting.micro.page.compoent.getCouponsData');
+
+            $router->group(['prefix' => 'compoent/'], function () use ($router) {
+                $router->get('/', 'CompoentController@index')->name('admin.setting.micro.page.compoent.index');
+                $router->get('{type}/', 'CompoentController@index')->name('admin.setting.micro.page.compoent.index');
+                $router->get('{type}/create', 'CompoentController@create')->name('admin.setting.micro.page.compoent.create');
+                $router->get('{type}/{code}/edit', 'CompoentController@edit')->name('admin.setting.micro.page.compoent.edit');
+            });
+        });
+
+    });
+
     //新的规格管理
     $router->group(['prefix' => 'specs'], function () use ($router) {
 

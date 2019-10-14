@@ -9,7 +9,7 @@
  * file that was distributed with this source code.
  */
 
-namespace iBrand\EC\Open\Backend\Store\Seeds;
+namespace GuoJiangClub\EC\Open\Backend\Store\Seeds;
 
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
@@ -34,6 +34,41 @@ class StoreBackendTablesSeeder extends Seeder
             'created_at' => date('Y-m-d H:i:s', time()),
             'updated_at' => date('Y-m-d H:i:s', time()),
         ]);
+
+
+        $parent_setting = DB::table(config('admin.database.menu_table'))->insertGetId([
+            'parent_id' => $parent,
+            'order' => $lastOrder++,
+            'title' => '商城设置',
+            'icon' => 'iconfont icon-shangchengshezhi-',
+            'blank' => 1,
+            'uri' => '',
+            'created_at' => date('Y-m-d H:i:s', time()),
+            'updated_at' => date('Y-m-d H:i:s', time()),
+        ]);
+
+
+        $setting_menu_list = [
+            ['parent_id' => $parent_setting,
+                'order' => $lastOrder++,
+                'title' => '微页面',
+                'icon' => '',
+                'blank' => 1,
+                'uri' => 'store/setting/micro/page',
+                'created_at' => date('Y-m-d H:i:s', time()),
+                'updated_at' => date('Y-m-d H:i:s', time())],
+            ['parent_id' => $parent_setting,
+                'order' => $lastOrder++,
+                'title' => '模块管理',
+                'icon' => '',
+                'blank' => 1,
+                'uri' => 'store/setting/micro/page/compoent',
+                'created_at' => date('Y-m-d H:i:s', time()),
+                'updated_at' => date('Y-m-d H:i:s', time())],
+
+        ];
+
+        DB::table(config('admin.database.menu_table'))->insert($setting_menu_list);
 
 
         $parent_goods = DB::table(config('admin.database.menu_table'))->insertGetId([

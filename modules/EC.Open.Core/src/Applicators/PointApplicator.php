@@ -1,11 +1,11 @@
 <?php
 
-namespace iBrand\EC\Open\Core\Applicators;
+namespace GuoJiangClub\EC\Open\Core\Applicators;
 
-use iBrand\Component\Order\Models\Adjustment;
-use iBrand\Component\Discount\Distributors\PercentageIntegerDistributor;
-use iBrand\Component\Order\Models\Order;
-use iBrand\Component\Point\Repository\PointRepository;
+use GuoJiangClub\Component\Order\Models\Adjustment;
+use GuoJiangClub\Component\Discount\Distributors\PercentageIntegerDistributor;
+use GuoJiangClub\Component\Order\Models\Order;
+use GuoJiangClub\Component\Point\Repository\PointRepository;
 
 class PointApplicator
 {

@@ -1,12 +1,6 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: admin
- * Date: 2017/3/10
- * Time: 14:08
- */
 
-namespace iBrand\EC\Open\Backend\Album\Http\Controllers;
+namespace GuoJiangClub\EC\Open\Backend\Album\Http\Controllers;
 
 use Illuminate\Http\Request;
 use iBrand\Backend\Http\Controllers\Controller;

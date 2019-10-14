@@ -27,18 +27,18 @@
   },
   "autoload": {
     "psr-4": {
-      "iBrand\\Component\\Discount\\": "src/"
+      "GuoJiangClub\\Component\\Discount\\": "src/"
     }
   },
   "autoload-dev": {
     "psr-4": {
-      "iBrand\\Component\\Discount\\Test\\": "tests"
+      "GuoJiangClub\\Component\\Discount\\Test\\": "tests"
     }
   },
   "extra": {
     "laravel": {
       "providers": [
-        "iBrand\\Component\\Discount\\Providers\\DiscountServiceProvider"
+        "GuoJiangClub\\Component\\Discount\\Providers\\DiscountServiceProvider"
       ]
     }
   },

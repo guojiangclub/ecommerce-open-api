@@ -9,12 +9,17 @@
  * file that was distributed with this source code.
  */
 
-namespace iBrand\Component\Advert\Models;
+namespace GuoJiangClub\Component\Advert\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
 class Advert extends Model
 {
+
+    const STATUS_OPEN = 1; // 可用状态
+
+    const STATUS_CLOSE = 0;  // 关闭状态
+
     protected $guarded = ['id'];
 
     /**
@@ -24,13 +29,24 @@ class Advert extends Model
      */
     public function __construct(array $attributes = [])
     {
-        parent::__construct($attributes);
 
         $this->setTable(config('ibrand.app.database.prefix', 'ibrand_').'advert');
+
+        parent::__construct($attributes);
     }
 
-    public function items()
-    {
-        return $this->hasMany(AdvertItem::class);
+    public function addAdvertItem(array $attributes = []){
+
+        $attributes['advert_id'] = $this->id;
+
+        return AdvertItem::create($attributes);
+
     }
+
+    public function item(){
+
+        return $this->hasMany(AdvertItem::class,'advert_id');
+    }
+
+
 }

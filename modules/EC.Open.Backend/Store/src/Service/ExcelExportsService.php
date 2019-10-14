@@ -1,6 +1,6 @@
 <?php
 
-namespace iBrand\EC\Open\Backend\Store\Service;
+namespace GuoJiangClub\EC\Open\Backend\Store\Service;
 use Excel;
 
 class ExcelExportsService

@@ -9,20 +9,22 @@
  * file that was distributed with this source code.
  */
 
-namespace iBrand\EC\Open\Core\Services;
+namespace GuoJiangClub\EC\Open\Core\Services;
 
 use Exception;
-use iBrand\Component\Discount\Applicators\DiscountApplicator;
-use iBrand\Component\Discount\Checkers\CouponEligibilityChecker;
-use iBrand\Component\Discount\Checkers\DatesEligibilityChecker;
-use iBrand\Component\Discount\Contracts\DiscountSubjectContract;
-use iBrand\Component\Discount\Models\Coupon;
-use iBrand\Component\Discount\Models\Discount;
-use iBrand\Component\Discount\Repositories\CouponRepository;
-use iBrand\Component\Discount\Repositories\DiscountRepository;
-use iBrand\EC\Open\Core\Discount\Checkers\DiscountEligibilityChecker;
-use iBrand\EC\Open\Core\Discount\Contracts\DiscountItemContract;
+use GuoJiangClub\Component\Order\Models\Order;
+use GuoJiangClub\Component\Discount\Applicators\DiscountApplicator;
+use GuoJiangClub\Component\Discount\Checkers\CouponEligibilityChecker;
+use GuoJiangClub\Component\Discount\Checkers\DatesEligibilityChecker;
+use GuoJiangClub\Component\Discount\Contracts\DiscountSubjectContract;
+use GuoJiangClub\Component\Discount\Models\Coupon;
+use GuoJiangClub\Component\Discount\Models\Discount;
+use GuoJiangClub\Component\Discount\Repositories\CouponRepository;
+use GuoJiangClub\Component\Discount\Repositories\DiscountRepository;
+use GuoJiangClub\EC\Open\Core\Discount\Checkers\DiscountEligibilityChecker;
+use GuoJiangClub\EC\Open\Core\Discount\Contracts\DiscountItemContract;
 use Illuminate\Support\Collection;
+
 
 class DiscountService
 {
@@ -118,5 +120,112 @@ class DiscountService
         });
 
         return $discounts;
+    }
+
+    /**
+     * 计算出优惠组合，把优惠的可能情况都计算出来给到前端
+     *
+     * @param $discounts
+     * @param $coupons
+     */
+    public function getOrderDiscountGroup($order, $discounts, $coupons)
+    {
+        $order = Order::find($order->id);
+
+        $groups = new Collection();
+
+        $exclusiveDiscounts = $discounts->where('exclusive', 1);
+        $exclusiveCoupons = $coupons->where('discount.exclusive', 1);
+
+        $normalDiscounts = $discounts->where('exclusive', 0);
+        $normalCoupons = $coupons->where('discount.exclusive', 0);
+
+        $exclusiveDiscounts->each(function ($item, $key) use ($groups) {
+
+            $groups->push(['discount' => $item->id, 'coupon' => 0]);
+        });
+
+        $exclusiveCoupons->each(function ($item, $key) use ($groups) {
+            $groups->push(['discount' => 0, 'coupon' => $item->id]);
+        });
+
+        $normalDiscounts->each(function ($item, $key) use ($groups) {
+            $groups->push(['discount' => $item->id, 'coupon' => 0]);
+        });
+
+        $normalCoupons->each(function ($item, $key) use ($groups) {
+            $groups->push(['discount' => 0, 'coupon' => $item->id]);
+        });
+
+        foreach ($normalDiscounts as $discount) {
+            foreach ($normalCoupons as $coupon) {
+                $groups->push(['discount' => $discount->id, 'coupon' => $coupon->id]);
+            }
+        }
+
+        $groups = $groups->unique();
+
+        $result = new Collection();
+
+        foreach ($groups as $group) {
+
+            $discount = Discount::find($group['discount']);
+            $coupon = Coupon::find($group['coupon']);
+
+            list($discountAdjustment, $couponAdjustment, $adjustmentTotal) = $this->calculateDiscounts($order, $discount, $coupon);
+
+            if ($adjustmentTotal == 0) {
+                continue;
+            }
+
+            $group['discountAdjustment'] = $discountAdjustment;
+            $group['couponAdjustment'] = $couponAdjustment;
+            $group['adjustmentTotal'] = $adjustmentTotal;
+
+            $result->push($group);
+            //dd($group);
+        }
+        $result = $result->unique()->sortBy('adjustmentTotal');
+
+        return collect_to_array($result);
+    }
+
+    public function calculateDiscounts($order, ...$discounts)
+    {
+        $adjustmentTotal = 0;
+        $discountAdjustment = 0;
+        $couponAdjustment = 0;
+
+        $tempOrder = clone($order);
+
+        foreach ($discounts as $discount) {
+            if (is_null($discount)) {
+                continue;
+            }
+
+
+            if ($discount->isCouponBased()) {
+                if ($this->couponChecker->isEligible($tempOrder, $discount)) {
+                    $this->applicator->calculate($tempOrder, $discount);
+                    $adjustmentTotal = $adjustmentTotal + $discount->adjustmentTotal;
+                    $couponAdjustment = $discount->adjustmentTotal;
+                    $tempOrder->total = $tempOrder->total + $discount->adjustmentTotal;
+                } else {
+                    return 0;
+                }
+
+            } else {
+                if ($this->discountChecker->isEligible($tempOrder, $discount)) {
+                    $this->applicator->calculate($tempOrder, $discount);
+                    $adjustmentTotal = $adjustmentTotal + $discount->adjustmentTotal;
+                    $tempOrder->total = $tempOrder->total + $discount->adjustmentTotal;
+                    $discountAdjustment = $discount->adjustmentTotal;
+                }
+            }
+        }
+        //dd($tempOrder);
+        //\Log::info(json_encode($tempOrder));
+
+        return [$discountAdjustment, $couponAdjustment, $adjustmentTotal];
     }
 }

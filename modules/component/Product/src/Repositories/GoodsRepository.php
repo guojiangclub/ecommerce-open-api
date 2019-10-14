@@ -9,7 +9,7 @@
  * file that was distributed with this source code.
  */
 
-namespace iBrand\Component\Product\Repositories;
+namespace GuoJiangClub\Component\Product\Repositories;
 
 /*
  * Created by PhpStorm.

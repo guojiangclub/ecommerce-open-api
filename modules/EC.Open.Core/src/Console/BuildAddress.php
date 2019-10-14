@@ -9,11 +9,11 @@
  * file that was distributed with this source code.
  */
 
-namespace iBrand\EC\Open\Core\Console;
+namespace GuoJiangClub\EC\Open\Core\Console;
 
 use DB;
 use Faker\Factory;
-use iBrand\Component\Address\Address;
+use GuoJiangClub\Component\Address\Address;
 use Illuminate\Console\Command;
 
 class BuildAddress extends Command

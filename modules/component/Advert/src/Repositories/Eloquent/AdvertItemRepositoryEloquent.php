@@ -9,18 +9,17 @@
  * file that was distributed with this source code.
  */
 
-namespace iBrand\Component\Advert\Repository\Eloquent;
+namespace GuoJiangClub\Component\Advert\Repositories\Eloquent;
 
-use iBrand\Component\Advert\Models\AdvertItem;
-use iBrand\Component\Advert\Repository\AdvertItemRepository;
+use GuoJiangClub\Component\Advert\Models\AdvertItem;
+use GuoJiangClub\Component\Advert\Repositories\AdvertItemRepository;
 use Prettus\Repository\Eloquent\BaseRepository;
 use Prettus\Repository\Traits\CacheableRepository;
+use DB;
 
 class AdvertItemRepositoryEloquent extends BaseRepository implements AdvertItemRepository
 {
     use CacheableRepository;
-
-    const AVAILABLE = 1; // 可用状态
 
     /**
      * Specify Model class name.
@@ -32,10 +31,59 @@ class AdvertItemRepositoryEloquent extends BaseRepository implements AdvertItemR
         return AdvertItem::class;
     }
 
-    public function getItemsByCode($code)
+    /**
+     * @param array $attributes
+     * @param int $parentId
+     * @return mixed
+     * @throws \Prettus\Validator\Exceptions\ValidatorException
+     */
+    public function create(array $attributes, $parentId = 0)
     {
-        return $this->whereHas('advert', function ($query) use ($code) {
-            return $query->where('code', $code);
-        })->get();
+        if ($parentId) {
+            $attributes['parent_id'] = $parentId;
+        }
+
+        return parent::create($attributes);
+    }
+
+
+    public function getItemsByCode($code,$associate_with = [],$depth = 0, $status = 1)
+    {
+
+        $advert = $this->whereHas('advert', function ($query) use ($code,$status) {
+            return $query->where('code', $code)->where('status', $status);
+        })->first();
+
+        if (!$advert) {
+            return null;
+        }
+
+        $query = $this->model->with('associate');
+
+        if (count($associate_with)>0) {
+
+            foreach ($associate_with as $with){
+
+                $query = $query->with('associate.'.$with);
+            }
+
+        }
+
+        $query = $query->where('advert_id', $advert->advert_id)
+            ->where('status', $status)
+            ->orderBy('sort');
+
+        if (!$depth) {
+            $query = $query->get();
+        } else {
+            $sub = $this->model->withDepth();
+
+            $query = $query->from(DB::raw("({$sub->toSql()}) as sub"))
+                ->where('depth', '<', $depth)->get();
+        }
+
+        return $query->toTree();
+
+
     }
 }

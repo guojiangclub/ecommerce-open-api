@@ -9,9 +9,9 @@
  * file that was distributed with this source code.
  */
 
-namespace iBrand\EC\Open\Backend\Member;
+namespace GuoJiangClub\EC\Open\Backend\Member;
 
-use iBrand\EC\Open\Backend\Member\Seeds\MemberBackendTablesSeeder;
+use GuoJiangClub\EC\Open\Backend\Member\Seeds\MemberBackendTablesSeeder;
 use Encore\Admin\Admin;
 use Encore\Admin\Extension;
 use Illuminate\Support\Facades\Artisan;

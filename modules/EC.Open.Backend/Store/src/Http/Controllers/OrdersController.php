@@ -1,18 +1,18 @@
 <?php
 
-namespace iBrand\EC\Open\Backend\Store\Http\Controllers;
+namespace GuoJiangClub\EC\Open\Backend\Store\Http\Controllers;
 
 use Carbon\Carbon;
 use iBrand\Backend\Http\Controllers\Controller;
-use iBrand\EC\Open\Backend\Store\Model\Shipping;
-use iBrand\EC\Open\Backend\Store\Model\ShippingMethod;
-use iBrand\EC\Open\Backend\Store\Model\Order;
+use GuoJiangClub\EC\Open\Backend\Store\Model\Shipping;
+use GuoJiangClub\EC\Open\Backend\Store\Model\ShippingMethod;
+use GuoJiangClub\EC\Open\Backend\Store\Model\Order;
 use Illuminate\Http\Request;
 use Response;
-use iBrand\EC\Open\Backend\Store\Repositories\OrderRepository;
-use iBrand\EC\Open\Backend\Store\Repositories\OrderItemRepository;
+use GuoJiangClub\EC\Open\Backend\Store\Repositories\OrderRepository;
+use GuoJiangClub\EC\Open\Backend\Store\Repositories\OrderItemRepository;
 use Excel;
-use iBrand\EC\Open\Backend\Store\Facades\OrderService;
+use GuoJiangClub\EC\Open\Backend\Store\Facades\OrderService;
 use DB;
 use Encore\Admin\Facades\Admin as LaravelAdmin;
 use Encore\Admin\Layout\Content;

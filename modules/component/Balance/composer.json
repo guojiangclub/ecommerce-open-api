@@ -26,18 +26,18 @@
   },
   "autoload": {
     "psr-4": {
-      "iBrand\\Component\\Balance\\": "src/"
+      "GuoJiangClub\\Component\\Balance\\": "src/"
     }
   },
   "autoload-dev": {
     "psr-4": {
-      "iBrand\\Component\\Balance\\Test\\": "tests"
+      "GuoJiangClub\\Component\\Balance\\Test\\": "tests"
     }
   },
   "extra": {
     "laravel": {
       "providers": [
-        "iBrand\\Component\\Balance\\BalanceServiceProvider"
+        "GuoJiangClub\\Component\\Balance\\BalanceServiceProvider"
       ]
     }
   },

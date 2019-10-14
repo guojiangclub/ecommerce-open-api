@@ -6,10 +6,10 @@
  * Time: 14:04
  */
 
-namespace iBrand\EC\Open\Backend\Store\Console;
+namespace GuoJiangClub\EC\Open\Backend\Store\Console;
 
-use iBrand\EC\Open\Backend\Member\Seeds\MemberBackendTablesSeeder;
-use iBrand\EC\Open\Backend\Store\Seeds\StoreBackendTablesSeeder;
+use GuoJiangClub\EC\Open\Backend\Member\Seeds\MemberBackendTablesSeeder;
+use GuoJiangClub\EC\Open\Backend\Store\Seeds\StoreBackendTablesSeeder;
 use Illuminate\Console\Command;
 
 class InstallCommand extends Command

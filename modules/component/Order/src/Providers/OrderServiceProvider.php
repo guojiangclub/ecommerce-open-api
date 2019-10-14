@@ -9,14 +9,14 @@
  * file that was distributed with this source code.
  */
 
-namespace iBrand\Component\Order\Providers;
+namespace GuoJiangClub\Component\Order\Providers;
 
-use iBrand\Component\Order\Models\Order;
-use iBrand\Component\Order\Policies\OrderPolicy;
-use iBrand\Component\Order\Repositories\CommentRepository;
-use iBrand\Component\Order\Repositories\Eloquent\CommentRepositoryEloquent;
-use iBrand\Component\Order\Repositories\Eloquent\OrderRepositoryEloquent;
-use iBrand\Component\Order\Repositories\OrderRepository;
+use GuoJiangClub\Component\Order\Models\Order;
+use GuoJiangClub\Component\Order\Policies\OrderPolicy;
+use GuoJiangClub\Component\Order\Repositories\CommentRepository;
+use GuoJiangClub\Component\Order\Repositories\Eloquent\CommentRepositoryEloquent;
+use GuoJiangClub\Component\Order\Repositories\Eloquent\OrderRepositoryEloquent;
+use GuoJiangClub\Component\Order\Repositories\OrderRepository;
 use Illuminate\Contracts\Auth\Access\Gate as GateContract;
 use Illuminate\Support\ServiceProvider;
 

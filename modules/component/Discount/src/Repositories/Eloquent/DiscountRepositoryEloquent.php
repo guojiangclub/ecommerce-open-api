@@ -9,11 +9,11 @@
  * file that was distributed with this source code.
  */
 
-namespace iBrand\Component\Discount\Repositories\Eloquent;
+namespace GuoJiangClub\Component\Discount\Repositories\Eloquent;
 
 use Carbon\Carbon;
-use iBrand\Component\Discount\Models\Discount;
-use iBrand\Component\Discount\Repositories\DiscountRepository;
+use GuoJiangClub\Component\Discount\Models\Discount;
+use GuoJiangClub\Component\Discount\Repositories\DiscountRepository;
 use Prettus\Repository\Eloquent\BaseRepository;
 
 class DiscountRepositoryEloquent extends BaseRepository implements DiscountRepository

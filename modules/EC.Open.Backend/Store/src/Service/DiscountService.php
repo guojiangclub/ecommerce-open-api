@@ -1,11 +1,11 @@
 <?php
 
-namespace iBrand\EC\Open\Backend\Store\Service;
-use iBrand\Component\User\Models\User;
-use iBrand\EC\Open\Backend\Store\Model\ElDiscount;
-use iBrand\EC\Open\Backend\Store\Model\ElDiscountAction;
-use iBrand\EC\Open\Backend\Store\Model\ElDiscountRule;
-use iBrand\EC\Open\Backend\Store\Repositories\ProductRepository;
+namespace GuoJiangClub\EC\Open\Backend\Store\Service;
+use GuoJiangClub\Component\User\Models\User;
+use GuoJiangClub\EC\Open\Backend\Store\Model\ElDiscount;
+use GuoJiangClub\EC\Open\Backend\Store\Model\ElDiscountAction;
+use GuoJiangClub\EC\Open\Backend\Store\Model\ElDiscountRule;
+use GuoJiangClub\EC\Open\Backend\Store\Repositories\ProductRepository;
 use Excel;
 
 

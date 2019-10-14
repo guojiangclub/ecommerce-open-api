@@ -1,20 +1,20 @@
 <?php
 
-namespace iBrand\EC\Open\Backend\Store\Service;
+namespace GuoJiangClub\EC\Open\Backend\Store\Service;
 
-use iBrand\Component\Point\Repository\PointRepository;
-use iBrand\EC\Open\Backend\Member\Models\User;
-use iBrand\EC\Open\Backend\Store\Model\Order;
+use GuoJiangClub\Component\Point\Repository\PointRepository;
+use GuoJiangClub\EC\Open\Backend\Member\Models\User;
+use GuoJiangClub\EC\Open\Backend\Store\Model\Order;
 
-use iBrand\EC\Open\Backend\Store\Model\SpecialType;
-use iBrand\EC\Open\Backend\Store\Repositories\OrderRepository;
+use GuoJiangClub\EC\Open\Backend\Store\Model\SpecialType;
+use GuoJiangClub\EC\Open\Backend\Store\Repositories\OrderRepository;
 use Excel;
-use iBrand\EC\Open\Backend\Store\Facades\ExcelExportsService;
-use iBrand\EC\Open\Backend\Store\Repositories\GoodsRepository;
-use iBrand\EC\Open\Backend\Store\Repositories\ProductRepository;
-use iBrand\EC\Open\Backend\Store\Repositories\BrandRepository;
-use iBrand\EC\Open\Backend\Store\Model\Product;
-use iBrand\EC\Open\Backend\Store\Model\Goods;
+use GuoJiangClub\EC\Open\Backend\Store\Facades\ExcelExportsService;
+use GuoJiangClub\EC\Open\Backend\Store\Repositories\GoodsRepository;
+use GuoJiangClub\EC\Open\Backend\Store\Repositories\ProductRepository;
+use GuoJiangClub\EC\Open\Backend\Store\Repositories\BrandRepository;
+use GuoJiangClub\EC\Open\Backend\Store\Model\Product;
+use GuoJiangClub\EC\Open\Backend\Store\Model\Goods;
 
 
 class OrderService

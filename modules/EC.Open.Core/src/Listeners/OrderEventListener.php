@@ -1,12 +1,12 @@
 <?php
 
-namespace iBrand\EC\Open\Core\Listeners;
+namespace GuoJiangClub\EC\Open\Core\Listeners;
 
 use Carbon\Carbon;
-use iBrand\Component\Order\Models\Order;
-use iBrand\Component\Order\Models\OrderItem;
-use iBrand\Component\Point\Repository\PointRepository;
-use iBrand\EC\Open\Core\Jobs\AutoCancelOrder;
+use GuoJiangClub\Component\Order\Models\Order;
+use GuoJiangClub\Component\Order\Models\OrderItem;
+use GuoJiangClub\Component\Point\Repository\PointRepository;
+use GuoJiangClub\EC\Open\Core\Jobs\AutoCancelOrder;
 
 class OrderEventListener
 {

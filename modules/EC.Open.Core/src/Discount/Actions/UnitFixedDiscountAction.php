@@ -9,10 +9,10 @@
  * file that was distributed with this source code.
  */
 
-namespace iBrand\EC\Open\Core\Discount\Actions;
+namespace GuoJiangClub\EC\Open\Core\Discount\Actions;
 
-use iBrand\Component\Discount\Contracts\DiscountContract;
-use iBrand\Component\Discount\Contracts\DiscountSubjectContract;
+use GuoJiangClub\Component\Discount\Contracts\DiscountContract;
+use GuoJiangClub\Component\Discount\Contracts\DiscountSubjectContract;
 use Illuminate\Support\Collection;
 
 class UnitFixedDiscountAction extends DiscountUnitActionContract

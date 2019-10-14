@@ -1,6 +1,6 @@
 <?php
 
-namespace iBrand\EC\Open\Backend\Store\Model;
+namespace GuoJiangClub\EC\Open\Backend\Store\Model;
 
 use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Model;
@@ -18,24 +18,24 @@ class ElDiscount extends Model
 
     public function discountRules()
     {
-        return $this->hasMany('iBrand\EC\Open\Backend\Store\Model\ElDiscountRule', 'discount_id', 'id');
+        return $this->hasMany('GuoJiangClub\EC\Open\Backend\Store\Model\ElDiscountRule', 'discount_id', 'id');
     }
 
     public function discountActions()
     {
-        return $this->hasMany('iBrand\EC\Open\Backend\Store\Model\ElDiscountAction', 'discount_id', 'id');
+        return $this->hasMany('GuoJiangClub\EC\Open\Backend\Store\Model\ElDiscountAction', 'discount_id', 'id');
     }
 
     public function getDiscountActionAttribute()
     {
         return $this->discountActions()->where('type', '<>', 'goods_times_point')->first();
-        /* return $this->hasOne('iBrand\EC\Open\Backend\Store\Model\ElDiscountAction','discount_id','id');*/
+        /* return $this->hasOne('GuoJiangClub\EC\Open\Backend\Store\Model\ElDiscountAction','discount_id','id');*/
     }
 
     public function getDiscountPointActionAttribute()
     {
         return $this->discountActions()->where('type', 'goods_times_point')->first();
-        /* return $this->hasOne('iBrand\EC\Open\Backend\Store\Model\ElDiscountAction','discount_id','id');*/
+        /* return $this->hasOne('GuoJiangClub\EC\Open\Backend\Store\Model\ElDiscountAction','discount_id','id');*/
     }
 
     public function getDiscountItemTotalAttribute()
@@ -111,5 +111,47 @@ class ElDiscount extends Model
     public function getUsedCouponCountAttribute()
     {
         return $this->coupons()->whereNotNull('used_at')->count();
+    }
+
+    public function getUseStartTimeAttribute()
+    {
+        if (!$this->attributes['usestart_at']) {
+            $time = $this->starts_at;
+        } else {
+            $time = $this->attributes['usestart_at'];
+        }
+
+        return date('Y-m-d', strtotime($time));
+    }
+
+    public function getUseEndTimeAttribute()
+    {
+        if (!$this->attributes['useend_at']) {
+            $time = $this->ends_at;
+        } else {
+            $time = $this->attributes['useend_at'];
+        }
+
+        return date('Y-m-d', strtotime($time));
+    }
+
+    public function getActionTypeAttribute()
+    {
+        $action = $this->discountActions()->first();
+        $type = [];
+
+        /*if ($this->coupon_based == 0) return $type;*/
+
+        if ($action->type == 'order_fixed_discount' OR $action->type == 'goods_fixed_discount') {
+            $type['type'] = 'cash';
+            $type['value'] = json_decode($action->configuration, true)['amount'] / 100;
+        } elseif (str_contains($action->type, 'activity_')) {
+            return json_decode($action->configuration, true);
+        } elseif ($action->type != 'goods_times_point') {
+            $type['type'] = 'discount';
+            $type['value'] = json_decode($action->configuration, true)['percentage'] / 10;
+        }
+
+        return $type;
     }
 }
