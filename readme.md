@@ -27,12 +27,12 @@
 
 ## 小程序
 
-小程序端源码在此：[miniprogram-open-source](https://github.com/ibrandcc/miniprogram-ecommerce-open-source)
+小程序端源码在此：[miniprogram-open-source](https://github.com/guojiangclub/miniprogram-ecommerce-open-source)
 
 ## 文档
-- [Wiki](https://github.com/ibrandcc/ecommerce-open-api/wiki)
-- [API 文档](https://www.ibrand.cc/docs/api/)
-- [果酱社区电商系统教程](https://www.ibrand.cc/open/article)
+- [Wiki](https://github.com/guojiangclub/ecommerce-open-api/wiki)
+- [API 文档](https://guojiangclub/docs/api/)
+- [配套小册](https://www.ibrand.cc/open/article)
 - [设计稿](https://lanhuapp.com/url/v7Bfb)  密码： YgK7
 
 ## 特性
@@ -50,16 +50,16 @@
 
 该项目正在持续迭代更新中，如果你想参与到本项目中来，请提交 Pull Request !
 
-如果你发现任何问题或者需求，请[提交ISSUE](https://github.com/ibrandcc/ecommerce-open-api/issues)
+如果你发现任何问题或者需求，请[提交ISSUE](https://github.com/guojiangclub/ecommerce-open-api/issues)
 
 ## 开源系列
 
-[Laravel 社交电商](https://github.com/ibrandcc/ecommerce-open-api)    ·    [社交电商微信小程序](https://github.com/ibrandcc/miniprogram-ecommerce-open-source)    ·  [微信第三方平台](https://github.com/ibrandcc/laravel-wechat-platform)
+[Laravel 社交电商](https://github.com/guojiangclub/ecommerce-open-api)    ·    [社交电商微信小程序](https://github.com/guojiangclub/miniprogram-ecommerce-open-source)    ·  [微信第三方平台](https://github.com/guojiangclub/laravel-wechat-platform)
 
 ## 社交账号
 
-[Laravel-China](https://laravel-china.org/ibrand)   ·  [掘金](https://juejin.im/user/5aab2cfa518825556534407a/posts)    ·  [segmentfault](https://segmentfault.com/u/ibrand)  
+[Laravel-China](https://learnku.com/blog/ibrand)   ·  [掘金](https://juejin.im/user/5aab2cfa518825556534407a/posts)    ·  [segmentfault](https://segmentfault.com/u/guojiang_club)  
 
 ## 讨论交流
 
-![iBrand联系我们](https://iyoyo.oss-cn-hangzhou.aliyuncs.com/post/qrcodenew.jpg)
+![联系我们](https://iyoyo.oss-cn-hangzhou.aliyuncs.com/post/qrcodenew.jpg)
