@@ -22,7 +22,7 @@
 		"ibrand/laravel-sms": "~1.0",
 		"ibrand/backend": "dev-guojiang",
 		"ibrand/laravel-ueditor": "^1.0",
-		"ibrand/pay": "^0.1.1",
+		"ibrand/pay": "~0.2",
 		"ibrand/setting": "^1.1",
 		"intervention/image": "^2.3",
 		"jenssegers/agent": "^2.4",

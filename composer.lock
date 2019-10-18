@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "4acbf824ff1ca512463f06866e8fbc76",
+    "content-hash": "21eff651265038be9c775ade730edce3",
     "packages": [
         {
             "name": "anam/phantomjs-linux-x86-binary",
@@ -2194,16 +2194,16 @@
         },
         {
             "name": "ibrand/pay",
-            "version": "v0.1.1",
+            "version": "v0.2.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/guojiangclub/pay.git",
-                "reference": "4d8419dcbea621307896adb85397412dab471a81"
+                "reference": "5796db81bb10fb23aa0db04ab4f0976fed27a883"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/guojiangclub/pay/zipball/4d8419dcbea621307896adb85397412dab471a81",
-                "reference": "4d8419dcbea621307896adb85397412dab471a81",
+                "url": "https://api.github.com/repos/guojiangclub/pay/zipball/5796db81bb10fb23aa0db04ab4f0976fed27a883",
+                "reference": "5796db81bb10fb23aa0db04ab4f0976fed27a883",
                 "shasum": "",
                 "mirrors": [
                     {
@@ -2255,7 +2255,7 @@
                 "ibrand",
                 "pay"
             ],
-            "time": "2018-12-29T03:37:46+00:00"
+            "time": "2019-05-25T08:30:19+00:00"
         },
         {
             "name": "ibrand/setting",
