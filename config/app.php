@@ -177,7 +177,6 @@ return [
         SimpleSoftwareIO\QrCode\QrCodeServiceProvider::class,
         Milon\Barcode\BarcodeServiceProvider::class,
         Jenssegers\Agent\AgentServiceProvider::class,
-        Overtrue\LaravelWechat\ServiceProvider::class,
 
         Prettus\Repository\Providers\RepositoryServiceProvider::class,
         HieuLe\Active\ActiveServiceProvider::class,

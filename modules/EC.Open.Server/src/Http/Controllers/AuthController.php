@@ -56,7 +56,7 @@ class AuthController extends Controller
         $token = $user->createToken($mobile)->accessToken;
 
         //2. bind user bind data to user.
-        $this->userService->bindPlatform($user->id, request('open_id'), config('wechat.mini_program.default.app_id'), 'miniprogram');
+        $this->userService->bindPlatform($user->id, request('open_id'), config('ibrand.wechat.mini_program.default.app_id'), 'miniprogram');
 
         return $this->success(['token_type' => 'Bearer', 'access_token' => $token, 'is_new_user' => $is_new]);
     }

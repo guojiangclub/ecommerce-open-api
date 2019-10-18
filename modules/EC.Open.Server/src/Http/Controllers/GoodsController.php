@@ -12,7 +12,6 @@
 namespace GuoJiangClub\EC\Open\Server\Http\Controllers;
 
 use DB;
-use EasyWeChat;
 use GuoJiangClub\Component\Category\RepositoryContract as CategoryRepository;
 use GuoJiangClub\Component\Discount\Repositories\CouponRepository;
 use GuoJiangClub\Component\Product\AttributeRelation;
@@ -25,6 +24,7 @@ use GuoJiangClub\EC\Open\Core\Services\DiscountService;
 use GuoJiangClub\EC\Open\Server\Transformers\GoodsTransformer;
 use iBrand\Miniprogram\Poster\MiniProgramShareImg;
 use Storage;
+use iBrand\Common\Wechat\Factory;
 
 class GoodsController extends Controller
 {
@@ -356,7 +356,7 @@ class GoodsController extends Controller
 
         $page = request('page') ? request('page') : '';
 
-        $miniProgram = EasyWeChat::miniProgram();
+        $miniProgram = Factory::miniProgram();
 
         $response = $miniProgram->app_code->getUnlimit($id, ['width' => 430, 'page' => $page]);
 
