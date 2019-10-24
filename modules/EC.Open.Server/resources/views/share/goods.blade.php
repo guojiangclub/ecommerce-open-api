@@ -156,7 +156,7 @@
     <div class="content">
         <div class="center-box">
             <img src="{{$goods->img}}" alt="">
-            <div class="text">米尔优选；为您挑选全球好货</div>
+            <div class="text">果酱小店；为您挑选全球好货</div>
         </div>
         <div class="bottom-box">
             <div class="left-item item">
