@@ -50,7 +50,7 @@ class HomeController extends Controller
     public function category()
     {
 
-        $microPage = $this->microPage->where('page_type', 3)->first();
+        $microPage = $this->microPage->where('page_type', MicroPage::PAGE_TYPE_Category)->first();
 
         if (!$microPage) return $this->success();
 

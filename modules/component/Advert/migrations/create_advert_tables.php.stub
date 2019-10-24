@@ -44,8 +44,7 @@ class CreateAdvertTables extends Migration
                 $table->increments('id');
                 $table->string('name');
                 $table->string('code')->unique();//编码
-                $table->string('type')->default('default');// 默认页面  home 首页
-                $table->integer('page_type')->default(1);
+                $table->integer('page_type')->default(1);//1默认 2首页 3分类页面
                 $table->string('link')->nullable();//推广链接
                 $table->string('link_image')->nullable();
                 $table->timestamps();
@@ -89,8 +88,10 @@ class CreateAdvertTables extends Migration
      */
     public function down()
     {
-        $prefix = config('ibrand.app.database.prefix', 'ibrand_');
-        Schema::dropIfExists($prefix.'advert_item');
-        Schema::dropIfExists($prefix.'advert');
+         $prefix = config('ibrand.app.database.prefix', 'ibrand_');
+         Schema::dropIfExists($prefix.'advert_item');
+         Schema::dropIfExists($prefix.'advert');
+         Schema::dropIfExists($prefix.'micro_page_advert');
+         Schema::dropIfExists($prefix.'micro_page');
     }
 }

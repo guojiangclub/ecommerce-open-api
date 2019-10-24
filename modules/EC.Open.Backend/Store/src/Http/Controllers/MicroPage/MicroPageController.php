@@ -92,6 +92,8 @@ class MicroPageController extends Controller
 
             DB::rollBack();
 
+            \Log::info($e);
+
             return $this->ajaxJson(false, 400, '保存失败');
 
         }
@@ -198,7 +200,7 @@ class MicroPageController extends Controller
 
         } catch (\Exception $e) {
             DB::rollBack();
-
+            \Log::info($e);
             return $this->ajaxJson(false, 400, '保存失败');
 
         }

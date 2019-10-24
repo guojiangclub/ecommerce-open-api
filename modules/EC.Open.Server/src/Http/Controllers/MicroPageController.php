@@ -51,7 +51,7 @@ class MicroPageController extends Controller
                 $microPage = $this->microPage->where('id', $code)->first();
                 break;
             case 'index':
-                $microPage = $this->microPage->where('page_type', 2)->first();
+                $microPage = $this->microPage->where('page_type', MicroPage::PAGE_TYPE_HOME)->first();
                 break;
             default:
                 $microPage = $this->microPage->where('code', $code)->first();

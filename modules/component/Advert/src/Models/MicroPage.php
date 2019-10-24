@@ -15,6 +15,10 @@ use Illuminate\Database\Eloquent\Model;
 
 class MicroPage extends Model
 {
+    const PAGE_TYPE_DEFAULT= 1;        //默认
+    const PAGE_TYPE_HOME = 2;         //首页
+    const PAGE_TYPE_Category = 3;    //分类页
+
     protected $guarded = ['id'];
 
     /**

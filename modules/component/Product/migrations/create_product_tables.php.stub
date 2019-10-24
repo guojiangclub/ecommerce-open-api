@@ -237,5 +237,6 @@ class CreateProductTables extends Migration
         Schema::dropIfExists($prefix . 'goods_specs_value');
         Schema::dropIfExists($prefix . 'goods_spec');
         Schema::dropIfExists($prefix . 'goods_brand');
+        Schema::dropIfExists($prefix . 'goods_spec_value');
     }
 }

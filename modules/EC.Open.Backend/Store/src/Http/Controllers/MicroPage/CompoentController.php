@@ -322,6 +322,7 @@ class CompoentController extends Controller
 
         } catch (\Exception $e) {
             DB::rollBack();
+            \Log::info($e);
             return $this->ajaxJson(false, 400, '保存失败');
 
         }
@@ -424,7 +425,7 @@ class CompoentController extends Controller
 
         } catch (\Exception $e) {
             DB::rollBack();
-            dd($e);
+            \Log::info($e);
             return $this->ajaxJson(false, 400, '保存失败');
 
         }
