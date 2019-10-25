@@ -1444,16 +1444,16 @@
         },
         {
             "name": "guzzlehttp/guzzle",
-            "version": "6.3.3",
+            "version": "6.4.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/guzzle/guzzle.git",
-                "reference": "407b0cb880ace85c9b63c5f9551db498cb2d50ba"
+                "reference": "0895c932405407fd3a7368b6910c09a24d26db11"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/guzzle/guzzle/zipball/407b0cb880ace85c9b63c5f9551db498cb2d50ba",
-                "reference": "407b0cb880ace85c9b63c5f9551db498cb2d50ba",
+                "url": "https://api.github.com/repos/guzzle/guzzle/zipball/0895c932405407fd3a7368b6910c09a24d26db11",
+                "reference": "0895c932405407fd3a7368b6910c09a24d26db11",
                 "shasum": "",
                 "mirrors": [
                     {
@@ -1463,14 +1463,15 @@
                 ]
             },
             "require": {
+                "ext-json": "*",
                 "guzzlehttp/promises": "^1.0",
-                "guzzlehttp/psr7": "^1.4",
+                "guzzlehttp/psr7": "^1.6.1",
                 "php": ">=5.5"
             },
             "require-dev": {
                 "ext-curl": "*",
                 "phpunit/phpunit": "^4.8.35 || ^5.7 || ^6.4 || ^7.0",
-                "psr/log": "^1.0"
+                "psr/log": "^1.1"
             },
             "suggest": {
                 "psr/log": "Required for using the Log middleware"
@@ -1482,12 +1483,12 @@
                 }
             },
             "autoload": {
-                "files": [
-                    "src/functions_include.php"
-                ],
                 "psr-4": {
                     "GuzzleHttp\\": "src/"
-                }
+                },
+                "files": [
+                    "src/functions_include.php"
+                ]
             },
             "notification-url": "https://packagist.org/downloads/",
             "license": [
@@ -1511,7 +1512,7 @@
                 "rest",
                 "web service"
             ],
-            "time": "2018-04-22T15:46:56+00:00"
+            "time": "2019-10-23T15:58:00+00:00"
         },
         {
             "name": "guzzlehttp/promises",
@@ -1784,12 +1785,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/guojiangclub/backend.git",
-                "reference": "82cf3a0203044fad618c6c250074e05325fe1527"
+                "reference": "2d9070e70b38e9a95c9b0caf9cc7ea4199c59c14"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/guojiangclub/backend/zipball/82cf3a0203044fad618c6c250074e05325fe1527",
-                "reference": "82cf3a0203044fad618c6c250074e05325fe1527",
+                "url": "https://api.github.com/repos/guojiangclub/backend/zipball/2d9070e70b38e9a95c9b0caf9cc7ea4199c59c14",
+                "reference": "2d9070e70b38e9a95c9b0caf9cc7ea4199c59c14",
                 "shasum": "",
                 "mirrors": [
                     {
@@ -1848,7 +1849,7 @@
                 "grid",
                 "laravel"
             ],
-            "time": "2019-10-17T11:56:50+00:00"
+            "time": "2019-10-25T11:23:13+00:00"
         },
         {
             "name": "ibrand/common",
@@ -2318,16 +2319,16 @@
         },
         {
             "name": "ibrand/pay",
-            "version": "v0.2.0",
+            "version": "v0.2.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/guojiangclub/pay.git",
-                "reference": "5796db81bb10fb23aa0db04ab4f0976fed27a883"
+                "reference": "af77e5ef1014fd8215d8a9e259ef5f53c79af630"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/guojiangclub/pay/zipball/5796db81bb10fb23aa0db04ab4f0976fed27a883",
-                "reference": "5796db81bb10fb23aa0db04ab4f0976fed27a883",
+                "url": "https://api.github.com/repos/guojiangclub/pay/zipball/af77e5ef1014fd8215d8a9e259ef5f53c79af630",
+                "reference": "af77e5ef1014fd8215d8a9e259ef5f53c79af630",
                 "shasum": "",
                 "mirrors": [
                     {
@@ -2379,7 +2380,7 @@
                 "ibrand",
                 "pay"
             ],
-            "time": "2019-05-25T08:30:19+00:00"
+            "time": "2019-10-09T11:46:51+00:00"
         },
         {
             "name": "ibrand/setting",
@@ -4706,16 +4707,16 @@
         },
         {
             "name": "overtrue/socialite",
-            "version": "2.0.11",
+            "version": "2.0.12",
             "source": {
                 "type": "git",
                 "url": "https://github.com/overtrue/socialite.git",
-                "reference": "cfc513bbf5fb8c1761e8127eb9427ab05cb4ea10"
+                "reference": "f182ae99bf85e191982b68fcd02e464acaa72888"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/overtrue/socialite/zipball/cfc513bbf5fb8c1761e8127eb9427ab05cb4ea10",
-                "reference": "cfc513bbf5fb8c1761e8127eb9427ab05cb4ea10",
+                "url": "https://api.github.com/repos/overtrue/socialite/zipball/f182ae99bf85e191982b68fcd02e464acaa72888",
+                "reference": "f182ae99bf85e191982b68fcd02e464acaa72888",
                 "shasum": "",
                 "mirrors": [
                     {
@@ -4728,6 +4729,9 @@
                 "guzzlehttp/guzzle": "~5.0|~6.0",
                 "php": ">=7.0",
                 "symfony/http-foundation": "^2.7|^3.0|^4.0"
+            },
+            "conflict": {
+                "socialiteproviders/weixin": "*"
             },
             "require-dev": {
                 "mockery/mockery": "~1.2",
@@ -4758,7 +4762,7 @@
                 "wechat",
                 "weibo"
             ],
-            "time": "2019-07-05T14:42:52+00:00"
+            "time": "2019-10-24T11:12:17+00:00"
         },
         {
             "name": "overtrue/wechat",
@@ -5615,16 +5619,16 @@
         },
         {
             "name": "psr/log",
-            "version": "1.1.0",
+            "version": "1.1.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/php-fig/log.git",
-                "reference": "6c001f1daafa3a3ac1d8ff69ee4db8e799a654dd"
+                "reference": "bf73deb2b3b896a9d9c75f3f0d88185d2faa27e2"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/php-fig/log/zipball/6c001f1daafa3a3ac1d8ff69ee4db8e799a654dd",
-                "reference": "6c001f1daafa3a3ac1d8ff69ee4db8e799a654dd",
+                "url": "https://api.github.com/repos/php-fig/log/zipball/bf73deb2b3b896a9d9c75f3f0d88185d2faa27e2",
+                "reference": "bf73deb2b3b896a9d9c75f3f0d88185d2faa27e2",
                 "shasum": "",
                 "mirrors": [
                     {
@@ -5639,7 +5643,7 @@
             "type": "library",
             "extra": {
                 "branch-alias": {
-                    "dev-master": "1.0.x-dev"
+                    "dev-master": "1.1.x-dev"
                 }
             },
             "autoload": {
@@ -5664,7 +5668,7 @@
                 "psr",
                 "psr-3"
             ],
-            "time": "2018-11-20T15:27:04+00:00"
+            "time": "2019-10-25T08:06:51+00:00"
         },
         {
             "name": "psr/simple-cache",
@@ -8131,16 +8135,16 @@
         },
         {
             "name": "tijsverkoyen/css-to-inline-styles",
-            "version": "2.2.1",
+            "version": "2.2.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/tijsverkoyen/CssToInlineStyles.git",
-                "reference": "0ed4a2ea4e0902dac0489e6436ebcd5bbcae9757"
+                "reference": "dda2ee426acd6d801d5b7fd1001cde9b5f790e15"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/tijsverkoyen/CssToInlineStyles/zipball/0ed4a2ea4e0902dac0489e6436ebcd5bbcae9757",
-                "reference": "0ed4a2ea4e0902dac0489e6436ebcd5bbcae9757",
+                "url": "https://api.github.com/repos/tijsverkoyen/CssToInlineStyles/zipball/dda2ee426acd6d801d5b7fd1001cde9b5f790e15",
+                "reference": "dda2ee426acd6d801d5b7fd1001cde9b5f790e15",
                 "shasum": "",
                 "mirrors": [
                     {
@@ -8150,8 +8154,10 @@
                 ]
             },
             "require": {
+                "ext-dom": "*",
+                "ext-libxml": "*",
                 "php": "^5.5 || ^7.0",
-                "symfony/css-selector": "^2.7 || ^3.0 || ^4.0"
+                "symfony/css-selector": "^2.7 || ^3.0 || ^4.0 || ^5.0"
             },
             "require-dev": {
                 "phpunit/phpunit": "^4.8.35 || ^5.7 || ^6.0"
@@ -8180,7 +8186,7 @@
             ],
             "description": "CssToInlineStyles is a class that enables you to convert HTML-pages/files into HTML-pages/files with inline styles. This is very useful when you're sending emails.",
             "homepage": "https://github.com/tijsverkoyen/CssToInlineStyles",
-            "time": "2017-11-27T11:13:29+00:00"
+            "time": "2019-10-24T08:53:34+00:00"
         },
         {
             "name": "vinkla/hashids",
@@ -11078,16 +11084,16 @@
         },
         {
             "name": "seld/jsonlint",
-            "version": "1.7.1",
+            "version": "1.7.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/Seldaek/jsonlint.git",
-                "reference": "d15f59a67ff805a44c50ea0516d2341740f81a38"
+                "reference": "e2e5d290e4d2a4f0eb449f510071392e00e10d19"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/Seldaek/jsonlint/zipball/d15f59a67ff805a44c50ea0516d2341740f81a38",
-                "reference": "d15f59a67ff805a44c50ea0516d2341740f81a38",
+                "url": "https://api.github.com/repos/Seldaek/jsonlint/zipball/e2e5d290e4d2a4f0eb449f510071392e00e10d19",
+                "reference": "e2e5d290e4d2a4f0eb449f510071392e00e10d19",
                 "shasum": "",
                 "mirrors": [
                     {
@@ -11129,7 +11135,7 @@
                 "parser",
                 "validator"
             ],
-            "time": "2018-01-24T12:46:19+00:00"
+            "time": "2019-10-24T14:27:39+00:00"
         },
         {
             "name": "seld/phar-utils",
