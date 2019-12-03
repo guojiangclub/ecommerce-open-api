@@ -1976,56 +1976,6 @@
             "time": "2018-03-26T15:11:13+00:00"
         },
         {
-            "name": "ibrand/laravel-cache",
-            "version": "v1.0.0",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/ibrandcc/laravel-cache.git",
-                "reference": "93d3f40b97d9b776d0af9997e51337db9d789e31"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/ibrandcc/laravel-cache/zipball/93d3f40b97d9b776d0af9997e51337db9d789e31",
-                "reference": "93d3f40b97d9b776d0af9997e51337db9d789e31",
-                "shasum": "",
-                "mirrors": [
-                    {
-                        "url": "https://mirrors.aliyun.com/composer/dists/%package%/%reference%.%type%",
-                        "preferred": true
-                    }
-                ]
-            },
-            "require": {
-                "php": ">=5.6"
-            },
-            "type": "library",
-            "autoload": {
-                "psr-4": {
-                    "iBrand\\Cache\\": "src/"
-                },
-                "files": [
-                    "src/helps.php"
-                ]
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "MIT"
-            ],
-            "authors": [
-                {
-                    "name": "shjchen",
-                    "email": "zdbd@vip.qq.com"
-                }
-            ],
-            "description": "Packaging commonly used caching usage extend Laravel's cache",
-            "keywords": [
-                "cache",
-                "ibrand",
-                "laravel"
-            ],
-            "time": "2018-01-05T07:55:42+00:00"
-        },
-        {
             "name": "ibrand/laravel-miniprogram-poster",
             "version": "v1.3.1",
             "source": {
@@ -2086,59 +2036,6 @@
                 "poster"
             ],
             "time": "2018-10-17T07:59:37+00:00"
-        },
-        {
-            "name": "ibrand/laravel-scheduling",
-            "version": "v1.0.0",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/guojiangclub/laravel-scheduling.git",
-                "reference": "7ddf6f684cdbd3bfbcc4994467995103b6f6f1ae"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/guojiangclub/laravel-scheduling/zipball/7ddf6f684cdbd3bfbcc4994467995103b6f6f1ae",
-                "reference": "7ddf6f684cdbd3bfbcc4994467995103b6f6f1ae",
-                "shasum": "",
-                "mirrors": [
-                    {
-                        "url": "https://mirrors.aliyun.com/composer/dists/%package%/%reference%.%type%",
-                        "preferred": true
-                    }
-                ]
-            },
-            "require": {
-                "php": ">=5.6"
-            },
-            "type": "library",
-            "extra": {
-                "laravel": {
-                    "providers": [
-                        "iBrand\\Scheduling\\ServiceProvider"
-                    ]
-                }
-            },
-            "autoload": {
-                "psr-4": {
-                    "iBrand\\Scheduling\\": "src/"
-                }
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "MIT"
-            ],
-            "authors": [
-                {
-                    "name": "shjchen",
-                    "email": "ibrand.sjchen@foxmail.com"
-                }
-            ],
-            "description": "ibrand's laravel scheduling. Split scheduling to every package.",
-            "keywords": [
-                "ibrand",
-                "laravel scheduling"
-            ],
-            "time": "2018-01-17T14:07:17+00:00"
         },
         {
             "name": "ibrand/laravel-shopping-cart",
@@ -3751,8 +3648,8 @@
             "authors": [
                 {
                     "name": "Luís Otávio Cobucci Oblonczyk",
-                    "role": "Developer",
-                    "email": "lcobucci@gmail.com"
+                    "email": "lcobucci@gmail.com",
+                    "role": "Developer"
                 }
             ],
             "description": "A simple library to work with JSON Web Token and JSON Web Signature",
@@ -6914,16 +6811,16 @@
         },
         {
             "name": "symfony/http-foundation",
-            "version": "v3.4.32",
+            "version": "v3.4.36",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/http-foundation.git",
-                "reference": "233f40cbebd595ffd91ddf291355f8a930a13777"
+                "reference": "d2d0cfe8e319d9df44c4cca570710fcf221d4593"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/http-foundation/zipball/233f40cbebd595ffd91ddf291355f8a930a13777",
-                "reference": "233f40cbebd595ffd91ddf291355f8a930a13777",
+                "url": "https://api.github.com/repos/symfony/http-foundation/zipball/d2d0cfe8e319d9df44c4cca570710fcf221d4593",
+                "reference": "d2d0cfe8e319d9df44c4cca570710fcf221d4593",
                 "shasum": "",
                 "mirrors": [
                     {
@@ -6970,7 +6867,7 @@
             ],
             "description": "Symfony HttpFoundation Component",
             "homepage": "https://symfony.com",
-            "time": "2019-10-02T16:15:21+00:00"
+            "time": "2019-11-28T12:52:59+00:00"
         },
         {
             "name": "symfony/http-kernel",
@@ -7266,16 +7163,16 @@
         },
         {
             "name": "symfony/polyfill-mbstring",
-            "version": "v1.12.0",
+            "version": "v1.13.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/polyfill-mbstring.git",
-                "reference": "b42a2f66e8f1b15ccf25652c3424265923eb4f17"
+                "reference": "7b4aab9743c30be783b73de055d24a39cf4b954f"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/polyfill-mbstring/zipball/b42a2f66e8f1b15ccf25652c3424265923eb4f17",
-                "reference": "b42a2f66e8f1b15ccf25652c3424265923eb4f17",
+                "url": "https://api.github.com/repos/symfony/polyfill-mbstring/zipball/7b4aab9743c30be783b73de055d24a39cf4b954f",
+                "reference": "7b4aab9743c30be783b73de055d24a39cf4b954f",
                 "shasum": "",
                 "mirrors": [
                     {
@@ -7293,7 +7190,7 @@
             "type": "library",
             "extra": {
                 "branch-alias": {
-                    "dev-master": "1.12-dev"
+                    "dev-master": "1.13-dev"
                 }
             },
             "autoload": {
@@ -7327,7 +7224,7 @@
                 "portable",
                 "shim"
             ],
-            "time": "2019-08-06T08:03:45+00:00"
+            "time": "2019-11-27T14:18:11+00:00"
         },
         {
             "name": "symfony/polyfill-php56",
@@ -7393,16 +7290,16 @@
         },
         {
             "name": "symfony/polyfill-php70",
-            "version": "v1.12.0",
+            "version": "v1.13.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/polyfill-php70.git",
-                "reference": "54b4c428a0054e254223797d2713c31e08610831"
+                "reference": "af23c7bb26a73b850840823662dda371484926c4"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/polyfill-php70/zipball/54b4c428a0054e254223797d2713c31e08610831",
-                "reference": "54b4c428a0054e254223797d2713c31e08610831",
+                "url": "https://api.github.com/repos/symfony/polyfill-php70/zipball/af23c7bb26a73b850840823662dda371484926c4",
+                "reference": "af23c7bb26a73b850840823662dda371484926c4",
                 "shasum": "",
                 "mirrors": [
                     {
@@ -7418,7 +7315,7 @@
             "type": "library",
             "extra": {
                 "branch-alias": {
-                    "dev-master": "1.12-dev"
+                    "dev-master": "1.13-dev"
                 }
             },
             "autoload": {
@@ -7454,7 +7351,7 @@
                 "portable",
                 "shim"
             ],
-            "time": "2019-08-06T08:03:45+00:00"
+            "time": "2019-11-27T13:56:44+00:00"
         },
         {
             "name": "symfony/polyfill-php72",
@@ -9255,8 +9152,8 @@
             "authors": [
                 {
                     "name": "Filipe Dobreira",
-                    "role": "Developer",
-                    "homepage": "https://github.com/filp"
+                    "homepage": "https://github.com/filp",
+                    "role": "Developer"
                 }
             ],
             "description": "php error handling for cool kids",
@@ -9380,6 +9277,109 @@
                 "test"
             ],
             "time": "2016-01-20T08:20:44+00:00"
+        },
+        {
+            "name": "ibrand/laravel-cache",
+            "version": "v1.0.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/ibrandcc/laravel-cache.git",
+                "reference": "93d3f40b97d9b776d0af9997e51337db9d789e31"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/ibrandcc/laravel-cache/zipball/93d3f40b97d9b776d0af9997e51337db9d789e31",
+                "reference": "93d3f40b97d9b776d0af9997e51337db9d789e31",
+                "shasum": "",
+                "mirrors": [
+                    {
+                        "url": "https://mirrors.aliyun.com/composer/dists/%package%/%reference%.%type%",
+                        "preferred": true
+                    }
+                ]
+            },
+            "require": {
+                "php": ">=5.6"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "iBrand\\Cache\\": "src/"
+                },
+                "files": [
+                    "src/helps.php"
+                ]
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "shjchen",
+                    "email": "zdbd@vip.qq.com"
+                }
+            ],
+            "description": "Packaging commonly used caching usage extend Laravel's cache",
+            "keywords": [
+                "cache",
+                "ibrand",
+                "laravel"
+            ],
+            "time": "2018-01-05T07:55:42+00:00"
+        },
+        {
+            "name": "ibrand/laravel-scheduling",
+            "version": "v1.0.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/guojiangclub/laravel-scheduling.git",
+                "reference": "7ddf6f684cdbd3bfbcc4994467995103b6f6f1ae"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/guojiangclub/laravel-scheduling/zipball/7ddf6f684cdbd3bfbcc4994467995103b6f6f1ae",
+                "reference": "7ddf6f684cdbd3bfbcc4994467995103b6f6f1ae",
+                "shasum": "",
+                "mirrors": [
+                    {
+                        "url": "https://mirrors.aliyun.com/composer/dists/%package%/%reference%.%type%",
+                        "preferred": true
+                    }
+                ]
+            },
+            "require": {
+                "php": ">=5.6"
+            },
+            "type": "library",
+            "extra": {
+                "laravel": {
+                    "providers": [
+                        "iBrand\\Scheduling\\ServiceProvider"
+                    ]
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "iBrand\\Scheduling\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "shjchen",
+                    "email": "ibrand.sjchen@foxmail.com"
+                }
+            ],
+            "description": "ibrand's laravel scheduling. Split scheduling to every package.",
+            "keywords": [
+                "ibrand",
+                "laravel scheduling"
+            ],
+            "time": "2018-01-17T14:07:17+00:00"
         },
         {
             "name": "justinrainbow/json-schema",
@@ -10378,8 +10378,8 @@
             "authors": [
                 {
                     "name": "Sebastian Bergmann",
-                    "role": "lead",
-                    "email": "sebastian@phpunit.de"
+                    "email": "sebastian@phpunit.de",
+                    "role": "lead"
                 }
             ],
             "description": "The PHP Unit Testing framework.",
@@ -11331,8 +11331,8 @@
             "authors": [
                 {
                     "name": "Arne Blankerts",
-                    "role": "Developer",
-                    "email": "arne@blankerts.de"
+                    "email": "arne@blankerts.de",
+                    "role": "Developer"
                 }
             ],
             "description": "A small library for converting tokenized PHP source code into XML and potentially other formats",
