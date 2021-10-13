@@ -1,33 +1,20 @@
-# 果酱小店开源电商系统
-
-> 重要说明：因为团队精力有限，纯开源的免费版本推进不下去，推出了会员制的版本，拥有直播，砍价，分销，拼团，秒杀，多供应商，微信群折扣，新人礼等的果酱小店版本。欢迎添加 微信号： chenbidexq 咨询。
-
-> 同时： 果酱小店小程序，我们作为真实的项目在运营，产品会不断更新迭代。
+## 果酱小店开源电商系统
 
 果酱小店是一个免费的开源电子商务解决方案，使用 PHP 基于 Laravel 框架进行编写。基于模块化开发，易扩展，可基于个性需求快速实现定制化需求，功能符合国内电商绝大部分使用场景。
 
 > 基于目前移动互联网的发展趋势，目前只提供 API 和 后端管理，不提供PC端商城。如有需要可理解项目架构后自行实现。
 
-管理后台：[果酱小店管理后台]( https://demo-open-admin.ibrand.cc/admin)
-
-后台账号密码请关注公众号 [PHP果酱](https://iyoyo.oss-cn-hangzhou.aliyuncs.com/post/wechat.jpg)  (微信号：phpjam) ，并回复关键词：password 获取。
-
 扫码体验小程序：
 
 ![体验小店](https://iyoyo.oss-cn-hangzhou.aliyuncs.com/post/miniprogramcode/ec.qrcode.png)
 
-## 更新计划
-1. 9月份预计更新拼团，分销以及微页面功能
-2. 10月预计更新砍价功能
-3. 11月预计更新 swoole 版本
-
 ## 更新日志
 
-目前 2.x 版本正在更新中，更新日志请见此[文档](./CHANGELOG.md) （2019-03-10 release 2.0.2）
+2.x 版本更新日志请见此[文档](./CHANGELOG.md)
 
 ## 功能清单
 
-[开源版本功能清单](https://iyoyo.oss-cn-hangzhou.aliyuncs.com/post/iBrand%20%E5%BC%80%E6%BA%90%E7%94%B5%E5%95%86.png)
+[功能清单](https://cdn.guojiang.club/yl%E6%9E%9C%E9%85%B1%E5%B0%8F%E5%BA%97.jpg)
 
 ## 小程序
 
@@ -47,23 +34,14 @@
 - 符合国内绝大部分B2C电商需求，同时可以轻易改造成 B2B、O2O、S2B2C模式。
 - 完整的API文档+系统使用教程+业务说明文档。
 - 配套的小程序解决方案+源码。
-- docker 实现自动化部署、负载均衡、自动扩容等。（待更新）
-- swoole 结合提高并发。（待更新）
 
-## 贡献源码
-
-该项目正在持续迭代更新中，如果你想参与到本项目中来，请提交 Pull Request !
-
-如果你发现任何问题或者需求，请[提交ISSUE](https://github.com/guojiangclub/ecommerce-open-api/issues)
 
 ## 开源系列
 
 [Laravel 社交电商](https://github.com/guojiangclub/ecommerce-open-api)    ·    [社交电商微信小程序](https://github.com/guojiangclub/miniprogram-ecommerce-open-source)    ·  [微信第三方平台](https://github.com/guojiangclub/laravel-wechat-platform)
 
-## 社交账号
+## 交流
 
-[Laravel-China](https://learnku.com/blog/ibrand)   ·  [掘金](https://juejin.im/user/5aab2cfa518825556534407a/posts)    ·  [segmentfault](https://segmentfault.com/u/guojiang_club)  
+扫码添加[玖玖]，可获得“陈彼得”绝密编程资源以及25个副业赚钱思维。
 
-## 讨论交流
-
-![联系我们](https://iyoyo.oss-cn-hangzhou.aliyuncs.com/post/qrcodenew.jpg)
+![玖玖|彼得助理 微信二维码](https://cdn.guojiang.club/xiaojunjunqyewx2.jpg)
