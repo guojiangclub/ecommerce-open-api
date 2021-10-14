@@ -24,7 +24,7 @@
 
 ## 小程序
 
-小程序端源码在此：[miniprogram-open-source](https://gitee.com/guojiangclub/miniprogram-ecommerce-open-source)
+小程序端源码在此：[miniprogram-open-source](https://github.com/guojiangclub/miniprogram-ecommerce-open-source)
 
 ## 文档
 - [API 文档](https://guojiangclub/docs/api/)
