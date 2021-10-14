@@ -8,6 +8,12 @@
 
 ![体验小店](https://iyoyo.oss-cn-hangzhou.aliyuncs.com/post/miniprogramcode/ec.qrcode.png)
 
+## 效果截图
+
+![果酱小店](https://cdn.guojiang.club/%E6%9E%9C%E9%85%B1%E5%B0%8F%E5%BA%971.jpg)
+
+![果酱小店](https://cdn.guojiang.club/%E6%9E%9C%E9%85%B1%E5%B0%8F%E5%BA%972.jpg)
+
 ## 更新日志
 
 2.x 版本更新日志请见此[文档](./CHANGELOG.md)
@@ -18,7 +24,7 @@
 
 ## 小程序
 
-小程序端源码在此：[miniprogram-open-source](https://gitee.com/guojiangclub/miniprogram-ecommerce-open-source)
+小程序端源码在此：[miniprogram-open-source](https://github.com/guojiangclub/miniprogram-ecommerce-open-source)
 
 ## 文档
 - [API 文档](https://guojiangclub/docs/api/)
