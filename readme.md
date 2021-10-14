@@ -12,7 +12,7 @@
 
 ![果酱小店](https://cdn.guojiang.club/%E6%9E%9C%E9%85%B1%E5%B0%8F%E5%BA%971.jpg)
 
-![果酱小店](https://cdn.guojiang.club/%E6%9E%9C%E9%85%B1%E5%B0%8F%E5%BA%972.jpg)
+![果酱小店2](https://cdn.guojiang.club/gjxd3.jpg)
 
 ## 更新日志
 
