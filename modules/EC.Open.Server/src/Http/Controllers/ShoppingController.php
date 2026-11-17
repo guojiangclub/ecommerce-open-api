@@ -499,6 +499,9 @@ class ShoppingController extends Controller
         if (!$order_no || !$order || 2 != $order->status) {
             return $this->response()->errorBadRequest('订单不存在');
         }
+        if (request()->user()->cant('update', $order)) {
+            return $this->failed('无权操作');
+        }
 
         $data['delivery_time'] = date('Y-m-d H:i:s', Carbon::now()->timestamp);
 
